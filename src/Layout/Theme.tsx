@@ -61,6 +61,7 @@ export const GlobalStyle = createGlobalStyle<{
      overflow-x: hidden;
     line-height: 1;
     font-weight: inherit;
+    
     font-style: inherit;
     font-size: 100%;
     font-family: inherit;
