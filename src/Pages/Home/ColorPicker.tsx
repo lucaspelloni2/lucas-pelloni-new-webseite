@@ -1,6 +1,11 @@
 import React, { DOMAttributes } from "react";
 import styled, { keyframes } from "styled-components";
-import { __COLORS, SPACING } from "../../Layout/Theme";
+import {
+  __COLORS,
+  __GRAY_SCALE,
+  getAlphaColor,
+  SPACING
+} from "../../Layout/Theme";
 import { Color, HomeColor } from "./Color";
 
 const bounceInRight = keyframes`
@@ -57,6 +62,10 @@ export const ColorPicker = ({ colors, onSelectColor, ...props }: Props) => {
       {colors.map((c: HomeColor) => {
         return <Color key={c.id} color={c} onSelect={onSelectColor} />;
       })}
+      <Color
+        isDarkModeElement
+        color={{ id: "dark", background: __GRAY_SCALE._800 }}
+      />
     </Container>
   );
 };

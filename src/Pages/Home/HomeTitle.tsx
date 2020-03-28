@@ -37,9 +37,9 @@ export const HomeTitle = ({ selectedColor }: Props) => {
               : __COLORS.TERTIARY
           }
         >
-          I Love
+          I love
         </Colored>{" "}
-        to build beautiful Products with modern{" "}
+        to build beautiful products with modern{" "}
         <Colored color={selectedColor || __COLORS.FIFTH}>
           User Interfaces.
         </Colored>
