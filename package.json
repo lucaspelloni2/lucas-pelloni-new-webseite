@@ -13,8 +13,11 @@
     "polished": "latest",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "latest",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
     "styled-components": "latest",
     "typescript": "~3.7.2",
     "uuid": "latest"
@@ -41,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^5.0.1",
     "@types/uuid": "^7.0.2"
   }

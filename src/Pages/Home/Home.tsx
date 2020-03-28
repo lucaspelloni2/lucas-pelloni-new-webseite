@@ -9,6 +9,10 @@ import { useInterval } from "../../components/useInterval";
 import { ColorPicker } from "./ColorPicker";
 import { v1 as uuidv1 } from "uuid";
 import { HomeColor } from "./Color";
+import {
+  fadeIn,
+  INITIAL_ANIMATION_DURATION_IN_SECONDS, slideLeft
+} from "../../Layout/AnimationHelper";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -19,6 +23,7 @@ const TextContainer = styled(FlexBox)`
   flex-direction: column;
   justify-content: flex-end;
   padding: ${SPACING * 5}px;
+  animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${fadeIn} forwards;
 `;
 
 const IllustrationContainer = styled(FlexBox)`
@@ -26,19 +31,9 @@ const IllustrationContainer = styled(FlexBox)`
   align-items: center;
   justify-content: flex-end;
 `;
-const fadeIn = keyframes`
-  from {
-  opacity: 0;   
-  transform: translateX(0);
-  }
-  to {
-  opacity: 1;
-    transform: translateX(-${SPACING * 8}px);
-  }
-`;
 
 const Image = styled(Illustration)`
-  animation: 2s ${fadeIn} forwards;
+  animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${slideLeft} forwards;
   max-width: 600px;
   height: auto;
   transition: 1s ease-in-out all;
