@@ -35,7 +35,8 @@ export const __COLORS = {
   SECONDARY: "#5F5FFF",
   TERTIARY: "#FF3E6C",
   FOURTH: "#FFCC3E",
-  FIFTH: "#8FACFF"
+  FIFTH: "#8FACFF",
+  WHITE: "#fff"
 };
 
 // You can either import a Google Font: https://fonts.google.com
@@ -57,6 +58,7 @@ export const GlobalStyle = createGlobalStyle<{
     padding: 0;
     margin: 0;
     border: 0;
+     overflow-x: hidden;
     line-height: 1;
     font-weight: inherit;
     font-style: inherit;

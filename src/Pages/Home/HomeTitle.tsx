@@ -2,7 +2,9 @@ import React from "react";
 import { Title } from "../../Layout/Typography";
 import styled from "styled-components";
 
-const MyTitle = styled(Title)``;
+const MyTitle = styled(Title)`
+  font-size: 42px;
+`;
 
 export const HomeTitle = () => {
   return (

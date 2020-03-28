@@ -1,7 +1,10 @@
 import React, { ImgHTMLAttributes } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Image = styled.img``;
+
+const Image = styled.img`
+ 
+`;
 
 type Props = { name: string } & ImgHTMLAttributes<HTMLImageElement>;
 

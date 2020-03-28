@@ -6,4 +6,5 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: ${SPACING * 2}px;
+  overflow-x: hidden;
 `;

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import { HomeTitle } from "./HomeTitle";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { FlexBox } from "../../Layout/styled/FlexBox";
 import { Illustration } from "../../components/Illustrations";
 import { __COLORS, getAlphaColor, SPACING } from "../../Layout/Theme";
 import { useInterval } from "../../components/useInterval";
+import { ColorPicker } from "./ColorPicker";
+import { v1 as uuidv1 } from "uuid";
+import { HomeColor } from "./Color";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -15,6 +18,7 @@ const TextContainer = styled(FlexBox)`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  padding: ${SPACING * 5}px;
 `;
 
 const IllustrationContainer = styled(FlexBox)`
@@ -22,49 +26,93 @@ const IllustrationContainer = styled(FlexBox)`
   align-items: center;
   justify-content: flex-end;
 `;
+const fadeIn = keyframes`
+  from {
+  opacity: 0;   
+  transform: translateX(0);
+  }
+  to {
+  opacity: 1;
+    transform: translateX(-${SPACING * 8}px);
+  }
+`;
 
 const Image = styled(Illustration)`
-  max-width: 65%;
+  animation: 2s ${fadeIn} forwards;
+  max-width: 600px;
   height: auto;
+  transition: 1s ease-in-out all;
   padding: ${SPACING * 2}px;
-  margin-right: ${SPACING * 8}px;
+  position: absolute;
 `;
 
 const CircleContainer = styled.div`
   position: absolute;
   top: -${SPACING * 15}px;
   right: -${SPACING * 15}px;
-  z-index: -1;
 `;
 
 const SIZE = 850;
-const Circle = styled.div`
+const INTERVAL = 3000;
+
+const Circle = styled.div<{ selectedColor?: string; color: string }>`
   clip-path: circle(50% at 50% 50%);
   width: ${SIZE}px;
   height: ${SIZE}px;
-  background: ${getAlphaColor(0.5, __COLORS.TERTIARY)};
+  transition: ${props => (props.selectedColor ? INTERVAL / 10 : INTERVAL)}ms
+    ease-in-out all;
+  background: ${props =>
+    props.selectedColor || getAlphaColor(0.7, props.color)};
 `;
 
-const illustrations = ["home.png", "home_2.png", "home_3.png"];
+const colors = [__COLORS.SECONDARY, __COLORS.FIFTH, __COLORS.TERTIARY];
 
 export const Home = () => {
-  const [illustration, setIllustration] = useState(illustrations[0]);
+  const [randomColor, setRandomColor] = useState(colors[0]);
+  const [selectedColor, setColor] = useState<null | HomeColor>(null);
+  const homeColors = colors.map(c => ({ background: c, id: uuidv1() }));
+  const [hover, setHover] = useState(false);
 
   useInterval(() => {
-    const nextIndex =
-      (illustrations.indexOf(illustration) + 1) % illustrations.length;
-    setIllustration(illustrations[nextIndex]);
-  }, 5000);
+    const nextIndex = (colors.indexOf(randomColor) + 1) % colors.length;
+    setRandomColor(colors[nextIndex]);
+  }, INTERVAL);
+
+  useEffect(() => {
+    if (!hover) {
+      setColor(null);
+    }
+  }, [hover]);
+
   return (
     <Container>
+      {hover && (
+        <ColorPicker
+          onMouseEnter={() => setHover(true)}
+          onSelectColor={(id: string) =>
+            setColor(homeColors.filter(h => h.id === id)[0])
+          }
+          colors={homeColors}
+        />
+      )}
       <CircleContainer>
-        <Circle />
+        <Circle
+          selectedColor={selectedColor?.background}
+          color={randomColor}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        />
       </CircleContainer>
       <TextContainer flex={1}>
         <HomeTitle />
       </TextContainer>
+
       <IllustrationContainer flex={1}>
-        <Image name={illustration} />
+        <Image
+          name={"home.png"}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        />
       </IllustrationContainer>
     </Container>
   );
