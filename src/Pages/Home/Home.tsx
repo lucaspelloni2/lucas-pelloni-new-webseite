@@ -104,7 +104,7 @@ export const Home = () => {
         />
       </CircleContainer>
       <TextContainer flex={1}>
-        <HomeTitle />
+        <HomeTitle selectedColor={selectedColor?.background} />
       </TextContainer>
 
       <IllustrationContainer flex={1}>
