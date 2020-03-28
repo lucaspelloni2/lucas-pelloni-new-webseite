@@ -7,6 +7,8 @@ import {
   SPACING
 } from "../../Layout/Theme";
 import { Color, HomeColor } from "./Color";
+import { useDispatch } from "react-redux";
+import { toggleDarkMode } from "../../reducers/darkMode/actions";
 
 const bounceInRight = keyframes`
 from,
@@ -57,12 +59,16 @@ type Props = {
 } & DOMAttributes<any>;
 
 export const ColorPicker = ({ colors, onSelectColor, ...props }: Props) => {
+  const dispatch = useDispatch();
   return (
     <Container {...props}>
       {colors.map((c: HomeColor) => {
         return <Color key={c.id} color={c} onSelect={onSelectColor} />;
       })}
       <Color
+        onSelect={(id: string) => {
+          dispatch(toggleDarkMode());
+        }}
         isDarkModeElement
         color={{ id: "dark", background: __GRAY_SCALE._800 }}
       />

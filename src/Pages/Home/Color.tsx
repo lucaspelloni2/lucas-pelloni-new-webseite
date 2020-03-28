@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { __COLORS, getAlphaColor, SPACING } from "../../Layout/Theme";
 import { Icon, IconTypes } from "../../components/Icon";
+import useAppState from "../../reducers/useAppState";
 
 const SIZE = 25;
 
@@ -34,17 +35,22 @@ type Props = {
   color: HomeColor;
 };
 export const Color = ({ onSelect, color, isDarkModeElement }: Props) => {
+  const { isDarkMode } = useAppState(s => s.darkMode);
   const callback = useCallback(() => {
     onSelect?.(color.id);
   }, [color.id, onSelect]);
   return !isDarkModeElement ? (
     <Container onClick={callback} color={color.background} />
   ) : (
-    <Container color={color.background} style={{ padding: SPACING / 4 }}>
+    <Container
+      onClick={callback}
+      color={isDarkMode ? __COLORS.FOURTH : color.background}
+      style={{ padding: SPACING / 4 }}
+    >
       <Icon
-        color={__COLORS.WHITE}
-        name={IconTypes.DARK_MODE}
-        style={{ width: 14, height: 14 }}
+        color={isDarkMode ? __COLORS.WHITE : __COLORS.WHITE}
+        name={isDarkMode ? IconTypes.SUN : IconTypes.DARK_MODE}
+        style={{ width: 14, height: 14, transition: "0.3s ease-in-out all" }}
       />
     </Container>
   );
