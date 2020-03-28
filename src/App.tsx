@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
+import {Home} from "./Pages/Home/Home";
 
 
 function App() {
   return (
-    <div className="App">
-     asfasfa
+    <div>
+      <Home />
     </div>
   );
 }

@@ -1,22 +1,20 @@
-import {CSSProperties} from "react";
-import {createGlobalStyle, ThemeProviderProps} from "styled-components";
-import {transparentize} from "polished";
+import { CSSProperties } from "react";
+import { createGlobalStyle, ThemeProviderProps } from "styled-components";
+import { transparentize } from "polished";
 
 type Props = {
   googleUrl: string;
 };
 
 export const MainTheme: CSSProperties & Props = {
-  fontFamily: "Source Sans Pro, sans-serif",
+  fontFamily: "Nunito Sans, sans-serif",
   googleUrl:
-    "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap"
+    "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
 
   // add more general CSS properties here
 };
 
-
-
-
+export const SPACING = 10;
 
 export enum __GRAY_SCALE {
   _100 = "#f6f9fc",
@@ -33,27 +31,12 @@ export enum __GRAY_SCALE {
 
 // Colors Palette https://colorhunt.co/
 export const __COLORS = {
-  PRIMARY: "#29235C",
-  SECONDARY: "#9aceff",
-  BLUEISH_GRAY: "rgb(250, 250, 255)",
-  BRIGHT_BLUE: "#1B40E6",
-  BRIGHT_BLUE_HOVER: "#1e67e6",
-  FOURTH: "#95e1d3",
-  WHITE: "#fff",
-  BLACK: "#000",
-  BACKGROUND: "#F6F7F9",
-  SINGLE_SIGNATURE: "#00635D",
-  DOUBLE_SIGNATURE: "#6665DD"
+  PRIMARY: "#030047",
+  SECONDARY: "#5F5FFF",
+  TERTIARY: "#FF3E6C",
+  FOURTH: "#FFCC3E",
+  FIFTH: "#8FACFF"
 };
-
-export enum __ALERTS {
-  INFO = "#11cdef",
-  SUCCESS = "#21bf73",
-  WARNING = "#F45B69",
-  WARNING_ORANGE = "#f57b51",
-  ERROR = "rgb(223, 95, 103)"
-}
-
 
 // You can either import a Google Font: https://fonts.google.com
 // Or declare a custom font: https://tinyurl.com/y6omstqa
@@ -111,9 +94,6 @@ export const GlobalStyle = createGlobalStyle<{
   }
 `;
 
-
-
 export const getAlphaColor = (alpha: number, color: string) => {
   return transparentize(1 - alpha, color);
 };
-
