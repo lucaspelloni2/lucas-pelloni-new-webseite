@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
 import { ReactNode } from "react";
 
@@ -6,10 +6,10 @@ type Props = {
   component: ReactNode;
 };
 
-const Child = styled.section`
-  scroll-snap-align: start;
-`;
+const Child = styled.div``;
 
-export const Page = ({ component }: Props) => {
-  return <Child>{component}</Child>;
-};
+export const Page = forwardRef(
+  ({ component }: Props, ref: Ref<HTMLDivElement>) => {
+    return <Child ref={ref}>{component}</Child>;
+  }
+);
