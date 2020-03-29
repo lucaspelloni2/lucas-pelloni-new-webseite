@@ -6,6 +6,7 @@ import { Page } from "./Page";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import useAppState from "../reducers/useAppState";
 import { RefType } from "../reducers/scrollRefs/types";
+import { PageContainer } from "../Layout/styled/PageContainer";
 
 const Container = styled.div`
   &::-webkit-scrollbar {
@@ -16,20 +17,13 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
+const BlankPage = () => <PageContainer />;
+
 export const Pages = () => {
   const { lastScrolledRef } = useAppState(s => s.scrollRefs);
   const viewPortHeight = window.screen.height;
 
   console.log(viewPortHeight);
-
-  const homeRef = useRef<HTMLDivElement>(null);
-  const storyRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (lastScrolledRef === RefType.STORY && storyRef?.current) {
-      window.scrollTo(0, storyRef.current.offsetTop);
-    }
-  }, [lastScrolledRef]);
 
   useScrollPosition(({ prevPos, currPos }) => {
     console.log(currPos.y);
@@ -37,8 +31,9 @@ export const Pages = () => {
 
   return (
     <Container>
-      <Page ref={homeRef} component={<Home />} />
-      <Page ref={storyRef} component={<StoryIntro />} />
+      <Page component={<Home />} name="home" />
+      <Page component={<BlankPage />} name="blank" />
+      <Page component={<StoryIntro />} name="story" />
     </Container>
   );
 };

@@ -18,12 +18,15 @@ import { Header } from "../../components/Header";
 import useAppState from "../../reducers/useAppState";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 import { useDispatch } from "react-redux";
-import { scrollToRef } from "../../reducers/scrollRefs/actions";
-import { RefType } from "../../reducers/scrollRefs/types";
+
+import * as Scroll from "react-scroll";
+import { DefaultScrollTransition } from "../DefaultScrollTransition";
+import { Circle } from "../../components/Circle";
+const { scroller } = Scroll;
 
 const Container = styled(PageContainer)`
   flex-direction: row;
-  position: relative;
+
 `;
 
 const TextContainer = styled(FlexBox)`
@@ -50,31 +53,7 @@ const Image = styled(Illustration)`
   position: absolute;
 `;
 
-const CircleContainer = styled.div<{ color: string }>`
-  position: absolute;
-  top: -${SPACING * 15}px;
-  right: -${SPACING * 15}px;
-  filter: ${props =>
-    `drop-shadow(6px 10px 8px ${getAlphaColor(0.3, props.color)})`};
-`;
-
-const SIZE = 850;
 const INTERVAL = 5000;
-
-const Circle = styled.div<{
-  selectedColor?: string;
-  color: string;
-  isDarkMode: boolean;
-}>`
-  clip-path: circle(50% at 50% 50%);
-  width: ${SIZE}px;
-  height: ${SIZE}px;
-  transition: ${props => (props.selectedColor ? INTERVAL / 10 : INTERVAL / 2)}ms
-    ease-in-out all;
-  background: ${props =>
-    props.selectedColor ||
-    getAlphaColor(props.isDarkMode ? 1 : 1, props.color)};
-`;
 
 const colors = [__COLORS.SECONDARY, __COLORS.FIFTH, __COLORS.TERTIARY];
 
@@ -108,13 +87,11 @@ export const Home = () => {
           colors={homeColors}
         />
       )}
-      <CircleContainer color={selectedColor?.background || randomColor}>
-        <Circle
-          isDarkMode={isDarkMode}
-          selectedColor={selectedColor?.background}
-          color={randomColor}
-        />
-      </CircleContainer>
+      <Circle
+        randomColor={randomColor}
+        selectedColor={selectedColor}
+        interval={INTERVAL}
+      />
       <TextContainer flex={1}>
         <Header />
         <FlexBox flex={1} />
@@ -129,7 +106,9 @@ export const Home = () => {
         <Image name={"home.png"} />
         <ScrollDownIcon
           onClick={() => {
-            dispatch(scrollToRef(RefType.STORY));
+            scroller.scrollTo("story", {
+              ...DefaultScrollTransition
+            });
           }}
         />
       </IllustrationContainer>
