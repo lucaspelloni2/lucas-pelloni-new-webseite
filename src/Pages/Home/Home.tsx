@@ -11,8 +11,10 @@ import { v1 as uuidv1 } from "uuid";
 import { HomeColor } from "./Color";
 import {
   fadeIn,
-  INITIAL_ANIMATION_DURATION_IN_SECONDS, slideLeft
+  INITIAL_ANIMATION_DURATION_IN_SECONDS,
+  slideLeft
 } from "../../Layout/AnimationHelper";
+import { Header } from "../../components/Header";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -99,6 +101,8 @@ export const Home = () => {
         />
       </CircleContainer>
       <TextContainer flex={1}>
+        <Header />
+        <FlexBox flex={1} />
         <HomeTitle selectedColor={selectedColor?.background} />
       </TextContainer>
 

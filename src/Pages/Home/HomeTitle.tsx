@@ -45,8 +45,11 @@ export const HomeTitle = ({ selectedColor }: Props) => {
         </Colored>
       </MyTitle>
       <MySubTitle>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci
-        consequatur, consequuntur est explicabo hic impedit in neque.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      </MySubTitle>
+      <MySubTitle>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet
+        delectus eius excepturi
       </MySubTitle>
     </Titles>
   );

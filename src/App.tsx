@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Home } from "./Pages/Home/Home";
 import { Header } from "./components/Header";
 import { GlobalStyle, MainTheme } from "./Layout/Theme";
@@ -10,9 +10,13 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={MainTheme}>
-        <GlobalStyle isDarkMode={isDarkMode} />
+        {useMemo(
+          () => (
+            <GlobalStyle isDarkMode={isDarkMode} />
+          ),
+          [isDarkMode]
+        )}
       </ThemeProvider>
-      <Header />
       <Home />
     </div>
   );
