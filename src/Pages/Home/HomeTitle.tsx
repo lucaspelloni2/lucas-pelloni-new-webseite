@@ -2,6 +2,7 @@ import React from "react";
 import { SubTitle, Title } from "../../Layout/Typography";
 import styled from "styled-components";
 import { __COLORS, __GRAY_SCALE, SPACING } from "../../Layout/Theme";
+import { Icon, IconTypes } from "../../components/Icon";
 
 const Colored = styled.span<{ color: string }>`
   color: ${props => props.color};
@@ -37,7 +38,21 @@ export const HomeTitle = ({ selectedColor }: Props) => {
               : __COLORS.TERTIARY
           }
         >
-          I love
+          I{" "}
+          <Icon
+            name={IconTypes.LOVE}
+            color={
+              selectedColor === __COLORS.TERTIARY
+                ? __COLORS.SECONDARY
+                : __COLORS.TERTIARY
+            }
+            style={{
+              transition: "inherit",
+              width: SPACING * 6,
+              height: SPACING * 6,
+              marginBottom: -8
+            }}
+          />
         </Colored>{" "}
         to build beautiful products with modern{" "}
         <Colored color={selectedColor || __COLORS.FIFTH}>

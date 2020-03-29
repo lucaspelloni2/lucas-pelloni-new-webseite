@@ -102,6 +102,17 @@ export const GlobalStyle = createGlobalStyle<{
   }
 `;
 
+export const getColors = () => [
+  __COLORS.SECONDARY,
+  __COLORS.TERTIARY,
+  __COLORS.FOURTH,
+  __COLORS.FIFTH
+];
+
+export const getRandomColor = () => {
+  const colors = getColors();
+  return colors[Math.floor(Math.random() * colors.length)];
+};
 export const getAlphaColor = (alpha: number, color: string) => {
   return transparentize(1 - alpha, color);
 };
