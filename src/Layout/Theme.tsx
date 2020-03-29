@@ -66,7 +66,7 @@ export const GlobalStyle = createGlobalStyle<{
      background: ${props =>
        props.isDarkMode ? __COLORS.PRIMARY : __COLORS.WHITE};
     font-style: inherit;
-    font-size: 100%;
+    font-size: 100%; 
     font-family: inherit;
     outline: none;
   }
