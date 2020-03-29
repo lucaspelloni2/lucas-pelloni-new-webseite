@@ -19,13 +19,14 @@ import useAppState from "../../reducers/useAppState";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
+  position: relative;
 `;
 
 const TextContainer = styled(FlexBox)`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: ${SPACING * 5}px;
+  padding: ${SPACING * 2}px ${SPACING * 5}px;
   animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${fadeIn} forwards;
 `;
 
@@ -44,10 +45,12 @@ const Image = styled(Illustration)`
   position: absolute;
 `;
 
-const CircleContainer = styled.div`
+const CircleContainer = styled.div<{ color: string }>`
   position: absolute;
   top: -${SPACING * 15}px;
   right: -${SPACING * 15}px;
+  filter: ${props =>
+    `drop-shadow(6px 10px 8px ${getAlphaColor(0.3, props.color)})`};
 `;
 
 const SIZE = 850;
@@ -99,7 +102,7 @@ export const Home = () => {
           colors={homeColors}
         />
       )}
-      <CircleContainer>
+      <CircleContainer color={selectedColor?.background || randomColor}>
         <Circle
           isDarkMode={isDarkMode}
           selectedColor={selectedColor?.background}

@@ -59,6 +59,7 @@ export const GlobalStyle = createGlobalStyle<{
     padding: 0;
     margin: 0;
     border: 0;
+     scroll-behavior: smooth;
      overflow-x: hidden;
     line-height: 1;
     font-weight: inherit;

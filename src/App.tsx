@@ -1,10 +1,8 @@
 import React, { useMemo } from "react";
-import { Home } from "./Pages/Home/Home";
-import { Header } from "./components/Header";
 import { GlobalStyle, MainTheme } from "./Layout/Theme";
 import { ThemeProvider } from "styled-components";
 import useAppState from "./reducers/useAppState";
-import { StoryIntro } from "./Pages/StoryIntro/StoryIntro";
+import { Pages } from "./Pages/Pages";
 
 function App() {
   const { isDarkMode } = useAppState(s => s.darkMode);
@@ -18,8 +16,7 @@ function App() {
           [isDarkMode]
         )}
       </ThemeProvider>
-      <Home />
-      <StoryIntro />
+      <Pages />
     </div>
   );
 }
