@@ -22,7 +22,7 @@ export const Header = () => {
   return (
     <Container>
       <Logo />
-      <div style={{ width: SPACING * 5 }} />
+      <FlexBox flex={1} />
       <Item>My Story</Item>
       <Item>Contact me</Item>
     </Container>

@@ -10,7 +10,8 @@ const Container = styled.div`
 
 const Span = styled.span`
   font-size: 28px;
-  font-weight: 700;
+  letter-spacing: 1px;
+  font-weight: 900;
 `;
 
 export const Logo = () => {
