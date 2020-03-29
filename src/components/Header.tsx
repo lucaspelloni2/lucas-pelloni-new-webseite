@@ -5,8 +5,9 @@ import { SPACING } from "../Layout/Theme";
 const Container = styled.div`
   display: flex;
   min-height: 70px;
+  align-items: center;
   position: absolute;
-  padding: ${SPACING * 6}px;
+  padding: ${SPACING * 7}px;
   width: 100%;
 `;
 

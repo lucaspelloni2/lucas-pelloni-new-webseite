@@ -65,6 +65,7 @@ export const GlobalStyle = createGlobalStyle<{
      transition: 0.5s ease-in-out all;
      background: ${props =>
        props.isDarkMode ? __COLORS.PRIMARY : __COLORS.WHITE};
+     color: ${props => (props.isDarkMode ? __COLORS.WHITE : __COLORS.PRIMARY)};
     font-style: inherit;
     font-size: 100%; 
     font-family: inherit;
