@@ -15,6 +15,7 @@ import {
   slideLeft
 } from "../../Layout/AnimationHelper";
 import { Header } from "../../components/Header";
+import useAppState from "../../reducers/useAppState";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -50,22 +51,28 @@ const CircleContainer = styled.div`
 `;
 
 const SIZE = 850;
-const INTERVAL = 3000;
+const INTERVAL = 5000;
 
-const Circle = styled.div<{ selectedColor?: string; color: string }>`
+const Circle = styled.div<{
+  selectedColor?: string;
+  color: string;
+  isDarkMode: boolean;
+}>`
   clip-path: circle(50% at 50% 50%);
   width: ${SIZE}px;
   height: ${SIZE}px;
-  transition: ${props => (props.selectedColor ? INTERVAL / 10 : INTERVAL)}ms
+  transition: ${props => (props.selectedColor ? INTERVAL / 10 : INTERVAL / 2)}ms
     ease-in-out all;
   background: ${props =>
-    props.selectedColor || getAlphaColor(0.7, props.color)};
+    props.selectedColor ||
+    getAlphaColor(props.isDarkMode ? 1 : 1, props.color)};
 `;
 
 const colors = [__COLORS.SECONDARY, __COLORS.FIFTH, __COLORS.TERTIARY];
 
 export const Home = () => {
   const [randomColor, setRandomColor] = useState(colors[0]);
+  const { isDarkMode } = useAppState(s => s.darkMode);
   const [selectedColor, setColor] = useState<null | HomeColor>(null);
   const homeColors = colors.map(c => ({ background: c, id: uuidv1() }));
   const [hover, setHover] = useState(false);
@@ -94,6 +101,7 @@ export const Home = () => {
       )}
       <CircleContainer>
         <Circle
+          isDarkMode={isDarkMode}
           selectedColor={selectedColor?.background}
           color={randomColor}
           onMouseEnter={() => setHover(true)}

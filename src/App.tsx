@@ -4,6 +4,7 @@ import { Header } from "./components/Header";
 import { GlobalStyle, MainTheme } from "./Layout/Theme";
 import { ThemeProvider } from "styled-components";
 import useAppState from "./reducers/useAppState";
+import { StoryIntro } from "./Pages/StoryIntro/StoryIntro";
 
 function App() {
   const { isDarkMode } = useAppState(s => s.darkMode);
@@ -18,6 +19,7 @@ function App() {
         )}
       </ThemeProvider>
       <Home />
+      <StoryIntro />
     </div>
   );
 }
