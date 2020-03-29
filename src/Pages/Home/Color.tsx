@@ -50,7 +50,7 @@ export const Color = ({ onSelect, color, isDarkModeElement }: Props) => {
       <Icon
         color={isDarkMode ? __COLORS.WHITE : __COLORS.WHITE}
         name={isDarkMode ? IconTypes.SUN : IconTypes.DARK_MODE}
-        style={{ width: 14, height: 14, transition: "0.3s ease-in-out all" }}
+        style={{ width: 14, height: 14 }}
       />
     </Container>
   );

@@ -1,20 +1,26 @@
 import React, { CSSProperties, SVGAttributes } from "react";
 import styled from "styled-components";
+import { DARK_MODE_TRANSITION } from "../Layout/Theme";
 
 type IconProps = {
   style?: CSSProperties;
-} & SVGAttributes<any>;
+  className?: string;
+} & SVGAttributes<any> &
+  any;
 
-const MyIcon = styled.svg``;
+const MyIcon = styled.svg`
+  transition: ${DARK_MODE_TRANSITION};
+`;
 
 export enum IconTypes {
   DARK_MODE = "DARK_MODE",
   SUN = "SUN",
   DESIGN = "DESIGN",
-  LOVE = "LOVE"
+  LOVE = "LOVE",
+  ARROW_DOWN = "ARROW_DOWN"
 }
 
-export const Icon = ({ name, ...props }: IconProps) => {
+export const Icon = ({ name, className, ...props }: IconProps) => {
   switch (name) {
     case IconTypes.DARK_MODE:
       return (
@@ -110,6 +116,26 @@ export const Icon = ({ name, ...props }: IconProps) => {
           </g>
         </MyIcon>
       );
+    case IconTypes.ARROW_DOWN:
+      return (
+        <MyIcon
+          className={className}
+          {...props}
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fal"
+          data-icon="long-arrow-down"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 256 512"
+        >
+          <path
+            fill="currentColor"
+            d="M252.485 343.03l-7.07-7.071c-4.686-4.686-12.284-4.686-16.971 0L145 419.887V44c0-6.627-5.373-12-12-12h-10c-6.627 0-12 5.373-12 12v375.887l-83.444-83.928c-4.686-4.686-12.284-4.686-16.971 0l-7.07 7.071c-4.686 4.686-4.686 12.284 0 16.97l116 116.485c4.686 4.686 12.284 4.686 16.971 0l116-116.485c4.686-4.686 4.686-12.284-.001-16.97z"
+          ></path>
+        </MyIcon>
+      );
+
     default:
       return <div />;
   }

@@ -16,6 +16,7 @@ export const MainTheme: CSSProperties & Props = {
 
 export const SPACING = 10;
 
+export const DARK_MODE_TRANSITION = `0.5s ease-in-out all`;
 export enum __GRAY_SCALE {
   _100 = "#f6f9fc",
   _200 = "#e9ecef",
@@ -54,16 +55,17 @@ export const GlobalStyle = createGlobalStyle<{
   @import url(${MainTheme.googleUrl});
   html {
     font-family: ${(p: ThemeProviderProps<any>) => p.theme.fontFamily};
+     scroll-behavior: smooth;
   }
   body {
     padding: 0;
     margin: 0;
     border: 0;
-     scroll-behavior: smooth;
+    
      overflow-x: hidden;
     line-height: 1;
     font-weight: inherit;
-     transition: 0.5s ease-in-out all;
+     transition: ${DARK_MODE_TRANSITION};
      background: ${props =>
        props.isDarkMode ? __COLORS.PRIMARY : __COLORS.WHITE};
      color: ${props => (props.isDarkMode ? __COLORS.WHITE : __COLORS.PRIMARY)};
@@ -77,7 +79,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-weight: 100;
     line-height: 1.4;
      font-family: inherit;
-     transition: 0.5s ease-in-out all;
+     transition: ${DARK_MODE_TRANSITION};
   }
   
   h1 {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { HomeTitle } from "./HomeTitle";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { FlexBox } from "../../Layout/styled/FlexBox";
@@ -16,6 +16,10 @@ import {
 } from "../../Layout/AnimationHelper";
 import { Header } from "../../components/Header";
 import useAppState from "../../reducers/useAppState";
+import { ScrollDownIcon } from "../../components/ScrollDownIcon";
+import { useDispatch } from "react-redux";
+import { scrollToRef } from "../../reducers/scrollRefs/actions";
+import { RefType } from "../../reducers/scrollRefs/types";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -34,6 +38,7 @@ const IllustrationContainer = styled(FlexBox)`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  position: relative;
 `;
 
 const Image = styled(Illustration)`
@@ -75,6 +80,7 @@ const colors = [__COLORS.SECONDARY, __COLORS.FIFTH, __COLORS.TERTIARY];
 
 export const Home = () => {
   const [randomColor, setRandomColor] = useState(colors[0]);
+  const dispatch = useDispatch();
   const { isDarkMode } = useAppState(s => s.darkMode);
   const [selectedColor, setColor] = useState<null | HomeColor>(null);
   const homeColors = colors.map(c => ({ background: c, id: uuidv1() }));
@@ -107,8 +113,6 @@ export const Home = () => {
           isDarkMode={isDarkMode}
           selectedColor={selectedColor?.background}
           color={randomColor}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
         />
       </CircleContainer>
       <TextContainer flex={1}>
@@ -117,11 +121,16 @@ export const Home = () => {
         <HomeTitle selectedColor={selectedColor?.background} />
       </TextContainer>
 
-      <IllustrationContainer flex={1}>
-        <Image
-          name={"home.png"}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
+      <IllustrationContainer
+        flex={1}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        <Image name={"home.png"} />
+        <ScrollDownIcon
+          onClick={() => {
+            dispatch(scrollToRef(RefType.STORY));
+          }}
         />
       </IllustrationContainer>
     </Container>
