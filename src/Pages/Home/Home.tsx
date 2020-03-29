@@ -26,22 +26,23 @@ const { scroller } = Scroll;
 
 const Container = styled(PageContainer)`
   flex-direction: row;
-
 `;
 
-const TextContainer = styled(FlexBox)`
+const TextContainer = styled(FlexBox)<{ order: number }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: ${SPACING * 2}px ${SPACING * 5}px;
   animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${fadeIn} forwards;
+  order: ${props => props.order};
 `;
 
-const IllustrationContainer = styled(FlexBox)`
+const IllustrationContainer = styled(FlexBox)<{ order: number }>`
   display: flex;
   align-items: center;
   justify-content: flex-end;
   position: relative;
+  order: ${props => props.order};
 `;
 
 const Image = styled(Illustration)`
@@ -57,7 +58,13 @@ const INTERVAL = 5000;
 
 const colors = [__COLORS.SECONDARY, __COLORS.FIFTH, __COLORS.TERTIARY];
 
-export const Home = () => {
+type Props = {
+  header?: boolean;
+  order: number[];
+  illustration: string;
+};
+
+export const Home = ({ header, order, illustration }: Props) => {
   const [randomColor, setRandomColor] = useState(colors[0]);
   const dispatch = useDispatch();
   const { isDarkMode } = useAppState(s => s.darkMode);
@@ -92,25 +99,28 @@ export const Home = () => {
         selectedColor={selectedColor}
         interval={INTERVAL}
       />
-      <TextContainer flex={1}>
-        <Header />
+      <TextContainer flex={1} order={order[0]}>
+        {header && <Header />}
         <FlexBox flex={1} />
         <HomeTitle selectedColor={selectedColor?.background} />
       </TextContainer>
 
       <IllustrationContainer
         flex={1}
+        order={order[1]}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <Image name={"home.png"} />
-        <ScrollDownIcon
-          onClick={() => {
-            scroller.scrollTo("story", {
-              ...DefaultScrollTransition
-            });
-          }}
-        />
+        <Image name={illustration} />
+        {header && (
+          <ScrollDownIcon
+            onClick={() => {
+              scroller.scrollTo("story", {
+                ...DefaultScrollTransition
+              });
+            }}
+          />
+        )}
       </IllustrationContainer>
     </Container>
   );

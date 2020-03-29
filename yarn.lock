@@ -5315,6 +5315,11 @@ internal-slot@^1.0.2:
     has "^1.0.3"
     side-channel "^1.0.2"
 
+interpolate-range@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/interpolate-range/-/interpolate-range-2.1.0.tgz#fec3f907a3a075476feb478439ae8d166bc826a5"
+  integrity sha512-LCGI6Gr24kAsdY/avfo2dp0f1QcUjeqk+ZYOkq8Q6c0WKYPIi9BH91uVzFhnXnOwO0BurYWm6B35GR/nGuT8hQ==
+
 invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
