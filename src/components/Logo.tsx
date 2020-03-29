@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { __COLORS, getAlphaColor, SPACING } from "../Layout/Theme";
+import { SPACING } from "../Layout/Theme";
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const Container = styled.div`
 const Span = styled.span`
   font-size: 28px;
   letter-spacing: 1px;
-  font-weight: 900;s
+  font-weight: 900;
 `;
 
 export const Logo = () => {
