@@ -1,6 +1,7 @@
 import { ActionTypes, DarkModestate, ToggleDarkMode } from "./types";
 
-const hours = new Date().getTime();
+const hours = new Date().getHours();
+
 
 const initialState: DarkModestate = {
   isDarkMode: hours > 17 || hours < 6

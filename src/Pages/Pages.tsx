@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { Home } from "./Home/Home";
 import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { Page } from "./Page";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import useAppState from "../reducers/useAppState";
-import { RefType } from "../reducers/scrollRefs/types";
+
 import { PageContainer } from "../Layout/styled/PageContainer";
 import { useWindowSize } from "../components/useWindowSize";
 
