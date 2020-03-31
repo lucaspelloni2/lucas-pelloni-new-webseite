@@ -1,5 +1,10 @@
 import React from "react";
-import { SubTitle, Title } from "../../Layout/Typography";
+import {
+  HomeBigTitle,
+  HomeSubTitle,
+  SubTitle,
+  Title
+} from "../../Layout/Typography";
 import styled from "styled-components";
 import { __COLORS, __GRAY_SCALE, SPACING } from "../../Layout/Theme";
 import { Icon, IconTypes } from "../../components/Icon";
@@ -14,23 +19,11 @@ const Titles = styled.div`
   flex-direction: column;
 `;
 
-const MyTitle = styled(Title)`
-  font-size: 60px;
-`;
-
-const MySubTitle = styled(SubTitle)`
-  margin-top: -${SPACING * 2}px;
-  color: ${__GRAY_SCALE._700};
-  font-weight: 100;
-`;
-
-
-
 export const HomeTitle = () => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   return (
     <Titles>
-      <MyTitle>
+      <HomeBigTitle>
         <Colored
           color={
             selectedColor === __COLORS.TERTIARY
@@ -58,10 +51,10 @@ export const HomeTitle = () => {
         <Colored color={selectedColor || __COLORS.FIFTH}>
           User Interfaces.
         </Colored>
-      </MyTitle>
-      <MySubTitle>
+      </HomeBigTitle>
+      <HomeSubTitle>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      </MySubTitle>
+      </HomeSubTitle>
     </Titles>
   );
 };

@@ -41,7 +41,7 @@ from,
 const Container = styled.div`
   animation: 0.5s ${bounceInRight} forwards;
   background: ${__COLORS.PRIMARY};
-  position: absolute;
+  position: fixed;
   top: ${SPACING * 5}px;
   right: ${SPACING * 4}px;
   border-radius: 50px;
