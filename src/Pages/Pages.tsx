@@ -6,6 +6,7 @@ import { Page } from "./Page";
 
 import { PageContainer } from "../Layout/styled/PageContainer";
 import { useWindowSize } from "../components/useWindowSize";
+import { HomeTitle } from "./Home/HomeTitle";
 
 const Container = styled.div`
   &::-webkit-scrollbar {
@@ -24,12 +25,25 @@ export const Pages = () => {
   return (
     <Container>
       <Page
-        component={<Home header order={[1, 2]} illustration={"home.png"} />}
+        component={
+          <Home
+            header
+            order={[1, 2]}
+            illustration={"home.png"}
+            titleComponent={<HomeTitle />}
+          />
+        }
         name="home"
       />
       <Page component={<BlankPage />} name="blank" />
       <Page
-        component={<Home order={[2, 1]} illustration={"home_3.png"} />}
+        component={
+          <Home
+            order={[2, 1]}
+            illustration={"home_3.png"}
+            titleComponent={<HomeTitle />}
+          />
+        }
         name="story"
         ref={storyRef}
       />

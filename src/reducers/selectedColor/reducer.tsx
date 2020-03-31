@@ -1,7 +1,8 @@
 import { ActionTypes, SelectColor, SelectedColorState } from "./types";
+import { getRandomColor } from "../../Layout/Theme";
 
 const initialState: SelectedColorState = {
-  selectedColor: null
+  selectedColor: getRandomColor()
 };
 
 const selectColorReducer = (

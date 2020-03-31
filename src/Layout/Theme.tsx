@@ -17,6 +17,8 @@ export const MainTheme: CSSProperties & Props = {
 export const SPACING = 10;
 
 export const DARK_MODE_TRANSITION = `0.5s ease-in-out all`;
+export const COLOR_TRANSITION = `0.3s ease-in-out all`;
+
 export enum __GRAY_SCALE {
   _100 = "#f6f9fc",
   _200 = "#e9ecef",
@@ -108,7 +110,6 @@ export const GlobalStyle = createGlobalStyle<{
 export const getColors = () => [
   __COLORS.SECONDARY,
   __COLORS.TERTIARY,
-  __COLORS.FOURTH,
   __COLORS.FIFTH
 ];
 

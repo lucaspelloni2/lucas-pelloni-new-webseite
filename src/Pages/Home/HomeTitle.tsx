@@ -3,6 +3,7 @@ import { SubTitle, Title } from "../../Layout/Typography";
 import styled from "styled-components";
 import { __COLORS, __GRAY_SCALE, SPACING } from "../../Layout/Theme";
 import { Icon, IconTypes } from "../../components/Icon";
+import useAppState from "../../reducers/useAppState";
 
 const Colored = styled.span<{ color: string }>`
   color: ${props => props.color};
@@ -23,11 +24,10 @@ const MySubTitle = styled(SubTitle)`
   font-weight: 100;
 `;
 
-type Props = {
-  selectedColor?: string;
-};
 
-export const HomeTitle = ({ selectedColor }: Props) => {
+
+export const HomeTitle = () => {
+  const { selectedColor } = useAppState(s => s.selectedColor);
   return (
     <Titles>
       <MyTitle>

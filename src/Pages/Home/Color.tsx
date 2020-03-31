@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { __COLORS, getAlphaColor, SPACING } from "../../Layout/Theme";
+import { __COLORS, SPACING } from "../../Layout/Theme";
 import { Icon, IconTypes } from "../../components/Icon";
 import useAppState from "../../reducers/useAppState";
 
@@ -24,27 +24,24 @@ const Container = styled.div<{ color: string }>`
   margin-right: ${SPACING / 2}px;
 `;
 
-export type HomeColor = {
-  background: string;
-  id: string;
-};
+
 
 type Props = {
   onSelect?: (id: string) => void;
   isDarkModeElement?: boolean;
-  color: HomeColor;
+  color: string;
 };
 export const Color = ({ onSelect, color, isDarkModeElement }: Props) => {
   const { isDarkMode } = useAppState(s => s.darkMode);
   const callback = useCallback(() => {
-    onSelect?.(color.id);
-  }, [color.id, onSelect]);
+    onSelect?.(color);
+  }, [color, onSelect]);
   return !isDarkModeElement ? (
-    <Container onClick={callback} color={color.background} />
+    <Container onClick={callback} color={color} />
   ) : (
     <Container
       onClick={callback}
-      color={isDarkMode ? __COLORS.FOURTH : color.background}
+      color={isDarkMode ? __COLORS.FOURTH : color}
       style={{ padding: SPACING / 4 }}
     >
       <Icon

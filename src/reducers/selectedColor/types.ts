@@ -14,5 +14,5 @@ export type SelectColor = {
  * State Type
  */
 export type SelectedColorState = {
-  selectedColor: string | null;
+  selectedColor: string;
 };

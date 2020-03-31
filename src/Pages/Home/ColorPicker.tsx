@@ -1,14 +1,10 @@
 import React, { DOMAttributes } from "react";
 import styled, { keyframes } from "styled-components";
-import {
-  __COLORS,
-  __GRAY_SCALE,
-  getAlphaColor,
-  SPACING
-} from "../../Layout/Theme";
-import { Color, HomeColor } from "./Color";
+import { __COLORS, __GRAY_SCALE, getColors, SPACING } from "../../Layout/Theme";
+import { Color } from "./Color";
 import { useDispatch } from "react-redux";
 import { toggleDarkMode } from "../../reducers/darkMode/actions";
+import { setColor } from "../../reducers/selectedColor/actions";
 
 const bounceInRight = keyframes`
 from,
@@ -40,37 +36,43 @@ from,
   to {
     transform: translate3d(0, 0, 0);
   }
-}
 `;
 
 const Container = styled.div`
-  animation: 0.4s ${bounceInRight} forwards;
+  animation: 0.5s ${bounceInRight} forwards;
   background: ${__COLORS.PRIMARY};
   position: absolute;
+  top: ${SPACING * 5}px;
   right: ${SPACING * 4}px;
   border-radius: 50px;
   z-index: 100000;
   display: flex;
 `;
 
-type Props = {
-  colors: HomeColor[];
-  onSelectColor?: (id: string) => void;
-} & DOMAttributes<any>;
+type Props = {} & DOMAttributes<any>;
 
-export const ColorPicker = ({ colors, onSelectColor, ...props }: Props) => {
+export const ColorPicker = ({ ...props }: Props) => {
   const dispatch = useDispatch();
+  const colors = getColors();
   return (
     <Container {...props}>
-      {colors.map((c: HomeColor) => {
-        return <Color key={c.id} color={c} onSelect={onSelectColor} />;
+      {colors.map((c: string) => {
+        return (
+          <Color
+            key={c}
+            color={c}
+            onSelect={(c: string) => {
+              dispatch(setColor(c));
+            }}
+          />
+        );
       })}
       <Color
-        onSelect={(id: string) => {
+        onSelect={(c: string) => {
           dispatch(toggleDarkMode());
         }}
         isDarkModeElement
-        color={{ id: "dark", background: __GRAY_SCALE._800 }}
+        color={__GRAY_SCALE._800}
       />
     </Container>
   );

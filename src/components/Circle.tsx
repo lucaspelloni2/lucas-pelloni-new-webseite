@@ -1,13 +1,12 @@
 import React, { useMemo, useState } from "react";
-import styled, { keyframes } from "styled-components";
-import { getAlphaColor, SPACING } from "../Layout/Theme";
-import { HomeColor } from "../Pages/Home/Color";
+import styled  from "styled-components";
+import { COLOR_TRANSITION, getAlphaColor, SPACING } from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
 import { useWindowSize } from "./useWindowSize";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 // @ts-ignore
 import interpolate from "interpolate-range";
-import { INITIAL_ANIMATION_DURATION_IN_SECONDS } from "../Layout/AnimationHelper";
+
 
 const CircleContainer = styled.div<{ color: string; progress: number }>`
   position: fixed;
@@ -22,30 +21,18 @@ const CircleContainer = styled.div<{ color: string; progress: number }>`
 const SIZE = 850;
 
 const MyCircle = styled.div<{
-  selectedColor?: string;
-  color: string;
-  isDarkMode: boolean;
-  interval: number;
+  selectedColor: string;
 }>`
   clip-path: circle(50% at 50% 50%);
   width: ${SIZE}px;
   height: ${SIZE}px;
-  transition: ${props =>
-      props.selectedColor ? props.interval / 10 : props.interval / 2}ms
-    ease-in-out all;
-  background: ${props =>
-    props.selectedColor ||
-    getAlphaColor(props.isDarkMode ? 1 : 1, props.color)};
+  transition: ${COLOR_TRANSITION};
+  background: ${props => props.selectedColor};
 `;
 
-type Props = {
-  selectedColor: HomeColor | null;
-  randomColor: string;
-  interval?: number;
-};
-
-export const Circle = ({ selectedColor, randomColor, interval }: Props) => {
+export const Circle = () => {
   const { isDarkMode } = useAppState(s => s.darkMode);
+  const { selectedColor } = useAppState(s => s.selectedColor);
   const { width, height } = useWindowSize();
 
   const [progress, setProgress] = useState(0);
@@ -70,18 +57,10 @@ export const Circle = ({ selectedColor, randomColor, interval }: Props) => {
 
   return useMemo(
     () => (
-      <CircleContainer
-        color={selectedColor?.background || randomColor}
-        progress={int(progress * -1)}
-      >
-        <MyCircle
-          interval={interval || 1000}
-          isDarkMode={isDarkMode}
-          selectedColor={selectedColor?.background}
-          color={randomColor}
-        />
+      <CircleContainer color={selectedColor} progress={int(progress * -1)}>
+        <MyCircle selectedColor={selectedColor} />
       </CircleContainer>
     ),
-    [int, interval, isDarkMode, progress, randomColor, selectedColor]
+    [int, progress, selectedColor]
   );
 };
