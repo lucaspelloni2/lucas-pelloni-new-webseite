@@ -3,17 +3,17 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { DarkModestate } from "./darkMode/types";
 import darkMode from "./darkMode/reducer";
-import scrollRefs from "./scrollRefs/reducer";
-import { ScrollToRefState } from "./scrollRefs/types";
+import selectedColor from "./selectedColor/reducer";
+import { SelectedColorState } from "./selectedColor/types";
 
 export type RootState = {
   darkMode: DarkModestate;
-  scrollRefs: ScrollToRefState;
+  selectedColor: SelectedColorState;
 };
 
 const rootReducer = combineReducers({
   darkMode,
-  scrollRefs
+  selectedColor
 });
 
 const store = createStore(
