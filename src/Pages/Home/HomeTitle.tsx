@@ -1,19 +1,14 @@
 import React from "react";
 import {
+  ColoredSpan,
   HomeBigTitle,
-  HomeSubTitle,
-  SubTitle,
-  Title
+  HomeSubTitle
 } from "../../Layout/Typography";
 import styled from "styled-components";
-import { __COLORS, __GRAY_SCALE, SPACING } from "../../Layout/Theme";
+import { __COLORS, COLOR_TRANSITION, SPACING } from "../../Layout/Theme";
 import { Icon, IconTypes } from "../../components/Icon";
 import useAppState from "../../reducers/useAppState";
 
-const Colored = styled.span<{ color: string }>`
-  color: ${props => props.color};
-  transition: 0.3s ease-in-out all;
-`;
 const Titles = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,7 +19,7 @@ export const HomeTitle = () => {
   return (
     <Titles>
       <HomeBigTitle>
-        <Colored
+        <ColoredSpan
           color={
             selectedColor === __COLORS.TERTIARY
               ? __COLORS.SECONDARY
@@ -46,11 +41,11 @@ export const HomeTitle = () => {
               marginBottom: -8
             }}
           />
-        </Colored>{" "}
+        </ColoredSpan>{" "}
         to build beautiful products with modern{" "}
-        <Colored color={selectedColor || __COLORS.FIFTH}>
+        <ColoredSpan color={selectedColor || __COLORS.FIFTH}>
           User Interfaces.
-        </Colored>
+        </ColoredSpan>
       </HomeBigTitle>
       <HomeSubTitle>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit.

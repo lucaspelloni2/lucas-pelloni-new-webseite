@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {__GRAY_SCALE, SPACING} from "./Theme";
+import {__GRAY_SCALE, COLOR_TRANSITION, SPACING} from "./Theme";
 
 export const Title = styled.h1`
   font-size: 58px;
@@ -20,4 +20,9 @@ export const HomeSubTitle = styled(SubTitle)`
   margin-top: -${SPACING * 2}px;
   color: ${__GRAY_SCALE._700};
   font-weight: 100;
+`;
+
+export const ColoredSpan = styled.span<{ color: string }>`
+  color: ${props => props.color};
+  transition: ${COLOR_TRANSITION};
 `;
