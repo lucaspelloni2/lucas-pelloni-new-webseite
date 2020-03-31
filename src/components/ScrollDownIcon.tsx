@@ -28,7 +28,6 @@ const Circle = styled.div<{ color: string }>`
   padding: ${SPACING * 1.5}px;
   justify-content: center;
   transition: ${DARK_MODE_TRANSITION};
-  position: absolute;
   left: -${SIZE / 2}px;
   z-index: 100;
   bottom: ${SPACING * 4}px;

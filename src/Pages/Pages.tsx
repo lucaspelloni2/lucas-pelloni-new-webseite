@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { Home } from "./Home/Home";
-import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { Page } from "./Page";
 
 import { PageContainer } from "../Layout/styled/PageContainer";
-import { useWindowSize } from "../components/useWindowSize";
 import { HomeTitle } from "./Home/HomeTitle";
 import { SecondHomeTitle } from "./Home/SecondHomeTitle";
+import { PageType } from "../types/PageType";
+import { StoryIntro } from "./StoryIntro/StoryIntro";
 
 const Container = styled.div`
   &::-webkit-scrollbar {
@@ -21,8 +21,6 @@ const Container = styled.div`
 const BlankPage = () => <PageContainer />;
 
 export const Pages = () => {
-  const storyRef = useRef<HTMLDivElement>(null);
-
   return (
     <Container>
       <Page
@@ -32,9 +30,10 @@ export const Pages = () => {
             order={[1, 2]}
             illustration={"home.png"}
             titleComponent={<HomeTitle />}
+            scrollTo={PageType.HOME_SECOND}
           />
         }
-        name="home"
+        name={PageType.HOME_FIRST}
       />
       <Page component={<BlankPage />} name="blank" />
       <Page
@@ -43,12 +42,13 @@ export const Pages = () => {
             order={[2, 1]}
             illustration={"home_3.png"}
             titleComponent={<SecondHomeTitle />}
+            scrollTo={PageType.STORY_START}
           />
         }
-        name="story"
-        ref={storyRef}
+        name={PageType.HOME_SECOND}
       />
       <Page component={<BlankPage />} name="blank" />
+      <Page component={<StoryIntro />} name={PageType.STORY_START} />
     </Container>
   );
 };

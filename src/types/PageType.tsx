@@ -1,0 +1,5 @@
+export enum PageType {
+  HOME_FIRST = "HOME_FIRST",
+  HOME_SECOND = "HOME_SECOND",
+  STORY_START = "STORY_START"
+}
