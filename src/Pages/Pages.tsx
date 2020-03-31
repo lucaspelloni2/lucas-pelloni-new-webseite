@@ -7,6 +7,7 @@ import { Page } from "./Page";
 import { PageContainer } from "../Layout/styled/PageContainer";
 import { useWindowSize } from "../components/useWindowSize";
 import { HomeTitle } from "./Home/HomeTitle";
+import { SecondHomeTitle } from "./Home/SecondHomeTitle";
 
 const Container = styled.div`
   &::-webkit-scrollbar {
@@ -41,7 +42,7 @@ export const Pages = () => {
           <Home
             order={[2, 1]}
             illustration={"home_3.png"}
-            titleComponent={<HomeTitle />}
+            titleComponent={<SecondHomeTitle />}
           />
         }
         name="story"

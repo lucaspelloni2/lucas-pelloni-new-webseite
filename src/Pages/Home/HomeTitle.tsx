@@ -47,9 +47,7 @@ export const HomeTitle = () => {
           User Interfaces.
         </ColoredSpan>
       </HomeBigTitle>
-      <HomeSubTitle>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      </HomeSubTitle>
+      <HomeSubTitle>And any kind of digital product.</HomeSubTitle>
     </Titles>
   );
 };
