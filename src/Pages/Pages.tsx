@@ -8,6 +8,8 @@ import { HomeTitle } from "./Home/HomeTitle";
 import { SecondHomeTitle } from "./Home/SecondHomeTitle";
 import { PageType } from "../types/PageType";
 import { StoryIntro } from "./StoryIntro/StoryIntro";
+import { ColorPicker } from "./Home/ColorPicker";
+import { Circle } from "../components/Circle";
 
 const Container = styled.div`
   &::-webkit-scrollbar {
@@ -23,12 +25,14 @@ const BlankPage = () => <PageContainer />;
 export const Pages = () => {
   return (
     <Container>
+      <ColorPicker />
+      <Circle />
       <Page
         component={
           <Home
             header
             order={[1, 2]}
-            illustration={"home.png"}
+            illustration={"lucas.svg"}
             titleComponent={<HomeTitle />}
             scrollTo={PageType.HOME_SECOND}
           />
@@ -40,7 +44,7 @@ export const Pages = () => {
         component={
           <Home
             order={[2, 1]}
-            illustration={"home_3.png"}
+            illustration={"lucas.svg"}
             titleComponent={<SecondHomeTitle />}
             scrollTo={PageType.STORY_START}
           />

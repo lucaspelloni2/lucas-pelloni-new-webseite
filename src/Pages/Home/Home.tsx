@@ -59,7 +59,7 @@ const DownIconWrapper = styled.div`
 
 const Image = styled(Illustration)`
   animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${slideLeft} forwards;
-  max-width: 600px;
+  max-width: 700px;
   height: auto;
   transition: 1s ease-in-out all;
   padding: ${SPACING * 2}px;
@@ -83,8 +83,6 @@ export const Home = ({
 }: Props) => {
   return (
     <Container>
-      <ColorPicker />
-      <Circle />
       <TextContainer flex={1} order={order[0]}>
         {header && <Header />}
         <FlexBox flex={1} />
