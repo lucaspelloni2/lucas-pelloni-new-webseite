@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import styled  from "styled-components";
+import styled from "styled-components";
 import { COLOR_TRANSITION, getAlphaColor, SPACING } from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
 import { useWindowSize } from "./useWindowSize";
@@ -7,15 +7,20 @@ import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 // @ts-ignore
 import interpolate from "interpolate-range";
 
+type CircleProps = {
+  left: number;
+};
 
-const CircleContainer = styled.div<{ color: string; progress: number }>`
+const CircleContainer = styled.div.attrs<{ left: number }>(
+  ({ left }: CircleProps) => ({
+    style: {
+      left: `${left - 10}%`
+    }
+  })
+)`
   position: fixed;
   z-index: -1;
   top: -${SPACING * 15}px;
-  // from 60 to -15
-  left: ${props => props.progress - 10}%;
-  filter: ${props =>
-    `drop-shadow(1px 1px 3px ${getAlphaColor(0.1, props.color)})`};
 `;
 
 const SIZE = 850;
@@ -57,7 +62,8 @@ export const Circle = () => {
 
   return useMemo(
     () => (
-      <CircleContainer color={selectedColor} progress={int(progress * -1)}>
+      // @ts-ignore
+      <CircleContainer left={int(progress * -1)}>
         <MyCircle selectedColor={selectedColor} />
       </CircleContainer>
     ),
