@@ -39,7 +39,7 @@ export const Pages = () => {
         }
         name={PageType.HOME_FIRST}
       />
-      <Page component={<BlankPage />} name="blank" />
+      <Page component={<BlankPage />} name={PageType.BLANK} />
       <Page
         component={
           <Home
@@ -51,7 +51,7 @@ export const Pages = () => {
         }
         name={PageType.HOME_SECOND}
       />
-      <Page component={<BlankPage />} name="blank" />
+      <Page component={<BlankPage />} name={PageType.BLANK} />
       <Page component={<StoryIntro />} name={PageType.STORY_START} />
     </Container>
   );

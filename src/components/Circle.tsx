@@ -36,37 +36,34 @@ const MyCircle = styled.div<{
 `;
 
 export const Circle = () => {
-  const { isDarkMode } = useAppState(s => s.darkMode);
   const { selectedColor } = useAppState(s => s.selectedColor);
-  const { width, height } = useWindowSize();
+  const { height } = useWindowSize();
 
   const [progress, setProgress] = useState(0);
 
   const numberOfPagesBetweenAnimation = 1 + 1;
 
-  const int = interpolate({
-    inputRange: [1, 0],
-    outputRange: [0, 75],
-    clamp: true
-  });
-  console.log(progress, int(progress));
   useScrollPosition(({ currPos }) => {
     if (height) {
       const animatedValue = currPos.y;
       const goal = height * numberOfPagesBetweenAnimation;
       const progress = animatedValue / goal;
-
-      setProgress(progress);
+      const int = interpolate({
+        inputRange: [1, 0],
+        outputRange: [0, 75],
+        clamp: true
+      });
+      setProgress(int(progress * -1));
     }
   });
 
   return useMemo(
     () => (
       // @ts-ignore
-      <CircleContainer left={int(progress * -1)}>
+      <CircleContainer left={progress}>
         <MyCircle selectedColor={selectedColor} />
       </CircleContainer>
     ),
-    [int, progress, selectedColor]
+    [progress, selectedColor]
   );
 };
