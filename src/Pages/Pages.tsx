@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Home } from "./Home/Home";
 import { Page } from "./Page";
@@ -35,13 +35,25 @@ const pages = [
   PageType.STORY_START
 ];
 
+enum Direction {
+  UP = "UP",
+  DOWN = "DOWN"
+}
 export const Pages = () => {
   const { height } = useWindowSize();
   const dispatch = useDispatch();
   const { page } = useAppState(s => s.currentPage);
   const homeSecondRef = useRef<HTMLDivElement>(null);
+  const [direction, setDirection] = useState<Direction | null>(null);
+
   useScrollPosition(
     ({ prevPos, currPos }) => {
+      if (currPos.y >= prevPos.y) {
+        setDirection(Direction.DOWN);
+      } else {
+        setDirection(Direction.UP);
+      }
+
       if (height) {
         const currentPageIndex = Math.floor(currPos.y / height);
         const currentPage = pages[currentPageIndex];
@@ -51,10 +63,13 @@ export const Pages = () => {
     [dispatch, height],
     undefined,
     true,
-    0
+    200
   );
 
-  console.log(page);
+  useEffect(() => {
+    console.log(direction, page);
+  }, [page, direction]);
+
   return (
     <Container>
       <ColorPicker />
