@@ -10,6 +10,11 @@ import { PageType } from "../types/PageType";
 import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { ColorPicker } from "./Home/ColorPicker";
 import { Circle } from "../components/Circle";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { useWindowSize } from "../components/useWindowSize";
+import { useDispatch } from "react-redux";
+import { setCurrentPage } from "../reducers/currentPage/actions";
+import useAppState from "../reducers/useAppState";
 
 const Container = styled.div`
   &::-webkit-scrollbar {
@@ -22,7 +27,34 @@ const Container = styled.div`
 
 const BlankPage = () => <PageContainer />;
 
+const pages = [
+  PageType.HOME_FIRST,
+  PageType.BLANK,
+  PageType.HOME_SECOND,
+  PageType.BLANK,
+  PageType.STORY_START
+];
+
 export const Pages = () => {
+  const { height } = useWindowSize();
+  const dispatch = useDispatch();
+  const { page } = useAppState(s => s.currentPage);
+  const homeSecondRef = useRef<HTMLDivElement>(null);
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      if (height) {
+        const currentPageIndex = Math.floor(currPos.y / height);
+        const currentPage = pages[currentPageIndex];
+        dispatch(setCurrentPage(currentPage));
+      }
+    },
+    [dispatch, height],
+    undefined,
+    true,
+    0
+  );
+
+  console.log(page);
   return (
     <Container>
       <ColorPicker />
@@ -49,6 +81,7 @@ export const Pages = () => {
             scrollTo={PageType.STORY_START}
           />
         }
+        ref={homeSecondRef}
         name={PageType.HOME_SECOND}
       />
       <Page component={<BlankPage />} name={PageType.BLANK} />
