@@ -53,19 +53,18 @@ export const Pages = () => {
   useScrollPosition(
     ({ prevPos, currPos }) => {
       const delta = Math.abs(currPos.y - prevPos.y);
-      if (delta > 50 && delta < 300) {
-        console.log(delta);
-        if (currPos.y >= prevPos.y) {
-          setDirection(Direction.DOWN);
-        } else {
-          setDirection(Direction.UP);
-        }
-        if (height) {
-          const currentPageIndex = Math.floor(currPos.y / height);
-          const currentPage = pages[currentPageIndex];
-          if (currentPage !== PageType.BLANK) {
-            dispatch(setCurrentPage(currentPage));
-          }
+
+
+      if (currPos.y >= prevPos.y) {
+        setDirection(Direction.DOWN);
+      } else {
+        setDirection(Direction.UP);
+      }
+      if (height) {
+        const currentPageIndex = Math.floor(currPos.y / height);
+        const currentPage = pages[currentPageIndex];
+        if (currentPage !== PageType.BLANK) {
+          dispatch(setCurrentPage(currentPage));
         }
       }
     },
@@ -76,7 +75,8 @@ export const Pages = () => {
   );
 
   useEffect(() => {
-/*    if (page) {
+    console.log(page, direction);
+    /*    if (page) {
       let nextPage = page;
       console.log(direction, page);
       if (direction === Direction.DOWN) {
