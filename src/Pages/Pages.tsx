@@ -15,6 +15,10 @@ import { useWindowSize } from "../components/useWindowSize";
 import { useDispatch } from "react-redux";
 import { setCurrentPage } from "../reducers/currentPage/actions";
 import useAppState from "../reducers/useAppState";
+import * as Scroll from "react-scroll";
+import { DefaultScrollTransition } from "./DefaultScrollTransition";
+
+const { scroller } = Scroll;
 
 const Container = styled.div`
   &::-webkit-scrollbar {
@@ -48,27 +52,47 @@ export const Pages = () => {
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
-      if (currPos.y >= prevPos.y) {
-        setDirection(Direction.DOWN);
-      } else {
-        setDirection(Direction.UP);
-      }
-
-      if (height) {
-        const currentPageIndex = Math.floor(currPos.y / height);
-        const currentPage = pages[currentPageIndex];
-        dispatch(setCurrentPage(currentPage));
+      const delta = Math.abs(currPos.y - prevPos.y);
+      if (delta > 50 && delta < 300) {
+        console.log(delta);
+        if (currPos.y >= prevPos.y) {
+          setDirection(Direction.DOWN);
+        } else {
+          setDirection(Direction.UP);
+        }
+        if (height) {
+          const currentPageIndex = Math.floor(currPos.y / height);
+          const currentPage = pages[currentPageIndex];
+          if (currentPage !== PageType.BLANK) {
+            dispatch(setCurrentPage(currentPage));
+          }
+        }
       }
     },
     [dispatch, height],
     undefined,
     true,
-    200
+    300
   );
 
   useEffect(() => {
-    console.log(direction, page);
-  }, [page, direction]);
+/*    if (page) {
+      let nextPage = page;
+      console.log(direction, page);
+      if (direction === Direction.DOWN) {
+        if (page === PageType.HOME_FIRST) {
+          nextPage = PageType.HOME_SECOND;
+        } else if (page === PageType.HOME_SECOND) {
+          nextPage = PageType.STORY_START;
+        }
+      } else if (direction === Direction.UP) {
+      }
+
+      scroller.scrollTo(nextPage, {
+        ...DefaultScrollTransition
+      });
+    }*/
+  }, [scroller, page, direction]);
 
   return (
     <Container>

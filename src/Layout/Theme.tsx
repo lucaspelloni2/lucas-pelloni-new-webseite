@@ -65,6 +65,7 @@ export const GlobalStyle = createGlobalStyle<{
     border: 0;
     
      overflow-x: hidden;
+
     line-height: 1;
     font-weight: inherit;
      transition: ${DARK_MODE_TRANSITION};
