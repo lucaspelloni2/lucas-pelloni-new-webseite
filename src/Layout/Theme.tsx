@@ -58,18 +58,24 @@ export const GlobalStyle = createGlobalStyle<{
   html {
     font-family: ${(p: ThemeProviderProps<any>) => p.theme.fontFamily};
      scroll-behavior: smooth;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;  
+    padding: 0;
+    margin: 0;
+    border: 0;
   }
   body {
     padding: 0;
     margin: 0;
     border: 0;
-    
-     overflow-x: hidden;
-
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
     line-height: 1;
     font-weight: inherit;
-     transition: ${DARK_MODE_TRANSITION};
-     background: ${props =>
+    transition: ${DARK_MODE_TRANSITION};
+    background: ${props =>
        props.isDarkMode ? __COLORS.PRIMARY : __COLORS.WHITE};
      color: ${props => (props.isDarkMode ? __COLORS.WHITE : __COLORS.PRIMARY)};
     font-style: inherit;
