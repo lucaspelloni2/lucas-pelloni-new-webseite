@@ -39,23 +39,16 @@ const pages = [
   PageType.STORY_START
 ];
 
-enum Direction {
-  UP = "UP",
-  DOWN = "DOWN"
-}
-export const Pages = () => {
-
-  const dispatch = useDispatch();
-  const { page } = useAppState(s => s.currentPage);
-  const homeSecondRef = useRef<HTMLDivElement>(null);
-  const [direction, setDirection] = useState<Direction | null>(null);
-
-
+type Props = {
+  translation: number;
+};
+export const Pages = ({ translation }: Props) => {
   return (
-    <Container>
+    <>
       <ColorPicker />
       <Circle />
       <Page
+        translation={translation}
         component={
           <Home
             header
@@ -67,8 +60,8 @@ export const Pages = () => {
         }
         name={PageType.HOME_FIRST}
       />
-      <Page component={<BlankPage />} name={PageType.BLANK} />
       <Page
+        translation={translation + 100}
         component={
           <Home
             order={[2, 1]}
@@ -77,11 +70,13 @@ export const Pages = () => {
             scrollTo={PageType.STORY_START}
           />
         }
-        ref={homeSecondRef}
         name={PageType.HOME_SECOND}
       />
-      <Page component={<BlankPage />} name={PageType.BLANK} />
-      <Page component={<StoryIntro />} name={PageType.STORY_START} />
-    </Container>
+      <Page
+        component={<StoryIntro />}
+        name={PageType.STORY_START}
+        translation={translation + 200}
+      />
+    </>
   );
 };

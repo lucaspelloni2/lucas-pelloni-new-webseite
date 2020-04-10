@@ -10,9 +10,6 @@ import { ThemeProvider } from "styled-components";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={MainTheme}>
-        <GlobalStyle isDarkMode={false} />
-      </ThemeProvider>
       <App />
     </Provider>
   </React.StrictMode>,

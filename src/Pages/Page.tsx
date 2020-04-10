@@ -10,21 +10,32 @@ import {
   scrollSpy,
   scroller
 } from "react-scroll";
+import { PAGE_TRANSITION } from "../Layout/Theme";
 
 type Props = {
   component: ReactNode;
   name: string;
+  translation: number;
 };
 
-const Child = styled.div``;
+const Child = styled.div<{ translation: number }>`
+  position: absolute;
+  transform: ${props => `translateY(${props.translation}%)`};
+  height: 100%;
+  left: 0;
+  transition: ${PAGE_TRANSITION};
+  width: 100%;
+`;
 
 const ScrollableElement = Scroll.Element;
 
 export const Page = forwardRef(
-  ({ component, name }: Props, ref: Ref<HTMLDivElement>) => {
+  ({ component, name, translation }: Props, ref: Ref<HTMLDivElement>) => {
     return (
       <ScrollableElement name={name}>
-        <Child ref={ref}>{component}</Child>
+        <Child ref={ref} translation={translation}>
+          {component}
+        </Child>
       </ScrollableElement>
     );
   }

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { PAGE_TRANSITION } from "./Layout/Theme";
-import styled from "styled-components";
+import { GlobalStyle, MainTheme, PAGE_TRANSITION } from "./Layout/Theme";
+import styled, { ThemeProvider } from "styled-components";
 import useAppState from "./reducers/useAppState";
 import { useMouseWheel } from "./components/useMouseWheel";
-import { useDispatch } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
+import { Pages } from "./Pages/Pages";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -51,7 +52,6 @@ function App() {
   });
 
   useEffect(() => {
-    console.log(direction);
     if (direction === Direction.DOWN) {
       setTranslation(s => s - 100);
     } else if (direction === Direction.UP) {
@@ -74,10 +74,10 @@ function App() {
   // il quarto da 300 da 200
   return (
     <Parent ref={ref}>
-      <A translation={translation}>HOME_FIRST</A>
-      <B translation={translation + 100}>HOME_SECOND</B>
-      <A translation={translation + 200}>STORY_START</A>
-      <B translation={translation + 300}>Fourth Child</B>
+      <ThemeProvider theme={MainTheme}>
+        <GlobalStyle isDarkMode={isDarkMode} />
+      </ThemeProvider>
+      <Pages translation={translation} />
     </Parent>
   );
 }
