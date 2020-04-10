@@ -51,15 +51,23 @@ function App() {
   });
 
   useEffect(() => {
+    console.log(direction);
     if (direction === Direction.DOWN) {
       setTranslation(s => s - 100);
     } else if (direction === Direction.UP) {
       setTranslation(s => (s === 0 ? s : s + 100));
-    } else if (direction === Direction.BREAK) {
     }
   }, [direction]);
 
-  useEffect(() => {}, [translation]);
+  useEffect(() => {
+    let timer: any = null;
+    if (direction) {
+      timer = setTimeout(() => {
+        setDirection(null);
+      }, 1500);
+    }
+    return () => clearTimeout(timer);
+  }, [direction]);
   // il primo da 0 a -100
   // il secondo da 100 0 etc.
   // il third da 200 da 100
