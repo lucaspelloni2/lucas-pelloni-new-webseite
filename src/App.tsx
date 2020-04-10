@@ -1,8 +1,15 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 import { GlobalStyle, MainTheme } from "./Layout/Theme";
 import styled, { ThemeProvider } from "styled-components";
 import useAppState from "./reducers/useAppState";
 import { Pages } from "./Pages/Pages";
+import { useMouseWheel } from "./components/useMouseWheel";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -30,35 +37,18 @@ const B = styled(Child)`
 function App() {
   const { isDarkMode } = useAppState(s => s.darkMode);
 
-  const myRef = useRef<HTMLDivElement>(null);
-
-  const guil = useCallback((e: any) => {
-    const a = e.wheelDeltaY;
-    if (a > 0) {
-      console.log("up");
-    } else if (a < 0) {
-      console.log("down");
-    } else {
-      console.log("stop");
-    }
-  }, []);
+  const { ref, direction } = useMouseWheel();
 
   useEffect(() => {
-    const r = myRef.current;
-    if (r) {
-      r.addEventListener("mousewheel", guil);
-    }
-    return () => {
-      if (r) {
-        r.removeEventListener("mousewheel", guil);
-      }
-    };
-  }, [guil]);
+    console.log(direction);
+  }, [direction]);
 
+  // il primo da 0 a -100
+  // il secondo da 100 0 etc.
   return (
-    <Parent ref={myRef}>
-      <A translation={100} />
-      <B translation={0} />
+    <Parent ref={ref}>
+      <A translation={0} />
+      <B translation={100} />
     </Parent>
   );
 }
