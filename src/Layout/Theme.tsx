@@ -18,6 +18,7 @@ export const SPACING = 10;
 
 export const DARK_MODE_TRANSITION = `0.5s ease-in-out all`;
 export const COLOR_TRANSITION = `0.3s ease-in-out all`;
+export const PAGE_TRANSITION = `0.7s cubic-bezier(.63,.33,.38,1.07) all`;
 
 export enum __GRAY_SCALE {
   _100 = "#f6f9fc",
@@ -76,7 +77,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-weight: inherit;
     transition: ${DARK_MODE_TRANSITION};
     background: ${props =>
-       props.isDarkMode ? __COLORS.PRIMARY : __COLORS.WHITE};
+      props.isDarkMode ? __COLORS.PRIMARY : __COLORS.WHITE};
      color: ${props => (props.isDarkMode ? __COLORS.WHITE : __COLORS.PRIMARY)};
     font-style: inherit;
     font-size: 100%; 

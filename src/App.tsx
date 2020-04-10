@@ -1,15 +1,8 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from "react";
-import { GlobalStyle, MainTheme } from "./Layout/Theme";
-import styled, { ThemeProvider } from "styled-components";
+import React, { useEffect, useState } from "react";
+import { PAGE_TRANSITION } from "./Layout/Theme";
+import styled from "styled-components";
 import useAppState from "./reducers/useAppState";
-import { Pages } from "./Pages/Pages";
-import { useMouseWheel } from "./components/useMouseWheel";
+import { Direction, useMouseWheel } from "./components/useMouseWheel";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -23,6 +16,7 @@ const Child = styled.div<{ translation: number }>`
   transform: ${props => `translateY(${props.translation}%)`};
   height: 100%;
   left: 0;
+  transition: ${PAGE_TRANSITION};
   width: 100%;
 `;
 
@@ -35,20 +29,29 @@ const B = styled(Child)`
 `;
 
 function App() {
+  const [translation, setTranslation] = useState(0);
   const { isDarkMode } = useAppState(s => s.darkMode);
-
   const { ref, direction } = useMouseWheel();
 
   useEffect(() => {
-    console.log(direction);
+    if (direction === Direction.DOWN) {
+      setTranslation(s => s - 100);
+    } else if (direction === Direction.UP) {
+      setTranslation(s => (s === 0 ? s : s + 100));
+    }
   }, [direction]);
 
+  console.log(translation);
   // il primo da 0 a -100
   // il secondo da 100 0 etc.
+  // il third da 200 da 100
+  // il quarto da 300 da 200
   return (
     <Parent ref={ref}>
-      <A translation={0} />
-      <B translation={100} />
+      <A translation={translation}>First Child</A>
+      <B translation={translation + 100}>Second Child</B>
+      <A translation={translation + 200}>Third Child</A>
+      <B translation={translation + 300}>Fourth Child</B>
     </Parent>
   );
 }
