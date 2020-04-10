@@ -1,22 +1,33 @@
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
+import {
+  RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
+import { useThrottleFn } from "react-use";
 
-export enum Direction {
-  UP = "UP",
-  DOWN = "DOWN"
-}
 
-export const useMouseWheel = () => {
+type Props = {
+  onScrollUp: () => void;
+  onScrollDown: () => void;
+};
+
+export const useMouseWheel = ({ onScrollUp, onScrollDown }: Props) => {
   const ref = useRef<any>(null);
-  const [direction, setDirection] = useState<Direction | null>(null);
 
-  const handleMouseScroll = useCallback((e: any) => {
-    const { wheelDeltaY } = e;
-    if (wheelDeltaY > 0) {
-      setDirection(Direction.UP);
-    } else if (wheelDeltaY < 0) {
-      setDirection(Direction.DOWN);
-    }
-  }, []);
+  const handleMouseScroll = useCallback(
+    (e: any) => {
+      const { wheelDeltaY } = e;
+      if (wheelDeltaY > 0) {
+        onScrollUp();
+      } else if (wheelDeltaY < 0) {
+        onScrollDown();
+      }
+    },
+    [onScrollDown, onScrollUp]
+  );
 
   useEffect(() => {
     const r = ref.current;
@@ -30,5 +41,5 @@ export const useMouseWheel = () => {
     };
   }, [handleMouseScroll, ref]);
 
-  return { ref, direction };
+  return useMemo(() => ({ ref }), []);
 };

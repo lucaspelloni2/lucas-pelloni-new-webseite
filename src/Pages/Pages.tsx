@@ -44,55 +44,12 @@ enum Direction {
   DOWN = "DOWN"
 }
 export const Pages = () => {
-  const { height } = useWindowSize();
+
   const dispatch = useDispatch();
   const { page } = useAppState(s => s.currentPage);
   const homeSecondRef = useRef<HTMLDivElement>(null);
   const [direction, setDirection] = useState<Direction | null>(null);
 
-  useScrollPosition(
-    ({ prevPos, currPos }) => {
-      const delta = Math.abs(currPos.y - prevPos.y);
-
-
-      if (currPos.y >= prevPos.y) {
-        setDirection(Direction.DOWN);
-      } else {
-        setDirection(Direction.UP);
-      }
-      if (height) {
-        const currentPageIndex = Math.floor(currPos.y / height);
-        const currentPage = pages[currentPageIndex];
-        if (currentPage !== PageType.BLANK) {
-          dispatch(setCurrentPage(currentPage));
-        }
-      }
-    },
-    [dispatch, height],
-    undefined,
-    true,
-    300
-  );
-
-  useEffect(() => {
-    console.log(page, direction);
-    /*    if (page) {
-      let nextPage = page;
-      console.log(direction, page);
-      if (direction === Direction.DOWN) {
-        if (page === PageType.HOME_FIRST) {
-          nextPage = PageType.HOME_SECOND;
-        } else if (page === PageType.HOME_SECOND) {
-          nextPage = PageType.STORY_START;
-        }
-      } else if (direction === Direction.UP) {
-      }
-
-      scroller.scrollTo(nextPage, {
-        ...DefaultScrollTransition
-      });
-    }*/
-  }, [scroller, page, direction]);
 
   return (
     <Container>
