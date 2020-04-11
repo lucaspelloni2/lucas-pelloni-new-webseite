@@ -46,7 +46,7 @@ export const Pages = ({ translation }: Props) => {
   return (
     <>
       <ColorPicker />
-      <Circle />
+      <Circle translation={translation} />
       <Page
         translation={translation}
         component={

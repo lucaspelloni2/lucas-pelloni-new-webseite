@@ -35,19 +35,21 @@ const MyCircle = styled.div<{
   background: ${props => props.selectedColor};
 `;
 
-export const Circle = () => {
+type Props = {
+  translation: number;
+};
+export const Circle = ({ translation }: Props) => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   const { height } = useWindowSize();
 
   const [progress, setProgress] = useState(0);
 
-  const numberOfPagesBetweenAnimation = 1 + 1;
+  const numberOfPagesBetweenAnimation = 1;
 
   useScrollPosition(({ currPos }) => {
     if (height) {
-      const animatedValue = currPos.y;
       const goal = height * numberOfPagesBetweenAnimation;
-      const progress = animatedValue / goal;
+      const progress = translation / goal;
       const int = interpolate({
         inputRange: [1, 0],
         outputRange: [0, 75],
