@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import {
-  CIRCLE_OVERFLOW,
+  CIRCLE_RIGHT_OVERFLOW,
+  CIRCLE_TOP_OVERFLOW,
   COLOR_TRANSITION,
   getAlphaColor,
   PAGE_HEIGHT,
@@ -22,23 +23,22 @@ type CircleProps = {
 const CircleContainer = styled.div.attrs<{ left: number }>(
   ({ right }: CircleProps) => ({
     style: {
-      right: `${right - CIRCLE_OVERFLOW}%`
+      right: `${right - CIRCLE_RIGHT_OVERFLOW}%`
     }
   })
 )`
   position: fixed;
   z-index: -1;
   transition: ${PAGE_TRANSITION};
-  top: -${SPACING * 15}px;
+  top: -${CIRCLE_TOP_OVERFLOW}px;
 `;
-
-const INITIAL_SIZE = 850;
 
 const MyCircle = styled.div<{
   selectedColor: string;
   size: number;
+  borderRadius: number;
 }>`
-  border-radius: 50%;
+  border-radius: ${props => props.borderRadius}%;
   width: ${props => props.size}px;
   height: ${props => props.size}px;
   transition: ${PAGE_TRANSITION};
@@ -50,35 +50,39 @@ export const Circle = () => {
   const { translation } = useAppState(s => s.translation);
   const { height, width } = useWindowSize();
 
-  console.log(PageDimensions);
-  // da 0 a 80
-  // translation da 0 a 100
-  const [progress, setProgress] = useState(0);
+  console.log(width);
+
+  const [right, setRight] = useState(0);
+  const INITIAL_SIZE = 800;
   const [size, setSize] = useState(INITIAL_SIZE);
+  const [borderRadius, setBorderRadius] = useState(50);
 
   useEffect(() => {
     const normalized = Math.abs(translation);
     if (normalized === PageDimensions[0]) {
-      setProgress(0);
+      setRight(0);
     } else if (normalized === PageDimensions[1]) {
-      setProgress(80);
+      setRight(80);
       setSize(INITIAL_SIZE);
+      setBorderRadius(50);
     } else if (normalized === PageDimensions[2]) {
-      setProgress(-240);
-      setSize(INITIAL_SIZE * 12);
-    } else if (normalized === PageDimensions[3]) {
-      setProgress(-180);
-      setSize(0);
+      setRight(CIRCLE_RIGHT_OVERFLOW);
+      setSize(width || 3000);
+      setBorderRadius(0);
     }
-  }, [translation]);
+  }, [translation, width]);
 
   return useMemo(
     () => (
       // @ts-ignore
-      <CircleContainer right={progress}>
-        <MyCircle selectedColor={selectedColor} size={size} />
+      <CircleContainer right={right}>
+        <MyCircle
+          selectedColor={selectedColor}
+          size={size}
+          borderRadius={borderRadius}
+        />
       </CircleContainer>
     ),
-    [progress, selectedColor, size]
+    [borderRadius, right, selectedColor, size]
   );
 };
