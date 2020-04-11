@@ -2,15 +2,7 @@ import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
 import { ReactNode } from "react";
 import * as Scroll from "react-scroll";
-import {
-  Link,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller
-} from "react-scroll";
-import { PAGE_TRANSITION } from "../Layout/Theme";
+import { PAGE_HEIGHT, PAGE_TRANSITION } from "../Layout/Theme";
 
 type Props = {
   component: ReactNode;
@@ -21,7 +13,7 @@ type Props = {
 const Child = styled.div<{ translation: number }>`
   position: absolute;
   transform: ${props => `translateY(${props.translation}%)`};
-  height: 100%;
+  height: ${PAGE_HEIGHT}%;
   left: 0;
   transition: ${PAGE_TRANSITION};
   width: 100%;

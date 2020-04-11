@@ -7,15 +7,15 @@ import { PageType } from "../types/PageType";
 import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { ColorPicker } from "./Home/ColorPicker";
 import { Circle } from "../components/Circle";
+import useAppState from "../reducers/useAppState";
+import { PAGE_HEIGHT } from "../Layout/Theme";
 
-type Props = {
-  translation: number;
-};
-export const Pages = ({ translation }: Props) => {
+export const Pages = () => {
+  const { translation } = useAppState(s => s.translation);
   return (
     <>
       <ColorPicker />
-      <Circle translation={translation} />
+      <Circle />
       <Page
         translation={translation}
         component={
@@ -30,7 +30,7 @@ export const Pages = ({ translation }: Props) => {
         name={PageType.HOME_FIRST}
       />
       <Page
-        translation={translation + 100}
+        translation={translation + PAGE_HEIGHT}
         component={
           <Home
             order={[2, 1]}
@@ -44,7 +44,7 @@ export const Pages = ({ translation }: Props) => {
       <Page
         component={<StoryIntro />}
         name={PageType.STORY_START}
-        translation={translation + 200}
+        translation={translation + PAGE_HEIGHT * 2}
       />
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { COLOR_TRANSITION, getAlphaColor, SPACING } from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
@@ -35,29 +35,16 @@ const MyCircle = styled.div<{
   background: ${props => props.selectedColor};
 `;
 
-type Props = {
-  translation: number;
-};
-export const Circle = ({ translation }: Props) => {
+export const Circle = () => {
   const { selectedColor } = useAppState(s => s.selectedColor);
+  const { translation } = useAppState(s => s.translation);
   const { height } = useWindowSize();
 
   const [progress, setProgress] = useState(0);
 
-  const numberOfPagesBetweenAnimation = 1;
-
-  useScrollPosition(({ currPos }) => {
-    if (height) {
-      const goal = height * numberOfPagesBetweenAnimation;
-      const progress = translation / goal;
-      const int = interpolate({
-        inputRange: [1, 0],
-        outputRange: [0, 75],
-        clamp: true
-      });
-      setProgress(int(progress * -1));
-    }
-  });
+  useEffect(() => {
+    console.log(translation);
+  }, [translation]);
 
   return useMemo(
     () => (
