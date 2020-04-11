@@ -1,6 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
-import { COLOR_TRANSITION, getAlphaColor, SPACING } from "../Layout/Theme";
+import {
+  CIRCLE_OVERFLOW,
+  COLOR_TRANSITION,
+  getAlphaColor,
+  PAGE_HEIGHT,
+  PAGE_TRANSITION,
+  SPACING
+} from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
 import { useWindowSize } from "./useWindowSize";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
@@ -8,18 +15,19 @@ import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import interpolate from "interpolate-range";
 
 type CircleProps = {
-  left: number;
+  right: number;
 };
 
 const CircleContainer = styled.div.attrs<{ left: number }>(
-  ({ left }: CircleProps) => ({
+  ({ right }: CircleProps) => ({
     style: {
-      left: `${left - 10}%`
+      right: `${right - CIRCLE_OVERFLOW}%`
     }
   })
 )`
   position: fixed;
   z-index: -1;
+  transition: ${PAGE_TRANSITION};
   top: -${SPACING * 15}px;
 `;
 
@@ -40,16 +48,23 @@ export const Circle = () => {
   const { translation } = useAppState(s => s.translation);
   const { height } = useWindowSize();
 
+  // da 0 a 80
+  // translation da 0 a 100
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    console.log(translation);
+    const normalized = Math.abs(translation);
+    if (normalized === 0) {
+      setProgress(0);
+    } else if (normalized === PAGE_HEIGHT) {
+      setProgress(80);
+    }
   }, [translation]);
 
   return useMemo(
     () => (
       // @ts-ignore
-      <CircleContainer left={progress}>
+      <CircleContainer right={progress}>
         <MyCircle selectedColor={selectedColor} />
       </CircleContainer>
     ),
