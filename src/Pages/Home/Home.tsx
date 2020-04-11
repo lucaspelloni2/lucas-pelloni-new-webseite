@@ -16,6 +16,7 @@ import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 import { useDispatch } from "react-redux";
 import { setTranslation } from "../../reducers/translation/actions";
 import { Direction } from "../../reducers/translation/types";
+import { IllustrationSvg } from "../../components/IllustrationSvg";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -51,7 +52,7 @@ const DownIconWrapper = styled.div`
   z-index: 100;
 `;
 
-const Image = styled(Illustration)`
+const Image = styled(IllustrationSvg)`
   animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${slideLeft} forwards;
   max-width: 700px;
   height: auto;
@@ -83,7 +84,7 @@ export const Home = ({
       </TextContainer>
 
       <IllustrationContainer flex={1} order={order[1]}>
-        <Image name={illustration} />
+        <Image />
       </IllustrationContainer>
 
       <DownIconWrapper>
