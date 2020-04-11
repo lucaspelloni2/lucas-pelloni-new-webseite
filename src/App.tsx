@@ -3,8 +3,10 @@ import { GlobalStyle, MainTheme, PAGE_TRANSITION } from "./Layout/Theme";
 import styled, { ThemeProvider } from "styled-components";
 import useAppState from "./reducers/useAppState";
 import { useMouseWheel } from "./components/useMouseWheel";
-import { Provider, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Pages } from "./Pages/Pages";
+import { Direction } from "./reducers/translation/types";
+import { setTranslation } from "./reducers/translation/actions";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -22,24 +24,10 @@ const Child = styled.div<{ translation: number }>`
   width: 100%;
 `;
 
-const A = styled(Child)`
-  background: red;
-`;
-
-const B = styled(Child)`
-  background: aqua;
-`;
-
-export enum Direction {
-  UP = "UP",
-  DOWN = "DOWN",
-  BREAK = "BREAK"
-}
-
 function App() {
-  const [translation, setTranslation] = useState(0);
   const [direction, setDirection] = useState<null | Direction>(null);
   const { isDarkMode } = useAppState(s => s.darkMode);
+  const { translation } = useAppState(s => s.translation);
   const dispatch = useDispatch();
 
   const { ref } = useMouseWheel({
@@ -52,11 +40,7 @@ function App() {
   });
 
   useEffect(() => {
-    if (direction === Direction.DOWN) {
-      setTranslation(s => s - 100);
-    } else if (direction === Direction.UP) {
-      setTranslation(s => (s === 0 ? s : s + 100));
-    }
+    dispatch(setTranslation(direction));
   }, [direction]);
 
   useEffect(() => {
@@ -68,10 +52,7 @@ function App() {
     }
     return () => clearTimeout(timer);
   }, [direction]);
-  // il primo da 0 a -100
-  // il secondo da 100 0 etc.
-  // il third da 200 da 100
-  // il quarto da 300 da 200
+
   return (
     <Parent ref={ref}>
       <ThemeProvider theme={MainTheme}>

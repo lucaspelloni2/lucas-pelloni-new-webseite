@@ -1,43 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import { Home } from "./Home/Home";
 import { Page } from "./Page";
-
-import { PageContainer } from "../Layout/styled/PageContainer";
 import { HomeTitle } from "./Home/HomeTitle";
 import { SecondHomeTitle } from "./Home/SecondHomeTitle";
 import { PageType } from "../types/PageType";
 import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { ColorPicker } from "./Home/ColorPicker";
 import { Circle } from "../components/Circle";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import { useWindowSize } from "../components/useWindowSize";
-import { useDispatch } from "react-redux";
-import { setCurrentPage } from "../reducers/currentPage/actions";
-import useAppState from "../reducers/useAppState";
-import * as Scroll from "react-scroll";
-import { DefaultScrollTransition } from "./DefaultScrollTransition";
-
-const { scroller } = Scroll;
-
-const Container = styled.div`
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;
-  display: flex;
-  flex-direction: column;
-`;
-
-const BlankPage = () => <PageContainer />;
-
-const pages = [
-  PageType.HOME_FIRST,
-  PageType.BLANK,
-  PageType.HOME_SECOND,
-  PageType.BLANK,
-  PageType.STORY_START
-];
 
 type Props = {
   translation: number;
