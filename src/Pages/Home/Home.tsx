@@ -1,12 +1,9 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import { HomeTitle } from "./HomeTitle";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { FlexBox } from "../../Layout/styled/FlexBox";
 import { Illustration } from "../../components/Illustrations";
 import { SPACING } from "../../Layout/Theme";
-
-import { ColorPicker } from "./ColorPicker";
 
 import {
   fadeIn,
@@ -16,12 +13,9 @@ import {
 import { Header } from "../../components/Header";
 
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
-
-import * as Scroll from "react-scroll";
-import { DefaultScrollTransition } from "../DefaultScrollTransition";
-import { Circle } from "../../components/Circle";
-import { PageType } from "../../types/PageType";
-const { scroller } = Scroll;
+import { useDispatch } from "react-redux";
+import { setTranslation } from "../../reducers/translation/actions";
+import { Direction } from "../../reducers/translation/types";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -71,16 +65,15 @@ type Props = {
   order: number[];
   illustration: string;
   titleComponent: ReactNode;
-  scrollTo: PageType;
 };
 
 export const Home = ({
   header,
   order,
   illustration,
-  titleComponent,
-  scrollTo
+  titleComponent
 }: Props) => {
+  const dispatch = useDispatch();
   return (
     <Container>
       <TextContainer flex={1} order={order[0]}>
@@ -96,9 +89,7 @@ export const Home = ({
       <DownIconWrapper>
         <ScrollDownIcon
           onClick={() => {
-            scroller.scrollTo(scrollTo, {
-              ...DefaultScrollTransition
-            });
+            dispatch(setTranslation(Direction.DOWN));
           }}
         />
       </DownIconWrapper>

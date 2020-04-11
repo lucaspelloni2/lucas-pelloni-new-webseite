@@ -50,8 +50,6 @@ export const Circle = () => {
   const { translation } = useAppState(s => s.translation);
   const { height, width } = useWindowSize();
 
-  console.log(width);
-
   const [right, setRight] = useState(0);
   const INITIAL_SIZE = 800;
   const [size, setSize] = useState(INITIAL_SIZE);

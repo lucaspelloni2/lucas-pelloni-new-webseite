@@ -24,7 +24,6 @@ export const Pages = () => {
             order={[1, 2]}
             illustration={"lucas.svg"}
             titleComponent={<HomeTitle />}
-            scrollTo={PageType.HOME_SECOND}
           />
         }
         name={PageType.HOME_FIRST}
@@ -36,7 +35,6 @@ export const Pages = () => {
             order={[2, 1]}
             illustration={"lucas.svg"}
             titleComponent={<SecondHomeTitle />}
-            scrollTo={PageType.STORY_START}
           />
         }
         name={PageType.HOME_SECOND}
