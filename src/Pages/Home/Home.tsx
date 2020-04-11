@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { FlexBox } from "../../Layout/styled/FlexBox";
 import { Illustration } from "../../components/Illustrations";
-import { SPACING } from "../../Layout/Theme";
+import { CIRCLE_TRANSITION, SPACING } from "../../Layout/Theme";
 
 import {
   fadeIn,
@@ -56,7 +56,7 @@ const Image = styled(IllustrationSvg)`
   animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${slideLeft} forwards;
   max-width: 700px;
   height: auto;
-  transition: 1s ease-in-out all;
+  transition: ${CIRCLE_TRANSITION};
   padding: ${SPACING * 2}px;
   position: absolute;
 `;

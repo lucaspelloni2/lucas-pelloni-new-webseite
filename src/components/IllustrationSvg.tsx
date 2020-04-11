@@ -1,12 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import useAppState from "../reducers/useAppState";
+import { __COLORS, CIRCLE_TRANSITION } from "../Layout/Theme";
 
-const Container = styled.svg``;
+const Container = styled.svg`
+  transition: ${CIRCLE_TRANSITION};
+  & > * > * > * > * {
+    transition: ${CIRCLE_TRANSITION};
+  }
+  & > * > * > * > * > * > * {
+    transition: ${CIRCLE_TRANSITION};
+  }
+`;
 
 type Props = {
   className?: string;
 };
 export const IllustrationSvg = ({ className }: Props) => {
+  const { selectedColor } = useAppState(s => s.selectedColor);
   return (
     <Container
       className={className}
@@ -79,7 +90,11 @@ export const IllustrationSvg = ({ className }: Props) => {
               <g
                 id="screen-outer"
                 transform="translate(-0.000000, 0.000000)"
-                fill="#5F5FFF"
+                fill={
+                  selectedColor === __COLORS.SECONDARY
+                    ? __COLORS.TERTIARY
+                    : __COLORS.SECONDARY
+                }
                 fill-rule="nonzero"
               >
                 <path
@@ -109,7 +124,11 @@ export const IllustrationSvg = ({ className }: Props) => {
               <g
                 id="screen-inner"
                 transform="translate(62.873732, 119.348930)"
-                fill="#FF3E6C"
+                fill={
+                  selectedColor === __COLORS.SECONDARY
+                    ? __COLORS.FOURTH
+                    : __COLORS.TERTIARY
+                }
                 fill-rule="nonzero"
               >
                 <polygon
@@ -132,7 +151,11 @@ export const IllustrationSvg = ({ className }: Props) => {
             <g
               id="shirt"
               transform="translate(895.890639, 684.506501)"
-              fill="#5F5FFF"
+              fill={
+                selectedColor === __COLORS.SECONDARY
+                  ? __COLORS.TERTIARY
+                  : __COLORS.SECONDARY
+              }
               fill-rule="nonzero"
             >
               <path
@@ -200,7 +223,11 @@ export const IllustrationSvg = ({ className }: Props) => {
             <g
               id="socks"
               transform="translate(827.527300, 73.505183)"
-              fill="#030047"
+              fill={
+                selectedColor === __COLORS.SECONDARY
+                  ? __COLORS.TERTIARY
+                  : __COLORS.SECONDARY
+              }
               fill-rule="nonzero"
             >
               <path
@@ -541,7 +568,11 @@ export const IllustrationSvg = ({ className }: Props) => {
             <g
               id="chat"
               transform="translate(757.212244, 1136.563823)"
-              fill="#5F5FFF"
+              fill={
+                selectedColor === __COLORS.SECONDARY
+                  ? __COLORS.FOURTH
+                  : __COLORS.SECONDARY
+              }
               fill-rule="nonzero"
             >
               <path
