@@ -6,6 +6,7 @@ import {
   getAlphaColor,
   PAGE_HEIGHT,
   PAGE_TRANSITION,
+  PageDimensions,
   SPACING
 } from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
@@ -31,33 +32,43 @@ const CircleContainer = styled.div.attrs<{ left: number }>(
   top: -${SPACING * 15}px;
 `;
 
-const SIZE = 850;
+const INITIAL_SIZE = 850;
 
 const MyCircle = styled.div<{
   selectedColor: string;
+  size: number;
 }>`
-  clip-path: circle(50% at 50% 50%);
-  width: ${SIZE}px;
-  height: ${SIZE}px;
-  transition: ${COLOR_TRANSITION};
+  border-radius: 50%;
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
+  transition: ${PAGE_TRANSITION};
   background: ${props => props.selectedColor};
 `;
 
 export const Circle = () => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   const { translation } = useAppState(s => s.translation);
-  const { height } = useWindowSize();
+  const { height, width } = useWindowSize();
 
+  console.log(PageDimensions);
   // da 0 a 80
   // translation da 0 a 100
   const [progress, setProgress] = useState(0);
+  const [size, setSize] = useState(INITIAL_SIZE);
 
   useEffect(() => {
     const normalized = Math.abs(translation);
-    if (normalized === 0) {
+    if (normalized === PageDimensions[0]) {
       setProgress(0);
-    } else if (normalized === PAGE_HEIGHT) {
+    } else if (normalized === PageDimensions[1]) {
       setProgress(80);
+      setSize(INITIAL_SIZE);
+    } else if (normalized === PageDimensions[2]) {
+      setProgress(-240);
+      setSize(INITIAL_SIZE * 12);
+    } else if (normalized === PageDimensions[3]) {
+      setProgress(-180);
+      setSize(0);
     }
   }, [translation]);
 
@@ -65,9 +76,9 @@ export const Circle = () => {
     () => (
       // @ts-ignore
       <CircleContainer right={progress}>
-        <MyCircle selectedColor={selectedColor} />
+        <MyCircle selectedColor={selectedColor} size={size} />
       </CircleContainer>
     ),
-    [progress, selectedColor]
+    [progress, selectedColor, size]
   );
 };

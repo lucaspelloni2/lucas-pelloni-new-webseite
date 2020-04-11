@@ -21,6 +21,11 @@ export const COLOR_TRANSITION = `0.3s ease-in-out all`;
 export const PAGE_TRANSITION = `0.7s cubic-bezier(.63,.33,.38,1.07) all`;
 export const PAGE_HEIGHT = 100;
 export const CIRCLE_OVERFLOW = 10;
+export const NUMBER_OF_PAGES = 4;
+
+export const PageDimensions = new Array(NUMBER_OF_PAGES)
+  .fill(0)
+  .map((_, i) => PAGE_HEIGHT * i);
 
 export enum __GRAY_SCALE {
   _100 = "#f6f9fc",
