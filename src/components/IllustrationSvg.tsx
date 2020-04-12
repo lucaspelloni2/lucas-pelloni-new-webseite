@@ -545,7 +545,11 @@ export const IllustrationSvg = ({ className }: Props) => {
             <g
               id="headphone1"
               transform="translate(977.071572, 1127.703688)"
-              fill="#5F5FFF"
+              fill={
+                selectedColor === __COLORS.SECONDARY
+                  ? __COLORS.TERTIARY
+                  : __COLORS.SECONDARY
+              }
               fill-rule="nonzero"
             >
               <path
