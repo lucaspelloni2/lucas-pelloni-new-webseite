@@ -2,6 +2,9 @@ import React from "react";
 import styled, { keyframes, css } from "styled-components";
 import { Triangle } from "./Triangle";
 import { __COLORS, PAGE_TRANSITION, SPACING } from "../../Layout/Theme";
+import { Circle } from "./Circle";
+import { Line } from "./Line";
+import { Square } from "./Square";
 
 type ContainerProps = {
   left: number;
@@ -50,17 +53,24 @@ type Props = {
   top: number;
   duration: number;
   size: number;
+  color: string;
 };
 
-const getElement = (element: RainElementType, size: number) => {
+const getElement = (element: RainElementType, size: number, color: string) => {
   if (element === RainElementType.TRIANGLE) {
-    return <Triangle color={__COLORS.TERTIARY} size={size} />;
+    return <Triangle color={color} size={size} />;
+  } else if (element === RainElementType.CIRCLE) {
+    return <Circle color={color} size={size} />;
+  } else if (element === RainElementType.LINE) {
+    return <Line color={color} size={size} />;
+  } else if (element === RainElementType.SQUARE) {
+    return <Square color={color} size={size} />;
   }
   return <Triangle color={__COLORS.TERTIARY} size={size} />;
 };
 
-export const RainElement = ({ element, left, top, size, duration }: Props) => {
-  const el = getElement(element, size);
+export const RainElement = ({ element, left, top, size, duration, color }: Props) => {
+  const el = getElement(element, size, color);
 
   return (
     // @ts-ignore
