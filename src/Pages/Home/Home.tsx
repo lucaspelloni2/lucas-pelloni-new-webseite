@@ -54,7 +54,7 @@ const DownIconWrapper = styled.div`
 
 const Image = styled(IllustrationSvg)`
   animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${slideLeft} forwards;
-  max-width: 700px;
+  max-width: 750px;
   height: auto;
   transition: ${CIRCLE_TRANSITION};
   padding: ${SPACING * 2}px;

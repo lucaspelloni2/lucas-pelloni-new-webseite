@@ -48,7 +48,7 @@ const MyCircle = styled.div<{
 export const Circle = () => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   const { translation } = useAppState(s => s.translation);
-  const { height, width } = useWindowSize();
+  const { width } = useWindowSize();
 
   const [right, setRight] = useState(0);
   const INITIAL_SIZE = 800;

@@ -1,10 +1,17 @@
 import React, { DOMAttributes } from "react";
 import styled, { keyframes } from "styled-components";
-import { __COLORS, __GRAY_SCALE, getColors, SPACING } from "../../Layout/Theme";
+import {
+  __COLORS,
+  __GRAY_SCALE,
+  DARK_MODE_TRANSITION,
+  getColors,
+  SPACING
+} from "../../Layout/Theme";
 import { Color } from "./Color";
 import { useDispatch } from "react-redux";
 import { toggleDarkMode } from "../../reducers/darkMode/actions";
 import { setColor } from "../../reducers/selectedColor/actions";
+import useAppState from "../../reducers/useAppState";
 
 const bounceInRight = keyframes`
 from,
@@ -38,9 +45,12 @@ from,
   }
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ isDarkMode: boolean }>`
   animation: 0.5s ${bounceInRight} forwards;
+  transition: ${DARK_MODE_TRANSITION};
   background: ${__COLORS.PRIMARY};
+  border: 1px solid ${props =>
+    props.isDarkMode ? __GRAY_SCALE._700 : "transparent"};
   position: fixed;
   top: ${SPACING * 5}px;
   right: ${SPACING * 4}px;
@@ -52,10 +62,11 @@ const Container = styled.div`
 type Props = {} & DOMAttributes<any>;
 
 export const ColorPicker = ({ ...props }: Props) => {
+  const { isDarkMode } = useAppState(s => s.darkMode);
   const dispatch = useDispatch();
   const colors = getColors();
   return (
-    <Container {...props}>
+    <Container {...props} isDarkMode={isDarkMode}>
       {colors.map((c: string) => {
         return (
           <Color
