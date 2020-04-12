@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { SubTitle, Title } from "../../Layout/Typography";
@@ -26,17 +26,20 @@ const Sub = styled(SubTitle)`
 
 export const StoryIntro = () => {
   const dispatch = useDispatch();
-  return (
-    <Container>
-      <Rain />
-      <MyTitle>Lucas Pelloni, 18.03.1993</MyTitle>
-      <Sub>Naglerwiesenstrasse 88, 8049 Zürich</Sub>
-      <Button>I hope your are</Button>
-      <ScrollDownIcon
-        onClick={() => {
-          dispatch(setTranslation(Direction.DOWN));
-        }}
-      />
-    </Container>
+  return useMemo(
+    () => (
+      <Container>
+        <Rain />
+        <MyTitle>Lucas Pelloni, 18.03.1993</MyTitle>
+        <Sub>Naglerwiesenstrasse 88, 8049 Zürich</Sub>
+        <Button>I hope your are</Button>
+        <ScrollDownIcon
+          onClick={() => {
+            dispatch(setTranslation(Direction.DOWN));
+          }}
+        />
+      </Container>
+    ),
+    [dispatch]
   );
 };
