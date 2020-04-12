@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { GlobalStyle, MainTheme } from "./Layout/Theme";
 import styled, { ThemeProvider } from "styled-components";
 import useAppState from "./reducers/useAppState";
-import { useMouseWheel } from "./components/useMouseWheel";
+import { useMouseWheel } from "./hooks/useMouseWheel";
 import { useDispatch } from "react-redux";
 import { Pages } from "./Pages/Pages";
 import { Direction } from "./reducers/translation/types";
 import { setTranslation } from "./reducers/translation/actions";
+import { useTextColor } from "./hooks/useTextColor";
+import { useTheme } from "./hooks/useTheme";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -17,7 +19,7 @@ const Parent = styled.div`
 
 function App() {
   const [direction, setDirection] = useState<null | Direction>(null);
-  const { isDarkMode } = useAppState(s => s.darkMode);
+  const { color, background } = useTheme();
   const dispatch = useDispatch();
 
   const { ref } = useMouseWheel({
@@ -46,7 +48,7 @@ function App() {
   return (
     <Parent ref={ref}>
       <ThemeProvider theme={MainTheme}>
-        <GlobalStyle isDarkMode={isDarkMode} />
+        <GlobalStyle color={color} background={background} />
       </ThemeProvider>
       <Pages />
     </Parent>

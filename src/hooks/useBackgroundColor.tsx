@@ -1,11 +1,11 @@
 import useAppState from "../reducers/useAppState";
 import { useMemo } from "react";
-import { __COLORS } from "./Theme";
+import { __COLORS } from "../Layout/Theme";
 
-export const useTextColor = () => {
+export const useBackgroundColor = () => {
   const { isDarkMode } = useAppState(s => s.darkMode);
   return useMemo(
-    () => ({ color: isDarkMode ? __COLORS.WHITE : __COLORS.PRIMARY }),
+    () => ({ background: isDarkMode ? __COLORS.PRIMARY : __COLORS.WHITE }),
     [isDarkMode]
   );
 };

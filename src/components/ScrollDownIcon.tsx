@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { DARK_MODE_TRANSITION, SPACING } from "../Layout/Theme";
 import { Icon, IconTypes } from "./Icon";
-import { useTextColor } from "../Layout/useTextColor";
+import { useTextColor } from "../hooks/useTextColor";
 
 const SIZE = SPACING * 6;
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { getAlphaColor, SPACING } from "../Layout/Theme";
 import { Logo } from "./Logo";
 import { FlexBox } from "../Layout/styled/FlexBox";
-import { useTextColor } from "../Layout/useTextColor";
+import { useTextColor } from "../hooks/useTextColor";
 
 const Container = styled.div`
   display: flex;

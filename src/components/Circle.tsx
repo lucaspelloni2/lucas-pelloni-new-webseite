@@ -11,7 +11,7 @@ import {
   SPACING
 } from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
-import { useWindowSize } from "./useWindowSize";
+import { useWindowSize } from "../hooks/useWindowSize";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 // @ts-ignore
 import interpolate from "interpolate-range";
@@ -34,7 +34,7 @@ const CircleContainer = styled.div.attrs<{ left: number }>(
 `;
 
 const MyCircle = styled.div<{
-  selectedColor: string;
+  color: string;
   size: number;
   borderRadius: number;
 }>`
@@ -42,7 +42,7 @@ const MyCircle = styled.div<{
   width: ${props => props.size}px;
   height: ${props => props.size}px;
   transition: ${PAGE_TRANSITION};
-  background: ${props => props.selectedColor};
+  background: ${props => props.color};
 `;
 
 export const Circle = () => {
@@ -75,7 +75,7 @@ export const Circle = () => {
       // @ts-ignore
       <CircleContainer right={right}>
         <MyCircle
-          selectedColor={selectedColor}
+          color={selectedColor}
           size={size}
           borderRadius={borderRadius}
         />

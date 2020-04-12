@@ -56,7 +56,8 @@ export const __COLORS = {
 // Or declare a custom font: https://tinyurl.com/y6omstqa
 export const GlobalStyle = createGlobalStyle<{
   theme: ThemeProviderProps<any>;
-  isDarkMode: boolean;
+  color: string;
+  background: string;
 }>`
   * {
     box-sizing: border-box;
@@ -85,16 +86,15 @@ export const GlobalStyle = createGlobalStyle<{
     line-height: 1;
     font-weight: inherit;
     transition: ${DARK_MODE_TRANSITION};
-    background: ${props =>
-      props.isDarkMode ? __COLORS.PRIMARY : __COLORS.WHITE};
-     color: ${props => (props.isDarkMode ? __COLORS.WHITE : __COLORS.PRIMARY)};
+    background: ${props => props.background};
+    color: ${props => props.color};
     font-style: inherit;
     font-size: 100%; 
     font-family: inherit;
     outline: none;
   }
   h1, h2, h3, h4, h5, h6, p {
-    color: ${props => (props.isDarkMode ? __COLORS.WHITE : __COLORS.PRIMARY)};
+    color: ${props => props.color};
     font-weight: 100;
     line-height: 1.4;
      font-family: inherit;
