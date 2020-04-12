@@ -8,7 +8,7 @@ import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { ColorPicker } from "./Home/ColorPicker";
 import { Circle } from "../components/Circle";
 import useAppState from "../reducers/useAppState";
-import { PAGE_HEIGHT } from "../Layout/Theme";
+import { PAGE_HEIGHT, PageDimensions } from "../Layout/Theme";
 
 export const Pages = () => {
   const { translation } = useAppState(s => s.translation);
@@ -29,7 +29,7 @@ export const Pages = () => {
         name={PageType.HOME_FIRST}
       />
       <Page
-        translation={translation + PAGE_HEIGHT}
+        translation={translation + PageDimensions[1]}
         component={
           <Home
             order={[2, 1]}
@@ -42,7 +42,7 @@ export const Pages = () => {
       <Page
         component={<StoryIntro />}
         name={PageType.STORY_START}
-        translation={translation + PAGE_HEIGHT * 2}
+        translation={translation + PageDimensions[2]}
       />
     </>
   );
