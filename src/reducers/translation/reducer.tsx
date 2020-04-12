@@ -6,8 +6,17 @@ import {
 } from "./types";
 import { PAGE_HEIGHT } from "../../Layout/Theme";
 
+const getInitialState = () => {
+  const hash = window.location.hash.toString().replace("#", "");
+  const number = Number(hash);
+  if (!number) {
+    return 0;
+  }
+  return -1 * (number - 1) * PAGE_HEIGHT;
+};
+
 const initialState: TranslationState = {
-  translation: 0
+  translation: getInitialState()
 };
 
 const getTranslation = (
