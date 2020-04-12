@@ -7,6 +7,8 @@ import { Pages } from "./Pages/Pages";
 import { Direction } from "./reducers/translation/types";
 import { setTranslation } from "./reducers/translation/actions";
 import { useTheme } from "./hooks/useTheme";
+import { HistoryManager } from "./components/HistoryManager";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -17,7 +19,6 @@ const Parent = styled.div`
 
 function App() {
   const [direction, setDirection] = useState<null | Direction>(null);
-  const { push } = useHistory();
   const { color, background } = useTheme();
   const dispatch = useDispatch();
 
@@ -45,12 +46,19 @@ function App() {
   }, [direction]);
 
   return (
-    <Parent ref={ref}>
-      <ThemeProvider theme={MainTheme}>
-        <GlobalStyle color={color} background={background} />
-      </ThemeProvider>
-      <Pages />
-    </Parent>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Parent ref={ref}>
+            <ThemeProvider theme={MainTheme}>
+              <GlobalStyle color={color} background={background} />
+            </ThemeProvider>
+            <HistoryManager />
+            <Pages />
+          </Parent>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

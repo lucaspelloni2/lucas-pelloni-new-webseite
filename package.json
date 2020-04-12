@@ -10,8 +10,6 @@
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@types/react-router-dom": "^5.1.4",
     "@types/react-scroll": "^1.5.4",
     "interpolate-range": "^2.1.0",
     "polished": "latest",
@@ -55,6 +53,8 @@
   "devDependencies": {
     "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^5.0.1",
-    "@types/uuid": "^7.0.2"
+    "@types/uuid": "^7.0.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.4"
   }
 }
