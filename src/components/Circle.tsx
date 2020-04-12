@@ -15,6 +15,7 @@ import { useWindowSize } from "../hooks/useWindowSize";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 // @ts-ignore
 import interpolate from "interpolate-range";
+import { useTheme } from "../hooks/useTheme";
 
 type CircleProps = {
   right: number;
@@ -47,6 +48,7 @@ const MyCircle = styled.div<{
 
 export const Circle = () => {
   const { selectedColor } = useAppState(s => s.selectedColor);
+  const { background } = useTheme();
   const { translation } = useAppState(s => s.translation);
   const { width } = useWindowSize();
 
@@ -54,6 +56,7 @@ export const Circle = () => {
   const INITIAL_SIZE = 800;
   const [size, setSize] = useState(INITIAL_SIZE);
   const [borderRadius, setBorderRadius] = useState(50);
+  const [circleColor, setCircleColor] = useState(selectedColor);
 
   useEffect(() => {
     const normalized = Math.abs(translation);
@@ -63,24 +66,22 @@ export const Circle = () => {
       setRight(80);
       setSize(INITIAL_SIZE);
       setBorderRadius(50);
+      setCircleColor(selectedColor);
     } else if (normalized === PageDimensions[2]) {
       setRight(CIRCLE_RIGHT_OVERFLOW);
+      setCircleColor(background);
       setSize(width || 3000);
       setBorderRadius(0);
     }
-  }, [translation, width]);
+  }, [background, selectedColor, translation, width]);
 
   return useMemo(
     () => (
       // @ts-ignore
       <CircleContainer right={right}>
-        <MyCircle
-          color={selectedColor}
-          size={size}
-          borderRadius={borderRadius}
-        />
+        <MyCircle color={circleColor} size={size} borderRadius={borderRadius} />
       </CircleContainer>
     ),
-    [borderRadius, right, selectedColor, size]
+    [borderRadius, circleColor, right, size]
   );
 };

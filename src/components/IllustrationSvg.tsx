@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useAppState from "../reducers/useAppState";
-import { __COLORS, CIRCLE_TRANSITION } from "../Layout/Theme";
+import { __COLORS, CIRCLE_TRANSITION, getRandomColor } from "../Layout/Theme";
 
 const Container = styled.svg`
   transition: ${CIRCLE_TRANSITION};
@@ -18,6 +18,7 @@ type Props = {
 };
 export const IllustrationSvg = ({ className }: Props) => {
   const { selectedColor } = useAppState(s => s.selectedColor);
+  const randomColor = getRandomColor();
   return (
     <Container
       className={className}
@@ -760,7 +761,7 @@ export const IllustrationSvg = ({ className }: Props) => {
             <g
               id="line"
               transform="translate(158.000000, 155.666700)"
-              fill="#8FACFF"
+              fill={randomColor}
               fill-rule="nonzero"
             >
               <path
@@ -791,7 +792,7 @@ export const IllustrationSvg = ({ className }: Props) => {
             <g
               id="triangle"
               transform="translate(1049.094814, 717.460223) rotate(118.000000) translate(-1049.094814, -717.460223) translate(630.594814, 21.960223)"
-              fill="#8FACFF"
+              fill={randomColor}
               fill-rule="nonzero"
             >
               <polygon
@@ -814,7 +815,7 @@ export const IllustrationSvg = ({ className }: Props) => {
             <g
               id="circle"
               transform="translate(0.997290, 511.477837)"
-              fill="#8FACFF"
+              fill={randomColor}
               fill-rule="nonzero"
             >
               <path

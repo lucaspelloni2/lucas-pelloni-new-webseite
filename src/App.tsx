@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { GlobalStyle, MainTheme } from "./Layout/Theme";
 import styled, { ThemeProvider } from "styled-components";
-import useAppState from "./reducers/useAppState";
 import { useMouseWheel } from "./hooks/useMouseWheel";
 import { useDispatch } from "react-redux";
 import { Pages } from "./Pages/Pages";
 import { Direction } from "./reducers/translation/types";
 import { setTranslation } from "./reducers/translation/actions";
-import { useTextColor } from "./hooks/useTextColor";
 import { useTheme } from "./hooks/useTheme";
 
 const Parent = styled.div`

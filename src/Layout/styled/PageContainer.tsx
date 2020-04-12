@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { SPACING } from "../Theme";
+import { PAGE_HEIGHT, SPACING } from "../Theme";
 
 export const PageContainer = styled.div`
-  min-height: 100vh;
+  min-height: ${PAGE_HEIGHT}vh;
   display: flex;
   flex-direction: column;
   padding: ${SPACING * 2}px;
