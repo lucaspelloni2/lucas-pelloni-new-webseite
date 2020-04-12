@@ -14,7 +14,6 @@
     "interpolate-range": "^2.1.0",
     "polished": "latest",
     "react": "^16.13.1",
-    "react-awesome-button": "^6.5.1",
     "react-dom": "^16.13.1",
     "react-height": "^3.0.1",
     "react-redux": "latest",
