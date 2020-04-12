@@ -10,7 +10,7 @@ export const HistoryManager = () => {
   useEffect(() => {
     const normalized = Math.abs(translation);
     const index = Math.round(normalized / PAGE_HEIGHT) + 1;
-    push(`#${index}`);
+    push(`/#${index}`);
   }, [push, translation]);
   return null;
 };
