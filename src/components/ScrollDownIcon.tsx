@@ -40,6 +40,18 @@ const MyIcon = styled(Icon)`
   animation: 1.5s ${move} infinite;
 `;
 
+const DownIconWrapper = styled.div`
+  position: absolute;
+  height: ${SPACING * 10}px;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  left: 0;
+  z-index: 100;
+`;
+
 type Props = {
   onClick: () => void;
 };
@@ -47,15 +59,17 @@ export const ScrollDownIcon = ({ onClick }: Props) => {
   const { color } = useTextColor();
   const callback = useCallback(() => onClick(), [onClick]);
   return (
-    <Circle color={color} onClick={callback}>
-      <MyIcon
-        color={color}
-        name={IconTypes.ARROW_DOWN}
-        style={{
-          width: "100%",
-          height: "100%"
-        }}
-      />
-    </Circle>
+    <DownIconWrapper>
+      <Circle color={color} onClick={callback}>
+        <MyIcon
+          color={color}
+          name={IconTypes.ARROW_DOWN}
+          style={{
+            width: "100%",
+            height: "100%"
+          }}
+        />
+      </Circle>
+    </DownIconWrapper>
   );
 };

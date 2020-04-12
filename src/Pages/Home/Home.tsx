@@ -40,18 +40,6 @@ const IllustrationContainer = styled(FlexBox)<{ order: number }>`
   order: ${props => props.order};
 `;
 
-const DownIconWrapper = styled.div`
-  position: absolute;
-  height: ${SPACING * 10}px;
-  width: 100%;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  left: 0;
-  z-index: 100;
-`;
-
 const Image = styled(IllustrationSvg)`
   animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${slideLeft} forwards;
   max-width: 750px;
@@ -87,13 +75,11 @@ export const Home = ({
         <Image />
       </IllustrationContainer>
 
-      <DownIconWrapper>
-        <ScrollDownIcon
-          onClick={() => {
-            dispatch(setTranslation(Direction.DOWN));
-          }}
-        />
-      </DownIconWrapper>
+      <ScrollDownIcon
+        onClick={() => {
+          dispatch(setTranslation(Direction.DOWN));
+        }}
+      />
     </Container>
   );
 };

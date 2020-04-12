@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useAppState from "../reducers/useAppState";
-import { __COLORS, CIRCLE_TRANSITION, getRandomColor } from "../Layout/Theme";
+import { __COLORS, CIRCLE_TRANSITION, getColors } from "../Layout/Theme";
 
 const Container = styled.svg`
   transition: ${CIRCLE_TRANSITION};
@@ -18,7 +18,8 @@ type Props = {
 };
 export const IllustrationSvg = ({ className }: Props) => {
   const { selectedColor } = useAppState(s => s.selectedColor);
-  const randomColor = getRandomColor();
+  const colors = getColors().filter(s => s !== __COLORS.TERTIARY);
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
   return (
     <Container
       className={className}
