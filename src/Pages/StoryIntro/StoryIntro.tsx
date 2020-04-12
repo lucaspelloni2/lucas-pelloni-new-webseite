@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { SubTitle, Title } from "../../Layout/Typography";
@@ -8,7 +8,7 @@ import { setTranslation } from "../../reducers/translation/actions";
 import { Direction } from "../../reducers/translation/types";
 import { useDispatch } from "react-redux";
 import { Button } from "../../components/Button";
-import {Rain} from "../../components/Rain/Rain";
+import { Rain } from "../../components/Rain/Rain";
 
 const Container = styled(PageContainer)`
   display: flex;

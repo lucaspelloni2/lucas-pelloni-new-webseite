@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { RainElement, RainElementType } from "./RainElement";
 import { getRandomColor } from "../../Layout/Theme";
@@ -8,7 +8,7 @@ const Container = styled.div`
   height: 100vh;
   position: absolute;
   z-index: -1;
-  opacity: 0.3;
+  opacity: 0.2;
 `;
 
 function getRandomInt(min: number, max: number) {
@@ -20,9 +20,9 @@ function getRandomInt(min: number, max: number) {
 export const Rain = () => {
   const [timer, setTimer] = useState(0);
   const NR_ELEMENTS = 100;
-  const TIMER = 5000;
-  const MIN_SIZE = 5;
-  const MAX_SIZE = 45;
+  const TIMER = 7500;
+  const MIN_SIZE = 10;
+  const MAX_SIZE = 50;
   const MIN_DURATION = 2;
   const MAX_DURATION = 6;
   const elements = Object.keys(RainElementType);
@@ -34,25 +34,28 @@ export const Rain = () => {
     return () => clearInterval(timer);
   }, []);
 
-  return (
-    <Container>
-      {new Array(NR_ELEMENTS).fill(0).map((_, index: number) => {
-        const randomInitialPositionX = getRandomInt(0, 100);
-        const randomInitialPositionY = getRandomInt(0, 100);
-        const randomDuration = getRandomInt(MIN_DURATION, MAX_DURATION);
-        const randomSize = getRandomInt(MIN_SIZE, MAX_SIZE);
-        const randomElement = elements[getRandomInt(0, elements.length - 1)];
-        return (
-          <RainElement
-            color={getRandomColor()}
-            duration={randomDuration}
-            size={randomSize}
-            element={randomElement as RainElementType}
-            left={randomInitialPositionX}
-            top={randomInitialPositionY}
-          />
-        );
-      })}
-    </Container>
+  return useMemo(
+    () => (
+      <Container>
+        {new Array(NR_ELEMENTS).fill(0).map((_, index: number) => {
+          const randomInitialPositionX = getRandomInt(0, 100);
+          const randomInitialPositionY = getRandomInt(0, 100);
+          const randomDuration = getRandomInt(MIN_DURATION, MAX_DURATION);
+          const randomSize = getRandomInt(MIN_SIZE, MAX_SIZE);
+          const randomElement = elements[getRandomInt(0, elements.length - 1)];
+          return (
+            <RainElement
+              color={getRandomColor()}
+              duration={randomDuration}
+              size={randomSize}
+              element={randomElement as RainElementType}
+              left={randomInitialPositionX}
+              top={randomInitialPositionY}
+            />
+          );
+        })}
+      </Container>
+    ),
+    [elements]
   );
 };
