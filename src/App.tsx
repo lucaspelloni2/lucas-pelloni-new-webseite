@@ -17,6 +17,7 @@ const Parent = styled.div`
 
 function App() {
   const [direction, setDirection] = useState<null | Direction>(null);
+  const { push } = useHistory();
   const { color, background } = useTheme();
   const dispatch = useDispatch();
 

@@ -8,7 +8,7 @@ import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { ColorPicker } from "./Home/ColorPicker";
 import { Circle } from "../components/Circle";
 import useAppState from "../reducers/useAppState";
-import { PAGE_HEIGHT, PageDimensions } from "../Layout/Theme";
+import { PageDimensions } from "../Layout/Theme";
 
 export const Pages = () => {
   const { translation } = useAppState(s => s.translation);

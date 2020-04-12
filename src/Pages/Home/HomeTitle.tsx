@@ -5,7 +5,7 @@ import {
   HomeSubTitle
 } from "../../Layout/Typography";
 import styled from "styled-components";
-import { __COLORS, COLOR_TRANSITION, SPACING } from "../../Layout/Theme";
+import { __COLORS, SPACING } from "../../Layout/Theme";
 import { Icon, IconTypes } from "../../components/Icon";
 import useAppState from "../../reducers/useAppState";
 
