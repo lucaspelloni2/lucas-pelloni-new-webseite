@@ -16,7 +16,7 @@ export const getRandomInt = (min: number, max: number) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 export const Rain = memo(() => {
   const { value } = useAppState(s => s.slider);
@@ -49,6 +49,7 @@ export const Rain = memo(() => {
               elements[getRandomInt(0, elements.length - 1)];
             return (
               <RainElement
+                key={`index-${randomInitialPositionX}-${randomInitialPositionY}-${randomDuration}`}
                 color={getRandomColor()}
                 duration={randomDuration}
                 size={randomSize}
