@@ -16,6 +16,8 @@ import { useDispatch } from "react-redux";
 import { HistoryManager } from "../components/HistoryManager";
 import styled from "styled-components";
 import { Slider } from "../components/Slider";
+import { Memory } from "./Memories/Memory";
+import { Years } from "./Memories/Years";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -51,12 +53,15 @@ export const Pages = () => {
     return () => clearTimeout(timer);
   }, [direction]);
 
+  const normalized = Math.abs(translation);
+
   return (
     <Parent ref={ref}>
       <HistoryManager />
       <ColorPicker />
-      <Slider />
-      <Circle />
+      {normalized === PageDimensions[2] && <Slider />}
+      {normalized < PageDimensions[3] && <Circle />}
+      <Years visible={normalized > PageDimensions[2]} />
       <Page
         translation={translation}
         component={
@@ -84,6 +89,12 @@ export const Pages = () => {
         component={<StoryIntro />}
         name={PageType.STORY_START}
         translation={translation + PageDimensions[2]}
+      />
+
+      <Page
+        component={<Memory />}
+        name={PageType.MEMORY_AXELRA}
+        translation={translation + PageDimensions[3]}
       />
     </Parent>
   );

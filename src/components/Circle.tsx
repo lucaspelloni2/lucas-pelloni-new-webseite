@@ -72,6 +72,8 @@ export const Circle = () => {
       setCircleColor(background);
       setSize(width || 3000);
       setBorderRadius(0);
+    } else {
+      setSize(0);
     }
   }, [background, selectedColor, translation, width]);
 

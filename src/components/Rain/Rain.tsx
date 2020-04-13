@@ -21,7 +21,7 @@ export const getRandomInt = (min: number, max: number) => {
 export const Rain = memo(() => {
   const { value } = useAppState(s => s.slider);
   const [timer, setTimer] = useState(0);
-  const NR_ELEMENTS = 100;
+  const NR_ELEMENTS = 50;
   const TIMER = 10000;
   const MIN_SIZE = 10;
   const MAX_SIZE = 50;

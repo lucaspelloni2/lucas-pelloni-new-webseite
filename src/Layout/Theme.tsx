@@ -23,7 +23,9 @@ export const CIRCLE_TRANSITION = `1s ease-in-out all`;
 export const PAGE_HEIGHT = 100;
 export const CIRCLE_RIGHT_OVERFLOW = 10;
 export const CIRCLE_TOP_OVERFLOW = SPACING * 15;
-export const NUMBER_OF_PAGES = 4;
+export const NUMBER_OF_PAGES = 10;
+export const MEMORY_LEFT_PANEL_WIDTH = 200;
+
 
 export const PageDimensions = new Array(NUMBER_OF_PAGES)
   .fill(0)
