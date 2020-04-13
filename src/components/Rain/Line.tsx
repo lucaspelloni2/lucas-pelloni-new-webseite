@@ -1,16 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-const SVG = styled.svg``;
+const SVG = styled.svg<{ rotate?: string }>`
+  transform: rotate(${props => props.rotate || 0}deg);
+`;
 
 type Props = {
   color: string;
   size?: number;
+  rotate?: string;
 };
 
-export const Line = ({ color, size }: Props) => {
+export const Line = ({ color, size, rotate}: Props) => {
   return (
-    <SVG width={size} height={size} viewBox="0 0 62 62" version="1.1">
+    <SVG width={size} height={size} viewBox="0 0 62 62" version="1.1" rotate={rotate}>
       <g
         id="Page-1"
         stroke="none"

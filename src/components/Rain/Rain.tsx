@@ -1,8 +1,10 @@
-import React, { memo, useEffect, useMemo, useState } from "react";
+import React, { memo, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { RainElement, RainElementType } from "./RainElement";
 import { getRandomColor } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
+import { useDispatch } from "react-redux";
+import { shuffle } from "../../reducers/shuffle/actions";
 
 const Container = styled.div<{ opacity: number }>`
   width: 100%;
@@ -20,8 +22,9 @@ export const getRandomInt = (min: number, max: number) => {
 
 export const Rain = memo(() => {
   const { value } = useAppState(s => s.slider);
-  const [timer, setTimer] = useState(0);
-  const NR_ELEMENTS = 50;
+  const { timer } = useAppState(s => s.shuffle);
+  const dispatch = useDispatch();
+  const NR_ELEMENTS = timer;
   const TIMER = 15000;
   const MIN_SIZE = 10;
   const MAX_SIZE = 50;
@@ -31,20 +34,21 @@ export const Rain = memo(() => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimer(t => t + 1);
+      dispatch(shuffle());
     }, TIMER);
     return () => clearInterval(timer);
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container opacity={value / 100}>
       {useMemo(
         () =>
-          new Array(NR_ELEMENTS).fill(0).map((_, index: number) => {
+          new Array(NR_ELEMENTS).fill(0).map(_ => {
             const randomInitialPositionX = getRandomInt(0, 100);
             const randomInitialPositionY = getRandomInt(0, 100);
             const randomDuration = getRandomInt(MIN_DURATION, MAX_DURATION);
             const randomSize = getRandomInt(MIN_SIZE, MAX_SIZE);
+            const randomRotation = getRandomInt(0, 360);
             const randomElement =
               elements[getRandomInt(0, elements.length - 1)];
             return (
@@ -52,13 +56,15 @@ export const Rain = memo(() => {
                 color={getRandomColor()}
                 duration={randomDuration}
                 size={randomSize}
+                rotate={String(randomRotation)}
+                isEasterEgg={NR_ELEMENTS === 100}
                 element={randomElement as RainElementType}
                 left={randomInitialPositionX}
                 top={randomInitialPositionY}
               />
             );
           }),
-        [elements]
+        [NR_ELEMENTS, elements]
       )}
     </Container>
   );

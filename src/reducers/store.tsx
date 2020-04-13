@@ -7,10 +7,12 @@ import selectedColor from "./selectedColor/reducer";
 import currentPage from "./currentPage/reducer";
 import translation from "./translation/reducer";
 import slider from "./slider/reducer";
+import shuffle from "./shuffle/reducer";
 import { SelectedColorState } from "./selectedColor/types";
 import { PageState } from "./currentPage/types";
 import { TranslationState } from "./translation/types";
 import { SliderState } from "./slider/types";
+import {ShuffleState} from "./shuffle/types";
 
 export type RootState = {
   darkMode: DarkModestate;
@@ -18,6 +20,7 @@ export type RootState = {
   currentPage: PageState;
   translation: TranslationState;
   slider: SliderState;
+  shuffle: ShuffleState;
 };
 
 const rootReducer = combineReducers({
@@ -25,7 +28,8 @@ const rootReducer = combineReducers({
   selectedColor,
   currentPage,
   translation,
-  slider
+  slider,
+  shuffle
 });
 
 const store = createStore(

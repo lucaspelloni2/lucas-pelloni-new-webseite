@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import {
   __COLORS,
   __GRAY_SCALE,
-  CIRCLE_TRANSITION,
   DARK_MODE_TRANSITION,
   getColors,
   PageDimensions,
@@ -15,6 +14,7 @@ import { toggleDarkMode } from "../../reducers/darkMode/actions";
 import { setColor } from "../../reducers/selectedColor/actions";
 import useAppState from "../../reducers/useAppState";
 import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
+import { shuffle } from "../../reducers/shuffle/actions";
 
 const bounceInRight = keyframes`
 from,
@@ -86,7 +86,10 @@ export const ColorPicker = ({ ...props }: Props) => {
 
       <Color
         visible={translation === PageDimensions[2]}
-        onSelect={(c: string) => {}}
+        onSelect={(c: string) => {
+          console.log("hello");
+          dispatch(shuffle());
+        }}
         isShuffle
         color={__GRAY_SCALE._800}
       />

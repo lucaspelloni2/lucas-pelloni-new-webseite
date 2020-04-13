@@ -5,6 +5,8 @@ import { __COLORS, PAGE_TRANSITION, SPACING } from "../../Layout/Theme";
 import { Circle } from "./Circle";
 import { Line } from "./Line";
 import { Square } from "./Square";
+import { getRandomInt } from "./Rain";
+import { DoubleNote, Microphone, SingleNote } from "./Music";
 
 type ContainerProps = {
   left: number;
@@ -53,24 +55,51 @@ type Props = {
   top: number;
   duration: number;
   size: number;
+  rotate?: string;
   color: string;
+  isEasterEgg?: boolean;
 };
 
-const getElement = (element: RainElementType, size: number, color: string) => {
+const getElement = (
+  element: RainElementType,
+  size: number,
+  color: string,
+  rotate?: string,
+  isEasterEgg?: boolean
+) => {
+  if (isEasterEgg) {
+    const random = getRandomInt(0, 2);
+    if (random === 0) {
+      return <SingleNote color={color} size={size} rotate={rotate} />;
+    } else if (random === 1) {
+      return <DoubleNote color={color} size={size} rotate={rotate} />;
+    } else {
+      return <Microphone color={color} size={size} rotate={rotate} />;
+    }
+  }
   if (element === RainElementType.TRIANGLE) {
-    return <Triangle color={color} size={size} />;
+    return <Triangle color={color} size={size} rotate={rotate} />;
   } else if (element === RainElementType.CIRCLE) {
-    return <Circle color={color} size={size} />;
+    return <Circle color={color} size={size} rotate={rotate} />;
   } else if (element === RainElementType.LINE) {
-    return <Line color={color} size={size} />;
+    return <Line color={color} size={size} rotate={rotate} />;
   } else if (element === RainElementType.SQUARE) {
-    return <Square color={color} size={size} />;
+    return <Square color={color} size={size} rotate={rotate} />;
   }
   return <Triangle color={__COLORS.TERTIARY} size={size} />;
 };
 
-export const RainElement = ({ element, left, top, size, duration, color }: Props) => {
-  const el = getElement(element, size, color);
+export const RainElement = ({
+  element,
+  left,
+  top,
+  size,
+  duration,
+  color,
+  rotate,
+  isEasterEgg
+}: Props) => {
+  const el = getElement(element, size, color, rotate, isEasterEgg);
 
   return (
     // @ts-ignore
