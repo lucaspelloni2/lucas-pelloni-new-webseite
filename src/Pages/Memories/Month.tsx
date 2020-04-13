@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Memory, MONTHS } from "../../Content";
+import { Memory } from "../../Content";
+import { SPACING } from "../../Layout/Theme";
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: ${SPACING}px;
+`;
 
 type Props = {
   memory: Memory;

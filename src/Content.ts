@@ -81,8 +81,41 @@ export const Memories: Memory[] = [
     primaryColor: "#36f793",
     achievement: {
       title: "EUREKA Platform Launch",
-      subtitle:
-        "I was Deputy CTO bla bla ",
+      subtitle: "I was Deputy CTO bla bla ",
+      description:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
+        }
+      ]
+    }
+  },
+  {
+    year: 2017,
+    month: MONTHS.JULI,
+    primaryColor: "#4a93e9",
+    achievement: {
+      title: "Bachelor Degree",
+      subtitle: "I completed my bachelor degree in Computer Science",
+      description:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
+        }
+      ]
+    }
+  },
+  {
+    year: 1993,
+    month: MONTHS.MARCH,
+    primaryColor: "#ab39dd",
+    achievement: {
+      title: "My birth",
+      subtitle: "lorem lorem lorem lorem",
       description:
         "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
       pictures: [

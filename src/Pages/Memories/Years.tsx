@@ -25,8 +25,8 @@ type Props = {
 
 export const Years = ({ visible }: Props) => {
   const groupedItems = _(Memories)
-    .groupBy((e: Memory) => e.year)
-    .orderBy(year => year, "desc")
+    .groupBy((e: Memory) => Number(e.year))
+    .orderBy(year => Number(year), "desc")
     .value();
 
   return (

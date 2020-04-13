@@ -49,7 +49,6 @@ export const Rain = memo(() => {
               elements[getRandomInt(0, elements.length - 1)];
             return (
               <RainElement
-                key={`index-${randomInitialPositionX}-${randomInitialPositionY}-${randomDuration}`}
                 color={getRandomColor()}
                 duration={randomDuration}
                 size={randomSize}
