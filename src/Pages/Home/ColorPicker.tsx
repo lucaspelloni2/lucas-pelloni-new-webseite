@@ -3,8 +3,10 @@ import styled, { keyframes } from "styled-components";
 import {
   __COLORS,
   __GRAY_SCALE,
+  CIRCLE_TRANSITION,
   DARK_MODE_TRANSITION,
   getColors,
+  PageDimensions,
   SPACING
 } from "../../Layout/Theme";
 import { Color } from "./Color";
@@ -12,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { toggleDarkMode } from "../../reducers/darkMode/actions";
 import { setColor } from "../../reducers/selectedColor/actions";
 import useAppState from "../../reducers/useAppState";
-import {useNormalizedTransition} from "../../hooks/useNormalizedTransition";
+import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 
 const bounceInRight = keyframes`
 from,
@@ -50,8 +52,8 @@ export const ColorPickerContainer = styled.div<{ isDarkMode: boolean }>`
   animation: 0.5s ${bounceInRight} forwards;
   transition: ${DARK_MODE_TRANSITION};
   background: ${__COLORS.PRIMARY};
-  border: 1px solid ${props =>
-    props.isDarkMode ? __GRAY_SCALE._700 : "transparent"};
+  border: 1px solid
+    ${props => (props.isDarkMode ? __GRAY_SCALE._700 : "transparent")};
   position: fixed;
   top: ${SPACING * 5}px;
   right: ${SPACING * 4}px;
@@ -69,10 +71,10 @@ export const ColorPicker = ({ ...props }: Props) => {
   const colors = getColors();
   return (
     <ColorPickerContainer {...props} isDarkMode={isDarkMode}>
-      {translation }
       {colors.map((c: string) => {
         return (
           <Color
+            visible={translation < PageDimensions[2]}
             key={c}
             color={c}
             onSelect={(c: string) => {
@@ -81,7 +83,16 @@ export const ColorPicker = ({ ...props }: Props) => {
           />
         );
       })}
+
       <Color
+        visible={translation === PageDimensions[2]}
+        onSelect={(c: string) => {}}
+        isShuffle
+        color={__GRAY_SCALE._800}
+      />
+
+      <Color
+        visible
         onSelect={(c: string) => {
           dispatch(toggleDarkMode());
         }}
