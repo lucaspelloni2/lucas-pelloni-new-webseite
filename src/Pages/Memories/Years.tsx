@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { MEMORY_LEFT_PANEL_WIDTH, PAGE_TRANSITION } from "../../Layout/Theme";
 import { Memories, Memory } from "../../Content";
 import _ from "lodash";
+import { Year } from "./Year";
+import { v1 } from "uuid";
 
 const Container = styled.div<{ visible: boolean }>`
   background: red;
@@ -27,6 +29,17 @@ export const Years = ({ visible }: Props) => {
     .orderBy(year => year, "desc")
     .value();
 
-  console.log(groupedItems);
-  return <Container visible={visible}>Years</Container>;
+  return (
+    <Container visible={visible}>
+      {groupedItems.map((memories: Memory[]) => {
+        return (
+          <Year
+            key={v1()}
+            year={String(memories[0].year)}
+            memories={memories}
+          />
+        );
+      })}
+    </Container>
+  );
 };
