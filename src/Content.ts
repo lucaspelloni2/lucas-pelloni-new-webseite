@@ -15,7 +15,7 @@ export type Achievement = {
 };
 
 export type Memory = {
-  year: string;
+  year: number;
   month: MONTHS;
   primaryColor: string;
   secondaryColor?: string;
@@ -34,12 +34,12 @@ export enum MONTHS {
   SEPTEMBER = "SEPTEMBER",
   OCTOBER = "OCTOBER",
   NOVEMBER = "NOVEMBER",
-  DECEMBER = "DECEMBER",
+  DECEMBER = "DECEMBER"
 }
 
 export const Memories: Memory[] = [
   {
-    year: "2019",
+    year: 2019,
     month: MONTHS.MAY,
     primaryColor: "#369cf7",
     secondaryColor: "#0a274b",
@@ -53,6 +53,42 @@ export const Memories: Memory[] = [
         {
           src:
             "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/axelra%2FShooting%20co-founders%2003.jpg?alt=media&token=d0f6c49c-272a-4bf9-8200-7bfdab140e78"
+        }
+      ]
+    }
+  },
+  {
+    year: 2019,
+    month: MONTHS.DECEMBER,
+    primaryColor: "#36f793",
+    achievement: {
+      title: "Master Degree",
+      subtitle:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ",
+      description:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/master%2FIMG_5344-_1_.png?alt=media&token=6b46c6f5-33c5-4f89-9b9f-e03d80ec3be4"
+        }
+      ]
+    }
+  },
+  {
+    year: 2018,
+    month: MONTHS.APRIL,
+    primaryColor: "#36f793",
+    achievement: {
+      title: "EUREKA Platform Launch",
+      subtitle:
+        "I was Deputy CTO bla bla ",
+      description:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
         }
       ]
     }
