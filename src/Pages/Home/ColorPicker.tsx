@@ -45,7 +45,7 @@ from,
   }
 `;
 
-const Container = styled.div<{ isDarkMode: boolean }>`
+export const ColorPickerContainer = styled.div<{ isDarkMode: boolean }>`
   animation: 0.5s ${bounceInRight} forwards;
   transition: ${DARK_MODE_TRANSITION};
   background: ${__COLORS.PRIMARY};
@@ -66,7 +66,7 @@ export const ColorPicker = ({ ...props }: Props) => {
   const dispatch = useDispatch();
   const colors = getColors();
   return (
-    <Container {...props} isDarkMode={isDarkMode}>
+    <ColorPickerContainer {...props} isDarkMode={isDarkMode}>
       {colors.map((c: string) => {
         return (
           <Color
@@ -85,6 +85,6 @@ export const ColorPicker = ({ ...props }: Props) => {
         isDarkModeElement
         color={__GRAY_SCALE._800}
       />
-    </Container>
+    </ColorPickerContainer>
   );
 };

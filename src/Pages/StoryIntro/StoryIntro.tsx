@@ -17,11 +17,12 @@ const Container = styled(PageContainer)`
 `;
 
 const MyTitle = styled(Title)`
-  font-size: 60px;
+  font-size: 70px;
 `;
 
 const Sub = styled(SubTitle)`
   margin-top: -${SPACING * 3}px;
+    font-size: 30px;
 `;
 
 export const StoryIntro = () => {
@@ -30,7 +31,7 @@ export const StoryIntro = () => {
     () => (
       <Container>
         <Rain />
-        <MyTitle>Lucas Pelloni, 18.03.1993</MyTitle>
+        <MyTitle>Lucas Pelloni, 18.03.1993.</MyTitle>
         <Sub>Naglerwiesenstrasse 88, 8049 Zürich</Sub>
         <Button>I hope your are</Button>
         <ScrollDownIcon

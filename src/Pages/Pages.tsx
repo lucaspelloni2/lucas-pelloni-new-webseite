@@ -15,6 +15,7 @@ import { setTranslation } from "../reducers/translation/actions";
 import { useDispatch } from "react-redux";
 import { HistoryManager } from "../components/HistoryManager";
 import styled from "styled-components";
+import { Slider } from "../components/Slider";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -54,6 +55,7 @@ export const Pages = () => {
     <Parent ref={ref}>
       <HistoryManager />
       <ColorPicker />
+      <Slider />
       <Circle />
       <Page
         translation={translation}
