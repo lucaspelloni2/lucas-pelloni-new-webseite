@@ -18,6 +18,7 @@ import styled from "styled-components";
 import { Slider } from "../components/Slider";
 import { Memory } from "./Memories/Memory";
 import { Years } from "./Memories/Years";
+import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -28,6 +29,7 @@ const Parent = styled.div`
 
 export const Pages = () => {
   const { translation } = useAppState(s => s.translation);
+  const normalized = useNormalizedTransition().translation;
   const dispatch = useDispatch();
   const [direction, setDirection] = useState<null | Direction>(null);
   const { ref } = useMouseWheel({
@@ -52,8 +54,6 @@ export const Pages = () => {
     }
     return () => clearTimeout(timer);
   }, [direction]);
-
-  const normalized = Math.abs(translation);
 
   return (
     <Parent ref={ref}>

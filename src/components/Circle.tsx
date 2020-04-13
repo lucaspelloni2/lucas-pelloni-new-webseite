@@ -16,6 +16,7 @@ import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 // @ts-ignore
 import interpolate from "interpolate-range";
 import { useTheme } from "../hooks/useTheme";
+import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
 
 type CircleProps = {
   right: number;
@@ -49,7 +50,7 @@ const MyCircle = styled.div<{
 export const Circle = () => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   const { background } = useTheme();
-  const { translation } = useAppState(s => s.translation);
+  const { translation } = useNormalizedTransition();
   const { width } = useWindowSize();
 
   const [right, setRight] = useState(0);
@@ -59,15 +60,14 @@ export const Circle = () => {
   const [circleColor, setCircleColor] = useState(selectedColor);
 
   useEffect(() => {
-    const normalized = Math.abs(translation);
-    if (normalized === PageDimensions[0]) {
+    if (translation === PageDimensions[0]) {
       setRight(0);
-    } else if (normalized === PageDimensions[1]) {
+    } else if (translation === PageDimensions[1]) {
       setRight(80);
       setSize(INITIAL_SIZE);
       setBorderRadius(50);
       setCircleColor(selectedColor);
-    } else if (normalized === PageDimensions[2]) {
+    } else if (translation === PageDimensions[2]) {
       setRight(CIRCLE_RIGHT_OVERFLOW);
       setCircleColor(background);
       setSize(width || 3000);

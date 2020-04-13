@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { toggleDarkMode } from "../../reducers/darkMode/actions";
 import { setColor } from "../../reducers/selectedColor/actions";
 import useAppState from "../../reducers/useAppState";
+import {useNormalizedTransition} from "../../hooks/useNormalizedTransition";
 
 const bounceInRight = keyframes`
 from,
@@ -63,10 +64,12 @@ type Props = {} & DOMAttributes<any>;
 
 export const ColorPicker = ({ ...props }: Props) => {
   const { isDarkMode } = useAppState(s => s.darkMode);
+  const { translation } = useNormalizedTransition();
   const dispatch = useDispatch();
   const colors = getColors();
   return (
     <ColorPickerContainer {...props} isDarkMode={isDarkMode}>
+      {translation }
       {colors.map((c: string) => {
         return (
           <Color
