@@ -12,6 +12,7 @@
     "@types/react": "^16.9.0",
     "@types/react-scroll": "^1.5.4",
     "interpolate-range": "^2.1.0",
+    "lodash": "^4.17.15",
     "polished": "latest",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
