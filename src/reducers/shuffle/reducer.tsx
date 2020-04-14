@@ -1,7 +1,9 @@
 import { ActionTypes, Shuffle, ShuffleState } from "./types";
 
+export const INITIAL_COUNTER = 35;
+
 const initialState: ShuffleState = {
-  timer: 100
+  timer: INITIAL_COUNTER
 };
 
 const shuffleReducer = (

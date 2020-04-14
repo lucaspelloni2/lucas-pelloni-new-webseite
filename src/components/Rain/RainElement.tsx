@@ -70,11 +70,11 @@ const getElement = (
   if (isEasterEgg) {
     const random = getRandomInt(0, 2);
     if (random === 0) {
-      return <SingleNote color={color} size={size} rotate={rotate} />;
+      return <SingleNote color={color} size={size * 2} rotate={rotate} />;
     } else if (random === 1) {
-      return <DoubleNote color={color} size={size} rotate={rotate} />;
+      return <DoubleNote color={color} size={size * 2} rotate={rotate} />;
     } else {
-      return <Microphone color={color} size={size} rotate={rotate} />;
+      return <Microphone color={color} size={size * 2} rotate={rotate} />;
     }
   }
   if (element === RainElementType.TRIANGLE) {

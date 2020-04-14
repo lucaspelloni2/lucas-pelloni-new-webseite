@@ -15,6 +15,7 @@ import { setColor } from "../../reducers/selectedColor/actions";
 import useAppState from "../../reducers/useAppState";
 import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import { shuffle } from "../../reducers/shuffle/actions";
+import { Counter } from "../../components/Counter";
 
 const bounceInRight = keyframes`
 from,
@@ -83,17 +84,15 @@ export const ColorPicker = ({ ...props }: Props) => {
           />
         );
       })}
-
+      <Counter />
       <Color
         visible={translation === PageDimensions[2]}
         onSelect={(c: string) => {
-          console.log("hello");
           dispatch(shuffle());
         }}
         isShuffle
         color={__GRAY_SCALE._800}
       />
-
       <Color
         visible
         onSelect={(c: string) => {
