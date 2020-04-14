@@ -5,6 +5,7 @@ import { getRandomColor } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
 import { useDispatch } from "react-redux";
 import { shuffle } from "../../reducers/shuffle/actions";
+import { EASTER_EGG_LIMIT } from "../../reducers/shuffle/reducer";
 
 const Container = styled.div<{ opacity: number }>`
   width: 100%;
@@ -26,6 +27,7 @@ export const Rain = memo(() => {
   const dispatch = useDispatch();
   const NR_ELEMENTS = timer;
   const TIMER = 15000;
+
   const MIN_SIZE = 10;
   const MAX_SIZE = 50;
   const MIN_DURATION = 2;
@@ -57,7 +59,7 @@ export const Rain = memo(() => {
                 duration={randomDuration}
                 size={randomSize}
                 rotate={String(randomRotation)}
-                isEasterEgg={NR_ELEMENTS === 100}
+                isEasterEgg={NR_ELEMENTS === EASTER_EGG_LIMIT}
                 element={randomElement as RainElementType}
                 left={randomInitialPositionX}
                 top={randomInitialPositionY}

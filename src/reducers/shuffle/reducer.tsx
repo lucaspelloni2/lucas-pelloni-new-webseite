@@ -1,6 +1,7 @@
 import { ActionTypes, Shuffle, ShuffleState } from "./types";
 
-export const INITIAL_COUNTER = 35;
+export const INITIAL_COUNTER = 25;
+export const EASTER_EGG_LIMIT = 50;
 
 const initialState: ShuffleState = {
   timer: INITIAL_COUNTER
@@ -14,7 +15,7 @@ const shuffleReducer = (
     case ActionTypes.SHUFFLE:
       return {
         ...state,
-        timer: state.timer < 100 ? state.timer + 1 : state.timer
+        timer: state.timer < EASTER_EGG_LIMIT ? state.timer + 1 : state.timer
       };
     default:
       return state;
