@@ -27,6 +27,7 @@ const Container = styled.div<{ visible: boolean; background: string }>`
   display: flex;
   right: 0;
   flex-direction: column;
+  border-left: 1px solid ${__GRAY_SCALE._700};
 `;
 
 type Props = {
