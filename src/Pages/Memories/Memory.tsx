@@ -10,22 +10,37 @@ const Container = styled(PageContainer)`
   flex-direction: row;
   position: relative;
   padding: 0;
+  /*  ::after {
+    right: -20%;
+    bottom: -12%;
+    width: 10px;
+    height: 50%;
+    position: absolute;
+    content: "";
+    box-shadow: -230px 0 150px 39vw rgba(0, 0, 0, 0.7);
+  }*/
 `;
 
 const Img = styled.div<{ url: string }>`
   background: ${props => `url(${props.url}) no-repeat center center fixed`};
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  width: 100%;
+  background-size: 100%;
   height: 100%;
+  width: 100%;
+  ::after {
+    right: -40%;
+    bottom: -12%;
+    width: 10px;
+    height: 50%;
+    position: absolute;
+    content: "";
+    box-shadow: -230px 0 150px 39vw rgba(0, 0, 0, 0.7);
+  }
 `;
 
 const Content = styled.div`
   height: 100vh;
   width: 100%;
-  margin-left: ${MEMORY_LEFT_PANEL_WIDTH}px;
+  display: flex;
 `;
 
 export const Memory = () => {

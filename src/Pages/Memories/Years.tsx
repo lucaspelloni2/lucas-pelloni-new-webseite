@@ -15,7 +15,6 @@ import { useTheme } from "../../hooks/useTheme";
 
 // https://codepen.io/bcarvalho/pen/RZqmZX
 const Container = styled.div<{ visible: boolean; background: string }>`
-  background: ${props => getAlphaColor(0.8, props.background)};
   height: 100%;
   position: fixed;
   opacity: ${props => (props.visible ? 1 : 0)};
@@ -26,6 +25,7 @@ const Container = styled.div<{ visible: boolean; background: string }>`
   transition: ${PAGE_TRANSITION};
   width: ${MEMORY_LEFT_PANEL_WIDTH}px;
   display: flex;
+  right: 0;
   flex-direction: column;
 `;
 
