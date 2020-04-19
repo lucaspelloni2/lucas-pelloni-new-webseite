@@ -5,29 +5,39 @@ import { Month } from "./Month";
 import { v1 } from "uuid";
 import { useDispatch } from "react-redux";
 import { setCurrentYear } from "../../reducers/year/actions";
-import { YEAR_HEIGHT } from "../../Layout/Theme";
+import {
+  __COLORS,
+  COLOR_TRANSITION,
+  DARK_MODE_TRANSITION,
+  YEAR_HEIGHT
+} from "../../Layout/Theme";
+import useAppState from "../../reducers/useAppState";
 
-const Container = styled.div`
+const Container = styled.div<{ isDarkMode: boolean; isActive: boolean }>`
+  &:hover {
+    background-color: ${props =>
+      `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, 0.7)`};
+  }
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  transition: 0.15s ease-in-out all;
   width: 100%;
-  background-color: hsla(0, 0%, 100%, 0.3);
-  color: #222;
+  background-color: ${props =>
+    `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, ${
+      props.isActive ? 0.7 : 0.3
+    })`};
   justify-content: center;
   align-items: center;
   height: ${YEAR_HEIGHT}px;
   margin: 1px 0;
 `;
 
-const Months = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.h1`
+const Label = styled.h1<{ isDarkMode: boolean }>`
   font-size: 26px;
   font-weight: 300;
+  transition: ${DARK_MODE_TRANSITION};
+  color: ${props => (props.isDarkMode ? __COLORS.WHITE : "#222")};
 `;
 
 type Props = {
@@ -36,14 +46,16 @@ type Props = {
 };
 export const Year = ({ year, memories }: Props) => {
   const dispatch = useDispatch();
+  const { isDarkMode } = useAppState(s => s.darkMode);
+  const { currentYear } = useAppState(s => s.year);
+  const isActive = currentYear === year;
   return (
-    <Container onClick={() => dispatch(setCurrentYear(year))}>
-      <Label>{year}</Label>
-      {/*      <Months>
-        {memories.map((m: Memory) => {
-          return <Month key={v1()} memory={m} />;
-        })}
-      </Months>*/}
+    <Container
+      isActive={isActive}
+      onClick={() => dispatch(setCurrentYear(year))}
+      isDarkMode={isDarkMode}
+    >
+      <Label isDarkMode={isDarkMode}>{year}</Label>
     </Container>
   );
 };
