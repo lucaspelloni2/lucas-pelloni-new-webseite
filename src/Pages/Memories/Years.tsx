@@ -12,6 +12,7 @@ import _ from "lodash";
 import { Year } from "./Year";
 import { v1 } from "uuid";
 import { useTheme } from "../../hooks/useTheme";
+import useAppState from "../../reducers/useAppState";
 
 // https://codepen.io/bcarvalho/pen/RZqmZX
 const Container = styled.div<{ visible: boolean; background: string }>`
@@ -20,11 +21,11 @@ const Container = styled.div<{ visible: boolean; background: string }>`
   opacity: ${props => (props.visible ? 1 : 0)};
   visibility: ${props => (props.visible ? "visible" : "hidden")};
   z-index: ${props => (props.visible ? 3 : -10)};
-  justify-content: center;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
   transition: ${PAGE_TRANSITION};
   width: ${MEMORY_LEFT_PANEL_WIDTH}px;
-  display: flex;
   right: 0;
   flex-direction: column;
 `;
@@ -35,14 +36,11 @@ type Props = {
 
 export const Years = ({ visible }: Props) => {
   const { background } = useTheme();
-  const groupedItems = _(Memories)
-    .groupBy((e: Memory) => Number(e.year))
-    .orderBy(year => Number(year), "desc")
-    .value();
+  const { grouped } = useAppState(s => s.year);
 
   return (
     <Container visible={visible} background={background}>
-      {groupedItems.map((memories: Memory[]) => {
+      {grouped.map((memories: Memory[]) => {
         return (
           <Year
             key={v1()}

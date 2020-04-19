@@ -1,3 +1,5 @@
+import { Memory } from "../../Content";
+
 export enum ActionTypes {
   SET_YEAR = "SET_YEAR"
 }
@@ -15,4 +17,5 @@ export type SetCurrentYear = {
  */
 export type YearState = {
   currentYear: number;
+  grouped: Memory[][];
 };

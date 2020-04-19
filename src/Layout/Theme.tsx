@@ -24,8 +24,8 @@ export const PAGE_HEIGHT = 100;
 export const CIRCLE_RIGHT_OVERFLOW = 10;
 export const CIRCLE_TOP_OVERFLOW = SPACING * 15;
 export const NUMBER_OF_PAGES = 10;
-export const MEMORY_LEFT_PANEL_WIDTH = 150;
-
+export const MEMORY_LEFT_PANEL_WIDTH = 250;
+export const YEAR_HEIGHT = 85;
 
 export const PageDimensions = new Array(NUMBER_OF_PAGES)
   .fill(0)

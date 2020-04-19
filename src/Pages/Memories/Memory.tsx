@@ -6,7 +6,8 @@ import {
   __COLORS,
   DARK_MODE_TRANSITION,
   getAlphaColor,
-  MEMORY_LEFT_PANEL_WIDTH
+  MEMORY_LEFT_PANEL_WIDTH,
+  YEAR_HEIGHT
 } from "../../Layout/Theme";
 import { Memories } from "../../Content";
 import useAppState from "../../reducers/useAppState";
@@ -25,7 +26,7 @@ const Img = styled.div<{ url: string; background: string }>`
   height: 100%;
   width: 100%;
   position: absolute;
-    ::after {
+  ::after {
     right: -40%;
     bottom: -12%;
     width: 10px;
@@ -42,7 +43,11 @@ const Content = styled.div`
   width: 100%;
   display: flex;
 `;
-
+const BlurWrapper = styled.div<{ height: number }>`
+  align-self: flex-end;
+  height: ${props => props.height}px;
+  width: ${MEMORY_LEFT_PANEL_WIDTH}px;
+`;
 const Blur = styled.div<{ url: string }>`
   background: ${props => `url(${props.url}) no-repeat center center fixed`};
   background-size: 100%;
@@ -51,25 +56,25 @@ const Blur = styled.div<{ url: string }>`
   -webkit-filter: blur(3px);
   -ms-filter: blur(3px);
   filter: blur(3px);
-
 `;
 export const Memory = () => {
   // reduxify this
   const currentMemory = Memories[0];
   const { background } = useTheme();
+  const { grouped } = useAppState(s => s.year);
   return (
     <Container>
       <FlexBox flex={1}>
         <Content>
-          <FlexBox flex={10.5}>
+          <FlexBox flex={1}>
             <Img
               url={currentMemory.achievement.pictures[0].src}
               background={background}
             />
           </FlexBox>
-          <FlexBox flex={1.5}>
+          <BlurWrapper height={YEAR_HEIGHT * grouped.length}>
             <Blur url={currentMemory.achievement.pictures[0].src} />
-          </FlexBox>
+          </BlurWrapper>
         </Content>
       </FlexBox>
     </Container>
