@@ -27,7 +27,6 @@ const Container = styled.div<{ visible: boolean; background: string }>`
   display: flex;
   right: 0;
   flex-direction: column;
-  border-left: 1px solid ${__GRAY_SCALE._700};
 `;
 
 type Props = {
@@ -47,7 +46,7 @@ export const Years = ({ visible }: Props) => {
         return (
           <Year
             key={v1()}
-            year={String(memories[0].year)}
+            year={Number(memories[0].year)}
             memories={memories}
           />
         );

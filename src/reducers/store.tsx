@@ -8,11 +8,13 @@ import currentPage from "./currentPage/reducer";
 import translation from "./translation/reducer";
 import slider from "./slider/reducer";
 import shuffle from "./shuffle/reducer";
+import year from "./year/reducer";
 import { SelectedColorState } from "./selectedColor/types";
 import { PageState } from "./currentPage/types";
 import { TranslationState } from "./translation/types";
 import { SliderState } from "./slider/types";
-import {ShuffleState} from "./shuffle/types";
+import { ShuffleState } from "./shuffle/types";
+import { YearState } from "./year/types";
 
 export type RootState = {
   darkMode: DarkModestate;
@@ -21,6 +23,7 @@ export type RootState = {
   translation: TranslationState;
   slider: SliderState;
   shuffle: ShuffleState;
+  year: YearState;
 };
 
 const rootReducer = combineReducers({
@@ -29,7 +32,8 @@ const rootReducer = combineReducers({
   currentPage,
   translation,
   slider,
-  shuffle
+  shuffle,
+  year
 });
 
 const store = createStore(

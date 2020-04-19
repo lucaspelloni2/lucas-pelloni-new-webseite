@@ -17,15 +17,6 @@ const Container = styled(PageContainer)`
   flex-direction: row;
   position: relative;
   padding: 0;
-  /*  ::after {
-    right: -20%;
-    bottom: -12%;
-    width: 10px;
-    height: 50%;
-    position: absolute;
-    content: "";
-    box-shadow: -230px 0 150px 39vw rgba(0, 0, 0, 0.7);
-  }*/
 `;
 
 const Img = styled.div<{ url: string; background: string }>`
@@ -33,16 +24,16 @@ const Img = styled.div<{ url: string; background: string }>`
   background-size: 100%;
   height: 100%;
   width: 100%;
-  ::after {
+  position: absolute;
+    ::after {
     right: -40%;
     bottom: -12%;
     width: 10px;
     height: 50%;
     position: absolute;
-    transition: ${DARK_MODE_TRANSITION};
     content: "";
-    box-shadow: -230px 0 150px 39vw
-      ${props => getAlphaColor(0.5, props.background)};
+    box-shadow: -230px 0 150px 39vw rgba(0, 0, 0, 0.2);
+    z-index: 1000;
   }
 `;
 
@@ -52,6 +43,16 @@ const Content = styled.div`
   display: flex;
 `;
 
+const Blur = styled.div<{ url: string }>`
+  background: ${props => `url(${props.url}) no-repeat center center fixed`};
+  background-size: 100%;
+  height: 100%;
+  width: 100%;
+  -webkit-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+
+`;
 export const Memory = () => {
   // reduxify this
   const currentMemory = Memories[0];
@@ -60,10 +61,15 @@ export const Memory = () => {
     <Container>
       <FlexBox flex={1}>
         <Content>
-          <Img
-            url={currentMemory.achievement.pictures[0].src}
-            background={background}
-          />
+          <FlexBox flex={10.5}>
+            <Img
+              url={currentMemory.achievement.pictures[0].src}
+              background={background}
+            />
+          </FlexBox>
+          <FlexBox flex={1.5}>
+            <Blur url={currentMemory.achievement.pictures[0].src} />
+          </FlexBox>
         </Content>
       </FlexBox>
     </Container>
