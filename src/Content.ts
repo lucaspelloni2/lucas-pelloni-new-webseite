@@ -44,7 +44,7 @@ export const Memories: Memory[] = [
     primaryColor: "#369cf7",
     secondaryColor: "#0a274b",
     achievement: {
-      title: "Axelra is born",
+      title: "Axelra has born",
       subtitle:
         "Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
       description:

@@ -24,22 +24,14 @@ export const getRandomInt = (min: number, max: number) => {
 export const Rain = memo(() => {
   const { value } = useAppState(s => s.slider);
   const { timer } = useAppState(s => s.shuffle);
-  const dispatch = useDispatch();
+
   const NR_ELEMENTS = timer;
-  const TIMER = 15000;
 
   const MIN_SIZE = 10;
   const MAX_SIZE = 50;
   const MIN_DURATION = 2;
   const MAX_DURATION = 6;
   const elements = Object.keys(RainElementType);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      dispatch(shuffle());
-    }, TIMER);
-    return () => clearInterval(timer);
-  }, [dispatch]);
 
   return (
     <Container opacity={value / 100}>

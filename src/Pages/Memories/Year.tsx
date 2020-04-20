@@ -9,6 +9,7 @@ import {
   __COLORS,
   COLOR_TRANSITION,
   DARK_MODE_TRANSITION,
+  getAlphaColor,
   YEAR_HEIGHT
 } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
@@ -23,10 +24,7 @@ const Container = styled.div<{ isDarkMode: boolean; isActive: boolean }>`
   cursor: pointer;
   transition: 0.15s ease-in-out all;
   width: 100%;
-  background-color: ${props =>
-    `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, ${
-      props.isActive ? 0.7 : 0.3
-    })`};
+  background: ${getAlphaColor(0.3, __COLORS.PRIMARY)};
   justify-content: center;
   align-items: center;
   height: ${YEAR_HEIGHT}px;

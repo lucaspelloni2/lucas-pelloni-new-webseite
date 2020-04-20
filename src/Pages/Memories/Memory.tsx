@@ -89,16 +89,12 @@ export const Memory = () => {
               background={background}
             />
           </FlexBox>
-          <BlurWrapper height={YEAR_HEIGHT * grouped.length}>
+     {/*     <BlurWrapper height={YEAR_HEIGHT * grouped.length}>
             <Blur url={currentMemory.achievement.pictures[0].src} />
-          </BlurWrapper>
+          </BlurWrapper>*/}
         </Images>
       </FlexBox>
-      <Content>
-        <TitleWrapper>
-          <Title>{currentMemory.achievement.title}</Title>
-        </TitleWrapper>
-      </Content>
+
     </Container>
   );
 };
