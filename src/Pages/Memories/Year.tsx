@@ -10,14 +10,14 @@ import {
   COLOR_TRANSITION,
   DARK_MODE_TRANSITION,
   getAlphaColor,
+  getHSLA,
   YEAR_HEIGHT
 } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
 
 const Container = styled.div<{ isDarkMode: boolean; isActive: boolean }>`
   &:hover {
-    background-color: ${props =>
-      `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, 0.7)`};
+    background-color: ${getHSLA(0.6, __COLORS.PRIMARY)};
   }
   display: flex;
   flex-direction: column;
@@ -25,9 +25,7 @@ const Container = styled.div<{ isDarkMode: boolean; isActive: boolean }>`
   transition: 0.15s ease-in-out all;
   width: 100%;
   background-color: ${props =>
-    `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, ${
-      props.isActive ? 0.7 : 0.3
-    })`};
+    getHSLA(props.isActive ? 0.6 : 0.25, __COLORS.PRIMARY)};
   justify-content: center;
   align-items: center;
   height: ${YEAR_HEIGHT}px;

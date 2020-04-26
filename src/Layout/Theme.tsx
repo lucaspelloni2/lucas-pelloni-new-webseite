@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import { createGlobalStyle, ThemeProviderProps } from "styled-components";
-import { transparentize } from "polished";
+import { parseToHsl, transparentize } from "polished";
 
 type Props = {
   googleUrl: string;
@@ -23,7 +23,7 @@ export const PAGE_HEIGHT = 100;
 export const CIRCLE_RIGHT_OVERFLOW = 10;
 export const CIRCLE_TOP_OVERFLOW = SPACING * 15;
 export const NUMBER_OF_PAGES = 20;
-export const MEMORY_LEFT_PANEL_WIDTH = 250;
+export const MEMORY_LEFT_PANEL_WIDTH = 200;
 export const YEAR_HEIGHT = 85;
 
 export const PageDimensions = new Array(NUMBER_OF_PAGES)
@@ -94,12 +94,12 @@ export const GlobalStyle = createGlobalStyle<{
     font-family: inherit;
     outline: none;
   }
-  h1, h2, h3, h4, h5, h6, p {
+  h1, h2, h3, h4, h5, h6, p  {
     color: ${props => props.color};
     font-weight: 100;
     line-height: 1.4;
-     font-family: inherit;
-     transition: ${DARK_MODE_TRANSITION};
+    font-family: inherit;
+    transition: ${DARK_MODE_TRANSITION};
   }
   
   h1 {
@@ -131,10 +131,25 @@ export const getColors = () => [
   __COLORS.FIFTH
 ];
 
+export const getRandomTextColors = () => {
+  const colors = [__COLORS.SECONDARY, __COLORS.TERTIARY, __COLORS.FOURTH];
+  return colors[Math.floor(Math.random() * colors.length)];
+};
+
 export const getRandomColor = () => {
   const colors = getColors();
   return colors[Math.floor(Math.random() * colors.length)];
 };
 export const getAlphaColor = (alpha: number, color: string) => {
   return transparentize(1 - alpha, color);
+};
+
+export const getHSL = (color: string) => {
+  const { hue, saturation, lightness } = parseToHsl(color);
+  return `hsl(${hue}, ${saturation * 100}%, ${lightness * 100}%)`;
+};
+
+export const getHSLA = (alpha: number, color: string) => {
+  const { hue, saturation, lightness } = parseToHsl(color);
+  return `hsla(${hue}, ${saturation * 100}%, ${lightness * 100}%, ${alpha})`;
 };

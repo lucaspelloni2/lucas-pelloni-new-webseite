@@ -1,10 +1,8 @@
-import React, { memo, useEffect, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import styled from "styled-components";
 import { RainElement, RainElementType } from "./RainElement";
 import { getRandomColor } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
-import { useDispatch } from "react-redux";
-import { shuffle } from "../../reducers/shuffle/actions";
 import { EASTER_EGG_LIMIT } from "../../reducers/shuffle/reducer";
 
 const Container = styled.div<{ opacity: number }>`
