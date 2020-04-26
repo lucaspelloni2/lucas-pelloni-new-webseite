@@ -6,31 +6,21 @@ import {
   __COLORS,
   DARK_MODE_TRANSITION,
   getAlphaColor,
-  MEMORY_LEFT_PANEL_WIDTH, SPACING,
+  MEMORY_LEFT_PANEL_WIDTH,
+  SPACING,
   YEAR_HEIGHT
 } from "../../Layout/Theme";
-import { Memories } from "../../Content";
+import { Memories, Memory } from "../../Content";
 import useAppState from "../../reducers/useAppState";
 import { useTheme } from "../../hooks/useTheme";
 import { HomeTitle } from "../Home/HomeTitle";
-import {Title} from "../../Layout/Typography";
+import { Title } from "../../Layout/Typography";
 
 const Container = styled(PageContainer)<{ isDarkMode: boolean }>`
   display: flex;
   flex-direction: row;
   position: relative;
   padding: 0;
-  ::after {
-    left: 35%;
-    bottom: -12%;
-    width: 300px;
-    height: 15%;
-    position: absolute;
-    content: "";
-    box-shadow: -230px 0 150px 20vw
-      ${props => `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, 0.5)`};
-    z-index: 1000;
-  }
 `;
 
 const Img = styled.div<{ url: string; background: string }>`
@@ -73,9 +63,13 @@ const TitleWrapper = styled.div`
   z-index: 1000;
   padding: 0 ${SPACING * 4}px;
 `;
-export const Memory = () => {
+
+type Props = {
+  memory: Memory;
+};
+export const MemoryScreen = ({ memory }: Props) => {
   // reduxify this
-  const currentMemory = Memories[0];
+  const currentMemory = memory;
   const { background } = useTheme();
   const { grouped } = useAppState(s => s.year);
   const { isDarkMode } = useAppState(s => s.darkMode);
@@ -89,12 +83,11 @@ export const Memory = () => {
               background={background}
             />
           </FlexBox>
-     {/*     <BlurWrapper height={YEAR_HEIGHT * grouped.length}>
+          <BlurWrapper height={YEAR_HEIGHT * grouped.length}>
             <Blur url={currentMemory.achievement.pictures[0].src} />
-          </BlurWrapper>*/}
+          </BlurWrapper>
         </Images>
       </FlexBox>
-
     </Container>
   );
 };

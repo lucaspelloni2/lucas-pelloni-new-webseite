@@ -25,7 +25,9 @@ const Container = styled.div<{ isDarkMode: boolean; isActive: boolean }>`
   transition: 0.15s ease-in-out all;
   width: 100%;
   background-color: ${props =>
-    `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, 0.3)`};
+    `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, ${
+      props.isActive ? 0.7 : 0.3
+    })`};
   justify-content: center;
   align-items: center;
   height: ${YEAR_HEIGHT}px;

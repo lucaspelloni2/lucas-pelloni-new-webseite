@@ -16,9 +16,10 @@ import { useDispatch } from "react-redux";
 import { HistoryManager } from "../components/HistoryManager";
 import styled from "styled-components";
 import { Slider } from "../components/Slider";
-import { Memory } from "./Memories/Memory";
+import { MemoryScreen } from "./Memories/Memory";
 import { Years } from "./Memories/Years";
 import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
+import { Memories } from "../Content";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -91,11 +92,16 @@ export const Pages = () => {
         translation={translation + PageDimensions[2]}
       />
 
-      <Page
-        component={<Memory />}
-        name={PageType.MEMORY_AXELRA}
-        translation={translation + PageDimensions[3]}
-      />
+      {Memories.map((m, i: number) => {
+        return (
+          <Page
+            key={`memory-${m.year}-${m.month}`}
+            component={<MemoryScreen memory={m} />}
+            name={PageType.MEMORY_AXELRA}
+            translation={translation + PageDimensions[3 + i]}
+          />
+        );
+      })}
     </Parent>
   );
 };

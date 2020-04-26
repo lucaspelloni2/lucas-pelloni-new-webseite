@@ -15,7 +15,6 @@ export const MainTheme: CSSProperties & Props = {
 };
 
 export const SPACING = 10;
-
 export const DARK_MODE_TRANSITION = `0.5s ease-in-out all`;
 export const COLOR_TRANSITION = `0.3s ease-in-out all`;
 export const PAGE_TRANSITION = `0.7s cubic-bezier(.63,.33,.38,1.07) all`;
@@ -23,7 +22,7 @@ export const CIRCLE_TRANSITION = `1s ease-in-out all`;
 export const PAGE_HEIGHT = 100;
 export const CIRCLE_RIGHT_OVERFLOW = 10;
 export const CIRCLE_TOP_OVERFLOW = SPACING * 15;
-export const NUMBER_OF_PAGES = 10;
+export const NUMBER_OF_PAGES = 20;
 export const MEMORY_LEFT_PANEL_WIDTH = 250;
 export const YEAR_HEIGHT = 85;
 
