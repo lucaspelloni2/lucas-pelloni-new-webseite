@@ -57,9 +57,7 @@ const Blur = styled.div<{ url: string }>`
   background-size: cover;
   height: 100%;
   width: 100%;
-  -webkit-filter: blur(3px);
-  -ms-filter: blur(3px);
-  filter: blur(3px);
+  filter: blur(7px);
 `;
 
 const TitleWrapper = styled.div`
@@ -72,7 +70,6 @@ type Props = {
   isActive: boolean;
 };
 export const MemoryScreen = ({ memory, isActive }: Props) => {
-  // reduxify this
   const currentMemory = memory;
   const { translation } = useNormalizedTransition();
   const { background } = useTheme();
