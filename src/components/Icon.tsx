@@ -20,7 +20,8 @@ export enum IconTypes {
   SUN = "SUN",
   DESIGN = "DESIGN",
   LOVE = "LOVE",
-  ARROW_DOWN = "ARROW_DOWN"
+  ARROW_DOWN = "ARROW_DOWN",
+  ARROW_RIGHT = "ARROW_RIGHT"
 }
 
 export const Icon = ({ name, className, ...props }: IconProps) => {
@@ -196,6 +197,26 @@ export const Icon = ({ name, className, ...props }: IconProps) => {
             fill="currentColor"
             d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z"
           />
+        </MyIcon>
+      );
+
+    case IconTypes.ARROW_RIGHT:
+      return (
+        <MyIcon
+          {...props}
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fal"
+          data-icon="long-arrow-right"
+          className="svg-inline--fa fa-long-arrow-right fa-w-14"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            fill="currentColor"
+            d="M311.03 131.515l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L387.887 239H12c-6.627 0-12 5.373-12 12v10c0 6.627 5.373 12 12 12h375.887l-83.928 83.444c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l116.485-116c4.686-4.686 4.686-12.284 0-16.971L328 131.515c-4.686-4.687-12.284-4.687-16.97 0z"
+          ></path>
         </MyIcon>
       );
     default:

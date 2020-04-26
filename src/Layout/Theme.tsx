@@ -48,6 +48,7 @@ export const __COLORS = {
   PRIMARY: "#030047",
   SECONDARY: "#5F5FFF",
   TERTIARY: "#FF3E6C",
+  TERTIARY_HOVER: "#ff1d51",
   FOURTH: "#FFCC3E",
   FIFTH: "#8FACFF",
   WHITE: "#fff"

@@ -24,6 +24,7 @@ import { setCurrentMonth, setCurrentYear } from "../../reducers/year/actions";
 import { parseToHsl } from "polished";
 import { ColoredText } from "../../components/ColoredTitle";
 import { Button } from "../../components/Button";
+import { Icon, IconTypes } from "../../components/Icon";
 
 const Container = styled(PageContainer)<{ isDarkMode: boolean }>`
   display: flex;
@@ -141,11 +142,25 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
           <FlexBox flex={1} />
           <TitleWrapper background={background}>
             <MyTitle>
-              <ColoredText text={achievement.title} firstWordColor={achievement.firstWordColor} />
+              <ColoredText
+                text={achievement.title}
+                firstWordColor={achievement.firstWordColor}
+              />
             </MyTitle>
             <MySubTitle>{achievement.subtitle}</MySubTitle>
             <Buttons>
-              <Button>Read the story</Button>
+              <Button>
+                Read the story{" "}
+                <Icon
+                  name={IconTypes.ARROW_RIGHT}
+                  color={__COLORS.WHITE}
+                  style={{
+                    marginLeft: SPACING,
+                    width: SPACING * 2.5,
+                    height: SPACING * 2.5
+                  }}
+                />
+              </Button>
             </Buttons>
           </TitleWrapper>
         </TextWrapper>

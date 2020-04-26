@@ -8,18 +8,22 @@ type Props = {
   secondary?: boolean;
 };
 
-const Container = styled.div`
-  padding: ${SPACING}px ${SPACING * 2}px;
+const Container = styled.div<{ secondary?: boolean }>`
+  padding: ${SPACING * 1.5}px ${SPACING * 4}px;
   background: ${__COLORS.TERTIARY};
   border-radius: 6px;
   display: flex;
+  font-size: 20px;
+  z-index: 10;
   align-items: center;
+  color: ${__COLORS.WHITE};
+  cursor: pointer;
   background: ${linearGradient({
-    colorStops: ["#00FFFF 0%", "rgba(0, 0, 255, 0) 50%", "#0000FF 95%"],
-    toDirection: "to top right",
-    fallback: "#FFF"
+    colorStops: [__COLORS.TERTIARY, __COLORS.TERTIARY_HOVER],
+    toDirection: "to right",
+    fallback: __COLORS.TERTIARY
   })};
 `;
 export const Button = ({ children, secondary }: Props) => {
-  return <Container>button</Container>;
+  return <Container secondary={secondary}>{children}</Container>;
 };
