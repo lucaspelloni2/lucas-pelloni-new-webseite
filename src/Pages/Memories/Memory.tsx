@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { FlexBox } from "../../Layout/styled/FlexBox";
@@ -15,6 +15,9 @@ import useAppState from "../../reducers/useAppState";
 import { useTheme } from "../../hooks/useTheme";
 import { HomeTitle } from "../Home/HomeTitle";
 import { Title } from "../../Layout/Typography";
+import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
+import { useDispatch } from "react-redux";
+import { setCurrentYear } from "../../reducers/year/actions";
 
 const Container = styled(PageContainer)<{ isDarkMode: boolean }>`
   display: flex;
@@ -66,13 +69,23 @@ const TitleWrapper = styled.div`
 
 type Props = {
   memory: Memory;
+  isActive: boolean;
 };
-export const MemoryScreen = ({ memory }: Props) => {
+export const MemoryScreen = ({ memory, isActive }: Props) => {
   // reduxify this
   const currentMemory = memory;
+  const { translation } = useNormalizedTransition();
   const { background } = useTheme();
   const { grouped } = useAppState(s => s.year);
   const { isDarkMode } = useAppState(s => s.darkMode);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isActive && translation) {
+      dispatch(setCurrentYear(memory.year));
+    }
+  }, [translation, isActive, dispatch, memory.year]);
+
   return (
     <Container isDarkMode={isDarkMode}>
       <FlexBox flex={1}>
