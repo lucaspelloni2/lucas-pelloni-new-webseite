@@ -24,7 +24,8 @@ const Container = styled.div<{ isDarkMode: boolean; isActive: boolean }>`
   cursor: pointer;
   transition: 0.15s ease-in-out all;
   width: 100%;
-  background: ${getAlphaColor(0.3, __COLORS.PRIMARY)};
+  background-color: ${props =>
+    `hsla(0, 0%, ${props.isDarkMode ? 0 : 100}%, 0.3)`};
   justify-content: center;
   align-items: center;
   height: ${YEAR_HEIGHT}px;
