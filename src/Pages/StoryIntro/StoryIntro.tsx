@@ -1,14 +1,15 @@
 import React, { memo, useMemo } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
-import { SubTitle, Title } from "../../Layout/Typography";
-import { SPACING } from "../../Layout/Theme";
+import { ColoredSpan, SubTitle, Title } from "../../Layout/Typography";
+import { __COLORS, SPACING } from "../../Layout/Theme";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 import { setTranslation } from "../../reducers/translation/actions";
 import { Direction } from "../../reducers/translation/types";
 import { useDispatch } from "react-redux";
 import { Button } from "../../components/Button";
 import { Rain } from "../../components/Rain/Rain";
+import { SocialStrip } from "../../components/SocialStrip";
 
 const Container = styled(PageContainer)`
   display: flex;
@@ -22,7 +23,7 @@ const MyTitle = styled(Title)`
 
 const Sub = styled(SubTitle)`
   margin-top: -${SPACING * 3}px;
-    font-size: 30px;
+  font-size: 30px;
 `;
 
 export const StoryIntro = () => {
@@ -31,9 +32,13 @@ export const StoryIntro = () => {
     () => (
       <Container>
         <Rain />
-        <MyTitle>Lucas Pelloni, 18.03.1993.</MyTitle>
-        <Sub>Naglerwiesenstrasse 88, 8049 Zürich</Sub>
-        <Button>I hope your are</Button>
+        <MyTitle>Lucas Pelloni - 18.03.1993</MyTitle>
+        <Sub>
+          Grew up in <ColoredSpan color={__COLORS.TERTIARY}>Ticino</ColoredSpan>
+          , resident and working in{" "}
+          <ColoredSpan color={__COLORS.FOURTH}>Zurich</ColoredSpan>.
+        </Sub>
+        <SocialStrip />
         <ScrollDownIcon
           onClick={() => {
             dispatch(setTranslation(Direction.DOWN));

@@ -63,7 +63,7 @@ export const Circle = () => {
     if (translation === PageDimensions[0]) {
       setRight(0);
     } else if (translation === PageDimensions[1]) {
-      setRight(80);
+      setRight(75);
       setSize(INITIAL_SIZE);
       setBorderRadius(50);
       setCircleColor(selectedColor);
