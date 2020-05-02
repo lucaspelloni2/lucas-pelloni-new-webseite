@@ -11,12 +11,14 @@ import {
 } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
 
-const BlurWrapper = styled.div<{ height: number }>`
+const BlurWrapper = styled.div<{ height: number; translation: number }>`
   align-self: flex-end;
   height: ${props => props.height}px;
   width: ${MEMORY_LEFT_PANEL_WIDTH}px;
   position: absolute;
   right: 0;
+  transform: ${props => `translateX(${props.translation}%)`};
+  transition: ${CIRCLE_TRANSITION};
 `;
 const Blur = styled.div<{ url: string }>`
   background: ${props => `url(${props.url}) no-repeat center center fixed`};
@@ -45,7 +47,10 @@ export const MemoryImage = ({ picture, pictureTranslation }: Props) => {
   return (
     <>
       <Img url={picture.src} translation={pictureTranslation} />
-      <BlurWrapper height={YEAR_HEIGHT * grouped.length}>
+      <BlurWrapper
+        height={YEAR_HEIGHT * grouped.length}
+        translation={pictureTranslation}
+      >
         <Blur url={picture.src} />
       </BlurWrapper>
     </>

@@ -36,7 +36,6 @@ export const MemoryImages = ({ memory }: Props) => {
     );
   }, [totalPictures]);
 
-  console.log("current picture", pictureTranslation);
 
   return (
     <Images>
