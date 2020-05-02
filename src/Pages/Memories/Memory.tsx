@@ -1,15 +1,15 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import {PageContainer} from "../../Layout/styled/PageContainer";
-import {FlexBox} from "../../Layout/styled/FlexBox";
-import {Memory} from "../../Content";
+import { PageContainer } from "../../Layout/styled/PageContainer";
+import { FlexBox } from "../../Layout/styled/FlexBox";
+import { Memory } from "../../Content";
 import useAppState from "../../reducers/useAppState";
-import {useNormalizedTransition} from "../../hooks/useNormalizedTransition";
-import {useDispatch} from "react-redux";
-import {setCurrentMemory} from "../../reducers/year/actions";
-import {MemoryTextSection} from "./MemoryTextSection";
-import {MemoryImages} from "./MemoryImages";
-import {ScrollDownIcon} from "../../components/ScrollDownIcon";
+import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
+import { useDispatch } from "react-redux";
+import { setCurrentMemory } from "../../reducers/year/actions";
+import { MemoryTextSection } from "./MemoryTextSection";
+import { MemoryImages } from "./MemoryImages";
+import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 
 const Container = styled(PageContainer)<{ isDarkMode: boolean }>`
   display: flex;
