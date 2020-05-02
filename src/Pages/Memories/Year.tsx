@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
-import {Memories, Memory} from "../../Content";
-import {useDispatch} from "react-redux";
-import {__COLORS, DARK_MODE_TRANSITION, getHSLA, YEAR_HEIGHT} from "../../Layout/Theme";
+import { Memories, Memory } from "../../Content";
+import { useDispatch } from "react-redux";
+import {
+  __COLORS,
+  DARK_MODE_TRANSITION,
+  getHSLA,
+  YEAR_HEIGHT
+} from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
-import {setCurrentMemory} from "../../reducers/year/actions";
+import { setCurrentMemory } from "../../reducers/year/actions";
 
 const Container = styled.div<{ background: string; isActive: boolean }>`
   &:hover {
@@ -38,17 +43,22 @@ export const Year = ({ year }: Props) => {
   const dispatch = useDispatch();
   const { currentMemory } = useAppState(s => s.year);
   const isActive = currentMemory.year === year;
-  return (
-    <Container
-      isActive={isActive}
-      onClick={() =>
-        dispatch(
-          setCurrentMemory(Memories.find(c => c.year === year) || currentMemory)
-        )
-      }
-      background={currentMemory.primaryColor}
-    >
-      <Label>{year}</Label>
-    </Container>
+  return useMemo(
+    () => (
+      <Container
+        isActive={isActive}
+        onClick={() =>
+          dispatch(
+            setCurrentMemory(
+              Memories.find(c => c.year === year) || currentMemory
+            )
+          )
+        }
+        background={currentMemory.primaryColor}
+      >
+        <Label>{year}</Label>
+      </Container>
+    ),
+    [currentMemory, dispatch, isActive, year]
   );
 };

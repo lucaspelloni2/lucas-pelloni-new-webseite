@@ -2,8 +2,7 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Memory } from "../Content";
 import { Icon, IconTypes } from "./Icon";
-import { setLightness } from "polished";
-import { __COLORS, getHSLA, SPACING } from "../Layout/Theme";
+import { __COLORS, getHSL, getHSLA, SPACING } from "../Layout/Theme";
 
 const SIZE = 45;
 
@@ -16,6 +15,7 @@ const Container = styled.div<{ background: string }>`
   width: ${SIZE}px;
   height: ${SIZE}px;
   border-radius: 50%;
+  border: 1px solid ${getHSLA(0.4, __COLORS.WHITE)};
   background: ${props => getHSLA(0.3, __COLORS.WHITE || props.background)};
   display: flex;
   justify-content: center;

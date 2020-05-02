@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { MEMORY_LEFT_PANEL_WIDTH, PAGE_TRANSITION } from "../../Layout/Theme";
 import { Memory } from "../../Content";
@@ -29,17 +29,20 @@ type Props = {
 export const Years = ({ visible }: Props) => {
   const { grouped } = useAppState(s => s.year);
 
-  return (
-    <Container visible={visible}>
-      {grouped.map((memories: Memory[]) => {
-        return (
-          <Year
-            key={v1()}
-            year={Number(memories[0].year)}
-            memories={memories}
-          />
-        );
-      })}
-    </Container>
+  return useMemo(
+    () => (
+      <Container visible={visible}>
+        {grouped.map((memories: Memory[]) => {
+          return (
+            <Year
+              key={v1()}
+              year={Number(memories[0].year)}
+              memories={memories}
+            />
+          );
+        })}
+      </Container>
+    ),
+    [grouped, visible]
   );
 };

@@ -1,5 +1,5 @@
-import { CSSProperties } from "react";
-import { __COLORS } from "./Layout/Theme";
+import {CSSProperties} from "react";
+import {__COLORS} from "./Layout/Theme";
 
 export type Picture = {
   src: string;
@@ -60,7 +60,7 @@ export const Memories: Memory[] = [
         {
           title: "techventurebuilder"
         },
-        { title: "techaccelerator" }
+        {title: "techaccelerator"}
       ],
       subtitle:
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
@@ -73,7 +73,7 @@ export const Memories: Memory[] = [
         },
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/1-2.jpg?alt=media&token=e4935eb7-66c1-4491-925c-59224dc97a4a"
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/1-2.jpg?alt=media&token=a16e0317-842d-4ee9-b36e-12e7c26c25b8"
         }
       ],
       link: "https://axelra.com"
@@ -124,6 +124,15 @@ export const Memories: Memory[] = [
           src:
             "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/audience.jpg?alt=media&token=ba274591-2c00-4250-bdef-cc9a37243244"
         }
+      ],
+      hashtags: [
+        {
+          title: "hackzurich2018"
+        },
+        {
+          title: "makaday"
+        },
+        {title: "hackathon"}
       ]
     }
   },
