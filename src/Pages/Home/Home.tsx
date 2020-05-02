@@ -1,22 +1,15 @@
-import React, { ReactNode } from "react";
+import React, {ReactNode} from "react";
 import styled from "styled-components";
-import { PageContainer } from "../../Layout/styled/PageContainer";
-import { FlexBox } from "../../Layout/styled/FlexBox";
-import { Illustration } from "../../components/Illustrations";
-import { CIRCLE_TRANSITION, SPACING } from "../../Layout/Theme";
+import {PageContainer} from "../../Layout/styled/PageContainer";
+import {FlexBox} from "../../Layout/styled/FlexBox";
+import {CIRCLE_TRANSITION, SPACING} from "../../Layout/Theme";
 
-import {
-  fadeIn,
-  INITIAL_ANIMATION_DURATION_IN_SECONDS,
-  slideLeft
-} from "../../Layout/AnimationHelper";
-import { Header } from "../../components/Header";
+import {fadeIn, INITIAL_ANIMATION_DURATION_IN_SECONDS, slideLeft} from "../../Layout/AnimationHelper";
+import {Header} from "../../components/Header";
 
-import { ScrollDownIcon } from "../../components/ScrollDownIcon";
-import { useDispatch } from "react-redux";
-import { setTranslation } from "../../reducers/translation/actions";
-import { Direction } from "../../reducers/translation/types";
-import { IllustrationSvg } from "../../components/IllustrationSvg";
+import {ScrollDownIcon} from "../../components/ScrollDownIcon";
+import {useDispatch} from "react-redux";
+import {IllustrationSvg} from "../../components/IllustrationSvg";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -74,12 +67,7 @@ export const Home = ({
       <IllustrationContainer flex={1} order={order[1]}>
         <Image />
       </IllustrationContainer>
-
-      <ScrollDownIcon
-        onClick={() => {
-          dispatch(setTranslation(Direction.DOWN));
-        }}
-      />
+      <ScrollDownIcon />
     </Container>
   );
 };

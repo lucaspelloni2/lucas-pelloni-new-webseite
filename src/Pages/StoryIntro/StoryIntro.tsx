@@ -1,15 +1,12 @@
-import React, { memo, useMemo } from "react";
+import React, {useMemo} from "react";
 import styled from "styled-components";
-import { PageContainer } from "../../Layout/styled/PageContainer";
-import { ColoredSpan, SubTitle, Title } from "../../Layout/Typography";
-import { __COLORS, SPACING } from "../../Layout/Theme";
-import { ScrollDownIcon } from "../../components/ScrollDownIcon";
-import { setTranslation } from "../../reducers/translation/actions";
-import { Direction } from "../../reducers/translation/types";
-import { useDispatch } from "react-redux";
-import { Button } from "../../components/Button";
-import { Rain } from "../../components/Rain/Rain";
-import { SocialStrip } from "../../components/SocialStrip";
+import {PageContainer} from "../../Layout/styled/PageContainer";
+import {ColoredSpan, SubTitle, Title} from "../../Layout/Typography";
+import {__COLORS, SPACING} from "../../Layout/Theme";
+import {ScrollDownIcon} from "../../components/ScrollDownIcon";
+import {useDispatch} from "react-redux";
+import {Rain} from "../../components/Rain/Rain";
+import {SocialStrip} from "../../components/SocialStrip";
 
 const Container = styled(PageContainer)`
   display: flex;
@@ -39,11 +36,7 @@ export const StoryIntro = () => {
           <ColoredSpan color={__COLORS.FOURTH}>Zurich</ColoredSpan>.
         </Sub>
         <SocialStrip />
-        <ScrollDownIcon
-          onClick={() => {
-            dispatch(setTranslation(Direction.DOWN));
-          }}
-        />
+        <ScrollDownIcon />
       </Container>
     ),
     [dispatch]

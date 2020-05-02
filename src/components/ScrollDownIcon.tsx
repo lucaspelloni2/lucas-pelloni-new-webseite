@@ -1,8 +1,12 @@
-import React, { useCallback } from "react";
-import styled, { css, keyframes } from "styled-components";
-import { DARK_MODE_TRANSITION, SPACING } from "../Layout/Theme";
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { __COLORS, DARK_MODE_TRANSITION, SPACING } from "../Layout/Theme";
 import { Icon, IconTypes } from "./Icon";
 import { useTextColor } from "../hooks/useTextColor";
+import { setTranslation } from "../reducers/translation/actions";
+import { Direction } from "../reducers/translation/types";
+import { useDispatch } from "react-redux";
+import { useImageSection } from "../hooks/useImageSection";
 
 const SIZE = SPACING * 6;
 
@@ -52,17 +56,19 @@ const DownIconWrapper = styled.div`
   z-index: 100;
 `;
 
-type Props = {
-  onClick: () => void;
-};
-export const ScrollDownIcon = ({ onClick }: Props) => {
+export const ScrollDownIcon = () => {
   const { color } = useTextColor();
-  const callback = useCallback(() => onClick(), [onClick]);
+  const dispatch = useDispatch();
+  const { isImageSection } = useImageSection();
+
   return (
     <DownIconWrapper>
-      <Circle color={color} onClick={callback}>
+      <Circle
+        color={isImageSection ? __COLORS.WHITE : color}
+        onClick={() => dispatch(setTranslation(Direction.DOWN))}
+      >
         <MyIcon
-          color={color}
+          color={isImageSection ? __COLORS.WHITE : color}
           name={IconTypes.ARROW_DOWN}
           style={{
             width: "100%",

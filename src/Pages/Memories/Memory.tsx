@@ -9,6 +9,7 @@ import {useDispatch} from "react-redux";
 import {setCurrentMemory} from "../../reducers/year/actions";
 import {MemoryTextSection} from "./MemoryTextSection";
 import {MemoryImages} from "./MemoryImages";
+import {ScrollDownIcon} from "../../components/ScrollDownIcon";
 
 const Container = styled(PageContainer)<{ isDarkMode: boolean }>`
   display: flex;
@@ -49,6 +50,7 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
       <ContentWrapper>
         <MemoryTextSection memory={memory} />
       </ContentWrapper>
+      <ScrollDownIcon />
     </Container>
   );
 };
