@@ -7,6 +7,7 @@ import { Icon, IconTypes } from "../../components/Icon";
 import { __COLORS, __GRAY_SCALE, getHSLA, SPACING } from "../../Layout/Theme";
 import { SubTitle, Title } from "../../Layout/Typography";
 import { Memory } from "../../Content";
+import { Hashtags } from "../../components/Hashtags";
 
 const TextWrapper = styled(FlexBox)`
   display: flex;
@@ -62,6 +63,12 @@ export const MemoryTextSection = ({ memory }: Props) => {
             firstWordColor={memory.primaryColor}
           />
         </MyTitle>
+        {achievement.hashtags && (
+          <Hashtags
+            hashtags={achievement.hashtags}
+            color={memory.primaryColor}
+          />
+        )}
         <MySubTitle>{achievement.subtitle}</MySubTitle>
         <Buttons>
           <Button background={memory.primaryColor}>

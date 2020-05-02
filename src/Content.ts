@@ -55,15 +55,12 @@ export const Memories: Memory[] = [
       firstWordColor: __COLORS.FOURTH,
       hashtags: [
         {
-          title: "May-2019"
+          title: "axelra"
         },
         {
-          title: "Axelra-ag"
+          title: "techventurebuilder"
         },
-        {
-          title: "Tech-venture-builder"
-        },
-        { title: "Tech-accelerator" }
+        { title: "techaccelerator" }
       ],
       subtitle:
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
