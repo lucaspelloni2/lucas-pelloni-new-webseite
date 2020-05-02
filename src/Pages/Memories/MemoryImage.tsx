@@ -4,7 +4,7 @@ import { Picture } from "../../Content";
 import { FlexBox } from "../../Layout/styled/FlexBox";
 import {
   CIRCLE_TRANSITION,
-  MEMORY_LEFT_PANEL_WIDTH,
+  MEMORY_RIGHT_PANEL_WIDTH,
   PAGE_HEIGHT,
   PAGE_WIDTH,
   YEAR_HEIGHT
@@ -14,7 +14,7 @@ import useAppState from "../../reducers/useAppState";
 const BlurWrapper = styled.div<{ height: number; translation: number }>`
   align-self: flex-end;
   height: ${props => props.height}px;
-  width: ${MEMORY_LEFT_PANEL_WIDTH}px;
+  width: ${MEMORY_RIGHT_PANEL_WIDTH}px;
   position: absolute;
   right: 0;
   transform: ${props => `translateX(${props.translation}%)`};

@@ -26,7 +26,8 @@ export enum IconTypes {
   GITHUB = "GITHUB",
   GOOGLE_SCHOLAR = "GOOGLE_SCHOLAR",
   CHEVRON_RIGHT = "CHEVRON_RIGHT",
-  CHEVRON_LEFT = "CHEVRON_LEFT"
+  CHEVRON_LEFT = "CHEVRON_LEFT",
+  CLOSE = "CLOSE"
 }
 
 export const Icon = ({ name, className, ...props }: IconProps) => {
@@ -298,6 +299,26 @@ export const Icon = ({ name, className, ...props }: IconProps) => {
           <path
             fill="currentColor"
             d="M231.293 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L70.393 256 251.092 74.87c4.686-4.686 4.686-12.284 0-16.971L231.293 38.1c-4.686-4.686-12.284-4.686-16.971 0L4.908 247.515c-4.686 4.686-4.686 12.284 0 16.971L214.322 473.9c4.687 4.686 12.285 4.686 16.971-.001z"
+          ></path>
+        </MyIcon>
+      );
+
+    case IconTypes.CLOSE:
+      return (
+        <MyIcon
+          {...props}
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fal"
+          data-icon="times"
+          className={className}
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            fill="currentColor"
+            d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"
           ></path>
         </MyIcon>
       );

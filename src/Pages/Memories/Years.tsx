@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { MEMORY_LEFT_PANEL_WIDTH, PAGE_TRANSITION } from "../../Layout/Theme";
+import { MEMORY_RIGHT_PANEL_WIDTH, PAGE_TRANSITION } from "../../Layout/Theme";
 import { Memory } from "../../Content";
 import { Year } from "./Year";
 import { v1 } from "uuid";
@@ -16,7 +16,7 @@ const Container = styled.div<{ visible: boolean }>`
   justify-content: flex-end;
   align-items: center;
   transition: ${PAGE_TRANSITION};
-  width: ${MEMORY_LEFT_PANEL_WIDTH}px;
+  width: ${MEMORY_RIGHT_PANEL_WIDTH}px;
   right: 0;
   flex-direction: column;
   bottom: 0;

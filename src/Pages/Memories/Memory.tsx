@@ -10,6 +10,7 @@ import { setCurrentMemory } from "../../reducers/year/actions";
 import { MemoryTextSection } from "./MemoryTextSection";
 import { MemoryImages } from "./MemoryImages";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
+import { MemoryLeftPanel } from "../../components/MemoryLeftPanel";
 
 const Container = styled(PageContainer)<{ isDarkMode: boolean }>`
   display: flex;
@@ -44,6 +45,7 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
 
   return (
     <Container isDarkMode={isDarkMode}>
+      <MemoryLeftPanel />
       <FlexBox flex={1}>
         <MemoryImages memory={memory} />
       </FlexBox>

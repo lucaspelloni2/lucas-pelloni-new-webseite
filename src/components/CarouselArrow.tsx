@@ -21,7 +21,7 @@ const Container = styled.div<{ background: string }>`
   justify-content: center;
   align-items: center;
   padding: ${SPACING * 1.5}px;
-  z-index: 10;
+  z-index: 9;
   margin: ${SPACING * 3}px;
 `;
 

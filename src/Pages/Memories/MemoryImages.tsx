@@ -29,7 +29,7 @@ export const MemoryImages = ({ memory }: Props) => {
     setPictureTranslation(s =>
       s === (totalPictures - 1) * PAGE_WIDTH * -1 ? 0 : s - PAGE_WIDTH
     );
-  }, []);
+  }, [totalPictures]);
   const prev = useCallback(() => {
     setPictureTranslation(s =>
       s === 0 ? (totalPictures - 1) * PAGE_WIDTH * -1 : s + PAGE_WIDTH
