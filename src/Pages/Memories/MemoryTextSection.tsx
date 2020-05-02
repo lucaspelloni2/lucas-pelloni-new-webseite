@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import {FlexBox} from "../../Layout/styled/FlexBox";
-import {ColoredText} from "../../components/ColoredTitle";
-import {Button} from "../../components/Button";
-import {Icon, IconTypes} from "../../components/Icon";
-import {__COLORS, __GRAY_SCALE, getHSLA, SPACING} from "../../Layout/Theme";
-import {SubTitle, Title} from "../../Layout/Typography";
-import {Memory} from "../../Content";
+import { FlexBox } from "../../Layout/styled/FlexBox";
+import { ColoredText } from "../../components/ColoredTitle";
+import { Button } from "../../components/Button";
+import { Icon, IconTypes } from "../../components/Icon";
+import { __COLORS, __GRAY_SCALE, getHSLA, SPACING } from "../../Layout/Theme";
+import { SubTitle, Title } from "../../Layout/Typography";
+import { Memory } from "../../Content";
 
 const TextWrapper = styled(FlexBox)`
   display: flex;
@@ -33,13 +33,13 @@ const TitleWrapper = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    box-shadow: -230px 0 150px 20vw ${getHSLA(0.4, __COLORS.PRIMARY)};
+    box-shadow: 43px 0 131px 9vw ${getHSLA(0.25, __COLORS.PRIMARY)};
     content: " ";
   }
   max-width: 60%;
   position: relative;
   padding: 0 ${SPACING * 8}px ${SPACING * 8}px ${SPACING * 8}px;
-  background-color: ${getHSLA(0.4, __COLORS.PRIMARY)};
+  background-color: ${getHSLA(0.25, __COLORS.PRIMARY)};
 `;
 
 const Buttons = styled.div`

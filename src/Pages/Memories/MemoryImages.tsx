@@ -2,8 +2,8 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Memory, Picture } from "../../Content";
 import { MemoryImage } from "./MemoryImage";
-import { Button } from "../../components/Button";
-import {PAGE_WIDTH} from "../../Layout/Theme";
+import { PAGE_WIDTH } from "../../Layout/Theme";
+import { CarouselArrow } from "../../components/CarouselArrow";
 
 const Images = styled.div`
   height: 100vh;
@@ -11,33 +11,36 @@ const Images = styled.div`
   display: flex;
   position: relative;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 type Props = {
   memory: Memory;
 };
 
-const MyButton = styled(Button)`
-  z-index: 10000;
-`;
-
 export const MemoryImages = ({ memory }: Props) => {
   const { achievement } = memory;
   const { pictures } = achievement;
 
   const [pictureTranslation, setPictureTranslation] = useState(0);
+  const totalPictures = pictures.length;
 
   const next = useCallback(() => {
-    setPictureTranslation(s => s - PAGE_WIDTH);
+    setPictureTranslation(s =>
+      s === (totalPictures - 1) * PAGE_WIDTH * -1 ? 0 : s - PAGE_WIDTH
+    );
   }, []);
   const prev = useCallback(() => {
-    setPictureTranslation(s => s + PAGE_WIDTH);
-  }, []);
+    setPictureTranslation(s =>
+      s === 0 ? (totalPictures - 1) * PAGE_WIDTH * -1 : s + PAGE_WIDTH
+    );
+  }, [totalPictures]);
+
+  console.log("current picture", pictureTranslation);
 
   return (
     <Images>
-      <MyButton onClick={prev}>PREV</MyButton>
+      <CarouselArrow left memory={memory} onClick={prev} />
       {pictures.map((picture: Picture, index: number) => {
         return (
           <MemoryImage
@@ -47,7 +50,7 @@ export const MemoryImages = ({ memory }: Props) => {
           />
         );
       })}
-      <MyButton onClick={next}>NEXT</MyButton>
+      <CarouselArrow memory={memory} onClick={next} />
     </Images>
   );
 };
