@@ -7,15 +7,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const { color, background } = useTheme();
-
   return (
     <Router>
-      <ThemeProvider theme={MainTheme}>
-        <GlobalStyle color={color} background={background} />
-      </ThemeProvider>
       <Switch>
         <Route exact path="/*" component={Pages} />
       </Switch>
+      <ThemeProvider theme={MainTheme}>
+        <GlobalStyle color={color} background={background} />
+      </ThemeProvider>
     </Router>
   );
 }

@@ -61,7 +61,6 @@ export const __COLORS = {
 // You can either import a Google Font: https://fonts.google.com
 // Or declare a custom font: https://tinyurl.com/y6omstqa
 export const GlobalStyle = createGlobalStyle<{
-  theme: ThemeProviderProps<any>;
   color: string;
   background: string;
 }>`

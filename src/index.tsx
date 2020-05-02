@@ -4,8 +4,6 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import store from "./reducers/store";
 import { Provider } from "react-redux";
-import { GlobalStyle, MainTheme } from "./Layout/Theme";
-import { ThemeProvider } from "styled-components";
 
 ReactDOM.render(
   <React.StrictMode>
