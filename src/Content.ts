@@ -56,6 +56,10 @@ export const Memories: Memory[] = [
         {
           src:
             "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/axelra%2FShooting%20co-founders%2003.jpg?alt=media&token=d0f6c49c-272a-4bf9-8200-7bfdab140e78"
+        },
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/1-2.jpg?alt=media&token=e4935eb7-66c1-4491-925c-59224dc97a4a"
         }
       ],
       link: "https://axelra.com"

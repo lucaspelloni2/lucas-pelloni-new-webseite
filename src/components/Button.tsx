@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useCallback } from "react";
 import styled from "styled-components";
 import { __COLORS, getHSLA, SPACING } from "../Layout/Theme";
 import { linearGradient } from "polished";
@@ -8,6 +8,7 @@ type Props = {
   secondary?: boolean;
   background?: string;
   backgroundHover?: string;
+  onClick?: () => void;
 };
 
 const Container = styled.div<{
@@ -40,10 +41,13 @@ export const Button = ({
   children,
   secondary,
   background,
-  backgroundHover
+  backgroundHover,
+  onClick
 }: Props) => {
+  const onClickCallback = useCallback(() => onClick?.(), [onClick]);
   return (
     <Container
+      onClick={onClickCallback}
       secondary={secondary}
       background={background}
       backgroundHover={backgroundHover}
