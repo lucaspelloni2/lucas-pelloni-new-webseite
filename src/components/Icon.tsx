@@ -291,7 +291,6 @@ export const Icon = ({ name, className, ...props }: IconProps) => {
           focusable="false"
           data-prefix="far"
           data-icon="chevron-left"
-          className="svg-inline--fa fa-chevron-left fa-w-8"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 256 512"
