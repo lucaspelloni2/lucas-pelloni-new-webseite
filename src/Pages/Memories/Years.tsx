@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import {MEMORY_LEFT_PANEL_WIDTH, PAGE_TRANSITION} from "../../Layout/Theme";
-import {Memory} from "../../Content";
-import {Year} from "./Year";
-import {v1} from "uuid";
+import { MEMORY_LEFT_PANEL_WIDTH, PAGE_TRANSITION } from "../../Layout/Theme";
+import { Memory } from "../../Content";
+import { Year } from "./Year";
+import { v1 } from "uuid";
 import useAppState from "../../reducers/useAppState";
 
 // https://codepen.io/bcarvalho/pen/RZqmZX
 const Container = styled.div<{ visible: boolean }>`
-  height: 100%;
   position: fixed;
   opacity: ${props => (props.visible ? 1 : 0)};
   visibility: ${props => (props.visible ? "visible" : "hidden")};
@@ -20,6 +19,7 @@ const Container = styled.div<{ visible: boolean }>`
   width: ${MEMORY_LEFT_PANEL_WIDTH}px;
   right: 0;
   flex-direction: column;
+  bottom: 0;
 `;
 
 type Props = {

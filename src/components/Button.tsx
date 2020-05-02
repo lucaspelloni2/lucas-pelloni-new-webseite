@@ -8,6 +8,7 @@ type Props = {
   secondary?: boolean;
   background?: string;
   backgroundHover?: string;
+  className?: string;
   onClick?: () => void;
 };
 
@@ -42,11 +43,13 @@ export const Button = ({
   secondary,
   background,
   backgroundHover,
-  onClick
+  onClick,
+  className
 }: Props) => {
   const onClickCallback = useCallback(() => onClick?.(), [onClick]);
   return (
     <Container
+      className={className}
       onClick={onClickCallback}
       secondary={secondary}
       background={background}

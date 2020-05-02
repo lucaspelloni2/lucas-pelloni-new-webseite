@@ -19,12 +19,12 @@ const Container = styled.div<{ background: string; isActive: boolean }>`
   justify-content: center;
   align-items: center;
   height: ${YEAR_HEIGHT}px;
-  margin: 1px 0;
+  margin: 1.5px 0;
   transition: ${DARK_MODE_TRANSITION};
 `;
 
 const Label = styled.h1`
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 500;
   transition: ${DARK_MODE_TRANSITION};
   color: ${__COLORS.WHITE};

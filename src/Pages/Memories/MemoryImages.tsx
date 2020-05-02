@@ -10,6 +10,8 @@ const Images = styled.div`
   width: 100%;
   display: flex;
   position: relative;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 type Props = {
