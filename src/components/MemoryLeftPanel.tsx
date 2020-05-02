@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 import {
   __COLORS,
+  LEFT_PANEL_TRANSITION,
   MEMORY_LEFT_PANEL_WIDTH,
-  LEFT_PANEL_TRANSITION
+  SPACING
 } from "../Layout/Theme";
 import { CloseIcon } from "./CloseIcon";
 import useAppState from "../reducers/useAppState";
-import { fadeIn, fadeOut } from "../Layout/AnimationHelper";
+import { fadeInBezier } from "../Layout/AnimationHelper";
 import { useMemoryColor } from "../hooks/useMemoryColor";
+import { MemoryLogo } from "./MemoryLogo";
 
 const Container = styled.div<{ isLeftPanelOpen: boolean }>`
   width: ${props => (props.isLeftPanelOpen ? MEMORY_LEFT_PANEL_WIDTH : 0)};
@@ -24,16 +26,22 @@ const Container = styled.div<{ isLeftPanelOpen: boolean }>`
 `;
 
 const Header = styled.div<{ background: string }>`
-  height: 30%;
+  height: 15%;
   background: ${props => props.background};
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 `;
 
-const Body = styled.div`
+const Body = styled.div<{ isLeftPanelOpen: boolean }>`
   flex: 1;
   overflow-y: scroll;
+  padding: ${props =>
+    props.isLeftPanelOpen ? `${SPACING * 10}px ${SPACING * 5}` : 0}px;
+  transition: inherit;
+  text-align: justify;
 `;
 
 const Footer = styled.div`
@@ -44,9 +52,11 @@ const TextDelay = styled.div<{ showText: boolean }>`
   animation: ${props =>
     props.showText
       ? css`
-          ${fadeIn} 3.5s forwards
+          ${fadeInBezier} 5s forwards
         `
       : "none"};
+  color: ${__COLORS.PRIMARY};
+  font-size: 18px;
 `;
 type Props = {
   isActive: boolean;
@@ -67,9 +77,10 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
     <Container isLeftPanelOpen={isLeftPanelOpen}>
       <Header background={color}>
         <CloseIcon />
+        <MemoryLogo />
       </Header>
-      <Body>
-        <TextDelay showText={true}>
+      <Body isLeftPanelOpen={isLeftPanelOpen}>
+        <TextDelay showText={showText}>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
             at autem consequuntur excepturi nemo officiis quae quaerat

@@ -1,5 +1,5 @@
-import {CSSProperties} from "react";
-import {__COLORS} from "./Layout/Theme";
+import { CSSProperties } from "react";
+import { __COLORS } from "./Layout/Theme";
 
 export type Picture = {
   src: string;
@@ -60,7 +60,7 @@ export const Memories: Memory[] = [
         {
           title: "techventurebuilder"
         },
-        {title: "techaccelerator"}
+        { title: "techaccelerator" }
       ],
       subtitle:
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
@@ -74,6 +74,10 @@ export const Memories: Memory[] = [
         {
           src:
             "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/1-2.jpg?alt=media&token=a16e0317-842d-4ee9-b36e-12e7c26c25b8"
+        },
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/IMG_4171-_1_.png?alt=media&token=bdcd0a48-7850-4873-b428-661df683a611"
         }
       ],
       link: "https://axelra.com"
@@ -82,18 +86,27 @@ export const Memories: Memory[] = [
   {
     year: 2019,
     month: MONTHS.DECEMBER,
-    primaryColor: "#5F5FFF",
+    primaryColor: "#4862ea",
     achievement: {
-      title: "Master Degree",
+      title: "Master Degree at UZH",
       subtitle:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ",
+        "In December 2019, I obtained a Master Degree in Computer Science at the University of Zurich (UZH). I wrote my master thesis in the field of passive Wi-Fi signals. Overall grade: 5.73 of 6.0.",
       description:
         "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
       pictures: [
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/master%2FIMG_5344-_1_.png?alt=media&token=6b46c6f5-33c5-4f89-9b9f-e03d80ec3be4"
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/bachelor.jpg?alt=media&token=e5d7a06c-1c99-4b94-9769-9d9d058ce082"
         }
+      ],
+      hashtags: [
+        {
+          title: "masterdegree"
+        },
+        {
+          title: "universityofzurich"
+        },
+        { title: "computerscience" }
       ]
     }
   },
@@ -132,7 +145,7 @@ export const Memories: Memory[] = [
         {
           title: "makaday"
         },
-        {title: "hackathon"}
+        { title: "hackathon" }
       ]
     }
   },
@@ -149,23 +162,6 @@ export const Memories: Memory[] = [
         {
           src:
             "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
-        }
-      ]
-    }
-  },
-  {
-    year: 2017,
-    month: MONTHS.JULI,
-    primaryColor: "#4a93e9",
-    achievement: {
-      title: "Bachelor Degree",
-      subtitle: "I completed my bachelor degree in Computer Science",
-      description:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-      pictures: [
-        {
-          src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/bachelor.jpg?alt=media&token=e5d7a06c-1c99-4b94-9769-9d9d058ce082"
         }
       ]
     }

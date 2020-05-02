@@ -22,7 +22,9 @@ const Container = styled.div`
   padding: ${SPACING * 1.5}px;
   margin: ${SPACING}px;
   z-index: 1;
-  align-self: flex-end;
+  position: absolute;
+  right: 0;
+  top: 0;
 `;
 
 const Close = styled(Icon)`

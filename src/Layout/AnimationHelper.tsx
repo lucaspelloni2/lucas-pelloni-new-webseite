@@ -12,6 +12,18 @@ export const fadeIn = keyframes`
   }
 `;
 
+export const fadeInBezier = keyframes`
+  0% {
+  opacity: 0;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+  opacity: 1;
+  }
+`;
+
 export const fadeOut = keyframes`
   from {
   opacity: 1;
