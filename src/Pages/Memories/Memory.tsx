@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { FlexBox } from "../../Layout/styled/FlexBox";
@@ -20,8 +20,7 @@ import { HomeTitle } from "../Home/HomeTitle";
 import { Title, SubTitle } from "../../Layout/Typography";
 import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import { useDispatch } from "react-redux";
-import { setCurrentMonth, setCurrentYear } from "../../reducers/year/actions";
-import { parseToHsl } from "polished";
+import { setCurrentMemory } from "../../reducers/year/actions";
 import { ColoredText } from "../../components/ColoredTitle";
 import { Button } from "../../components/Button";
 import { Icon, IconTypes } from "../../components/Icon";
@@ -75,7 +74,7 @@ const TextWrapper = styled(FlexBox)`
 `;
 
 const MyTitle = styled(Title)`
-  font-size: 90px;
+  font-size: 62px;
   color: ${__COLORS.WHITE};
   margin-bottom: 0;
   overflow-x: visible;
@@ -83,7 +82,8 @@ const MyTitle = styled(Title)`
 
 const MySubTitle = styled(SubTitle)`
   margin-top: 0;
-  color: ${__GRAY_SCALE._500};
+  color: ${__GRAY_SCALE._100};
+  margin-bottom: ${SPACING * 4}px;
 `;
 
 const TitleWrapper = styled.div<{ background: string }>`
@@ -118,10 +118,9 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
 
   useEffect(() => {
     if (isActive && translation) {
-      dispatch(setCurrentYear(memory.year));
-      dispatch(setCurrentMonth(memory.month));
+      dispatch(setCurrentMemory(memory));
     }
-  }, [translation, isActive, dispatch, memory.year, memory.month]);
+  }, [translation, isActive, dispatch, memory]);
 
   const { achievement } = memory;
 
@@ -144,12 +143,12 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
             <MyTitle>
               <ColoredText
                 text={achievement.title}
-                firstWordColor={achievement.firstWordColor}
+                firstWordColor={memory.primaryColor}
               />
             </MyTitle>
             <MySubTitle>{achievement.subtitle}</MySubTitle>
             <Buttons>
-              <Button>
+              <Button background={memory.primaryColor}>
                 Read the story{" "}
                 <Icon
                   name={IconTypes.ARROW_RIGHT}

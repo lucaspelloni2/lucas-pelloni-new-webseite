@@ -59,7 +59,7 @@ export const Pages = () => {
   return (
     <Parent ref={ref}>
       <HistoryManager />
-      <ColorPicker />
+      {normalized <= PageDimensions[2] && <ColorPicker />}
       {normalized === PageDimensions[2] && <Slider />}
       {normalized < PageDimensions[3] && <Circle />}
       <Years visible={normalized > PageDimensions[2]} />

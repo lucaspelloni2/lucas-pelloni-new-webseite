@@ -46,9 +46,10 @@ export enum __GRAY_SCALE {
 // Colors Palette https://colorhunt.co/
 export const __COLORS = {
   PRIMARY: "#030047",
+  PRIMARY_HOVER: "#110c77",
   SECONDARY: "#5F5FFF",
   TERTIARY: "#FF3E6C",
-  TERTIARY_HOVER: "#ff1d51",
+  TERTIARY_HOVER: "#f14169",
   FOURTH: "#FFCC3E",
   FIFTH: "#8FACFF",
   WHITE: "#fff"

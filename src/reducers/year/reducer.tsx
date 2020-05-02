@@ -1,15 +1,9 @@
-import {
-  ActionTypes,
-  SetCurrentMonth,
-  SetCurrentYear,
-  YearState
-} from "./types";
+import { ActionTypes, SetCurrentMemory, YearState } from "./types";
 import _ from "lodash";
 import { Memories, Memory } from "../../Content";
 
 const initialState: YearState = {
-  currentYear: Memories[0].year,
-  currentMonth: Memories[0].month,
+  currentMemory: Memories[0],
   grouped: _(Memories)
     .groupBy((e: Memory) => Number(e.year))
     .orderBy(year => Number(year), "desc")
@@ -18,18 +12,13 @@ const initialState: YearState = {
 
 const yearReducer = (
   state: YearState = initialState,
-  action: SetCurrentYear | SetCurrentMonth
+  action: SetCurrentMemory
 ): YearState => {
   switch (action.type) {
-    case ActionTypes.SET_YEAR:
+    case ActionTypes.SET_MEMORY:
       return {
         ...state,
-        currentYear: action.year
-      };
-    case ActionTypes.SET_MONTH:
-      return {
-        ...state,
-        currentMonth: action.month
+        currentMemory: action.memory
       };
     default:
       return state;

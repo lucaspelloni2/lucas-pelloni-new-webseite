@@ -64,7 +64,7 @@ export const Memories: Memory[] = [
   {
     year: 2019,
     month: MONTHS.DECEMBER,
-    primaryColor: "#36f793",
+    primaryColor: "#5F5FFF",
     achievement: {
       title: "Master Degree",
       subtitle:
@@ -75,6 +75,24 @@ export const Memories: Memory[] = [
         {
           src:
             "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/master%2FIMG_5344-_1_.png?alt=media&token=6b46c6f5-33c5-4f89-9b9f-e03d80ec3be4"
+        }
+      ]
+    }
+  },
+  {
+    year: 2018,
+    month: MONTHS.SEPTEMBER,
+    primaryColor: "#1FD674",
+    achievement: {
+      title: "HackZurich Audience Award",
+      subtitle:
+        "We have been selected in the top 500 applications from a global pool of over 5500 representing several elite universities. After 40 hours of hacking, where we implement our app called MAKADAY, we won the audience award at the biggest hackthon in Europe.    ",
+      description:
+        "MAKADAY combines locals' insight and google knowledge to plan your visit to a city and interact with your community by creating a day's schedule using a sequence of activities. Users are able to share their days and give rating for other days that have been already shared. After 40 hours of hacking this app at the #HackZurich18 , we won the Audience Award",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/hack_zuri_4.jpg?alt=media&token=60e9f4da-f675-4e74-80c6-b5f375c28190"
         }
       ]
     }
@@ -108,7 +126,7 @@ export const Memories: Memory[] = [
       pictures: [
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/bachelor.jpg?alt=media&token=e5d7a06c-1c99-4b94-9769-9d9d058ce082"
         }
       ]
     }

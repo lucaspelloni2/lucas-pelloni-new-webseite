@@ -11,11 +11,10 @@ import { Memories, Memory } from "../../Content";
 import _ from "lodash";
 import { Year } from "./Year";
 import { v1 } from "uuid";
-import { useTheme } from "../../hooks/useTheme";
 import useAppState from "../../reducers/useAppState";
 
 // https://codepen.io/bcarvalho/pen/RZqmZX
-const Container = styled.div<{ visible: boolean; background: string }>`
+const Container = styled.div<{ visible: boolean }>`
   height: 100%;
   position: fixed;
   opacity: ${props => (props.visible ? 1 : 0)};
@@ -35,11 +34,10 @@ type Props = {
 };
 
 export const Years = ({ visible }: Props) => {
-  const { background } = useTheme();
   const { grouped } = useAppState(s => s.year);
 
   return (
-    <Container visible={visible} background={background}>
+    <Container visible={visible}>
       {grouped.map((memories: Memory[]) => {
         return (
           <Year

@@ -1,28 +1,17 @@
-import { Memory, MONTHS } from "../../Content";
+import { Memory } from "../../Content";
 
 export enum ActionTypes {
-  SET_YEAR = "SET_YEAR",
-  SET_MONTH = "SET_MONTH"
+  SET_MEMORY = "SET_MEMORY"
 }
 
-/**
- * Action Types
- */
-export type SetCurrentYear = {
-  type: ActionTypes.SET_YEAR;
-  year: number;
+export type SetCurrentMemory = {
+  type: ActionTypes.SET_MEMORY;
+  memory: Memory;
 };
-
-export type SetCurrentMonth = {
-  type: ActionTypes.SET_MONTH;
-  month: MONTHS;
-};
-
 /**
  * State Type
  */
 export type YearState = {
-  currentYear: number;
-  currentMonth: MONTHS;
+  currentMemory: Memory;
   grouped: Memory[][];
 };
