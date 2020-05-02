@@ -1,5 +1,5 @@
 import { keyframes } from "styled-components";
-import {SPACING} from "./Theme";
+import { SPACING } from "./Theme";
 
 export const INITIAL_ANIMATION_DURATION_IN_SECONDS = 2;
 
@@ -9,6 +9,15 @@ export const fadeIn = keyframes`
   }
   to {
   opacity: 1;
+  }
+`;
+
+export const fadeOut = keyframes`
+  from {
+  opacity: 1;
+  }
+  to {
+  opacity: 0;
   }
 `;
 

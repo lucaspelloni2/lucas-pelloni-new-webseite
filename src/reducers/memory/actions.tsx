@@ -1,4 +1,4 @@
-import { ActionTypes, SetCurrentMemory } from "./types";
+import { ActionTypes, SetCurrentMemory, ToggleLeftPanel } from "./types";
 import { Memory } from "../../Content";
 
 export const setCurrentMemory = (memory: Memory): SetCurrentMemory => {
@@ -7,3 +7,7 @@ export const setCurrentMemory = (memory: Memory): SetCurrentMemory => {
     memory
   };
 };
+
+export const toggleLeftPanel = (): ToggleLeftPanel => ({
+  type: ActionTypes.TOGGLE_LEFT_PANEL
+});

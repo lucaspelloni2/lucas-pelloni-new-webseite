@@ -8,6 +8,8 @@ import { __COLORS, __GRAY_SCALE, getHSLA, SPACING } from "../../Layout/Theme";
 import { SubTitle, Title } from "../../Layout/Typography";
 import { Memory } from "../../Content";
 import { Hashtags } from "../../components/Hashtags";
+import { useDispatch } from "react-redux";
+import { toggleLeftPanel } from "../../reducers/memory/actions";
 
 const TextWrapper = styled(FlexBox)`
   display: flex;
@@ -52,6 +54,7 @@ type Props = {
 };
 
 export const MemoryTextSection = ({ memory }: Props) => {
+  const dispatch = useDispatch();
   const { achievement } = memory;
   return (
     <TextWrapper flex={1}>
@@ -71,7 +74,10 @@ export const MemoryTextSection = ({ memory }: Props) => {
         )}
         <MySubTitle>{achievement.subtitle}</MySubTitle>
         <Buttons>
-          <Button background={memory.primaryColor}>
+          <Button
+            background={memory.primaryColor}
+            onClick={() => dispatch(toggleLeftPanel())}
+          >
             Read the story{" "}
             <Icon
               name={IconTypes.ARROW_RIGHT}

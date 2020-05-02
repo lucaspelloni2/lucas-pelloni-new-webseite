@@ -27,7 +27,7 @@ type Props = {
 };
 
 export const Years = ({ visible }: Props) => {
-  const { grouped } = useAppState(s => s.year);
+  const { grouped } = useAppState(s => s.memory);
 
   return useMemo(
     () => (

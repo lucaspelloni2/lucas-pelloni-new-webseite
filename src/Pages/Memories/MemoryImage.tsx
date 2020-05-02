@@ -43,7 +43,7 @@ type Props = {
   pictureTranslation: number;
 };
 export const MemoryImage = ({ picture, pictureTranslation }: Props) => {
-  const { grouped } = useAppState(s => s.year);
+  const { grouped } = useAppState(s => s.memory);
   return (
     <>
       <Img url={picture.src} translation={pictureTranslation} />

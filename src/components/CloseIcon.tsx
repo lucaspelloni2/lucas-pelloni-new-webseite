@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { __COLORS, getHSLA, SPACING } from "../Layout/Theme";
 import { Icon, IconTypes } from "./Icon";
+import { useDispatch } from "react-redux";
+import { toggleLeftPanel } from "../reducers/memory/actions";
 
 const SIZE = 45;
 const Container = styled.div`
@@ -28,8 +30,9 @@ const Close = styled(Icon)`
   height: 100%;
 `;
 export const CloseIcon = () => {
+  const dispatch = useDispatch();
   return (
-    <Container>
+    <Container onClick={() => dispatch(toggleLeftPanel())}>
       <Close name={IconTypes.CLOSE} color={__COLORS.WHITE} />
     </Container>
   );

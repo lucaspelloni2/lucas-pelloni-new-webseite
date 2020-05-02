@@ -31,14 +31,19 @@ const Parent = styled.div`
 export const Pages = () => {
   const { translation } = useAppState(s => s.translation);
   const normalized = useNormalizedTransition().translation;
+  const { isLeftPanelOpen } = useAppState(s => s.memory);
   const dispatch = useDispatch();
   const [direction, setDirection] = useState<null | Direction>(null);
   const { ref } = useMouseWheel({
     onScrollUp: () => {
-      setDirection(Direction.UP);
+      if (!isLeftPanelOpen) {
+        setDirection(Direction.UP);
+      }
     },
     onScrollDown: () => {
-      setDirection(Direction.DOWN);
+      if (!isLeftPanelOpen) {
+        setDirection(Direction.DOWN);
+      }
     }
   });
 

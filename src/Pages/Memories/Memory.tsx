@@ -6,7 +6,7 @@ import { Memory } from "../../Content";
 import useAppState from "../../reducers/useAppState";
 import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import { useDispatch } from "react-redux";
-import { setCurrentMemory } from "../../reducers/year/actions";
+import { setCurrentMemory } from "../../reducers/memory/actions";
 import { MemoryTextSection } from "./MemoryTextSection";
 import { MemoryImages } from "./MemoryImages";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
@@ -45,7 +45,7 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
 
   return (
     <Container isDarkMode={isDarkMode}>
-      <MemoryLeftPanel />
+      <MemoryLeftPanel isActive={isActive} />
       <FlexBox flex={1}>
         <MemoryImages memory={memory} />
       </FlexBox>

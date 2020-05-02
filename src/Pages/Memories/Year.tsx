@@ -9,7 +9,7 @@ import {
   YEAR_HEIGHT
 } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
-import { setCurrentMemory } from "../../reducers/year/actions";
+import { setCurrentMemory } from "../../reducers/memory/actions";
 
 const Container = styled.div<{ background: string; isActive: boolean }>`
   &:hover {
@@ -41,7 +41,7 @@ type Props = {
 };
 export const Year = ({ year }: Props) => {
   const dispatch = useDispatch();
-  const { currentMemory } = useAppState(s => s.year);
+  const { currentMemory } = useAppState(s => s.memory);
   const isActive = currentMemory.year === year;
   return useMemo(
     () => (
