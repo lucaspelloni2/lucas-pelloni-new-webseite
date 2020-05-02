@@ -24,7 +24,9 @@ export enum IconTypes {
   ARROW_DOWN = "ARROW_DOWN",
   ARROW_RIGHT = "ARROW_RIGHT",
   GITHUB = "GITHUB",
-  GOOGLE_SCHOLAR = "GOOGLE_SCHOLAR"
+  GOOGLE_SCHOLAR = "GOOGLE_SCHOLAR",
+  CHEVRON_RIGHT = "CHEVRON_RIGHT",
+  CHEVRON_LEFT = "CHEVRON_LEFT"
 }
 
 export const Icon = ({ name, className, ...props }: IconProps) => {
@@ -259,6 +261,45 @@ export const Icon = ({ name, className, ...props }: IconProps) => {
           viewBox="0 0 24 24"
         >
           <path d="M10.93 2.045c-.547.366-3.22 2.14-5.938 3.945C2.272 7.794.05 9.286.05 9.304c0 .019.136.11.305.2.167.096 2.85 1.583 5.965 3.31l5.656 3.143.144-.074c.082-.04 2.169-1.232 4.642-2.642l4.493-2.568.027 7.947h2.668V9.319l-3.46-2.32c-4.664-3.124-8.392-5.586-8.484-5.606-.045-.008-.527.287-1.076.652M5.355 16.633l.014 2.005 3.31 1.987 3.31 1.982 3.337-2 3.332-2.005V16.62c0-1.092-.013-1.983-.027-1.983s-1.318.782-2.9 1.741l-3.306 1.996-.431.256-1.32-.791a604.12 604.12 0 0 1-3.286-1.979l-2.005-1.21c-.024-.008-.032.883-.027 1.983" />
+        </MyIcon>
+      );
+    case IconTypes.CHEVRON_RIGHT:
+      return (
+        <MyIcon
+          {...props}
+          className={className}
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="far"
+          data-icon="chevron-right"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 256 512"
+        >
+          <path
+            fill="currentColor"
+            d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"
+          ></path>
+        </MyIcon>
+      );
+
+    case IconTypes.CHEVRON_LEFT:
+      return (
+        <MyIcon
+          {...props}
+          className={className}
+          focusable="false"
+          data-prefix="far"
+          data-icon="chevron-left"
+          className="svg-inline--fa fa-chevron-left fa-w-8"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 256 512"
+        >
+          <path
+            fill="currentColor"
+            d="M231.293 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L70.393 256 251.092 74.87c4.686-4.686 4.686-12.284 0-16.971L231.293 38.1c-4.686-4.686-12.284-4.686-16.971 0L4.908 247.515c-4.686 4.686-4.686 12.284 0 16.971L214.322 473.9c4.687 4.686 12.285 4.686 16.971-.001z"
+          ></path>
         </MyIcon>
       );
     default:
