@@ -1,16 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  __COLORS,
-  __GRAY_SCALE,
-  getAlphaColor,
-  MEMORY_LEFT_PANEL_WIDTH,
-  PAGE_TRANSITION
-} from "../../Layout/Theme";
-import { Memories, Memory } from "../../Content";
-import _ from "lodash";
-import { Year } from "./Year";
-import { v1 } from "uuid";
+import {MEMORY_LEFT_PANEL_WIDTH, PAGE_TRANSITION} from "../../Layout/Theme";
+import {Memory} from "../../Content";
+import {Year} from "./Year";
+import {v1} from "uuid";
 import useAppState from "../../reducers/useAppState";
 
 // https://codepen.io/bcarvalho/pen/RZqmZX

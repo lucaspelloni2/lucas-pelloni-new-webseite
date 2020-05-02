@@ -1,0 +1,83 @@
+import React from "react";
+import styled from "styled-components";
+import {FlexBox} from "../../Layout/styled/FlexBox";
+import {ColoredText} from "../../components/ColoredTitle";
+import {Button} from "../../components/Button";
+import {Icon, IconTypes} from "../../components/Icon";
+import {__COLORS, __GRAY_SCALE, getHSLA, SPACING} from "../../Layout/Theme";
+import {SubTitle, Title} from "../../Layout/Typography";
+import {Memory} from "../../Content";
+
+const TextWrapper = styled(FlexBox)`
+  display: flex;
+  flex-direction: column;
+`;
+
+const MyTitle = styled(Title)`
+  font-size: 62px;
+  color: ${__COLORS.WHITE};
+  margin-bottom: 0;
+  overflow-x: visible;
+`;
+
+const MySubTitle = styled(SubTitle)`
+  margin-top: 0;
+  color: ${__GRAY_SCALE._100};
+  margin-bottom: ${SPACING * 4}px;
+`;
+
+const TitleWrapper = styled.div`
+  ::after {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    box-shadow: -230px 0 150px 20vw ${getHSLA(0.4, __COLORS.PRIMARY)};
+    content: " ";
+  }
+  max-width: 60%;
+  position: relative;
+  padding: 0 ${SPACING * 8}px ${SPACING * 8}px ${SPACING * 8}px;
+  background-color: ${getHSLA(0.4, __COLORS.PRIMARY)};
+`;
+
+const Buttons = styled.div`
+  display: flex;
+`;
+
+type Props = {
+  memory: Memory;
+};
+
+export const MemoryTextSection = ({ memory }: Props) => {
+  const { achievement } = memory;
+  return (
+    <TextWrapper flex={1}>
+      <FlexBox flex={1} />
+      <TitleWrapper>
+        <MyTitle>
+          <ColoredText
+            text={achievement.title}
+            firstWordColor={memory.primaryColor}
+          />
+        </MyTitle>
+        <MySubTitle>{achievement.subtitle}</MySubTitle>
+        <Buttons>
+          <Button background={memory.primaryColor}>
+            Read the story{" "}
+            <Icon
+              name={IconTypes.ARROW_RIGHT}
+              color={__COLORS.WHITE}
+              style={{
+                marginLeft: SPACING,
+                width: SPACING * 2.5,
+                height: SPACING * 2.5
+              }}
+            />
+          </Button>
+        </Buttons>
+      </TitleWrapper>
+    </TextWrapper>
+  );
+};

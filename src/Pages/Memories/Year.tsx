@@ -1,19 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Memories, Memory } from "../../Content";
-import { Month } from "./Month";
-import { v1 } from "uuid";
-import { useDispatch } from "react-redux";
-import {
-  __COLORS,
-  COLOR_TRANSITION,
-  DARK_MODE_TRANSITION,
-  getAlphaColor,
-  getHSLA,
-  YEAR_HEIGHT
-} from "../../Layout/Theme";
+import {Memories, Memory} from "../../Content";
+import {useDispatch} from "react-redux";
+import {__COLORS, DARK_MODE_TRANSITION, getHSLA, YEAR_HEIGHT} from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
-import { setCurrentMemory } from "../../reducers/year/actions";
+import {setCurrentMemory} from "../../reducers/year/actions";
 
 const Container = styled.div<{ background: string; isActive: boolean }>`
   &:hover {
@@ -43,9 +34,8 @@ type Props = {
   memories: Memory[];
   year: number;
 };
-export const Year = ({ year, memories }: Props) => {
+export const Year = ({ year }: Props) => {
   const dispatch = useDispatch();
-  const { isDarkMode } = useAppState(s => s.darkMode);
   const { currentMemory } = useAppState(s => s.year);
   const isActive = currentMemory.year === year;
   return (
