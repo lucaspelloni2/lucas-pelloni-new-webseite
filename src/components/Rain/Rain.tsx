@@ -31,34 +31,33 @@ export const Rain = memo(() => {
   const MAX_DURATION = 6;
   const elements = Object.keys(RainElementType);
 
-  return (
-    <Container opacity={value / 100}>
-      {useMemo(
-        () =>
-          new Array(NR_ELEMENTS).fill(0).map(_ => {
-            const randomInitialPositionX = getRandomInt(0, 100);
-            const randomInitialPositionY = getRandomInt(0, 100);
-            const randomDuration = getRandomInt(MIN_DURATION, MAX_DURATION);
-            const randomSize = getRandomInt(MIN_SIZE, MAX_SIZE);
-            const randomRotation = getRandomInt(0, 360);
-            const randomElement =
-              elements[getRandomInt(0, elements.length - 1)];
-            return (
-              <RainElement
-                key={`${randomRotation}-${randomSize}-${randomInitialPositionY}-${randomInitialPositionX}`}
-                color={getRandomColor()}
-                duration={randomDuration}
-                size={randomSize}
-                rotate={String(randomRotation)}
-                isEasterEgg={NR_ELEMENTS === EASTER_EGG_LIMIT}
-                element={randomElement as RainElementType}
-                left={randomInitialPositionX}
-                top={randomInitialPositionY}
-              />
-            );
-          }),
-        [NR_ELEMENTS, elements]
-      )}
-    </Container>
+  return useMemo(
+    () => (
+      <Container opacity={value / 100}>
+        {new Array(NR_ELEMENTS).fill(0).map((_, i: number) => {
+          const randomInitialPositionX = getRandomInt(0, 100);
+          const randomInitialPositionY = getRandomInt(0, 100);
+          const randomDuration = getRandomInt(MIN_DURATION, MAX_DURATION);
+          const randomSize = getRandomInt(MIN_SIZE, MAX_SIZE);
+          const randomRotation = getRandomInt(0, 360);
+          const randomElement = elements[getRandomInt(0, elements.length - 1)];
+          const color = getRandomColor();
+          return (
+            <RainElement
+              key={`rain-element-${i}`}
+              color={color}
+              duration={randomDuration}
+              size={randomSize}
+              rotate={String(randomRotation)}
+              isEasterEgg={NR_ELEMENTS === EASTER_EGG_LIMIT}
+              element={randomElement as RainElementType}
+              left={randomInitialPositionX}
+              top={randomInitialPositionY}
+            />
+          );
+        })}
+      </Container>
+    ),
+    [NR_ELEMENTS, elements, value]
   );
 });

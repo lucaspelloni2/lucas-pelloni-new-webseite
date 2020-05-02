@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from "react";
-import {Home} from "./Home/Home";
-import {Page} from "./Page";
-import {HomeTitle} from "./Home/HomeTitle";
-import {SecondHomeTitle} from "./Home/SecondHomeTitle";
-import {PageType} from "../types/PageType";
-import {StoryIntro} from "./StoryIntro/StoryIntro";
-import {ColorPicker} from "./Home/ColorPicker";
-import {Circle} from "../components/Circle";
+import React, { useEffect, useMemo, useState } from "react";
+import { Home } from "./Home/Home";
+import { Page } from "./Page";
+import { HomeTitle } from "./Home/HomeTitle";
+import { SecondHomeTitle } from "./Home/SecondHomeTitle";
+import { PageType } from "../types/PageType";
+import { StoryIntro } from "./StoryIntro/StoryIntro";
+import { ColorPicker } from "./Home/ColorPicker";
+import { Circle } from "../components/Circle";
 import useAppState from "../reducers/useAppState";
-import {PageDimensions} from "../Layout/Theme";
-import {useMouseWheel} from "../hooks/useMouseWheel";
-import {Direction} from "../reducers/translation/types";
-import {setTranslation} from "../reducers/translation/actions";
-import {useDispatch} from "react-redux";
-import {HistoryManager} from "../components/HistoryManager";
+import { PageDimensions } from "../Layout/Theme";
+import { useMouseWheel } from "../hooks/useMouseWheel";
+import { Direction } from "../reducers/translation/types";
+import { setTranslation } from "../reducers/translation/actions";
+import { useDispatch } from "react-redux";
+import { HistoryManager } from "../components/HistoryManager";
 import styled from "styled-components";
-import {Slider} from "../components/Slider";
-import {MemoryScreen} from "./Memories/Memory";
-import {Years} from "./Memories/Years";
-import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
-import {Memories} from "../Content";
+import { Slider } from "../components/Slider";
+import { MemoryScreen } from "./Memories/Memory";
+import { Years } from "./Memories/Years";
+import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
+import { Memories } from "../Content";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -63,50 +63,58 @@ export const Pages = () => {
       {normalized === PageDimensions[2] && <Slider />}
       {normalized < PageDimensions[3] && <Circle />}
       <Years visible={normalized > PageDimensions[2]} />
-      <Page
-        translation={translation}
-        component={
-          <Home
-            header
-            order={[1, 2]}
-            illustration={"lucas.svg"}
-            titleComponent={<HomeTitle />}
-          />
-        }
-        name={PageType.HOME_FIRST}
-      />
-      <Page
-        translation={translation + PageDimensions[1]}
-        component={
-          <Home
-            order={[2, 1]}
-            illustration={"lucas.svg"}
-            titleComponent={<SecondHomeTitle />}
-          />
-        }
-        name={PageType.HOME_SECOND}
-      />
-      <Page
-        component={<StoryIntro />}
-        name={PageType.STORY_START}
-        translation={translation + PageDimensions[2]}
-      />
 
-      {Memories.map((m, i: number) => {
-        return (
-          <Page
-            key={`memory-${m.year}-${m.month}-${i}`}
-            component={
-              <MemoryScreen
-                memory={m}
-                isActive={normalized === PageDimensions[3 + i]}
-              />
-            }
-            name={PageType.MEMORY_AXELRA}
-            translation={translation + PageDimensions[3 + i]}
-          />
-        );
-      })}
+      {useMemo(
+        () => (
+          <>
+            <Page
+              translation={translation}
+              component={
+                <Home
+                  header
+                  order={[1, 2]}
+                  illustration={"lucas.svg"}
+                  titleComponent={<HomeTitle />}
+                />
+              }
+              name={PageType.HOME_FIRST}
+            />
+            <Page
+              translation={translation + PageDimensions[1]}
+              component={
+                <Home
+                  order={[2, 1]}
+                  illustration={"lucas.svg"}
+                  titleComponent={<SecondHomeTitle />}
+                />
+              }
+              name={PageType.HOME_SECOND}
+            />
+            <Page
+              component={<StoryIntro />}
+              name={PageType.STORY_START}
+              translation={translation + PageDimensions[2]}
+            />
+
+            {Memories.map((m, i: number) => {
+              return (
+                <Page
+                  key={`memory-${m.year}-${m.month}-${i}`}
+                  component={
+                    <MemoryScreen
+                      memory={m}
+                      isActive={normalized === PageDimensions[3 + i]}
+                    />
+                  }
+                  name={PageType.MEMORY_AXELRA}
+                  translation={translation + PageDimensions[3 + i]}
+                />
+              );
+            })}
+          </>
+        ),
+        [normalized, translation]
+      )}
     </Parent>
   );
 };

@@ -1,12 +1,12 @@
-import React, {useMemo} from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
-import {PageContainer} from "../../Layout/styled/PageContainer";
-import {ColoredSpan, SubTitle, Title} from "../../Layout/Typography";
-import {__COLORS, SPACING} from "../../Layout/Theme";
-import {ScrollDownIcon} from "../../components/ScrollDownIcon";
-import {useDispatch} from "react-redux";
-import {Rain} from "../../components/Rain/Rain";
-import {SocialStrip} from "../../components/SocialStrip";
+import { PageContainer } from "../../Layout/styled/PageContainer";
+import { ColoredSpan, SubTitle, Title } from "../../Layout/Typography";
+import { __COLORS, SPACING } from "../../Layout/Theme";
+import { ScrollDownIcon } from "../../components/ScrollDownIcon";
+import { useDispatch } from "react-redux";
+import { Rain } from "../../components/Rain/Rain";
+import { SocialStrip } from "../../components/SocialStrip";
 
 const Container = styled(PageContainer)`
   display: flex;
@@ -24,7 +24,6 @@ const Sub = styled(SubTitle)`
 `;
 
 export const StoryIntro = () => {
-  const dispatch = useDispatch();
   return useMemo(
     () => (
       <Container>
@@ -39,6 +38,6 @@ export const StoryIntro = () => {
         <ScrollDownIcon />
       </Container>
     ),
-    [dispatch]
+    []
   );
 };

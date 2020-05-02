@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import React, { useMemo } from "react";
+import styled, { keyframes } from "styled-components";
 import { Triangle } from "./Triangle";
 import { __COLORS, PAGE_TRANSITION, SPACING } from "../../Layout/Theme";
 import { Circle } from "./Circle";
@@ -101,10 +101,13 @@ export const RainElement = ({
 }: Props) => {
   const el = getElement(element, size, color, rotate, isEasterEgg);
 
-  return (
-    // @ts-ignore
-    <Container left={left} top={top} duration={duration}>
-      {el}
-    </Container>
+  return useMemo(
+    () => (
+      // @ts-ignore
+      <Container left={left} top={top} duration={duration}>
+        {el}
+      </Container>
+    ),
+    [duration, el, left, top]
   );
 };

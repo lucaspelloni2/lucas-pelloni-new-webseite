@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { ColorPickerContainer } from "../Pages/Home/ColorPicker";
 import useAppState from "../reducers/useAppState";
@@ -58,22 +58,25 @@ export const Slider = ({ ballSize }: Props) => {
   const { color, background } = useTheme();
   const { isDarkMode } = useAppState(s => s.darkMode);
   const { value } = useAppState(s => s.slider);
-  return (
-    <Container isDarkMode={isDarkMode}>
-      <InputSlider
-        background={background}
-        color={color}
-        type="range"
-        min="1"
-        max="100"
-        animated={value}
-        value={value}
-        ballSize={ballSize || 20}
-        onChange={e => {
-          const v = Number(e.target.value);
-          dispatch(setSliderValue(v));
-        }}
-      />
-    </Container>
+  return useMemo(
+    () => (
+      <Container isDarkMode={isDarkMode}>
+        <InputSlider
+          background={background}
+          color={color}
+          type="range"
+          min="1"
+          max="100"
+          animated={value}
+          value={value}
+          ballSize={ballSize || 20}
+          onChange={e => {
+            const v = Number(e.target.value);
+            dispatch(setSliderValue(v));
+          }}
+        />
+      </Container>
+    ),
+    [background, ballSize, color, dispatch, isDarkMode, value]
   );
 };
