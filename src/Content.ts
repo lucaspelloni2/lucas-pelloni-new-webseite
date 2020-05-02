@@ -7,6 +7,10 @@ export type Picture = {
   style?: CSSProperties;
 };
 
+export type Hashtag = {
+  title: string;
+};
+
 export type Achievement = {
   title: string;
   subtitle?: string;
@@ -14,6 +18,7 @@ export type Achievement = {
   description?: string;
   firstWordColor?: string;
   link?: string;
+  hashtags?: Hashtag[];
 };
 
 export type Memory = {
@@ -48,6 +53,18 @@ export const Memories: Memory[] = [
     achievement: {
       title: "Axelra has born",
       firstWordColor: __COLORS.FOURTH,
+      hashtags: [
+        {
+          title: "May-2019"
+        },
+        {
+          title: "Axelra-ag"
+        },
+        {
+          title: "Tech-venture-builder"
+        },
+        { title: "Tech-accelerator" }
+      ],
       subtitle:
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
       description:
@@ -90,13 +107,25 @@ export const Memories: Memory[] = [
     achievement: {
       title: "HackZurich Audience Award",
       subtitle:
-        "We have been selected in the top 500 applications from a global pool of over 5500 representing several elite universities. After 40 hours of hacking, where we implement our app called MAKADAY, we won the audience award at the biggest hackthon in Europe.    ",
+        "Together with Jonny Burger, we have been selected in the top 500 applications from a global pool of over 5500 representing several elite universities. After 40 hours of hacking, where we implemented our app called MAKADAY, we won the audience award at the biggest hackthon in Europe.    ",
       description:
         "MAKADAY combines locals' insight and google knowledge to plan your visit to a city and interact with your community by creating a day's schedule using a sequence of activities. Users are able to share their days and give rating for other days that have been already shared. After 40 hours of hacking this app at the #HackZurich18 , we won the Audience Award",
       pictures: [
         {
           src:
             "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/hack_zuri_4.jpg?alt=media&token=60e9f4da-f675-4e74-80c6-b5f375c28190"
+        },
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/hack_zuri_1.jpg?alt=media&token=56368723-87e7-409f-9e54-3f1e89a8f431"
+        },
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/hack_zuri_3.jpg?alt=media&token=9cfb02bc-4332-4df4-9155-d4bb742849f7"
+        },
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/audience.jpg?alt=media&token=ba274591-2c00-4250-bdef-cc9a37243244"
         }
       ]
     }
