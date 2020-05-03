@@ -114,13 +114,11 @@ export const Pages = () => {
             />
 
             {translatedMemories.map((m, i: number) => {
-              const isPrev = normalized === PageDimensions[3 + (i - 1)];
-              const isCurrent = normalized === PageDimensions[3 + i];
-              const isNext = normalized === PageDimensions[3 + i + 1];
+              const isActive = normalized === PageDimensions[3 + i];
               return (
                 <Page
                   key={`memory-${m.year}-${m.month}-${i}`}
-                  component={<MemoryScreen memory={m} isActive={isCurrent} />}
+                  component={<MemoryScreen memory={m} isActive={isActive} />}
                   name={PageType.MEMORY_AXELRA}
                   translation={translation + PageDimensions[3 + i]}
                 />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled, { keyframes } from "styled-components";
 import { __COLORS, DARK_MODE_TRANSITION, SPACING } from "../Layout/Theme";
 import { Icon, IconTypes } from "./Icon";
@@ -63,21 +63,24 @@ export const ScrollDownIcon = () => {
   const { isLeftPanelOpen } = useAppState(s => s.memory);
   const { isImageSection } = useImageSection();
 
-  return (
-    <DownIconWrapper isLeftPanelOpen={isLeftPanelOpen}>
-      <Circle
-        color={isImageSection ? __COLORS.WHITE : color}
-        onClick={() => dispatch(setTranslation(Direction.DOWN))}
-      >
-        <MyIcon
+  return useMemo(
+    () => (
+      <DownIconWrapper isLeftPanelOpen={isLeftPanelOpen}>
+        <Circle
           color={isImageSection ? __COLORS.WHITE : color}
-          name={IconTypes.ARROW_DOWN}
-          style={{
-            width: "100%",
-            height: "100%"
-          }}
-        />
-      </Circle>
-    </DownIconWrapper>
+          onClick={() => dispatch(setTranslation(Direction.DOWN))}
+        >
+          <MyIcon
+            color={isImageSection ? __COLORS.WHITE : color}
+            name={IconTypes.ARROW_DOWN}
+            style={{
+              width: "100%",
+              height: "100%"
+            }}
+          />
+        </Circle>
+      </DownIconWrapper>
+    ),
+    [color, dispatch, isImageSection, isLeftPanelOpen]
   );
 };
