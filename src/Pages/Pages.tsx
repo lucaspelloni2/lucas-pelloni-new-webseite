@@ -61,6 +61,8 @@ export const Pages = () => {
     return () => clearTimeout(timer);
   }, [direction]);
 
+  console.log("re-rendering on scroll");
+
   return (
     <Parent ref={ref}>
       <HistoryManager />
@@ -75,29 +77,35 @@ export const Pages = () => {
             <Page
               translation={translation}
               component={
-                <Home
-                  header
-                  order={[1, 2]}
-                  illustration={"lucas.svg"}
-                  titleComponent={<HomeTitle />}
-                />
+                normalized < PageDimensions[3] ? (
+                  <Home
+                    header
+                    order={[1, 2]}
+                    illustration={"lucas.svg"}
+                    titleComponent={<HomeTitle />}
+                  />
+                ) : null
               }
               name={PageType.HOME_FIRST}
             />
             <Page
               translation={translation + PageDimensions[1]}
               component={
-                <Home
-                  order={[2, 1]}
-                  illustration={"lucas.svg"}
-                  titleComponent={<SecondHomeTitle />}
-                />
+                normalized < PageDimensions[3] ? (
+                  <Home
+                    order={[2, 1]}
+                    illustration={"lucas.svg"}
+                    titleComponent={<SecondHomeTitle />}
+                  />
+                ) : null
               }
               name={PageType.HOME_SECOND}
             />
             <Page
               component={
-                <StoryIntro isActive={normalized === PageDimensions[2]} />
+                normalized < PageDimensions[4] ? (
+                  <StoryIntro isActive={normalized === PageDimensions[2]} />
+                ) : null
               }
               name={PageType.STORY_START}
               translation={translation + PageDimensions[2]}
@@ -108,10 +116,14 @@ export const Pages = () => {
                 <Page
                   key={`memory-${m.year}-${m.month}-${i}`}
                   component={
-                    <MemoryScreen
-                      memory={m}
-                      isActive={normalized === PageDimensions[3 + i]}
-                    />
+                    normalized === PageDimensions[3 + (i - 1)] ||
+                    normalized === PageDimensions[3 + (i + 1)] ||
+                    normalized === PageDimensions[3 + i] ? (
+                      <MemoryScreen
+                        memory={m}
+                        isActive={normalized === PageDimensions[3 + i]}
+                      />
+                    ) : null
                   }
                   name={PageType.MEMORY_AXELRA}
                   translation={translation + PageDimensions[3 + i]}
