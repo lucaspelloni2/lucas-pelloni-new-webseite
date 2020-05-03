@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { getAlphaColor, SPACING } from "../Layout/Theme";
 import { Logo } from "./Logo";
 import { FlexBox } from "../Layout/styled/FlexBox";
 import { useTextColor } from "../hooks/useTextColor";
+import { useDispatch } from "react-redux";
+import { setTranslation } from "../reducers/translation/actions";
+import { Direction } from "../reducers/translation/types";
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +15,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Item = styled.div<{ color: string }>`
+const Item = styled.a<{ color: string }>`
   &:hover:after {
     width: 100%;
     transition: 0.2s ease-in-out all;
@@ -27,6 +30,8 @@ const Item = styled.div<{ color: string }>`
     margin: 2px 0;
     background: ${props => getAlphaColor(0.5, props.color)};
   }
+  color: ${props => props.color};
+  text-decoration: none;
   position: relative;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -37,12 +42,26 @@ const Item = styled.div<{ color: string }>`
 
 export const Header = () => {
   const { color } = useTextColor();
-  return (
-    <Container>
-      <Logo />
-      <FlexBox flex={1} />
-      <Item color={color}>My Story</Item>
-      <Item color={color}>Contact me</Item>
-    </Container>
+  const dispatch = useDispatch();
+  return useMemo(
+    () => (
+      <Container>
+        <Logo />
+        <FlexBox flex={1} />
+        <Item
+          color={color}
+          onClick={() => dispatch(setTranslation(Direction.DOWN))}
+        >
+          My Story
+        </Item>
+        <Item
+          color={color}
+          href="mailto:email@lucas.pelloni@axelra.com?subject=Hello!"
+        >
+          Contact me
+        </Item>
+      </Container>
+    ),
+    [color, dispatch]
   );
 };

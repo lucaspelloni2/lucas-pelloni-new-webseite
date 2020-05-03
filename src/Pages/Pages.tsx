@@ -71,7 +71,12 @@ export const Pages = () => {
       {normalized <= PageDimensions[2] && <ColorPicker />}
       {normalized === PageDimensions[2] && <Slider />}
       {normalized < PageDimensions[3] && <Circle />}
-      <Years visible={isImageSection} />
+      {useMemo(
+        () => (
+          <Years visible={isImageSection} />
+        ),
+        [isImageSection]
+      )}
 
       {useMemo(
         () => (
@@ -80,12 +85,7 @@ export const Pages = () => {
               translation={translation}
               component={
                 !isImageSection ? (
-                  <Home
-                    header
-                    order={[1, 2]}
-                    illustration={"lucas.svg"}
-                    titleComponent={<HomeTitle />}
-                  />
+                  <Home header order={[1, 2]} titleComponent={<HomeTitle />} />
                 ) : null
               }
               name={PageType.HOME_FIRST}
@@ -94,11 +94,7 @@ export const Pages = () => {
               translation={translation + PageDimensions[1]}
               component={
                 !isImageSection ? (
-                  <Home
-                    order={[2, 1]}
-                    illustration={"lucas.svg"}
-                    titleComponent={<SecondHomeTitle />}
-                  />
+                  <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
                 ) : null
               }
               name={PageType.HOME_SECOND}

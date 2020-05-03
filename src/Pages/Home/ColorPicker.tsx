@@ -1,4 +1,4 @@
-import React, { DOMAttributes } from "react";
+import React, { DOMAttributes, useMemo } from "react";
 import styled, { keyframes } from "styled-components";
 import {
   __COLORS,
@@ -70,37 +70,40 @@ export const ColorPicker = ({ ...props }: Props) => {
   const { translation } = useNormalizedTransition();
   const dispatch = useDispatch();
   const colors = getColors();
-  return (
-    <ColorPickerContainer {...props} isDarkMode={isDarkMode}>
-      {colors.map((c: string) => {
-        return (
-          <Color
-            visible={translation < PageDimensions[2]}
-            key={c}
-            color={c}
-            onSelect={(c: string) => {
-              dispatch(setColor(c));
-            }}
-          />
-        );
-      })}
-      <Counter />
-      <Color
-        visible={translation === PageDimensions[2]}
-        onSelect={(c: string) => {
-          dispatch(shuffle());
-        }}
-        isShuffle
-        color={__GRAY_SCALE._800}
-      />
-      <Color
-        visible
-        onSelect={(c: string) => {
-          dispatch(toggleDarkMode());
-        }}
-        isDarkModeElement
-        color={__GRAY_SCALE._800}
-      />
-    </ColorPickerContainer>
+  return useMemo(
+    () => (
+      <ColorPickerContainer {...props} isDarkMode={isDarkMode}>
+        {colors.map((c: string) => {
+          return (
+            <Color
+              visible={translation < PageDimensions[2]}
+              key={c}
+              color={c}
+              onSelect={(c: string) => {
+                dispatch(setColor(c));
+              }}
+            />
+          );
+        })}
+        <Counter />
+        <Color
+          visible={translation === PageDimensions[2]}
+          onSelect={(c: string) => {
+            dispatch(shuffle());
+          }}
+          isShuffle
+          color={__GRAY_SCALE._800}
+        />
+        <Color
+          visible
+          onSelect={(c: string) => {
+            dispatch(toggleDarkMode());
+          }}
+          isDarkModeElement
+          color={__GRAY_SCALE._800}
+        />
+      </ColorPickerContainer>
+    ),
+    [colors, dispatch, isDarkMode, props, translation]
   );
 };

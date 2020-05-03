@@ -12,6 +12,7 @@
     "@types/react": "^16.9.0",
     "@types/react-scroll": "^1.5.4",
     "@types/showdown": "^1.9.3",
+    "@u-wave/react-vimeo": "^0.8.3",
     "html-to-react": "^1.4.2",
     "interpolate-range": "^2.1.0",
     "lodash": "^4.17.15",

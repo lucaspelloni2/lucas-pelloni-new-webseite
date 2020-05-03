@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useMemo } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { FlexBox } from "../../Layout/styled/FlexBox";
@@ -48,28 +48,25 @@ const Image = styled(IllustrationSvg)`
 type Props = {
   header?: boolean;
   order: number[];
-  illustration: string;
   titleComponent: ReactNode;
 };
 
-export const Home = ({
-  header,
-  order,
-  illustration,
-  titleComponent
-}: Props) => {
-  return (
-    <Container>
-      <TextContainer flex={1} order={order[0]}>
-        {header && <Header />}
-        <FlexBox flex={1} />
-        {titleComponent}
-      </TextContainer>
+export const Home = ({ header, order, titleComponent }: Props) => {
+  return useMemo(
+    () => (
+      <Container>
+        <TextContainer flex={1} order={order[0]}>
+          {header && <Header />}
+          <FlexBox flex={1} />
+          {titleComponent}
+        </TextContainer>
 
-      <IllustrationContainer flex={1} order={order[1]}>
-        <Image />
-      </IllustrationContainer>
-      <ScrollDownIcon />
-    </Container>
+        <IllustrationContainer flex={1} order={order[1]}>
+          <Image />
+        </IllustrationContainer>
+        <ScrollDownIcon />
+      </Container>
+    ),
+    [header, order, titleComponent]
   );
 };

@@ -1,19 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import styled, { css } from "styled-components";
 import {
   __COLORS,
   LEFT_PANEL_TRANSITION,
+  LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS,
   MEMORY_LEFT_PANEL_WIDTH,
   SPACING
 } from "../Layout/Theme";
 import { CloseIcon } from "./CloseIcon";
 import useAppState from "../reducers/useAppState";
-import { fadeInBezier, fadeOut } from "../Layout/AnimationHelper";
+import { fadeInBezier } from "../Layout/AnimationHelper";
 import { useMemoryColor } from "../hooks/useMemoryColor";
 import { MemoryLogo } from "./MemoryLogo";
 import { useMarkdown } from "../hooks/useMarkdown";
 import { Button } from "./Button";
 import { Link } from "../Layout/Typography";
+// @ts-ignore
+import Vimeo from "@u-wave/react-vimeo";
 
 const Container = styled.div<{ isLeftPanelOpen: boolean }>`
   width: ${props => (props.isLeftPanelOpen ? MEMORY_LEFT_PANEL_WIDTH : 0)};
@@ -55,7 +58,7 @@ const Footer = styled.div`
   z-index: 10;
 `;
 
-const TextDelay = styled.div<{ showText: boolean; color: string }>`
+const TextDelay = styled.div<{ isLeftPanelOpen: boolean; color: string }>`
   & > p > a {
     color: ${props => props.color};
   }
@@ -66,37 +69,42 @@ const TextDelay = styled.div<{ showText: boolean; color: string }>`
     color: ${__COLORS.PRIMARY};
     font-weight: 500;
   }
+  opacity: ${props => (props.isLeftPanelOpen ? 1 : 0)};
+  transition: ${LEFT_PANEL_TRANSITION};
   animation: ${props =>
-    props.showText
+    props.isLeftPanelOpen
       ? css`
-          ${fadeInBezier} 5s forwards
+          ${fadeInBezier} ${LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS *
+            13}s forwards
         `
-      : css`
-          ${fadeOut} 2s forwards
-        `};
+      : "none"};
   color: ${__COLORS.PRIMARY};
   font-size: 18px;
+`;
+
+const MyButton = styled(Button)<{ isLeftPanelOpen: boolean }>`
+  animation: ${props =>
+    props.isLeftPanelOpen
+      ? css`
+          ${fadeInBezier} ${LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS *
+            15}s forwards
+        `
+      : "none"};
+  opacity: ${props => (props.isLeftPanelOpen ? 1 : 0)};
+  transition: ${LEFT_PANEL_TRANSITION};
 `;
 type Props = {
   isActive: boolean;
 };
 export const MemoryLeftPanel = ({ isActive }: Props) => {
   const { isLeftPanelOpen, currentMemory } = useAppState(s => s.memory);
-  const [showText, setShowText] = useState(false);
+
   const { color } = useMemoryColor();
   const { html } = useMarkdown({
     text: currentMemory.achievement.description || ""
   });
 
-  const link = currentMemory.achievement.link;
-
-  useEffect(() => {
-    if (isLeftPanelOpen && isActive) {
-      setShowText(true);
-    } else if (!isLeftPanelOpen && isActive) {
-      setShowText(false);
-    }
-  }, [isActive, isLeftPanelOpen]);
+  const { link, videos } = currentMemory.achievement;
 
   return useMemo(
     () => (
@@ -106,21 +114,33 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
           <MemoryLogo />
         </Header>
         <Body isLeftPanelOpen={isLeftPanelOpen}>
-          <TextDelay showText={showText} color={color}>
+          <TextDelay isLeftPanelOpen={isLeftPanelOpen} color={color}>
             {html}
+            {videos &&
+              videos.map((v, i: number) => (
+                <Vimeo
+                  video={v.videoId}
+                  autoplay={i === 0}
+                  style={{ display: "flex", justifyContent: "center" }}
+                />
+              ))}
           </TextDelay>
         </Body>
         <Footer>
           {isLeftPanelOpen && link && (
-            <Button background={color} secondary>
+            <MyButton
+              background={color}
+              secondary
+              isLeftPanelOpen={isLeftPanelOpen}
+            >
               <Link color={color} href={link} target="_blank">
                 Learn More.
               </Link>
-            </Button>
+            </MyButton>
           )}
         </Footer>
       </Container>
     ),
-    [color, html, isLeftPanelOpen, showText]
+    [color, html, isLeftPanelOpen, link]
   );
 };

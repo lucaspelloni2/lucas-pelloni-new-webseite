@@ -11,12 +11,17 @@ export type Hashtag = {
   title: string;
 };
 
+export type VimeoVideo = {
+  videoId: number | string;
+};
+
 export type Achievement = {
   title: string;
   subtitle?: string;
   pictures: Picture[];
   description?: string;
   logo?: Picture;
+  videos?: VimeoVideo[];
   firstWordColor?: string;
   link?: string;
   hashtags?: Hashtag[];
@@ -164,6 +169,11 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
             "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/audience.jpg"
         }
       ],
+      videos: [
+        {
+          videoId: 414553471
+        }
+      ],
       logo: {
         src:
           "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/hack_zuri_logo.png"
@@ -212,91 +222,6 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         },
         { title: "ethereum" },
         { title: "openscience" }
-      ]
-    }
-  },
-  {
-    year: 2000,
-    month: MONTHS.MARCH,
-    primaryColor: "#ab39dd",
-    achievement: {
-      title: "My birth",
-      subtitle: "lorem lorem lorem lorem",
-      description:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-      pictures: [
-        {
-          src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
-        }
-      ]
-    }
-  },
-  {
-    year: 1998,
-    month: MONTHS.MARCH,
-    primaryColor: "#ab39dd",
-    achievement: {
-      title: "My birth",
-      subtitle: "lorem lorem lorem lorem",
-      description:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-      pictures: [
-        {
-          src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
-        }
-      ]
-    }
-  },
-  {
-    year: 1997,
-    month: MONTHS.MARCH,
-    primaryColor: "#ab39dd",
-    achievement: {
-      title: "My birth",
-      subtitle: "lorem lorem lorem lorem",
-      description:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-      pictures: [
-        {
-          src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
-        }
-      ]
-    }
-  },
-  {
-    year: 1995,
-    month: MONTHS.MARCH,
-    primaryColor: "#ab39dd",
-    achievement: {
-      title: "My birth",
-      subtitle: "lorem lorem lorem lorem",
-      description:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-      pictures: [
-        {
-          src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
-        }
-      ]
-    }
-  },
-  {
-    year: 1993,
-    month: MONTHS.MARCH,
-    primaryColor: "#ab39dd",
-    achievement: {
-      title: "My birth",
-      subtitle: "lorem lorem lorem lorem",
-      description:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-      pictures: [
-        {
-          src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
-        }
       ]
     }
   }

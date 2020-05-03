@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { Icon, IconTypes } from "./Icon";
 import { __COLORS, SPACING } from "../Layout/Theme";
@@ -23,26 +23,29 @@ const SocialIcon = styled(Icon)<{ size: number; fill: string; hover: string }>`
 export const SocialStrip = () => {
   const { color } = useTextColor();
   const SIZE = 50;
-  return (
-    <Container>
-      <SocialIcon
-        fill={color}
-        name={IconTypes.GITHUB}
-        size={SIZE}
-        hover={__COLORS.FIFTH}
-      />
-      <SocialIcon
-        fill={color}
-        name={IconTypes.LINKEDIN}
-        size={SIZE}
-        hover={__COLORS.SECONDARY}
-      />
-      <SocialIcon
-        fill={color}
-        name={IconTypes.GOOGLE_SCHOLAR}
-        size={SIZE}
-        hover={__COLORS.TERTIARY}
-      />
-    </Container>
+  return useMemo(
+    () => (
+      <Container>
+        <SocialIcon
+          fill={color}
+          name={IconTypes.GITHUB}
+          size={SIZE}
+          hover={__COLORS.FIFTH}
+        />
+        <SocialIcon
+          fill={color}
+          name={IconTypes.LINKEDIN}
+          size={SIZE}
+          hover={__COLORS.SECONDARY}
+        />
+        <SocialIcon
+          fill={color}
+          name={IconTypes.GOOGLE_SCHOLAR}
+          size={SIZE}
+          hover={__COLORS.TERTIARY}
+        />
+      </Container>
+    ),
+    [color]
   );
 };

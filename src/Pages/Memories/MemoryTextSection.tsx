@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { FlexBox } from "../../Layout/styled/FlexBox";
 import { ColoredText } from "../../components/ColoredTitle";
@@ -56,41 +56,50 @@ type Props = {
 export const MemoryTextSection = ({ memory }: Props) => {
   const dispatch = useDispatch();
   const { achievement } = memory;
-  return (
-    <TextWrapper flex={1}>
-      <FlexBox flex={1} />
-      <TitleWrapper>
-        <MyTitle>
-          <ColoredText
-            text={achievement.title}
-            firstWordColor={memory.primaryColor}
-          />
-        </MyTitle>
-        {achievement.hashtags && (
-          <Hashtags
-            hashtags={achievement.hashtags}
-            color={memory.primaryColor}
-          />
-        )}
-        <MySubTitle>{achievement.subtitle}</MySubTitle>
-        <Buttons>
-          <Button
-            background={memory.primaryColor}
-            onClick={() => dispatch(toggleLeftPanel())}
-          >
-            Read the story{" "}
-            <Icon
-              name={IconTypes.ARROW_RIGHT}
-              color={__COLORS.WHITE}
-              style={{
-                marginLeft: SPACING,
-                width: SPACING * 2.5,
-                height: SPACING * 2.5
-              }}
+  return useMemo(
+    () => (
+      <TextWrapper flex={1}>
+        <FlexBox flex={1} />
+        <TitleWrapper>
+          <MyTitle>
+            <ColoredText
+              text={achievement.title}
+              firstWordColor={memory.primaryColor}
             />
-          </Button>
-        </Buttons>
-      </TitleWrapper>
-    </TextWrapper>
+          </MyTitle>
+          {achievement.hashtags && (
+            <Hashtags
+              hashtags={achievement.hashtags}
+              color={memory.primaryColor}
+            />
+          )}
+          <MySubTitle>{achievement.subtitle}</MySubTitle>
+          <Buttons>
+            <Button
+              background={memory.primaryColor}
+              onClick={() => dispatch(toggleLeftPanel())}
+            >
+              Read the story{" "}
+              <Icon
+                name={IconTypes.ARROW_RIGHT}
+                color={__COLORS.WHITE}
+                style={{
+                  marginLeft: SPACING,
+                  width: SPACING * 2.5,
+                  height: SPACING * 2.5
+                }}
+              />
+            </Button>
+          </Buttons>
+        </TitleWrapper>
+      </TextWrapper>
+    ),
+    [
+      achievement.hashtags,
+      achievement.subtitle,
+      achievement.title,
+      dispatch,
+      memory.primaryColor
+    ]
   );
 };
