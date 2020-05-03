@@ -51,7 +51,7 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
           <MemoryImages memory={memory} />
         </FlexBox>
         <ContentWrapper>
-          {isActive && <MemoryTextSection memory={memory} />}
+          <MemoryTextSection memory={memory} />
         </ContentWrapper>
         <ScrollDownIcon />
       </Container>
