@@ -16,6 +16,7 @@ export type Achievement = {
   subtitle?: string;
   pictures: Picture[];
   description?: string;
+  logo?: Picture;
   firstWordColor?: string;
   link?: string;
   hashtags?: Hashtag[];
@@ -66,6 +67,10 @@ export const Memories: Memory[] = [
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
       description:
         "Axelra has been founded in May 2019 by Peach Zwssyig, Thomas Bocek, Severin Wullschleger and myself.",
+      logo: {
+        src:
+          "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/logo%2Faxelra_logo.png?alt=media&token=9e3149ab-f59f-4e45-b353-fcf7bbabc089"
+      },
       pictures: [
         {
           src:
@@ -138,6 +143,10 @@ export const Memories: Memory[] = [
             "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/audience.jpg?alt=media&token=ba274591-2c00-4250-bdef-cc9a37243244"
         }
       ],
+      logo: {
+        src:
+          "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/logo%2Fhack_zuri_logo.png?alt=media&token=0f3a46ab-dafe-49df-aa2b-d9b78105f4d0"
+      },
       hashtags: [
         {
           title: "hackzurich2018"

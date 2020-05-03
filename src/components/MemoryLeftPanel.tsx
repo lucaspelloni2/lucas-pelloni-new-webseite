@@ -38,10 +38,10 @@ const Header = styled.div<{ background: string }>`
 const Body = styled.div<{ isLeftPanelOpen: boolean }>`
   flex: 1;
   overflow-y: scroll;
-  padding: ${props =>
-    props.isLeftPanelOpen ? `${SPACING * 5}px ${SPACING * 5}` : 0}px;
+  padding: ${props => (props.isLeftPanelOpen ? `0 ${SPACING * 5}` : 0)}px;
   transition: inherit;
   text-align: justify;
+  margin-top: ${SPACING * 10}px;
 `;
 
 const Footer = styled.div`

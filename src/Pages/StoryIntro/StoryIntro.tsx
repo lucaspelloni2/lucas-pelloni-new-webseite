@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
-import { ColoredSpan, SubTitle, Title } from "../../Layout/Typography";
+import { ColoredSpan, Link, SubTitle, Title } from "../../Layout/Typography";
 import { __COLORS, SPACING } from "../../Layout/Theme";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 import { Rain } from "../../components/Rain/Rain";
@@ -27,11 +27,25 @@ export const StoryIntro = () => {
     () => (
       <Container>
         <Rain />
-        <MyTitle>Lucas Pelloni - 18.03.1993</MyTitle>
+        <MyTitle>Lucas Pelloni - 27 years old.</MyTitle>
         <Sub>
-          Grew up in <ColoredSpan color={__COLORS.TERTIARY}>Ticino</ColoredSpan>
+          Grew up in{" "}
+          <Link
+            color={__COLORS.TERTIARY}
+            href="https://en.wikipedia.org/wiki/Lugano"
+            target="_blank"
+          >
+            Lugano (TI)
+          </Link>
           , resident and working in{" "}
-          <ColoredSpan color={__COLORS.FOURTH}>Zurich</ColoredSpan>.
+          <Link
+            color={__COLORS.FOURTH}
+            href="https://en.wikipedia.org/wiki/Z%C3%BCrich"
+            target="_blank"
+          >
+            Zurich (ZH)
+          </Link>
+          .
         </Sub>
         <SocialStrip />
         <ScrollDownIcon />

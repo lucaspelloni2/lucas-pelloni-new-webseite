@@ -28,6 +28,8 @@ export const NUMBER_OF_PAGES = 20;
 export const MEMORY_RIGHT_PANEL_WIDTH = SPACING * 15;
 export const MEMORY_LEFT_PANEL_WIDTH = `40vw`;
 export const YEAR_HEIGHT = SPACING * 7;
+export const DEFAULT_LOGO =
+  "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/logo%2Fdefault_logo.png?alt=media&token=c0cf4352-c0fb-4fe3-8696-0de25985ef81";
 
 export const PageDimensions = new Array(NUMBER_OF_PAGES)
   .fill(0)

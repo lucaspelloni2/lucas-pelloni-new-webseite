@@ -25,3 +25,22 @@ export const ColoredSpan = styled.span<{ color: string }>`
   color: ${props => props.color};
   transition: ${COLOR_TRANSITION};
 `;
+
+export const Link = styled.a<{ color?: string }>`
+  &:hover:after {
+    width: 100%;
+  }
+  :after {
+    content: "";
+    width: 0px;
+    height: 2px;
+    display: block;
+    background: ${props => props.color || "inherit"};
+    transition: ${COLOR_TRANSITION};
+  }
+  display: inline-block;
+
+  color: ${props => props.color || "inherit"};
+  text-decoration: none;
+  cursor: pointer;
+`;

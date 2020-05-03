@@ -38,6 +38,7 @@ const Circle = styled.div<{ color: string }>`
   border: 1px solid ${props => props.color};
   align-items: center;
   cursor: pointer;
+  margin-bottom: ${SPACING * 2}px;
 `;
 
 const MyIcon = styled(Icon)`
@@ -46,7 +47,6 @@ const MyIcon = styled(Icon)`
 
 const DownIconWrapper = styled.div`
   position: absolute;
-  height: ${SPACING * 10}px;
   width: 100%;
   bottom: 0;
   display: flex;

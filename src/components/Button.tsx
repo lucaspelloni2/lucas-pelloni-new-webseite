@@ -21,7 +21,7 @@ const Container = styled.div<{
   border-radius: 6px;
   display: flex;
   font-size: 20px;
-  z-index: 10;
+  z-index: 100;
   align-items: center;
   font-weight: 700;
   color: ${__COLORS.WHITE};
