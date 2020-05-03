@@ -42,23 +42,26 @@ type Props = {
 export const Year = ({ year }: Props) => {
   const dispatch = useDispatch();
   const { currentMemory } = useAppState(s => s.memory);
+  const { translation } = useAppState(s => s.translation);
   const isActive = currentMemory.year === year;
+
+
   return useMemo(
     () => (
       <Container
         isActive={isActive}
-        onClick={() =>
+        onClick={() => {
           dispatch(
             setCurrentMemory(
               Memories.find(c => c.year === year) || currentMemory
             )
-          )
-        }
+          );
+        }}
         background={currentMemory.primaryColor}
       >
         <Label>{year}</Label>
       </Container>
     ),
-    [currentMemory, dispatch, isActive, year]
+    [currentMemory, dispatch, isActive, translation, year]
   );
 };

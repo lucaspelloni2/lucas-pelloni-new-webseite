@@ -42,7 +42,7 @@ const Body = styled.div<{ isLeftPanelOpen: boolean }>`
   padding: ${props => (props.isLeftPanelOpen ? `0 ${SPACING * 5}` : 0)}px;
   transition: inherit;
   text-align: justify;
-  margin-top: ${SPACING * 10}px;
+  margin-top: ${SPACING * 8}px;
 `;
 
 const Footer = styled.div`
@@ -57,6 +57,7 @@ const TextDelay = styled.div<{ showText: boolean; color: string }>`
     color: ${__COLORS.PRIMARY};
   }
   & > ol > li > p {
+    color: ${__COLORS.PRIMARY};
     font-weight: 500;
   }
   animation: ${props =>
@@ -88,6 +89,7 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
       setShowText(false);
     }
   }, [isActive, isLeftPanelOpen]);
+
   return (
     <Container isLeftPanelOpen={isLeftPanelOpen}>
       <Header background={color}>

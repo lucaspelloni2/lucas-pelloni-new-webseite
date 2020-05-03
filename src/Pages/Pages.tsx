@@ -109,6 +109,7 @@ export const Pages = () => {
                     <MemoryScreen
                       memory={m}
                       isActive={normalized === PageDimensions[3 + i]}
+                      memoryTranslation={translation + PageDimensions[3 + i]}
                     />
                   }
                   name={PageType.MEMORY_AXELRA}
