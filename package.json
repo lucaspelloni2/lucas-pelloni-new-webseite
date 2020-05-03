@@ -26,6 +26,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "scroll-snap": "^3.0.1",
+    "showdown": "^1.9.1",
     "styled-components": "latest",
     "typescript": "~3.7.2",
     "uuid": "latest"
