@@ -93,6 +93,13 @@ const MyButton = styled(Button)<{ isLeftPanelOpen: boolean }>`
   opacity: ${props => (props.isLeftPanelOpen ? 1 : 0)};
   transition: ${LEFT_PANEL_TRANSITION};
 `;
+
+const VideoWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 type Props = {
   isActive: boolean;
 };
@@ -116,14 +123,16 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
         <Body isLeftPanelOpen={isLeftPanelOpen}>
           <TextDelay isLeftPanelOpen={isLeftPanelOpen} color={color}>
             {html}
-            {videos &&
-              videos.map((v, i: number) => (
-                <Vimeo
-                  video={v.videoId}
-                  autoplay={i === 0}
-                  style={{ display: "flex", justifyContent: "center" }}
-                />
-              ))}
+            <VideoWrapper>
+              {videos &&
+                videos.map((v, i: number) => (
+                  <Vimeo
+                    video={v.videoId}
+                    autoplay={i === 0}
+                    style={{ display: "flex", justifyContent: "center" }}
+                  />
+                ))}
+            </VideoWrapper>
           </TextDelay>
         </Body>
         <Footer>
