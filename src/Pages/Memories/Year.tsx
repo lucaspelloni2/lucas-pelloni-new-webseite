@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { Memories, Memory } from "../../Content";
+import { Memory } from "../../Content";
 import { useDispatch } from "react-redux";
 import {
   __COLORS,
@@ -43,7 +43,6 @@ type Props = {
 export const Year = ({ year }: Props) => {
   const dispatch = useDispatch();
   const { currentMemory, translatedMemories } = useAppState(s => s.memory);
-  const { translation } = useAppState(s => s.translation);
   const isActive = currentMemory.year === year;
 
   return useMemo(
@@ -52,12 +51,6 @@ export const Year = ({ year }: Props) => {
         isActive={isActive}
         onClick={() => {
           const destination = translatedMemories.find(m => m.year === year);
-          console.log(
-            "translation destination",
-            destination,
-            "now ",
-            translation
-          );
           dispatch(setNumberTranslation(Number(destination?.translation) * -1));
           dispatch(setCurrentMemory(destination || currentMemory));
         }}
@@ -66,6 +59,6 @@ export const Year = ({ year }: Props) => {
         <Label>{year}</Label>
       </Container>
     ),
-    [currentMemory, dispatch, isActive, translation, year]
+    [currentMemory, dispatch, isActive, translatedMemories, year]
   );
 };

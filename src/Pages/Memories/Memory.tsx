@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { FlexBox } from "../../Layout/styled/FlexBox";
@@ -43,16 +43,19 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
     }
   }, [translation, isActive, dispatch, memory]);
 
-  return (
-    <Container isDarkMode={isDarkMode}>
-      <MemoryLeftPanel isActive={isActive} />
-      <FlexBox flex={1}>
-        <MemoryImages memory={memory} />
-      </FlexBox>
-      <ContentWrapper>
-        <MemoryTextSection memory={memory} />
-      </ContentWrapper>
-      <ScrollDownIcon />
-    </Container>
+  return useMemo(
+    () => (
+      <Container isDarkMode={isDarkMode}>
+        {isActive && <MemoryLeftPanel isActive={isActive} />}
+        <FlexBox flex={1}>
+          <MemoryImages memory={memory} />
+        </FlexBox>
+        <ContentWrapper>
+          {isActive && <MemoryTextSection memory={memory} />}
+        </ContentWrapper>
+        <ScrollDownIcon />
+      </Container>
+    ),
+    [isActive, isDarkMode, memory]
   );
 };

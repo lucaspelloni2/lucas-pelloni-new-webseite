@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { Memory, Picture } from "../../Content";
 import { MemoryImage } from "./MemoryImage";
@@ -36,20 +36,22 @@ export const MemoryImages = ({ memory }: Props) => {
     );
   }, [totalPictures]);
 
-
-  return (
-    <Images>
-      <CarouselArrow left memory={memory} onClick={prev} />
-      {pictures.map((picture: Picture, index: number) => {
-        return (
-          <MemoryImage
-            key={picture.src}
-            picture={picture}
-            pictureTranslation={pictureTranslation + index * PAGE_WIDTH}
-          />
-        );
-      })}
-      <CarouselArrow memory={memory} onClick={next} />
-    </Images>
+  return useMemo(
+    () => (
+      <Images>
+        <CarouselArrow left memory={memory} onClick={prev} />
+        {pictures.map((picture: Picture, index: number) => {
+          return (
+            <MemoryImage
+              key={picture.src}
+              picture={picture}
+              pictureTranslation={pictureTranslation + index * PAGE_WIDTH}
+            />
+          );
+        })}
+        <CarouselArrow memory={memory} onClick={next} />
+      </Images>
+    ),
+    [memory, next, pictureTranslation, pictures, prev]
   );
 };

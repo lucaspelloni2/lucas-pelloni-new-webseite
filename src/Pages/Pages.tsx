@@ -96,7 +96,9 @@ export const Pages = () => {
               name={PageType.HOME_SECOND}
             />
             <Page
-              component={<StoryIntro />}
+              component={
+                <StoryIntro isActive={normalized === PageDimensions[2]} />
+              }
               name={PageType.STORY_START}
               translation={translation + PageDimensions[2]}
             />
@@ -118,7 +120,7 @@ export const Pages = () => {
             })}
           </>
         ),
-        [normalized, translation]
+        [normalized, translatedMemories, translation]
       )}
     </Parent>
   );

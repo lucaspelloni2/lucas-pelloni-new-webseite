@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled, { css } from "styled-components";
 import {
   __COLORS,
@@ -90,18 +90,21 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
     }
   }, [isActive, isLeftPanelOpen]);
 
-  return (
-    <Container isLeftPanelOpen={isLeftPanelOpen}>
-      <Header background={color}>
-        <CloseIcon />
-        <MemoryLogo />
-      </Header>
-      <Body isLeftPanelOpen={isLeftPanelOpen}>
-        <TextDelay showText={showText} color={color}>
-          {html}
-        </TextDelay>
-      </Body>
-      <Footer />
-    </Container>
+  return useMemo(
+    () => (
+      <Container isLeftPanelOpen={isLeftPanelOpen}>
+        <Header background={color}>
+          <CloseIcon />
+          <MemoryLogo />
+        </Header>
+        <Body isLeftPanelOpen={isLeftPanelOpen}>
+          <TextDelay showText={showText} color={color}>
+            {html}
+          </TextDelay>
+        </Body>
+        <Footer />
+      </Container>
+    ),
+    [color, html, isLeftPanelOpen, showText]
   );
 };

@@ -6,6 +6,7 @@ import { __COLORS, SPACING } from "../../Layout/Theme";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 import { Rain } from "../../components/Rain/Rain";
 import { SocialStrip } from "../../components/SocialStrip";
+import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 
 const Container = styled(PageContainer)`
   display: flex;
@@ -21,12 +22,14 @@ const Sub = styled(SubTitle)`
   margin-top: -${SPACING * 3}px;
   font-size: 30px;
 `;
-
-export const StoryIntro = () => {
+type Props = {
+  isActive: boolean;
+};
+export const StoryIntro = ({ isActive }: Props) => {
   return useMemo(
     () => (
       <Container>
-        <Rain />
+        {isActive && <Rain />}
         <MyTitle>Lucas Pelloni - 27 years old.</MyTitle>
         <Sub>
           Grew up in{" "}
