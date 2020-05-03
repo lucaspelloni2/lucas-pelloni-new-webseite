@@ -1,5 +1,6 @@
 export enum ActionTypes {
-  SET_TRANSLATION = "SET_TRANSLATION"
+  SET_TRANSLATION = "SET_TRANSLATION",
+  SET_NUMBER_TRANSLATION = "SET_NUMBER_TRANSLATION"
 }
 
 export enum Direction {
@@ -14,6 +15,11 @@ export enum Direction {
 export type SetTranslation = {
   type: ActionTypes.SET_TRANSLATION;
   direction: Direction | null;
+};
+
+export type SetNumberTranslation = {
+  type: ActionTypes.SET_NUMBER_TRANSLATION;
+  translation: number;
 };
 
 /**

@@ -28,6 +28,7 @@ export type Memory = {
   primaryColor: string;
   secondaryColor?: string;
   achievement: Achievement;
+  translation?: number;
 };
 
 export enum MONTHS {

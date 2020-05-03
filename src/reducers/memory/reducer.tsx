@@ -6,10 +6,15 @@ import {
 } from "./types";
 import _ from "lodash";
 import { Memories, Memory } from "../../Content";
+import { PageDimensions } from "../../Layout/Theme";
 
 const initialState: YearState = {
   isLeftPanelOpen: false,
   currentMemory: Memories[0],
+  translatedMemories: Memories.map((m, i: number) => ({
+    ...m,
+    translation: PageDimensions[3 + i]
+  })),
   grouped: _(Memories)
     .groupBy((e: Memory) => Number(e.year))
     .orderBy(year => Number(year), "desc")

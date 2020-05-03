@@ -20,4 +20,5 @@ export type YearState = {
   currentMemory: Memory;
   isLeftPanelOpen: boolean;
   grouped: Memory[][];
+  translatedMemories: Memory[];
 };

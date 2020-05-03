@@ -1,6 +1,7 @@
 import {
   ActionTypes,
   Direction,
+  SetNumberTranslation,
   SetTranslation,
   TranslationState
 } from "./types";
@@ -33,13 +34,18 @@ const getTranslation = (
 
 const translationReducer = (
   state: TranslationState = initialState,
-  action: SetTranslation
+  action: SetTranslation | SetNumberTranslation
 ): TranslationState => {
   switch (action.type) {
     case ActionTypes.SET_TRANSLATION:
       return {
         ...state,
         translation: getTranslation(state.translation, action.direction)
+      };
+    case ActionTypes.SET_NUMBER_TRANSLATION:
+      return {
+        ...state,
+        translation: action.translation
       };
     default:
       return state;

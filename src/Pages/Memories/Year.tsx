@@ -10,6 +10,7 @@ import {
 } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
 import { setCurrentMemory } from "../../reducers/memory/actions";
+import { setNumberTranslation } from "../../reducers/translation/actions";
 
 const Container = styled.div<{ background: string; isActive: boolean }>`
   &:hover {
@@ -41,21 +42,24 @@ type Props = {
 };
 export const Year = ({ year }: Props) => {
   const dispatch = useDispatch();
-  const { currentMemory } = useAppState(s => s.memory);
+  const { currentMemory, translatedMemories } = useAppState(s => s.memory);
   const { translation } = useAppState(s => s.translation);
   const isActive = currentMemory.year === year;
-
 
   return useMemo(
     () => (
       <Container
         isActive={isActive}
         onClick={() => {
-          dispatch(
-            setCurrentMemory(
-              Memories.find(c => c.year === year) || currentMemory
-            )
+          const destination = translatedMemories.find(m => m.year === year);
+          console.log(
+            "translation destination",
+            destination,
+            "now ",
+            translation
           );
+          dispatch(setNumberTranslation(Number(destination?.translation) * -1));
+          dispatch(setCurrentMemory(destination || currentMemory));
         }}
         background={currentMemory.primaryColor}
       >

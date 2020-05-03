@@ -31,7 +31,7 @@ const Parent = styled.div`
 export const Pages = () => {
   const { translation } = useAppState(s => s.translation);
   const normalized = useNormalizedTransition().translation;
-  const { isLeftPanelOpen } = useAppState(s => s.memory);
+  const { isLeftPanelOpen, translatedMemories } = useAppState(s => s.memory);
   const dispatch = useDispatch();
   const [direction, setDirection] = useState<null | Direction>(null);
   const { ref } = useMouseWheel({
@@ -101,7 +101,7 @@ export const Pages = () => {
               translation={translation + PageDimensions[2]}
             />
 
-            {Memories.map((m, i: number) => {
+            {translatedMemories.map((m, i: number) => {
               return (
                 <Page
                   key={`memory-${m.year}-${m.month}-${i}`}
@@ -109,7 +109,6 @@ export const Pages = () => {
                     <MemoryScreen
                       memory={m}
                       isActive={normalized === PageDimensions[3 + i]}
-                      memoryTranslation={translation + PageDimensions[3 + i]}
                     />
                   }
                   name={PageType.MEMORY_AXELRA}
