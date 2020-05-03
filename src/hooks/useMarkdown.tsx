@@ -1,15 +1,20 @@
 import showdown from "showdown";
-import ReactDOMServer from "react-dom/server";
-import { useEffect, useState } from "react";
+// @ts-ignore
+import HtmlToReact from "html-to-react";
+import { ReactNode, useEffect, useState } from "react";
+const HtmlToReactParser = HtmlToReact.Parser;
+const htmlToReactParser = new HtmlToReactParser();
 
 type Props = {
   text: string;
 };
-export const useMarkdown = ({ text }: Props): { html: string | null } => {
-  const [html, setHtml] = useState<null | string>(null);
+export const useMarkdown = ({ text }: Props): { html: ReactNode | null } => {
+  const [html, setHtml] = useState<null | ReactNode>(null);
   useEffect(() => {
     const converter = new showdown.Converter();
-    setHtml(converter.makeHtml(text));
+    const htmlString = converter.makeHtml(text);
+    const reactElement = htmlToReactParser.parse(htmlString);
+    setHtml(reactElement);
   }, [text]);
 
   return { html };

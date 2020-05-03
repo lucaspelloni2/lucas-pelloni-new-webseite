@@ -39,7 +39,6 @@ export const Link = styled.a<{ color?: string }>`
     transition: ${COLOR_TRANSITION};
   }
   display: inline-block;
-
   color: ${props => props.color || "inherit"};
   text-decoration: none;
   cursor: pointer;

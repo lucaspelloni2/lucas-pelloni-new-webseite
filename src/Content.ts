@@ -65,24 +65,40 @@ export const Memories: Memory[] = [
       ],
       subtitle:
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
-      description:
-        "Axelra has been founded in May 2019 by Peach Zwssyig, Thomas Bocek, Severin Wullschleger and myself.",
+      description: `[Axelra AG](https://www.axelra.com) has been founded in May 2019 by Peter Zwyssig, Thomas Bocek, Severin Wullschleger and myself. 
+Axelra accelerates digital business models for corporates and startups with skin in the game. Also known as tech venture builder or tech accelerator, Axelra is based in the heart of Zurich and loves to build, launch and scale digital products and services and the business around it. 
+Our approach takes 100 days from the idea to the MVP launch.       
+
+Usually, our approach can be divided into four different phases:  
+
+1.  Ideation
+    *  Generation and verification of ideas by understanding customer needs, market trends and technological potential. 
+
+
+2.  Testing
+    * Selection of the use cases and creation of mockups or prototypes to test with real (potential) customers in the market and model the high level business case. 
+
+3.  MVP
+    * Building and launching the MVP as private or public beta. Building up your organisation, supporting in recruiting of key people and handing over the company. 
+
+
+4.  Scaling
+    * We collaborate with partners to provide you with the boost and experience needed to continuously iterate your product helping you to grow your business. 
+
+
+Want to launch your company with us? Visit us here [https://www.axelra.com](https://www.axelra.com). We would love to co-create and accelerate your venture :)`,
       logo: {
         src:
-          "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/logo%2Faxelra_logo.png?alt=media&token=9e3149ab-f59f-4e45-b353-fcf7bbabc089"
+          "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/logo_font.png"
       },
       pictures: [
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/axelra%2FShooting%20co-founders%2003.jpg?alt=media&token=d0f6c49c-272a-4bf9-8200-7bfdab140e78"
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/axelra_1.jpg"
         },
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/1-2.jpg?alt=media&token=a16e0317-842d-4ee9-b36e-12e7c26c25b8"
-        },
-        {
-          src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/IMG_4171-_1_.png?alt=media&token=bdcd0a48-7850-4873-b428-661df683a611"
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/axelra_2.jpg"
         }
       ],
       link: "https://axelra.com"
@@ -101,9 +117,13 @@ export const Memories: Memory[] = [
       pictures: [
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/bachelor.jpg?alt=media&token=e5d7a06c-1c99-4b94-9769-9d9d058ce082"
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/bachelor.jpg"
         }
       ],
+      logo: {
+        src:
+          "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/uzh.png"
+      },
       hashtags: [
         {
           title: "masterdegree"
@@ -128,24 +148,24 @@ export const Memories: Memory[] = [
       pictures: [
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/hack_zuri_4.jpg?alt=media&token=60e9f4da-f675-4e74-80c6-b5f375c28190"
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/hack_zuri_4.jpg"
         },
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/hack_zuri_1.jpg?alt=media&token=56368723-87e7-409f-9e54-3f1e89a8f431"
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/hack_zuri_1.jpg"
         },
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/hack_zuri_3.jpg?alt=media&token=9cfb02bc-4332-4df4-9155-d4bb742849f7"
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/hack_zuri_3.jpg"
         },
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/audience.jpg?alt=media&token=ba274591-2c00-4250-bdef-cc9a37243244"
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/audience.jpg"
         }
       ],
       logo: {
         src:
-          "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/logo%2Fhack_zuri_logo.png?alt=media&token=0f3a46ab-dafe-49df-aa2b-d9b78105f4d0"
+          "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/hack_zuri_logo.png"
       },
       hashtags: [
         {
@@ -161,17 +181,36 @@ export const Memories: Memory[] = [
   {
     year: 2018,
     month: MONTHS.APRIL,
-    primaryColor: "#36f793",
+    primaryColor: "#4caef3",
     achievement: {
-      title: "EUREKA Platform Launch",
-      subtitle: "I was Deputy CTO bla bla ",
+      title: "EUREKA - Science Matters",
+      subtitle:
+        "In 2018 we successfully launched the EUREKA platform to the main ETH network. EUREKA is a peer-to-peer scientific data publishing platform, powered by blockchain, to promote open science. I was deputy CTO at EKA Blockchain Solutions GmbH from November 2017 to February 2019.",
       description:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+        "In 2018 we successfully launched the EUREKA platform to the main ETH network. EUREKA is a peer-to-peer scientific data publishing platform, powered by blockchain, to promote open science. I was deputy CTO for EKA Blockchain Solutions GmbH.",
       pictures: [
         {
           src:
-            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/eureka_1.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/eureka_2.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/eureka_3.jpg"
         }
+      ],
+      hashtags: [
+        {
+          title: "eurekatoken"
+        },
+        {
+          title: "blockchain"
+        },
+        { title: "ethereum" },
+        { title: "openscience" }
       ]
     }
   },

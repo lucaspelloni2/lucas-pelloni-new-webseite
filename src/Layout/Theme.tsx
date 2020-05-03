@@ -29,7 +29,7 @@ export const MEMORY_RIGHT_PANEL_WIDTH = SPACING * 15;
 export const MEMORY_LEFT_PANEL_WIDTH = `40vw`;
 export const YEAR_HEIGHT = SPACING * 7;
 export const DEFAULT_LOGO =
-  "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/logo%2Fdefault_logo.png?alt=media&token=c0cf4352-c0fb-4fe3-8696-0de25985ef81";
+  "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/default_logo.png";
 
 export const PageDimensions = new Array(NUMBER_OF_PAGES)
   .fill(0)
@@ -116,6 +116,9 @@ export const GlobalStyle = createGlobalStyle<{
     word-break: break-word;
     line-height: 1.4;
      font-family: inherit;
+  }
+  li {
+    font-weight: 100;
   }
   input, textarea {
   box-shadow: none;
