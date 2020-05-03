@@ -7,6 +7,7 @@ import { setTranslation } from "../reducers/translation/actions";
 import { Direction } from "../reducers/translation/types";
 import { useDispatch } from "react-redux";
 import { useImageSection } from "../hooks/useImageSection";
+import useAppState from "../reducers/useAppState";
 
 const SIZE = SPACING * 6;
 
@@ -45,7 +46,7 @@ const MyIcon = styled(Icon)`
   animation: 1.5s ${move} infinite;
 `;
 
-const DownIconWrapper = styled.div`
+const DownIconWrapper = styled.div<{ isLeftPanelOpen: boolean }>`
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -53,16 +54,17 @@ const DownIconWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   left: 0;
-  z-index: 100;
+  z-index: ${props => (props.isLeftPanelOpen ? -1 : 100)};
 `;
 
 export const ScrollDownIcon = () => {
   const { color } = useTextColor();
   const dispatch = useDispatch();
+  const { isLeftPanelOpen } = useAppState(s => s.memory);
   const { isImageSection } = useImageSection();
 
   return (
-    <DownIconWrapper>
+    <DownIconWrapper isLeftPanelOpen={isLeftPanelOpen}>
       <Circle
         color={isImageSection ? __COLORS.WHITE : color}
         onClick={() => dispatch(setTranslation(Direction.DOWN))}

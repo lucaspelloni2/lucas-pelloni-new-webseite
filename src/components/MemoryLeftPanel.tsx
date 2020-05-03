@@ -12,6 +12,8 @@ import { fadeInBezier, fadeOut } from "../Layout/AnimationHelper";
 import { useMemoryColor } from "../hooks/useMemoryColor";
 import { MemoryLogo } from "./MemoryLogo";
 import { useMarkdown } from "../hooks/useMarkdown";
+import { Button } from "./Button";
+import { Link } from "../Layout/Typography";
 
 const Container = styled.div<{ isLeftPanelOpen: boolean }>`
   width: ${props => (props.isLeftPanelOpen ? MEMORY_LEFT_PANEL_WIDTH : 0)};
@@ -47,6 +49,10 @@ const Body = styled.div<{ isLeftPanelOpen: boolean }>`
 
 const Footer = styled.div`
   min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 `;
 
 const TextDelay = styled.div<{ showText: boolean; color: string }>`
@@ -82,6 +88,8 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
     text: currentMemory.achievement.description || ""
   });
 
+  const link = currentMemory.achievement.link;
+
   useEffect(() => {
     if (isLeftPanelOpen && isActive) {
       setShowText(true);
@@ -102,7 +110,15 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
             {html}
           </TextDelay>
         </Body>
-        <Footer />
+        <Footer>
+          {isLeftPanelOpen && link && (
+            <Button background={color} secondary>
+              <Link color={color} href={link} target="_blank">
+                Learn More.
+              </Link>
+            </Button>
+          )}
+        </Footer>
       </Container>
     ),
     [color, html, isLeftPanelOpen, showText]

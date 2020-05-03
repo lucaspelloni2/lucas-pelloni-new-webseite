@@ -19,7 +19,7 @@ import { Slider } from "../components/Slider";
 import { MemoryScreen } from "./Memories/Memory";
 import { Years } from "./Memories/Years";
 import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
-import { Memories } from "../Content";
+import { useImageSection } from "../hooks/useImageSection";
 
 const Parent = styled.div`
   overflow: hidden;
@@ -33,7 +33,9 @@ export const Pages = () => {
   const normalized = useNormalizedTransition().translation;
   const { isLeftPanelOpen, translatedMemories } = useAppState(s => s.memory);
   const dispatch = useDispatch();
+  const { isImageSection } = useImageSection();
   const [direction, setDirection] = useState<null | Direction>(null);
+
   const { ref } = useMouseWheel({
     onScrollUp: () => {
       if (!isLeftPanelOpen) {
@@ -69,7 +71,7 @@ export const Pages = () => {
       {normalized <= PageDimensions[2] && <ColorPicker />}
       {normalized === PageDimensions[2] && <Slider />}
       {normalized < PageDimensions[3] && <Circle />}
-      <Years visible={normalized > PageDimensions[2]} />
+      <Years visible={isImageSection} />
 
       {useMemo(
         () => (
@@ -77,7 +79,7 @@ export const Pages = () => {
             <Page
               translation={translation}
               component={
-                normalized < PageDimensions[3] ? (
+                !isImageSection ? (
                   <Home
                     header
                     order={[1, 2]}
@@ -91,7 +93,7 @@ export const Pages = () => {
             <Page
               translation={translation + PageDimensions[1]}
               component={
-                normalized < PageDimensions[3] ? (
+                !isImageSection ? (
                   <Home
                     order={[2, 1]}
                     illustration={"lucas.svg"}
@@ -112,19 +114,13 @@ export const Pages = () => {
             />
 
             {translatedMemories.map((m, i: number) => {
+              const isPrev = normalized === PageDimensions[3 + (i - 1)];
+              const isCurrent = normalized === PageDimensions[3 + i];
+              const isNext = normalized === PageDimensions[3 + i + 1];
               return (
                 <Page
                   key={`memory-${m.year}-${m.month}-${i}`}
-                  component={
-                    normalized === PageDimensions[3 + (i - 1)] ||
-                    normalized === PageDimensions[3 + (i + 1)] ||
-                    normalized === PageDimensions[3 + i] ? (
-                      <MemoryScreen
-                        memory={m}
-                        isActive={normalized === PageDimensions[3 + i]}
-                      />
-                    ) : null
-                  }
+                  component={<MemoryScreen memory={m} isActive={isCurrent} />}
                   name={PageType.MEMORY_AXELRA}
                   translation={translation + PageDimensions[3 + i]}
                 />
@@ -132,7 +128,7 @@ export const Pages = () => {
             })}
           </>
         ),
-        [normalized, translatedMemories, translation]
+        [isImageSection, normalized, translatedMemories, translation]
       )}
     </Parent>
   );

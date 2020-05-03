@@ -70,7 +70,7 @@ export const Memories: Memory[] = [
 Axelra accelerates digital business models for corporates and startups with skin in the game. Also known as tech venture builder or tech accelerator, Axelra is based in the heart of Zurich and loves to build, launch and scale digital products and services and the business around it. 
 Our approach takes 100 days from the idea to the MVP launch.       
 
-Usually, our approach can be divided into four different phases:  
+Usually, our delivery process can be divided into four different phases:  
 
 1.  Ideation
     *  Generation and verification of ideas by understanding customer needs, market trends and technological potential. 
@@ -212,6 +212,74 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         },
         { title: "ethereum" },
         { title: "openscience" }
+      ]
+    }
+  },
+  {
+    year: 2000,
+    month: MONTHS.MARCH,
+    primaryColor: "#ab39dd",
+    achievement: {
+      title: "My birth",
+      subtitle: "lorem lorem lorem lorem",
+      description:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
+        }
+      ]
+    }
+  },
+  {
+    year: 1998,
+    month: MONTHS.MARCH,
+    primaryColor: "#ab39dd",
+    achievement: {
+      title: "My birth",
+      subtitle: "lorem lorem lorem lorem",
+      description:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
+        }
+      ]
+    }
+  },
+  {
+    year: 1997,
+    month: MONTHS.MARCH,
+    primaryColor: "#ab39dd",
+    achievement: {
+      title: "My birth",
+      subtitle: "lorem lorem lorem lorem",
+      description:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
+        }
+      ]
+    }
+  },
+  {
+    year: 1995,
+    month: MONTHS.MARCH,
+    primaryColor: "#ab39dd",
+    achievement: {
+      title: "My birth",
+      subtitle: "lorem lorem lorem lorem",
+      description:
+        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+      pictures: [
+        {
+          src:
+            "https://firebasestorage.googleapis.com/v0/b/lucaswebsite-b3acc.appspot.com/o/8f172667-f08c-411b-b49f-12ce7c05176e.JPG?alt=media&token=cf1abffd-f8aa-448b-ac4a-8c76799359d5"
+        }
       ]
     }
   },

@@ -49,5 +49,5 @@ export const useMouseWheel = ({ onScrollUp, onScrollDown }: Props) => {
     };
   }, [handleMouseScroll, ref]);
 
-  return useMemo(() => ({ ref }), []);
+  return useMemo(() => ({ ref }), [ref]);
 };

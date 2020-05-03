@@ -54,6 +54,6 @@ export const StoryIntro = ({ isActive }: Props) => {
         <ScrollDownIcon />
       </Container>
     ),
-    []
+    [isActive]
   );
 };
