@@ -3,18 +3,11 @@ import styled from "styled-components";
 import {
   CIRCLE_RIGHT_OVERFLOW,
   CIRCLE_TOP_OVERFLOW,
-  COLOR_TRANSITION,
-  getAlphaColor,
-  PAGE_HEIGHT,
   PAGE_TRANSITION,
-  PageDimensions,
-  SPACING
+  PageDimensions
 } from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
 import { useWindowSize } from "../hooks/useWindowSize";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-// @ts-ignore
-import interpolate from "interpolate-range";
 import { useTheme } from "../hooks/useTheme";
 import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
 

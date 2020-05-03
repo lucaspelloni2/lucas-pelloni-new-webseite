@@ -1,12 +1,4 @@
-import {
-  RefObject,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from "react";
-import { useThrottleFn } from "react-use";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 type Props = {
   onScrollUp: () => void;

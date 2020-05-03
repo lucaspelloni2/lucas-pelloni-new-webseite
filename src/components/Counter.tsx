@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import useAppState from "../reducers/useAppState";
 import { CIRCLE_TRANSITION, SPACING } from "../Layout/Theme";
-import { INITIAL_COUNTER } from "../reducers/shuffle/reducer";
 import {
   fadeIn,
   INITIAL_ANIMATION_DURATION_IN_SECONDS

@@ -39,7 +39,7 @@ const Body = styled.div<{ isLeftPanelOpen: boolean }>`
   flex: 1;
   overflow-y: scroll;
   padding: ${props =>
-    props.isLeftPanelOpen ? `${SPACING * 10}px ${SPACING * 5}` : 0}px;
+    props.isLeftPanelOpen ? `${SPACING * 5}px ${SPACING * 5}` : 0}px;
   transition: inherit;
   text-align: justify;
 `;

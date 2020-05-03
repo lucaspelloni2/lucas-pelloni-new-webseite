@@ -2,12 +2,7 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import { ColorPickerContainer } from "../Pages/Home/ColorPicker";
 import useAppState from "../reducers/useAppState";
-import {
-  __COLORS,
-  DARK_MODE_TRANSITION,
-  getAlphaColor,
-  SPACING
-} from "../Layout/Theme";
+import { __COLORS, DARK_MODE_TRANSITION, SPACING } from "../Layout/Theme";
 import { useDispatch } from "react-redux";
 import { setSliderValue } from "../reducers/slider/actions";
 import { useTheme } from "../hooks/useTheme";

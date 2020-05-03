@@ -1,15 +1,18 @@
-import React, {ReactNode} from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
-import {PageContainer} from "../../Layout/styled/PageContainer";
-import {FlexBox} from "../../Layout/styled/FlexBox";
-import {CIRCLE_TRANSITION, SPACING} from "../../Layout/Theme";
+import { PageContainer } from "../../Layout/styled/PageContainer";
+import { FlexBox } from "../../Layout/styled/FlexBox";
+import { CIRCLE_TRANSITION, SPACING } from "../../Layout/Theme";
 
-import {fadeIn, INITIAL_ANIMATION_DURATION_IN_SECONDS, slideLeft} from "../../Layout/AnimationHelper";
-import {Header} from "../../components/Header";
+import {
+  fadeIn,
+  INITIAL_ANIMATION_DURATION_IN_SECONDS,
+  slideLeft
+} from "../../Layout/AnimationHelper";
+import { Header } from "../../components/Header";
 
-import {ScrollDownIcon} from "../../components/ScrollDownIcon";
-import {useDispatch} from "react-redux";
-import {IllustrationSvg} from "../../components/IllustrationSvg";
+import { ScrollDownIcon } from "../../components/ScrollDownIcon";
+import { IllustrationSvg } from "../../components/IllustrationSvg";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
@@ -55,7 +58,6 @@ export const Home = ({
   illustration,
   titleComponent
 }: Props) => {
-  const dispatch = useDispatch();
   return (
     <Container>
       <TextContainer flex={1} order={order[0]}>

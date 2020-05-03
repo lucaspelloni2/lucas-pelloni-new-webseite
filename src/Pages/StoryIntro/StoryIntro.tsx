@@ -4,7 +4,6 @@ import { PageContainer } from "../../Layout/styled/PageContainer";
 import { ColoredSpan, SubTitle, Title } from "../../Layout/Typography";
 import { __COLORS, SPACING } from "../../Layout/Theme";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
-import { useDispatch } from "react-redux";
 import { Rain } from "../../components/Rain/Rain";
 import { SocialStrip } from "../../components/SocialStrip";
 

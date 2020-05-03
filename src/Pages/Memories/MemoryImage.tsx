@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Picture } from "../../Content";
-import { FlexBox } from "../../Layout/styled/FlexBox";
 import {
   CIRCLE_TRANSITION,
   MEMORY_RIGHT_PANEL_WIDTH,

@@ -5,8 +5,7 @@ import {
   HomeSubTitle
 } from "../../Layout/Typography";
 import styled from "styled-components";
-import { __COLORS, SPACING } from "../../Layout/Theme";
-import { Icon, IconTypes } from "../../components/Icon";
+import { __COLORS } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
 
 const Titles = styled.div`

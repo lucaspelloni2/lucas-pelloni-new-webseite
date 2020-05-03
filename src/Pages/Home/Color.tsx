@@ -1,11 +1,6 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import {
-  __COLORS,
-  CIRCLE_TRANSITION,
-  DARK_MODE_TRANSITION,
-  SPACING
-} from "../../Layout/Theme";
+import { __COLORS, DARK_MODE_TRANSITION, SPACING } from "../../Layout/Theme";
 import { Icon, IconTypes } from "../../components/Icon";
 import useAppState from "../../reducers/useAppState";
 

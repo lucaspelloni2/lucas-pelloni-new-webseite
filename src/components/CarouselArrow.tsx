@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
+import React, {useCallback} from "react";
 import styled from "styled-components";
-import { Memory } from "../Content";
-import { Icon, IconTypes } from "./Icon";
-import { __COLORS, getHSL, getHSLA, SPACING } from "../Layout/Theme";
+import {Memory} from "../Content";
+import {Icon, IconTypes} from "./Icon";
+import {__COLORS, getHSLA, SPACING} from "../Layout/Theme";
 
 const SIZE = 45;
 
