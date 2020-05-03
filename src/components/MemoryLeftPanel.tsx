@@ -11,6 +11,7 @@ import useAppState from "../reducers/useAppState";
 import { fadeInBezier } from "../Layout/AnimationHelper";
 import { useMemoryColor } from "../hooks/useMemoryColor";
 import { MemoryLogo } from "./MemoryLogo";
+import { useMarkdown } from "../hooks/useMarkdown";
 
 const Container = styled.div<{ isLeftPanelOpen: boolean }>`
   width: ${props => (props.isLeftPanelOpen ? MEMORY_LEFT_PANEL_WIDTH : 0)};
@@ -65,6 +66,7 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
   const { isLeftPanelOpen } = useAppState(s => s.memory);
   const [showText, setShowText] = useState(false);
   const { color } = useMemoryColor();
+  const { html } = useMarkdown({ text: "# hello, markdown!" });
 
   useEffect(() => {
     if (isLeftPanelOpen && isActive) {
@@ -81,6 +83,8 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
       </Header>
       <Body isLeftPanelOpen={isLeftPanelOpen}>
         <TextDelay showText={showText}>
+          {ReactDomS}
+          <h1 id="hellomarkdown">hello, markdown!</h1>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
             at autem consequuntur excepturi nemo officiis quae quaerat
