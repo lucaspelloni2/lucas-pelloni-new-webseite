@@ -175,6 +175,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         },
         { videoId: 414559184 }
       ],
+      link: "https://www.instagram.com/maka.day/",
       logo: {
         src:
           "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/hack_zuri_logo.png"
