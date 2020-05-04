@@ -46,13 +46,11 @@ type Props = {
 export const MemoryImage = ({
   picture,
   pictureTranslation,
-  isMemoryActive,
-  isPictureActive
+  isMemoryActive
 }: Props) => {
   const { grouped } = useAppState(s => s.memory);
-  return isMemoryActive || isPictureActive ? (
+  return (
     <>
-      {console.log(picture.src, pictureTranslation)}
       <Img url={picture.src} translation={pictureTranslation} />
       <BlurWrapper
         height={YEAR_HEIGHT * grouped.length}
@@ -61,5 +59,5 @@ export const MemoryImage = ({
         <Blur url={picture.src} />
       </BlurWrapper>
     </>
-  ) : null;
+  );
 };
