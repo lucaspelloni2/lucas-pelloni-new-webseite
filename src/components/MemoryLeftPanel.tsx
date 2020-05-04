@@ -128,7 +128,7 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
                 videos.map((v, i: number) => (
                   <Vimeo
                     video={v.videoId}
-                    autoplay={i === 0}
+                    autoplay={i === 0 && isLeftPanelOpen}
                     style={{ display: "flex", justifyContent: "center" }}
                   />
                 ))}
@@ -150,6 +150,6 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
         </Footer>
       </Container>
     ),
-    [color, html, isLeftPanelOpen, link]
+    [color, html, isLeftPanelOpen, link, videos]
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {Picture} from "../../Content";
+import { Picture } from "../../Content";
 import {
   CIRCLE_TRANSITION,
   MEMORY_RIGHT_PANEL_WIDTH,
@@ -40,18 +40,26 @@ const Img = styled.div<{ url: string; translation: number }>`
 type Props = {
   picture: Picture;
   pictureTranslation: number;
+  isMemoryActive: boolean;
+  isPictureActive: boolean;
 };
-export const MemoryImage = ({picture, pictureTranslation}: Props) => {
-  const {grouped} = useAppState(s => s.memory);
-  return (
+export const MemoryImage = ({
+  picture,
+  pictureTranslation,
+  isMemoryActive,
+  isPictureActive
+}: Props) => {
+  const { grouped } = useAppState(s => s.memory);
+  return isMemoryActive || isPictureActive ? (
     <>
-      <Img url={picture.src} translation={pictureTranslation}/>
+      {console.log(picture.src, pictureTranslation)}
+      <Img url={picture.src} translation={pictureTranslation} />
       <BlurWrapper
         height={YEAR_HEIGHT * grouped.length}
         translation={pictureTranslation}
       >
-        <Blur url={picture.src}/>
+        <Blur url={picture.src} />
       </BlurWrapper>
     </>
-  );
+  ) : null;
 };

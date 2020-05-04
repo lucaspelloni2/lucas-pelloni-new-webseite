@@ -16,9 +16,10 @@ const Images = styled.div`
 
 type Props = {
   memory: Memory;
+  isActive: boolean;
 };
 
-export const MemoryImages = ({ memory }: Props) => {
+export const MemoryImages = ({ memory, isActive }: Props) => {
   const { achievement } = memory;
   const { pictures } = achievement;
 
@@ -39,19 +40,25 @@ export const MemoryImages = ({ memory }: Props) => {
   return useMemo(
     () => (
       <Images>
-        <CarouselArrow left memory={memory} onClick={prev} />
+        {pictures.length > 0 && (
+          <CarouselArrow left memory={memory} onClick={prev} />
+        )}
         {pictures.map((picture: Picture, index: number) => {
           return (
             <MemoryImage
               key={picture.src}
               picture={picture}
+              isMemoryActive={isActive}
+              isPictureActive={PAGE_WIDTH * index === pictureTranslation}
               pictureTranslation={pictureTranslation + index * PAGE_WIDTH}
             />
           );
         })}
-        <CarouselArrow memory={memory} onClick={next} />
+        {pictures.length > 0 && (
+          <CarouselArrow memory={memory} onClick={next} />
+        )}
       </Images>
     ),
-    [memory, next, pictureTranslation, pictures, prev]
+    [isActive, memory, next, pictureTranslation, pictures, prev]
   );
 };

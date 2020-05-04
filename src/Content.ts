@@ -124,6 +124,18 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           src:
             "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/bachelor.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/bachelor_2.jpeg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/bachelor_3.jpeg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/bachelor_4.jpeg"
         }
       ],
       logo: {
@@ -138,6 +150,60 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
           title: "universityofzurich"
         },
         { title: "computerscience" }
+      ]
+    }
+  },
+  {
+    year: 2018,
+    month: MONTHS.JUNE,
+    primaryColor: "#7B8E47",
+    achievement: {
+      title: "SBHACK19 Overall Winner",
+      subtitle:
+        "Together with the Axelra Team, we won the biggest Blockchain Hackthon in Switzerland with our app called Velove. Velove is a blockchain app which rewards people for commuting with their bikes by giving them CO2 token as reward.",
+      description:
+        "[Velove](https://www.axelra.com/velove/) is a blockchain app which rewards people for commuting with their bikes.",
+      pictures: [
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/sbhack19.jpeg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/sbhack19_2.jpeg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/sbhack19_3.jpeg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/sbhack19_5.jpeg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/sbhack_4.jpeg"
+        }
+      ],
+      videos: [
+        {
+          videoId: 414890377
+        },
+        { videoId: 414896672 }
+      ],
+      link: "https://hackathon.trustsquare.ch/winner/",
+      logo: {
+        src:
+          "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/trust_square.jpeg"
+      },
+      hashtags: [
+        {
+          title: "sbhack19"
+        },
+        {
+          title: "swissblockchainhackthon"
+        },
+        { title: "velove" }
       ]
     }
   },

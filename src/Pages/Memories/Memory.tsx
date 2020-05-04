@@ -48,7 +48,7 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
       <Container isDarkMode={isDarkMode}>
         {isActive && <MemoryLeftPanel isActive={isActive} />}
         <FlexBox flex={1}>
-          <MemoryImages memory={memory} />
+          <MemoryImages memory={memory} isActive={isActive}/>
         </FlexBox>
         <ContentWrapper>
           <MemoryTextSection memory={memory} />
