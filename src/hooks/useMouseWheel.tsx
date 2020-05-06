@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
-
+import debounce from "lodash/debounce";
 type Props = {
   onScrollUp: () => void;
   onScrollDown: () => void;
@@ -23,7 +23,7 @@ export const useMouseWheel = ({ onScrollUp, onScrollDown }: Props) => {
   const ref = useRef<any>(null);
 
   const handleMouseScroll = throttled(
-    1000,
+    300,
     useCallback(
       (e: any) => {
         const { wheelDeltaY } = e;

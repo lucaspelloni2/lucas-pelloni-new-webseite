@@ -1,7 +1,5 @@
-import React, { forwardRef, Ref } from "react";
+import React, { forwardRef, ReactNode, Ref } from "react";
 import styled from "styled-components";
-import { ReactNode } from "react";
-import * as Scroll from "react-scroll";
 import { PAGE_HEIGHT, PAGE_TRANSITION } from "../Layout/Theme";
 
 type Props = {
@@ -19,16 +17,12 @@ const Child = styled.div<{ translation: number }>`
   width: 100%;
 `;
 
-const ScrollableElement = Scroll.Element;
-
 export const Page = forwardRef(
   ({ component, name, translation }: Props, ref: Ref<HTMLDivElement>) => {
     return (
-      <ScrollableElement name={name}>
-        <Child ref={ref} translation={translation}>
-          {component}
-        </Child>
-      </ScrollableElement>
+      <Child ref={ref} translation={translation}>
+        {component}
+      </Child>
     );
   }
 );

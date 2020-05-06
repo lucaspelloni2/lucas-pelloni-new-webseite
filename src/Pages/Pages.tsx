@@ -38,12 +38,12 @@ export const Pages = () => {
 
   const { ref } = useMouseWheel({
     onScrollUp: () => {
-      if (!isLeftPanelOpen) {
+      if (!isLeftPanelOpen && direction !== Direction.UP) {
         setDirection(Direction.UP);
       }
     },
     onScrollDown: () => {
-      if (!isLeftPanelOpen) {
+      if (!isLeftPanelOpen && direction !== Direction.DOWN) {
         setDirection(Direction.DOWN);
       }
     }
@@ -62,8 +62,6 @@ export const Pages = () => {
     }
     return () => clearTimeout(timer);
   }, [direction]);
-
-  console.log("re-rendering on scroll");
 
   return (
     <Parent ref={ref}>
@@ -111,12 +109,13 @@ export const Pages = () => {
 
             {translatedMemories.map((m, i: number) => {
               const isActive = normalized === PageDimensions[3 + i];
+              const pageTranslation = translation + PageDimensions[3 + i];
               return (
                 <Page
                   key={`memory-${m.year}-${m.month}-${i}`}
                   component={<MemoryScreen memory={m} isActive={isActive} />}
                   name={PageType.MEMORY_AXELRA}
-                  translation={translation + PageDimensions[3 + i]}
+                  translation={pageTranslation}
                 />
               );
             })}

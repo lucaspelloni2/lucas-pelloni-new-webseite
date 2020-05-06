@@ -70,6 +70,7 @@ export const Circle = () => {
     }
   }, [background, selectedColor, translation, width]);
 
+
   return useMemo(
     () => (
       // @ts-ignore

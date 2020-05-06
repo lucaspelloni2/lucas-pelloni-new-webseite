@@ -125,6 +125,7 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
             {html}
             <VideoWrapper>
               {videos &&
+                isLeftPanelOpen &&
                 videos.map((v, i: number) => (
                   <Vimeo
                     video={v.videoId}

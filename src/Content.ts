@@ -58,7 +58,7 @@ export const Memories: Memory[] = [
     primaryColor: "#369cf7",
     secondaryColor: "#0a274b",
     achievement: {
-      title: "Axelra has born",
+      title: "Axelra was born",
       firstWordColor: __COLORS.FOURTH,
       hashtags: [
         {
