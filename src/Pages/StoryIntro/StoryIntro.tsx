@@ -30,7 +30,7 @@ export const StoryIntro = ({ isActive }: Props) => {
     () => (
       <Container>
         {isActive && <Rain />}
-        <MyTitle>Lucas Pelloni - 27 years old.</MyTitle>
+        <MyTitle>Lucas Pelloni - 27 years young.</MyTitle>
         <Sub>
           Grew up in{" "}
           <Link

@@ -13,6 +13,7 @@ const Child = styled.div<{ translation: number }>`
   transform: ${props => `translateY(${props.translation}%)`};
   height: ${PAGE_HEIGHT}%;
   left: 0;
+  will-change: transform;
   transition: ${PAGE_TRANSITION};
   width: 100%;
 `;

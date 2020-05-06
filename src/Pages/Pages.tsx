@@ -79,33 +79,34 @@ export const Pages = () => {
       {useMemo(
         () => (
           <>
-            <Page
-              translation={translation}
-              component={
-                !isImageSection ? (
+            {!isImageSection && (
+              <Page
+                translation={translation}
+                component={
                   <Home header order={[1, 2]} titleComponent={<HomeTitle />} />
-                ) : null
-              }
-              name={PageType.HOME_FIRST}
-            />
-            <Page
-              translation={translation + PageDimensions[1]}
-              component={
-                !isImageSection ? (
+                }
+                name={PageType.HOME_FIRST}
+              />
+            )}
+            {!isImageSection && (
+              <Page
+                translation={translation + PageDimensions[1]}
+                component={
                   <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
-                ) : null
-              }
-              name={PageType.HOME_SECOND}
-            />
-            <Page
-              component={
-                normalized < PageDimensions[4] ? (
+                }
+                name={PageType.HOME_SECOND}
+              />
+            )}
+
+            {normalized < PageDimensions[4] && (
+              <Page
+                component={
                   <StoryIntro isActive={normalized === PageDimensions[2]} />
-                ) : null
-              }
-              name={PageType.STORY_START}
-              translation={translation + PageDimensions[2]}
-            />
+                }
+                name={PageType.STORY_START}
+                translation={translation + PageDimensions[2]}
+              />
+            )}
 
             {translatedMemories.map((m, i: number) => {
               const isActive = normalized === PageDimensions[3 + i];
