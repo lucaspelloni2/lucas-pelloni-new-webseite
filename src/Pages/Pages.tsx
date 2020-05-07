@@ -108,7 +108,11 @@ export const Pages = () => {
               />
             )}
 
-            {translatedMemories.map((m, i: number) => {
+            {[
+              ...translatedMemories,
+              ...translatedMemories,
+              ...translatedMemories
+            ].map((m, i: number) => {
               const isActive = normalized === PageDimensions[3 + i];
               const pageTranslation = translation + PageDimensions[3 + i];
               return (

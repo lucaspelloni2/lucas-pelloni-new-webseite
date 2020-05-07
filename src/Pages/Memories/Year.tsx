@@ -6,6 +6,8 @@ import {
   __COLORS,
   DARK_MODE_TRANSITION,
   getHSLA,
+  PAGE_TRANSITION,
+  SPACING,
   YEAR_HEIGHT
 } from "../../Layout/Theme";
 import useAppState from "../../reducers/useAppState";
@@ -36,6 +38,23 @@ const Label = styled.h1`
   color: ${__COLORS.WHITE};
 `;
 
+const Month = styled.div<{ background: string; isActive: boolean }>`
+  position: absolute;
+  pointer-events: none;
+  opacity: ${props => (props.isActive ? 1 : 0)};
+  transition: ${PAGE_TRANSITION};
+  cursor: default;
+  font-weight: 700;
+  color: ${__COLORS.WHITE};
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  padding: ${SPACING / 2}px ${SPACING}px;
+  background-color: ${props => getHSLA(0.75, props.background)};
+  box-shadow: 0 2px 10px 5px ${props => getHSLA(0.2, props.background)} !important;
+`;
+
 type Props = {
   memories: Memory[];
   year: number;
@@ -56,6 +75,9 @@ export const Year = ({ year }: Props) => {
         }}
         background={currentMemory.primaryColor}
       >
+        <Month background={currentMemory.primaryColor} isActive={isActive}>
+          {currentMemory.month}
+        </Month>
         <Label>{year}</Label>
       </Container>
     ),

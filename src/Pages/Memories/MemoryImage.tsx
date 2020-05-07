@@ -52,12 +52,12 @@ export const MemoryImage = ({
   return (
     <>
       <Img url={picture.src} translation={pictureTranslation} />
-      <BlurWrapper
-        height={YEAR_HEIGHT * grouped.length}
-        translation={pictureTranslation}
-      >
-        <Blur url={picture.src} />
-      </BlurWrapper>
+      {/*<BlurWrapper*/}
+      {/*  height={YEAR_HEIGHT * grouped.length}*/}
+      {/*  translation={pictureTranslation}*/}
+      {/*>*/}
+      {/*  <Blur url={picture.src} />*/}
+      {/*</BlurWrapper>*/}
     </>
   );
 };

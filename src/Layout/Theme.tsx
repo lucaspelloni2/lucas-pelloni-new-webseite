@@ -28,7 +28,7 @@ export const CIRCLE_TOP_OVERFLOW = SPACING * 15;
 export const NUMBER_OF_PAGES = 20;
 export const MEMORY_RIGHT_PANEL_WIDTH = SPACING * 15;
 export const MEMORY_LEFT_PANEL_WIDTH = `50vw`;
-export const YEAR_HEIGHT = SPACING * 7;
+export const YEAR_HEIGHT = SPACING * 10;
 export const DEFAULT_LOGO =
   "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/default_logo.png";
 
