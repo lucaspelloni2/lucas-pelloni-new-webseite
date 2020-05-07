@@ -1,12 +1,14 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { Memory } from "../../Content";
+import { Memory, MONTHS } from "../../Content";
 import { useDispatch } from "react-redux";
 import {
   __COLORS,
+  COLOR_TRANSITION,
   DARK_MODE_TRANSITION,
   getHSLA,
   PAGE_TRANSITION,
+  PAGE_TRANSITION_LINEAR,
   SPACING,
   YEAR_HEIGHT
 } from "../../Layout/Theme";
@@ -36,23 +38,36 @@ const Label = styled.h1`
   font-weight: 500;
   transition: ${DARK_MODE_TRANSITION};
   color: ${__COLORS.WHITE};
+  margin-bottom: 0;
 `;
 
-const Month = styled.div<{ background: string; isActive: boolean }>`
-  position: absolute;
+const Month = styled.div<{
+  background: string;
+  isActive: boolean;
+  month: MONTHS;
+}>`
+  &:before {
+    content: "${props => props.month.toString()}";
+    transition: ${COLOR_TRANSITION};
+    transform: scale(${props => (props.isActive ? 1 : 0)});
+    opacity: ${props => (props.isActive ? 1 : 0)};
+    font-size: ${props => (props.isActive ? 14 : 0)}px;
+  }
   pointer-events: none;
   opacity: ${props => (props.isActive ? 1 : 0)};
-  transition: ${PAGE_TRANSITION};
   cursor: default;
   font-weight: 700;
   color: ${__COLORS.WHITE};
   letter-spacing: 0.5px;
   font-size: 14px;
+  transform: scale(${props => (props.isActive ? 1 : 0)});
   border-radius: 10px;
   text-transform: uppercase;
+  will-change: transform;
   padding: ${SPACING / 2}px ${SPACING}px;
-  background-color: ${props => getHSLA(0.75, props.background)};
-  box-shadow: 0 2px 10px 5px ${props => getHSLA(0.2, props.background)} !important;
+  background-color: ${props => getHSLA(1, props.background)};
+  box-shadow: 0 2px 10px 5px ${props =>
+    getHSLA(0.2, props.background)} !important;
 `;
 
 type Props = {
@@ -75,10 +90,12 @@ export const Year = ({ year }: Props) => {
         }}
         background={currentMemory.primaryColor}
       >
-        <Month background={currentMemory.primaryColor} isActive={isActive}>
-          {currentMemory.month}
-        </Month>
         <Label>{year}</Label>
+        <Month
+          background={currentMemory.primaryColor}
+          isActive={isActive}
+          month={currentMemory.month}
+        />
       </Container>
     ),
     [currentMemory, dispatch, isActive, translatedMemories, year]

@@ -154,7 +154,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
-    year: 2018,
+    year: 2019,
     month: MONTHS.JUNE,
     primaryColor: "#7B8E47",
     achievement: {

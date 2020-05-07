@@ -18,6 +18,7 @@ export const SPACING = 10;
 export const DARK_MODE_TRANSITION = `0.5s ease-in-out all`;
 export const COLOR_TRANSITION = `0.3s ease-in-out all`;
 export const PAGE_TRANSITION = `0.7s cubic-bezier(.63,.33,.38,1.07) all`;
+export const PAGE_TRANSITION_LINEAR = `0.7s ease-in-out all`;
 export const LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS = 0.4;
 export const LEFT_PANEL_TRANSITION = `${LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS}s cubic-bezier(.63,.33,.38,1.07) all`;
 export const CIRCLE_TRANSITION = `1s ease-in-out all`;
