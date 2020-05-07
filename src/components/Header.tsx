@@ -7,12 +7,16 @@ import { useTextColor } from "../hooks/useTextColor";
 import { useDispatch } from "react-redux";
 import { setTranslation } from "../reducers/translation/actions";
 import { Direction } from "../reducers/translation/types";
+import { MEDIUM_DEVICES } from "../Layout/Mobile";
 
 const Container = styled.div`
   display: flex;
   min-height: 70px;
   align-items: center;
   width: 100%;
+  ${MEDIUM_DEVICES`
+    display: none;
+   `}
 `;
 
 const Item = styled.a<{ color: string }>`

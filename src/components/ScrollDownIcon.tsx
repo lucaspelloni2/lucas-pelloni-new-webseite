@@ -8,6 +8,7 @@ import { Direction } from "../reducers/translation/types";
 import { useDispatch } from "react-redux";
 import { useImageSection } from "../hooks/useImageSection";
 import useAppState from "../reducers/useAppState";
+import { MEDIUM_DEVICES } from "../Layout/Mobile";
 
 const SIZE = SPACING * 6;
 
@@ -55,6 +56,7 @@ const DownIconWrapper = styled.div<{ isLeftPanelOpen: boolean }>`
   align-items: flex-start;
   left: 0;
   z-index: ${props => (props.isLeftPanelOpen ? -1 : 100)};
+  ${MEDIUM_DEVICES`display: none`};
 `;
 
 export const ScrollDownIcon = () => {

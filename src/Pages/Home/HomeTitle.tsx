@@ -8,12 +8,24 @@ import styled from "styled-components";
 import { __COLORS, SPACING } from "../../Layout/Theme";
 import { Icon, IconTypes } from "../../components/Icon";
 import useAppState from "../../reducers/useAppState";
+import { MEDIUM_DEVICES } from "../../Layout/Mobile";
 
 const Titles = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
+const MyIcon = styled(Icon)`
+  width: ${SPACING * 6}px;
+  margin-bottom: -8px;
+  height: ${SPACING * 6}px;
+  transition: inherit;
+  ${MEDIUM_DEVICES`
+      width: 33px;
+      height: 33px;
+      margin-bottom:-3px;
+    `}
+`;
 export const HomeTitle = () => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   return (
@@ -27,19 +39,13 @@ export const HomeTitle = () => {
           }
         >
           I{" "}
-          <Icon
+          <MyIcon
             name={IconTypes.LOVE}
             color={
               selectedColor === __COLORS.TERTIARY
                 ? __COLORS.SECONDARY
                 : __COLORS.TERTIARY
             }
-            style={{
-              transition: "inherit",
-              width: SPACING * 6,
-              height: SPACING * 6,
-              marginBottom: -8
-            }}
           />
         </ColoredSpan>{" "}
         to build beautiful products with modern{" "}

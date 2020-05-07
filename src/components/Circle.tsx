@@ -10,6 +10,7 @@ import useAppState from "../reducers/useAppState";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { useTheme } from "../hooks/useTheme";
 import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
+import { MEDIUM_DEVICES } from "../Layout/Mobile";
 
 type CircleProps = {
   right: number;
@@ -38,6 +39,10 @@ const MyCircle = styled.div<{
   height: ${props => props.size}px;
   transition: ${PAGE_TRANSITION};
   background: ${props => props.color};
+  ${MEDIUM_DEVICES`
+      width: 400px;
+      height: 400px;
+  `}
 `;
 
 export const Circle = () => {
@@ -69,7 +74,6 @@ export const Circle = () => {
       setSize(0);
     }
   }, [background, selectedColor, translation, width]);
-
 
   return useMemo(
     () => (
