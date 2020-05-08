@@ -53,6 +53,8 @@ const Month = styled.div<{
     opacity: ${props => (props.isActive ? 1 : 0)};
     font-size: ${props => (props.isActive ? 14 : 0)}px;
   }
+  
+ max-height: ${props => props.isActive ? 40: 0}px;
   pointer-events: none;
   opacity: ${props => (props.isActive ? 1 : 0)};
   cursor: default;
