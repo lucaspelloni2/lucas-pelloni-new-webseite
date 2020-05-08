@@ -5,23 +5,23 @@ import { PAGE_HEIGHT, PAGE_TRANSITION } from "../Layout/Theme";
 type Props = {
   component: ReactNode;
   name: string;
-  translation: number;
+  offset: number;
 };
 
-const Child = styled.div<{ translation: number }>`
+const Child = styled.div<{ offset: number }>`
   position: absolute;
-  transform: ${props => `translateY(${props.translation}%)`};
-  height: ${PAGE_HEIGHT}%;
+  height: ${PAGE_HEIGHT}vh;
   left: 0;
   will-change: transform;
   transition: ${PAGE_TRANSITION};
   width: 100%;
+  transform: translateY(${props => props.offset}%);
 `;
 
 export const Page = forwardRef(
-  ({ component, name, translation }: Props, ref: Ref<HTMLDivElement>) => {
+  ({ component, name, offset }: Props, ref: Ref<HTMLDivElement>) => {
     return (
-      <Child ref={ref} translation={translation}>
+      <Child ref={ref} offset={offset}>
         {component}
       </Child>
     );

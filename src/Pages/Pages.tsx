@@ -8,7 +8,11 @@ import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { ColorPicker } from "./Home/ColorPicker";
 import { Circle } from "../components/Circle";
 import useAppState from "../reducers/useAppState";
-import { PageDimensions } from "../Layout/Theme";
+import {
+  PAGE_TRANSITION,
+  PAGE_TRANSITION_LINEAR,
+  PageDimensions
+} from "../Layout/Theme";
 import { useMouseWheel } from "../hooks/useMouseWheel";
 import { Direction } from "../reducers/translation/types";
 import { setTranslation } from "../reducers/translation/actions";
@@ -21,11 +25,13 @@ import { Years } from "./Memories/Years";
 import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
 import { useImageSection } from "../hooks/useImageSection";
 
-const Parent = styled.div`
+const Parent = styled.div<{ translation: number }>`
   overflow: hidden;
-  height: 100vh;
+  height: 700vh;
   width: 100%;
-  position: relative;
+  position: absolute;
+  transition: ${PAGE_TRANSITION_LINEAR};
+  top: ${props => props.translation}%;
 `;
 
 export const Pages = () => {
@@ -63,8 +69,9 @@ export const Pages = () => {
     return () => clearTimeout(timer);
   }, [direction]);
 
+  console.log("joasfjoas");
   return (
-    <Parent ref={ref}>
+    <Parent ref={ref} translation={translation}>
       <HistoryManager />
       {normalized <= PageDimensions[2] && <ColorPicker />}
       {normalized === PageDimensions[2] && <Slider />}
@@ -79,50 +86,43 @@ export const Pages = () => {
       {useMemo(
         () => (
           <>
-            {!isImageSection && (
-              <Page
-                translation={translation}
-                component={
-                  <Home header order={[1, 2]} titleComponent={<HomeTitle />} />
-                }
-                name={PageType.HOME_FIRST}
-              />
-            )}
-            {!isImageSection && (
-              <Page
-                translation={translation + PageDimensions[1]}
-                component={
-                  <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
-                }
-                name={PageType.HOME_SECOND}
-              />
-            )}
+            <Page
+              offset={0}
+              component={
+                <Home header order={[1, 2]} titleComponent={<HomeTitle />} />
+              }
+              name={PageType.HOME_FIRST}
+            />
+            <Page
+              offset={PageDimensions[1]}
+              component={
+                <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
+              }
+              name={PageType.HOME_SECOND}
+            />
 
-            {normalized < PageDimensions[4] && (
-              <Page
-                component={
-                  <StoryIntro isActive={normalized === PageDimensions[2]} />
-                }
-                name={PageType.STORY_START}
-                translation={translation + PageDimensions[2]}
-              />
-            )}
+            <Page
+              component={
+                <StoryIntro isActive={normalized === PageDimensions[2]} />
+              }
+              offset={PageDimensions[2]}
+              name={PageType.STORY_START}
+            />
 
             {translatedMemories.map((m, i: number) => {
               const isActive = normalized === PageDimensions[3 + i];
-              const pageTranslation = translation + PageDimensions[3 + i];
               return (
                 <Page
                   key={`memory-${m.year}-${m.month}-${i}`}
                   component={<MemoryScreen memory={m} isActive={isActive} />}
                   name={PageType.MEMORY_AXELRA}
-                  translation={pageTranslation}
+                  offset={PageDimensions[3 + i]}
                 />
               );
             })}
           </>
         ),
-        [isImageSection, normalized, translatedMemories, translation]
+        [normalized, translatedMemories]
       )}
     </Parent>
   );
