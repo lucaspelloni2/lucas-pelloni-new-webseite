@@ -6,10 +6,11 @@ import {
   TranslationState
 } from "./types";
 import { PAGE_HEIGHT } from "../../Layout/Theme";
+import { getIndexFromURL } from "../../helpers/get-index-from-url";
 
 const getInitialState = () => {
   const hash = window.location.hash.toString().replace("#", "");
-  const number = Number(hash);
+  const number = getIndexFromURL(hash);
   if (!number) {
     return 0;
   }

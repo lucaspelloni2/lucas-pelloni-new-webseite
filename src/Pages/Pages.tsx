@@ -70,7 +70,7 @@ export const Pages = () => {
     return () => clearTimeout(timer);
   }, [direction]);
 
-  console.log("joasfjoas");
+
   return (
     <Parent ref={ref} translation={translation}>
       <HistoryManager />

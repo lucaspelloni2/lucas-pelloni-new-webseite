@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const { color, background } = useTheme();
-  console.log("rendering app");
   return (
     <Router>
       <Switch>

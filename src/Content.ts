@@ -34,6 +34,7 @@ export type Memory = {
   secondaryColor?: string;
   achievement: Achievement;
   translation?: number;
+  url?: string;
 };
 
 export enum MONTHS {
@@ -55,6 +56,7 @@ export const Memories: Memory[] = [
   {
     year: 2019,
     month: MONTHS.MAY,
+    url: "axelra",
     primaryColor: "#369cf7",
     secondaryColor: "#0a274b",
     achievement: {
@@ -113,6 +115,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
   {
     year: 2019,
     month: MONTHS.DECEMBER,
+    url: "master",
     primaryColor: "#4862ea",
     achievement: {
       title: "Master Degree at UZH",
@@ -156,6 +159,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
   {
     year: 2019,
     month: MONTHS.JUNE,
+    url: "sbhack",
     primaryColor: "#7B8E47",
     achievement: {
       title: "SBHACK19 Overall Winner",
@@ -210,6 +214,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
   {
     year: 2018,
     month: MONTHS.SEPTEMBER,
+    url: "hackzurich",
     primaryColor: "#1FD674",
     achievement: {
       title: "HackZurich Audience Award",
@@ -260,6 +265,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
   {
     year: 2018,
     month: MONTHS.APRIL,
+    url: "eureka",
     primaryColor: "#4caef3",
     achievement: {
       title: "EUREKA - Science Matters",
