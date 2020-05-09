@@ -8,11 +8,7 @@ import { StoryIntro } from "./StoryIntro/StoryIntro";
 import { ColorPicker } from "./Home/ColorPicker";
 import { Circle } from "../components/Circle";
 import useAppState from "../reducers/useAppState";
-import {
-  PAGE_TRANSITION,
-  PAGE_TRANSITION_LINEAR,
-  PageDimensions
-} from "../Layout/Theme";
+import { PAGE_TRANSITION, PageDimensions } from "../Layout/Theme";
 import { useMouseWheel } from "../hooks/useMouseWheel";
 import { Direction } from "../reducers/translation/types";
 import { setTranslation } from "../reducers/translation/actions";
@@ -24,10 +20,11 @@ import { MemoryScreen } from "./Memories/Memory";
 import { Years } from "./Memories/Years";
 import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
 import { useImageSection } from "../hooks/useImageSection";
+import { Memories } from "../Content";
 
 const Parent = styled.div<{ translation: number }>`
   overflow: hidden;
-  height: 700vh;
+  height: ${(Memories.length + 3) * 100}vh;
   width: 100%;
   position: absolute;
   transition: ${PAGE_TRANSITION};
@@ -69,7 +66,6 @@ export const Pages = () => {
     }
     return () => clearTimeout(timer);
   }, [direction]);
-
 
   return (
     <Parent ref={ref} translation={translation}>

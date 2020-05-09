@@ -28,7 +28,7 @@ const Blur = styled.div<{ url: string }>`
 `;
 
 const Img = styled.div<{ url: string; translation: number }>`
-  background: ${props => `url(${props.url}) no-repeat center center fixed`};
+  background: ${props => `url(${props.url}) no-repeat center center`};
   height: ${PAGE_HEIGHT}%;
   width: ${PAGE_WIDTH}%;
   position: absolute;

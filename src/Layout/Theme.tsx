@@ -26,13 +26,12 @@ export const PAGE_HEIGHT = 100;
 export const PAGE_WIDTH = 100;
 export const CIRCLE_RIGHT_OVERFLOW = 10;
 export const CIRCLE_TOP_OVERFLOW = SPACING * 15;
-export const NUMBER_OF_PAGES = 20;
 export const MEMORY_RIGHT_PANEL_WIDTH = SPACING * 15;
 export const MEMORY_LEFT_PANEL_WIDTH = `50vw`;
 export const YEAR_HEIGHT = SPACING * 10;
 export const DEFAULT_LOGO =
   "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/default_logo.png";
-
+export const NUMBER_OF_PAGES = 20;
 export const PageDimensions = new Array(NUMBER_OF_PAGES)
   .fill(0)
   .map((_, i) => PAGE_HEIGHT * i);
