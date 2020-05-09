@@ -30,7 +30,8 @@ const Parent = styled.div<{ translation: number }>`
   height: 700vh;
   width: 100%;
   position: absolute;
-  transition: ${PAGE_TRANSITION_LINEAR};
+  transition: ${PAGE_TRANSITION};
+  will-change: top;
   top: ${props => props.translation}%;
 `;
 
