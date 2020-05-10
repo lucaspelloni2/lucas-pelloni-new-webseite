@@ -16,10 +16,9 @@ const Images = styled.div`
 
 type Props = {
   memory: Memory;
-  isActive: boolean;
 };
 
-export const MemoryImages = ({ memory, isActive }: Props) => {
+export const MemoryImages = ({ memory }: Props) => {
   const { achievement } = memory;
   const { pictures } = achievement;
 
@@ -48,8 +47,6 @@ export const MemoryImages = ({ memory, isActive }: Props) => {
             <MemoryImage
               key={picture.src}
               picture={picture}
-              isMemoryActive={isActive}
-              isPictureActive={PAGE_WIDTH * index === pictureTranslation}
               pictureTranslation={pictureTranslation + index * PAGE_WIDTH}
             />
           );
@@ -59,6 +56,6 @@ export const MemoryImages = ({ memory, isActive }: Props) => {
         )}
       </Images>
     ),
-    [isActive, memory, next, pictureTranslation, pictures, prev]
+    [memory, next, pictureTranslation, pictures, prev]
   );
 };

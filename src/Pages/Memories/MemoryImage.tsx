@@ -40,15 +40,8 @@ const Img = styled.div<{ url: string; translation: number }>`
 type Props = {
   picture: Picture;
   pictureTranslation: number;
-  isMemoryActive: boolean;
-  isPictureActive: boolean;
 };
-export const MemoryImage = ({
-  picture,
-  pictureTranslation,
-  isMemoryActive
-}: Props) => {
-  const { grouped } = useAppState(s => s.memory);
+export const MemoryImage = ({ picture, pictureTranslation }: Props) => {
   return (
     <>
       <Img url={picture.src} translation={pictureTranslation} />
