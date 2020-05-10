@@ -164,7 +164,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     achievement: {
       title: "SBHACK19 Overall Winner",
       subtitle:
-        "Together with the Axelra Team, we won the biggest Blockchain Hackthon in Switzerland with our app called Velove. Velove is a blockchain app which rewards people for commuting with their bikes by giving them CO2 token as reward.",
+        "Together with the Axelra Team, we won the biggest Blockchain Hackathon in Switzerland with our app called Velove. Velove is a blockchain app which rewards people for commuting with their bikes by giving them CO2 token as reward.",
       description:
         "[Velove](https://www.axelra.com/velove/) is a blockchain app which rewards people for commuting with their bikes.",
       pictures: [
@@ -219,7 +219,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     achievement: {
       title: "HackZurich Audience Award",
       subtitle:
-        "Together with Jonny Burger, we have been selected in the top 500 applications from a global pool of over 5500 representing several elite universities. After 40 hours of hacking, where we implemented our app called MAKADAY, we won the audience award at the biggest hackthon in Europe.    ",
+        "Together with Jonny Burger, we have been selected in the top 500 applications from a global pool of over 5500 representing several elite universities. After 40 hours of hacking, where we implemented our app called MAKADAY, we won the audience award at the biggest Hackathon in Europe.    ",
       description:
         "[MAKADAY](https://www.axelra.com/makaday/) combines locals' insight and google knowledge to plan your visit to a city and interact with your community by creating a day's schedule using a sequence of activities. Users are able to share their days and give rating for other days that have been already shared. After 40 hours of hacking this app at the #HackZurich18 , we won the Audience Award",
       pictures: [
