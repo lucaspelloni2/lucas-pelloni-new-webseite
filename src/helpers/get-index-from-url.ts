@@ -11,7 +11,7 @@ export const getURLFromIndex = (index: number) => {
 };
 
 export const getIndexFromURL = (url: string): number => {
-  if (url === "home") {
+  if (!url || url === "home") {
     return 1;
   }
   if (url === "lucaspelloni") {
