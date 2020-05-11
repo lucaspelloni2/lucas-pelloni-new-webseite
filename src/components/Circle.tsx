@@ -38,10 +38,11 @@ const MyCircle = styled.div<{
   borderRadius: number;
 }>`
   border-radius: ${props => props.borderRadius}%;
-  width: 800px;
-  transform: scale(${props => (props.borderRadius === 0 ? 5 : 1)});
-  height: 800px;
+  width: ${props => props.size}px;
+  transform: scale(${props => (props.borderRadius === 0 ? 4 : 1)});
+  height: ${props => props.size}px;
   transition: ${PAGE_TRANSITION};
+  will-change: transform;
   background: ${props => props.color};
   ${MEDIUM_DEVICES`
       width: 400px;
@@ -56,10 +57,8 @@ export const Circle = ({ visible }: Props) => {
   const { background } = useTheme();
   const { translation } = useNormalizedTransition();
   const { width } = useWindowSize();
-
   const [right, setRight] = useState(80);
   const INITIAL_SIZE = 800;
-  const [size, setSize] = useState(INITIAL_SIZE);
   const [borderRadius, setBorderRadius] = useState(50);
   const [circleColor, setCircleColor] = useState(selectedColor);
 
@@ -73,7 +72,6 @@ export const Circle = ({ visible }: Props) => {
       setCircleColor(selectedColor);
     } else if (translation === PageDimensions[2]) {
       setRight(CIRCLE_RIGHT_OVERFLOW);
-      setCircleColor(background);
       setBorderRadius(0);
     }
   }, [background, selectedColor, translation, width]);
@@ -86,9 +84,13 @@ export const Circle = ({ visible }: Props) => {
         visible={visible}
         translation={translation}
       >
-        <MyCircle color={circleColor} size={size} borderRadius={borderRadius} />
+        <MyCircle
+          color={circleColor}
+          size={INITIAL_SIZE}
+          borderRadius={borderRadius}
+        />
       </CircleContainer>
     ),
-    [borderRadius, circleColor, right, size, visible]
+    [borderRadius, circleColor, right, translation, visible]
   );
 };
