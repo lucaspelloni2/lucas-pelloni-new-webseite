@@ -38,8 +38,9 @@ const MyCircle = styled.div<{
   borderRadius: number;
 }>`
   border-radius: ${props => props.borderRadius}%;
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+  width: 800px;
+  transform: scale(${props => (props.borderRadius === 0 ? 5 : 1)});
+  height: 800px;
   transition: ${PAGE_TRANSITION};
   background: ${props => props.color};
   ${MEDIUM_DEVICES`
@@ -65,18 +66,15 @@ export const Circle = ({ visible }: Props) => {
   useEffect(() => {
     if (translation === PageDimensions[0]) {
       setRight(80);
+      setCircleColor(selectedColor);
     } else if (translation === PageDimensions[1]) {
       setRight(0);
-      setSize(INITIAL_SIZE);
       setBorderRadius(50);
       setCircleColor(selectedColor);
     } else if (translation === PageDimensions[2]) {
       setRight(CIRCLE_RIGHT_OVERFLOW);
       setCircleColor(background);
-      setSize(width || 3000);
       setBorderRadius(0);
-    } else {
-      setSize(0);
     }
   }, [background, selectedColor, translation, width]);
 
