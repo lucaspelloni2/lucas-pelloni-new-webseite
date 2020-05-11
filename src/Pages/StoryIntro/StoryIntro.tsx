@@ -20,10 +20,12 @@ const MyTitle = styled(Title)<{ color: string }>`
   color: ${props => props.color};
 `;
 
-const Sub = styled(SubTitle)`
+const Sub = styled(SubTitle)<{ color: string }>`
   margin-top: -${SPACING * 3}px;
   font-size: 30px;
+  color: ${props => props.color};
 `;
+
 type Props = {
   isActive: boolean;
 };
@@ -38,7 +40,7 @@ export const StoryIntro = ({ isActive }: Props) => {
       <Container>
         {/*  <Rain />*/}
         <MyTitle color={color}>Lucas Pelloni - 27 years young.</MyTitle>
-        <Sub>
+        <Sub color={color}>
           Grew up in{" "}
           <Link
             color={__COLORS.TERTIARY}
