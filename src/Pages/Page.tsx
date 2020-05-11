@@ -9,13 +9,9 @@ type Props = {
 };
 
 const Child = styled.div<{ offset: number }>`
-  position: absolute;
   height: ${PAGE_HEIGHT}vh;
-  left: 0;
-  will-change: transform;
-  transition: ${PAGE_TRANSITION};
   width: 100%;
-  transform: translateY(${props => props.offset}%);
+  top: ${props => props.offset}%;
 `;
 
 export const Page = forwardRef(

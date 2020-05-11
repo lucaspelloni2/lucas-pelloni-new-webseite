@@ -28,8 +28,10 @@ const Parent = styled.div<{ translation: number }>`
   width: 100%;
   position: absolute;
   transition: ${PAGE_TRANSITION};
-  will-change: top;
-  top: ${props => props.translation}%;
+  -webkit-transform: translate(0, ${props => props.translation}vh);
+  transition: transform ${PAGE_TRANSITION};
+  will-change: transform;
+  transform: translate(0, ${props => props.translation}vh);
 `;
 
 export const Pages = () => {
@@ -70,15 +72,17 @@ export const Pages = () => {
   return (
     <Parent ref={ref} translation={translation}>
       <HistoryManager />
-      {normalized <= PageDimensions[2] && <ColorPicker />}
-      {normalized === PageDimensions[2] && <Slider />}
-      {normalized < PageDimensions[3] && <Circle />}
+      <ColorPicker visible={normalized <= PageDimensions[2]} />
+      <Slider visible={normalized === PageDimensions[2]} />
+      <Circle visible={normalized < PageDimensions[3]} />
+{/*
       {useMemo(
         () => (
           <Years visible={isImageSection} />
         ),
         [isImageSection]
       )}
+*/}
 
       {useMemo(
         () => (

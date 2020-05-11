@@ -2,7 +2,7 @@ import React, { DOMAttributes, useMemo } from "react";
 import styled, { keyframes } from "styled-components";
 import {
   __COLORS,
-  __GRAY_SCALE,
+  __GRAY_SCALE, AnimatedOpacityContainer,
   DARK_MODE_TRANSITION,
   getColors,
   PageDimensions,
@@ -49,7 +49,10 @@ from,
   }
 `;
 
-export const ColorPickerContainer = styled.div<{ isDarkMode: boolean }>`
+export const ColorPickerContainer = styled(AnimatedOpacityContainer)<{
+  isDarkMode: boolean;
+  visible: boolean;
+}>`
   animation: 0.5s ${bounceInRight} forwards;
   transition: ${DARK_MODE_TRANSITION};
   background: ${__COLORS.PRIMARY};
@@ -63,7 +66,7 @@ export const ColorPickerContainer = styled.div<{ isDarkMode: boolean }>`
   display: flex;
 `;
 
-type Props = {} & DOMAttributes<any>;
+type Props = { visible: boolean } & DOMAttributes<any>;
 
 export const ColorPicker = ({ ...props }: Props) => {
   const { isDarkMode } = useAppState(s => s.darkMode);
@@ -72,7 +75,11 @@ export const ColorPicker = ({ ...props }: Props) => {
   const colors = getColors();
   return useMemo(
     () => (
-      <ColorPickerContainer {...props} isDarkMode={isDarkMode}>
+      <ColorPickerContainer
+        {...props}
+        isDarkMode={isDarkMode}
+        visible={props.visible}
+      >
         {colors.map((c: string) => {
           return (
             <Color

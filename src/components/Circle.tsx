@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import {
+  AnimatedOpacityContainer,
   CIRCLE_RIGHT_OVERFLOW,
   CIRCLE_TOP_OVERFLOW,
   PAGE_TRANSITION,
@@ -14,15 +15,17 @@ import { MEDIUM_DEVICES } from "../Layout/Mobile";
 
 type CircleProps = {
   right: number;
+  translation: number;
 };
 
-const CircleContainer = styled.div.attrs<{ left: number }>(
-  ({ right }: CircleProps) => ({
-    style: {
-      right: `${right - CIRCLE_RIGHT_OVERFLOW}%`
-    }
-  })
-)`
+const CircleContainer = styled(AnimatedOpacityContainer).attrs<{
+  left: number;
+  visible: boolean;
+}>(({ right, translation }: CircleProps) => ({
+  style: {
+    transform: `translate(${right - CIRCLE_RIGHT_OVERFLOW}vw, ${translation}vh)`
+  }
+}))`
   position: fixed;
   z-index: -1;
   transition: ${PAGE_TRANSITION};
@@ -44,14 +47,16 @@ const MyCircle = styled.div<{
       height: 400px;
   `}
 `;
-
-export const Circle = () => {
+type Props = {
+  visible: boolean;
+};
+export const Circle = ({ visible }: Props) => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   const { background } = useTheme();
   const { translation } = useNormalizedTransition();
   const { width } = useWindowSize();
 
-  const [right, setRight] = useState(0);
+  const [right, setRight] = useState(80);
   const INITIAL_SIZE = 800;
   const [size, setSize] = useState(INITIAL_SIZE);
   const [borderRadius, setBorderRadius] = useState(50);
@@ -59,9 +64,9 @@ export const Circle = () => {
 
   useEffect(() => {
     if (translation === PageDimensions[0]) {
-      setRight(0);
+      setRight(80);
     } else if (translation === PageDimensions[1]) {
-      setRight(75);
+      setRight(0);
       setSize(INITIAL_SIZE);
       setBorderRadius(50);
       setCircleColor(selectedColor);
@@ -77,11 +82,15 @@ export const Circle = () => {
 
   return useMemo(
     () => (
-      // @ts-ignore
-      <CircleContainer right={right}>
+      <CircleContainer
+        // @ts-ignore
+        right={right}
+        visible={visible}
+        translation={translation}
+      >
         <MyCircle color={circleColor} size={size} borderRadius={borderRadius} />
       </CircleContainer>
     ),
-    [borderRadius, circleColor, right, size]
+    [borderRadius, circleColor, right, size, visible]
   );
 };

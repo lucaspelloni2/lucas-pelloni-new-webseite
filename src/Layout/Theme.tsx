@@ -1,5 +1,8 @@
 import { CSSProperties } from "react";
-import { createGlobalStyle, ThemeProviderProps } from "styled-components";
+import styled, {
+  createGlobalStyle,
+  ThemeProviderProps
+} from "styled-components";
 import { parseToHsl, transparentize } from "polished";
 
 type Props = {
@@ -17,14 +20,15 @@ export const MainTheme: CSSProperties & Props = {
 export const SPACING = 10;
 export const DARK_MODE_TRANSITION = `0.5s ease-in-out all`;
 export const COLOR_TRANSITION = `0.3s ease-in-out all`;
-export const PAGE_TRANSITION = `0.7s cubic-bezier(.67,0,.29,1.01) all`;
+//export const PAGE_TRANSITION = `0.7s cubic-bezier(.67,0,.29,1.01) all`;
+export const PAGE_TRANSITION = `1s ease-in-out all`;
 export const PAGE_TRANSITION_LINEAR = `0.7s ease-in-out all`;
 export const LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS = 0.4;
 export const LEFT_PANEL_TRANSITION = `${LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS}s cubic-bezier(.63,.33,.38,1.07) all`;
 export const CIRCLE_TRANSITION = `1s ease-in-out all`;
 export const PAGE_HEIGHT = 100;
 export const PAGE_WIDTH = 100;
-export const CIRCLE_RIGHT_OVERFLOW = 10;
+export const CIRCLE_RIGHT_OVERFLOW = 12;
 export const CIRCLE_TOP_OVERFLOW = SPACING * 15;
 export const MEMORY_RIGHT_PANEL_WIDTH = SPACING * 15;
 export const MEMORY_LEFT_PANEL_WIDTH = `50vw`;
@@ -163,3 +167,10 @@ export const getHSLA = (alpha: number, color: string) => {
   const { hue, saturation, lightness } = parseToHsl(color);
   return `hsla(${hue}, ${saturation * 100}%, ${lightness * 100}%, ${alpha})`;
 };
+
+export const AnimatedOpacityContainer = styled.div<{ visible: boolean }>`
+  opacity: ${props => (props.visible ? 1 : 0)};
+  visibility: ${props => (props.visible ? "visible" : "hidden")};
+  z-index: ${props => (props.visible ? "auto" : -2)};
+  transition: ${COLOR_TRANSITION};
+`;

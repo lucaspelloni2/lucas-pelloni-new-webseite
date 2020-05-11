@@ -29,7 +29,7 @@ export const StoryIntro = ({ isActive }: Props) => {
   return useMemo(
     () => (
       <Container>
-        {isActive && <Rain />}
+      {/*  <Rain />*/}
         <MyTitle>Lucas Pelloni - 27 years young.</MyTitle>
         <Sub>
           Grew up in{" "}
@@ -54,6 +54,6 @@ export const StoryIntro = ({ isActive }: Props) => {
         <ScrollDownIcon />
       </Container>
     ),
-    [isActive]
+    []
   );
 };

@@ -45,17 +45,18 @@ const InputSlider = styled.input<{
 `;
 
 type Props = {
+  visible: boolean;
   ballSize?: number;
 };
 
-export const Slider = ({ ballSize }: Props) => {
+export const Slider = ({ ballSize, visible }: Props) => {
   const dispatch = useDispatch();
   const { color, background } = useTheme();
   const { isDarkMode } = useAppState(s => s.darkMode);
   const { value } = useAppState(s => s.slider);
   return useMemo(
     () => (
-      <Container isDarkMode={isDarkMode}>
+      <Container isDarkMode={isDarkMode} visible={visible}>
         <InputSlider
           background={background}
           color={color}
@@ -72,6 +73,6 @@ export const Slider = ({ ballSize }: Props) => {
         />
       </Container>
     ),
-    [background, ballSize, color, dispatch, isDarkMode, value]
+    [background, ballSize, color, dispatch, isDarkMode, value, visible]
   );
 };
