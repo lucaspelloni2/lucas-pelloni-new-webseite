@@ -97,7 +97,6 @@ export const GlobalStyle = createGlobalStyle<{
     width: 100%;
     line-height: 1;
     font-weight: inherit;
-    transition: ${DARK_MODE_TRANSITION};
     background: ${props => props.background};
     color: ${props => props.color};
     font-style: inherit;
