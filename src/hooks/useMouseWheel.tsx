@@ -23,7 +23,7 @@ export const useMouseWheel = ({ onScrollUp, onScrollDown }: Props) => {
   const ref = useRef<any>(null);
 
   const handleMouseScroll = throttled(
-    300,
+    1500,
     useCallback(
       (e: any) => {
         const { wheelDeltaY } = e;
