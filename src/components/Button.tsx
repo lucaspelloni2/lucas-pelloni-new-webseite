@@ -2,6 +2,7 @@ import React, { ReactNode, useCallback } from "react";
 import styled from "styled-components";
 import { __COLORS, COLOR_TRANSITION, getHSLA, SPACING } from "../Layout/Theme";
 import { linearGradient } from "polished";
+import { MEDIUM_DEVICES } from "../Layout/Mobile";
 
 type Props = {
   children: ReactNode;
@@ -57,6 +58,12 @@ const Container = styled.div<{
           toDirection: "to right",
           fallback: props.background
         })};
+  ${MEDIUM_DEVICES`
+    width: 100%;
+    border-radius: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;`}
 `;
 export const Button = ({
   children,

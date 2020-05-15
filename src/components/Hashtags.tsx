@@ -4,11 +4,15 @@ import { Hashtag } from "../Content";
 import { MyHashtag } from "./Hashtag";
 import { v1 } from "uuid";
 import { SPACING } from "../Layout/Theme";
+import {MEDIUM_DEVICES} from "../Layout/Mobile";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: ${SPACING * 1.5}px;
+  ${MEDIUM_DEVICES`
+   justify-content: space-between; 
+   `}
 `;
 
 type Props = {

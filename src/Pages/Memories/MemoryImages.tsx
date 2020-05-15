@@ -4,6 +4,7 @@ import { Memory, Picture } from "../../Content";
 import { MemoryImage } from "./MemoryImage";
 import { PAGE_WIDTH } from "../../Layout/Theme";
 import { CarouselArrow } from "../../components/CarouselArrow";
+import { MEDIUM_DEVICES } from "../../Layout/Mobile";
 
 const Images = styled.div`
   height: 100vh;
@@ -12,6 +13,7 @@ const Images = styled.div`
   position: relative;
   justify-content: space-between;
   align-items: flex-start;
+  ${MEDIUM_DEVICES`height: 50vh;`}
 `;
 
 type Props = {

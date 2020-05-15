@@ -69,8 +69,8 @@ const Image = styled(IllustrationSvg)`
   padding: ${SPACING * 2}px;
   position: absolute;
   ${LARGE_DEVICES`
-    max-width: 540px;
-    left: -70px;
+    max-width: 436px;
+    left:0;
     padding: 0;
     `};
 `;

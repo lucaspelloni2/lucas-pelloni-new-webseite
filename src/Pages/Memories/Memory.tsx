@@ -10,12 +10,15 @@ import { MemoryTextSection } from "./MemoryTextSection";
 import { MemoryImages } from "./MemoryImages";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 import { MemoryLeftPanel } from "../../components/MemoryLeftPanel";
+import { MEDIUM_DEVICES } from "../../Layout/Mobile";
 
 const Container = styled(PageContainer)`
   display: flex;
   flex-direction: row;
   position: relative;
   padding: 0;
+  ${MEDIUM_DEVICES`
+    flex-direction: column;`}
 `;
 
 const ContentWrapper = styled.div`
@@ -40,8 +43,6 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
       dispatch(setCurrentMemory(memory));
     }
   }, [translation, isActive, dispatch, memory]);
-
-
 
   return (
     <Container>

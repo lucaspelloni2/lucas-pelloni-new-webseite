@@ -8,6 +8,7 @@ import { Rain } from "../../components/Rain/Rain";
 import { SocialStrip } from "../../components/SocialStrip";
 import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import useAppState from "../../reducers/useAppState";
+import { MEDIUM_DEVICES } from "../../Layout/Mobile";
 
 const Container = styled(PageContainer)`
   display: flex;
@@ -18,12 +19,20 @@ const Container = styled(PageContainer)`
 const MyTitle = styled(Title)<{ color: string }>`
   font-size: 70px;
   color: ${props => props.color};
+  ${MEDIUM_DEVICES`
+     font-size: 40px;
+     text-align: center;
+  `}
 `;
 
 const Sub = styled(SubTitle)<{ color: string }>`
   margin-top: -${SPACING * 3}px;
   font-size: 30px;
   color: ${props => props.color};
+  ${MEDIUM_DEVICES`
+     margin-top: 10px; 
+     text-align: center; 
+  `}
 `;
 
 type Props = {

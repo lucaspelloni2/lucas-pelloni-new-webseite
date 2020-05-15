@@ -31,7 +31,7 @@ export const HomeBigTitle = styled(Title)`
      font-size: 42px;
     `};
   ${EXTRA_SMALL_DEVICES`
-     font-size: 36px;
+     font-size: 28px;
     `};
 `;
 

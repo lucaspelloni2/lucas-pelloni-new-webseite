@@ -30,6 +30,9 @@ const CircleContainer = styled(AnimatedOpacityContainer).attrs<{
   z-index: -1;
   transition: ${PAGE_TRANSITION};
   top: -${CIRCLE_TOP_OVERFLOW}px;
+  ${MEDIUM_DEVICES`
+      left: -150px;
+  `}
 `;
 
 const MyCircle = styled.div<{
@@ -45,8 +48,8 @@ const MyCircle = styled.div<{
   will-change: transform;
   background: ${props => props.color};
   ${MEDIUM_DEVICES`
-      width: 400px;
-      height: 400px;
+      width: 500px;
+      height: 500px;
   `}
 `;
 type Props = {
@@ -71,12 +74,11 @@ export const Circle = ({ visible }: Props) => {
       setScale(1);
       setCircleColor(selectedColor);
     } else if (translation === PageDimensions[2]) {
-      setScale(width ? width / INITIAL_SIZE + 2 : 4);
+      setScale(width ? width / INITIAL_SIZE + 3 : 4);
       setRight(CIRCLE_RIGHT_OVERFLOW);
     }
   }, [background, selectedColor, translation, width]);
 
-  console.log(width);
   return useMemo(
     () => (
       <CircleContainer
