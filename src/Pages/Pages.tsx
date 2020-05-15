@@ -68,21 +68,19 @@ export const Pages = () => {
     return () => clearTimeout(timer);
   }, [direction]);
 
-  console.log("re-rendering...");
   return (
     <Parent ref={ref} translation={translation}>
-      <HistoryManager />
+      {/*      <HistoryManager />*/}
       <ColorPicker visible={normalized <= PageDimensions[2]} />
       <Slider visible={normalized === PageDimensions[2]} />
       <Circle visible={normalized < PageDimensions[3]} />
-      {/*
+
       {useMemo(
         () => (
           <Years visible={isImageSection} />
         ),
         [isImageSection]
       )}
-*/}
 
       {useMemo(
         () => (
