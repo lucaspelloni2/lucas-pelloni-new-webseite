@@ -1,0 +1,30 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.ball {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: #030047;
+  transition: 0.3s ease-in-out all;
+  animation: load8 3s forwards;
+}
+
+.loader--hide {
+  opacity: 0;
+    visibility: hidden;
+  z-index: -100;
+}
+
+@keyframes load8 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(7);
+  }
+}
