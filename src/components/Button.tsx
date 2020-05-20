@@ -18,6 +18,9 @@ const Container = styled.div<{
   background?: string;
   backgroundHover?: string;
 }>`
+  &:hover::after {
+    transform: scale(1.1);
+  }
   &:hover {
     background: ${props =>
       props.secondary
@@ -33,6 +36,29 @@ const Container = styled.div<{
             fallback: props.background
           })};
   }
+  &::after {
+    background-color:   background: ${props =>
+  props.secondary
+    ? "inherit"
+    : linearGradient({
+      colorStops: [
+        props.background || __COLORS.TERTIARY,
+        props.backgroundHover || props.background || __COLORS.TERTIARY_HOVER
+      ],
+      toDirection: "to right",
+      fallback: props.background
+    })};
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: inherit;
+    transition: transform 350ms;
+  }
+  position: relative;
   padding: ${SPACING * 1.5}px ${SPACING * 4}px;
   border-radius: 6px;
   transition: ${COLOR_TRANSITION};

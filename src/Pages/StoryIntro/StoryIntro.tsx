@@ -2,18 +2,22 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
 import { ColoredSpan, Link, SubTitle, Title } from "../../Layout/Typography";
-import { __COLORS, SPACING } from "../../Layout/Theme";
+import { __COLORS, getRandomColor, SPACING } from "../../Layout/Theme";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 import { Rain } from "../../components/Rain/Rain";
 import { SocialStrip } from "../../components/SocialStrip";
 import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import useAppState from "../../reducers/useAppState";
 import { MEDIUM_DEVICES } from "../../Layout/Mobile";
+import { useDispatch } from "react-redux";
+import { setColor } from "../../reducers/selectedColor/actions";
 
 const Container = styled(PageContainer)`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
+  cursor: pointer;
 `;
 
 const MyTitle = styled(Title)<{ color: string }>`
@@ -39,6 +43,7 @@ type Props = {
   isActive: boolean;
 };
 export const StoryIntro = ({ isActive }: Props) => {
+  const dispatch = useDispatch();
   const { selectedColor } = useAppState(s => s.selectedColor);
   const color =
     selectedColor === __COLORS.TERTIARY || selectedColor === __COLORS.SECONDARY
@@ -46,8 +51,8 @@ export const StoryIntro = ({ isActive }: Props) => {
       : __COLORS.PRIMARY;
   return useMemo(
     () => (
-      <Container>
-        {/*  <Rain />*/}
+      <Container onClick={() => dispatch(setColor(getRandomColor()))}>
+        {/*        <Rain />*/}
         <MyTitle color={color}>Lucas Pelloni - 27 years young.</MyTitle>
         <Sub color={color}>
           Grew up in{" "}
@@ -72,6 +77,6 @@ export const StoryIntro = ({ isActive }: Props) => {
         <ScrollDownIcon />
       </Container>
     ),
-    [color]
+    [color, dispatch]
   );
 };

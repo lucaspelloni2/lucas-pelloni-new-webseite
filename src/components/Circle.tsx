@@ -41,9 +41,9 @@ const MyCircle = styled.div<{
   scale: number;
 }>`
   border-radius: 50%;
-  width: ${props => props.size}px;
+  width: 50vw;
+  height: 50vw;
   transform: scale(${props => props.scale});
-  height: ${props => props.size}px;
   transition: ${PAGE_TRANSITION};
   will-change: transform;
   background: ${props => props.color};
@@ -74,7 +74,7 @@ export const Circle = ({ visible }: Props) => {
       setScale(1);
       setCircleColor(selectedColor);
     } else if (translation === PageDimensions[2]) {
-      setScale(width ? width / INITIAL_SIZE + 3 : 4);
+      setScale(3.5);
       setRight(CIRCLE_RIGHT_OVERFLOW);
     }
   }, [background, selectedColor, translation, width]);
