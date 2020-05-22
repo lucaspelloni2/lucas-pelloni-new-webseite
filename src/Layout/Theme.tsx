@@ -4,6 +4,7 @@ import styled, {
   ThemeProviderProps
 } from "styled-components";
 import { parseToHsl, transparentize } from "polished";
+import { MEDIUM_DEVICES } from "./Mobile";
 
 type Props = {
   googleUrl: string;
@@ -95,6 +96,7 @@ export const GlobalStyle = createGlobalStyle<{
     border: 0;
     height: 100%;
     overflow: hidden;
+    
     width: 100%;
     line-height: 1;
     font-weight: inherit;
@@ -105,7 +107,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-size: 100%; 
     font-family: inherit;
     outline: none;
-  }
+    ${MEDIUM_DEVICES`overflow-y: scroll`}
   h1, h2, h3, h4, h5, h6, p  {
     color: ${props => props.color};
     font-weight: 100;
