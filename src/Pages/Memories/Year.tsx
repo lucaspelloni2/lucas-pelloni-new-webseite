@@ -51,16 +51,18 @@ const Month = styled.div<{
     transition: ${COLOR_TRANSITION};
     transform: scale(${props => (props.isActive ? 1 : 0)});
     opacity: ${props => (props.isActive ? 1 : 0)};
+     z-index: 100;
     font-size: ${props => (props.isActive ? 14 : 0)}px;
   }
   
- max-height: ${props => props.isActive ? 40: 0}px;
+ max-height: ${props => (props.isActive ? 40 : 0)}px;
   pointer-events: none;
   opacity: ${props => (props.isActive ? 1 : 0)};
   cursor: default;
   font-weight: 700;
   color: ${__COLORS.WHITE};
   letter-spacing: 0.5px;
+   z-index: 100;
   font-size: 14px;
   transform: scale(${props => (props.isActive ? 1 : 0)});
   border-radius: 10px;

@@ -49,12 +49,11 @@ const MyIcon = styled(Icon)`
 
 const DownIconWrapper = styled.div<{ isLeftPanelOpen: boolean }>`
   position: absolute;
-  width: 100%;
   bottom: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  left: 0;
+  left: 49%;
   z-index: ${props => (props.isLeftPanelOpen ? -1 : 100)};
   ${MEDIUM_DEVICES`display: none`};
 `;
