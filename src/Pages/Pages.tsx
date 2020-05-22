@@ -71,8 +71,8 @@ export const Pages = () => {
   return (
     <Parent ref={ref} translation={translation}>
       <HistoryManager />
-      {/*      <ColorPicker visible={normalized <= PageDimensions[2]} />
-      <Slider visible={normalized === PageDimensions[2]} />*/}
+      <ColorPicker visible={normalized <= PageDimensions[2]} />
+      <Slider visible={normalized === PageDimensions[2]} />
       <Circle visible={normalized < PageDimensions[3]} />
 
       {useMemo(

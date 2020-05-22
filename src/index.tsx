@@ -27,14 +27,9 @@ const MyApp = ({ hideLoader }: Props) => {
   );
 };
 
-setTimeout(
-  () =>
-    // the show/hide functions are passed as props
-    ReactDOM.render(
-      <MyApp hideLoader={hideLoader} showLoader={showLoader} />,
-      document.getElementById("root")
-    ),
-  2000
+ReactDOM.render(
+  <MyApp hideLoader={hideLoader} showLoader={showLoader} />,
+  document.getElementById("root")
 );
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

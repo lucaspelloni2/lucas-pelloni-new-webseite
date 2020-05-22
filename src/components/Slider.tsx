@@ -6,11 +6,14 @@ import { __COLORS, DARK_MODE_TRANSITION, SPACING } from "../Layout/Theme";
 import { useDispatch } from "react-redux";
 import { setSliderValue } from "../reducers/slider/actions";
 import { useTheme } from "../hooks/useTheme";
+import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
 
-const Container = styled(ColorPickerContainer)`
+const Container = styled(ColorPickerContainer)<{ translation: number }>`
   top: ${SPACING * 11}px;
   background: ${__COLORS.WHITE};
   border: none;
+  transform: translateY(${props => props.translation}vh);
+  will-change: transform;
   margin-right: ${SPACING / 4}px;
 `;
 
@@ -54,9 +57,14 @@ export const Slider = ({ ballSize, visible }: Props) => {
   const { color, background } = useTheme();
   const { isDarkMode } = useAppState(s => s.darkMode);
   const { value } = useAppState(s => s.slider);
+  const { translation } = useNormalizedTransition();
   return useMemo(
     () => (
-      <Container isDarkMode={isDarkMode} visible={visible}>
+      <Container
+        isDarkMode={isDarkMode}
+        visible={visible}
+        translation={translation}
+      >
         <InputSlider
           background={background}
           color={color}
@@ -73,6 +81,15 @@ export const Slider = ({ ballSize, visible }: Props) => {
         />
       </Container>
     ),
-    [background, ballSize, color, dispatch, isDarkMode, value, visible]
+    [
+      background,
+      ballSize,
+      color,
+      dispatch,
+      isDarkMode,
+      translation,
+      value,
+      visible
+    ]
   );
 };

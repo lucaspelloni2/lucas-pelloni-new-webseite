@@ -55,7 +55,7 @@ const MyCircle = styled.div<{
 type Props = {
   visible: boolean;
 };
-export const Circle = ({ visible }: Props) => {
+export const  Circle = ({ visible }: Props) => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   const { background } = useTheme();
   const { translation } = useNormalizedTransition();
