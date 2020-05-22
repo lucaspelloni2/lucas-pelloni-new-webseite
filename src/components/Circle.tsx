@@ -55,7 +55,7 @@ const MyCircle = styled.div<{
 type Props = {
   visible: boolean;
 };
-export const  Circle = ({ visible }: Props) => {
+export const Circle = ({ visible }: Props) => {
   const { selectedColor } = useAppState(s => s.selectedColor);
   const { background } = useTheme();
   const { translation } = useNormalizedTransition();
@@ -76,6 +76,7 @@ export const  Circle = ({ visible }: Props) => {
     } else if (translation === PageDimensions[2]) {
       setScale(3.5);
       setRight(CIRCLE_RIGHT_OVERFLOW);
+      setCircleColor(selectedColor);
     }
   }, [background, selectedColor, translation, width]);
 

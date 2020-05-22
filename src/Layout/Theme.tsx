@@ -87,6 +87,7 @@ export const GlobalStyle = createGlobalStyle<{
     padding: 0;
     margin: 0;
     border: 0;
+      transition: ${DARK_MODE_TRANSITION};
   }
   body {
     padding: 0;
@@ -110,6 +111,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-weight: 100;
     line-height: 1.4;
     font-family: inherit;
+      transition: ${DARK_MODE_TRANSITION};
   }
   
   h1 {

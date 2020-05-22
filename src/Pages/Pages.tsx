@@ -74,13 +74,7 @@ export const Pages = () => {
       <ColorPicker visible={normalized <= PageDimensions[2]} />
       <Slider visible={normalized === PageDimensions[2]} />
       <Circle visible={normalized < PageDimensions[3]} />
-
-      {useMemo(
-        () => (
-          <Years visible={isImageSection} />
-        ),
-        [isImageSection]
-      )}
+      <Years visible={isImageSection} />
 
       {useMemo(
         () => (
