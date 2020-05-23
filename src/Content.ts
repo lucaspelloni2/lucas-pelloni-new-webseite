@@ -54,6 +54,34 @@ export enum MONTHS {
 
 export const Memories: Memory[] = [
   {
+    year: 2020,
+    month: MONTHS.JANUARY,
+    url: "william",
+    primaryColor: "#61dafb",
+    achievement: {
+      title: "Interview with William Candillion",
+      hashtags: [
+        {
+          title: "reactnative"
+        },
+        {
+          title: "williamcandillon"
+        },
+        { title: "animations" }
+      ],
+      subtitle:
+        "In January 2020, I had the pleasure to be interview by William Candillion, one of the best React Native developers, expert in the field of declarative animations.",
+      description: `Interview with William`,
+      pictures: [
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/william.jpeg"
+        }
+      ],
+      link: "https://www.youtube.com/watch?v=1GG4YZmz0CI&t=1091s"
+    }
+  },
+  {
     year: 2019,
     month: MONTHS.MAY,
     url: "axelra",
@@ -73,25 +101,25 @@ export const Memories: Memory[] = [
       ],
       subtitle:
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
-      description: `[Axelra AG](https://www.axelra.com) has been founded in May 2019 by Peter Zwyssig, Thomas Bocek, Severin Wullschleger and myself. 
-Axelra accelerates digital business models for corporates and startups with skin in the game. Also known as tech venture builder or tech accelerator, Axelra is based in the heart of Zurich and loves to build, launch and scale digital products and services and the business around it. 
-Our approach takes 100 days from the idea to the MVP launch.       
+      description: `[Axelra AG](https://www.axelra.com) has been founded in May 2019 by Peter Zwyssig, Thomas Bocek, Severin Wullschleger and myself.
+Axelra accelerates digital business models for corporates and startups with skin in the game. Also known as tech venture builder or tech accelerator, Axelra is based in the heart of Zurich and loves to build, launch and scale digital products and services and the business around it.
+Our approach takes 100 days from the idea to the MVP launch.
 
-Usually, our delivery process can be divided into four different phases:  
+Usually, our delivery process can be divided into four different phases:
 
 1.  Ideation
-    *  Generation and verification of ideas by understanding customer needs, market trends and technological potential. 
+    *  Generation and verification of ideas by understanding customer needs, market trends and technological potential.
 
 
 2.  Testing
-    * Selection of the use cases and creation of mockups or prototypes to test with real (potential) customers in the market and model the high level business case. 
+    * Selection of the use cases and creation of mockups or prototypes to test with real (potential) customers in the market and model the high level business case.
 
 3.  MVP
-    * Building and launching the MVP as private or public beta. Building up your organisation, supporting in recruiting of key people and handing over the company. 
+    * Building and launching the MVP as private or public beta. Building up your organisation, supporting in recruiting of key people and handing over the company.
 
 
 4.  Scaling
-    * We collaborate with partners to provide you with the boost and experience needed to continuously iterate your product helping you to grow your business. 
+    * We collaborate with partners to provide you with the boost and experience needed to continuously iterate your product helping you to grow your business.
 
 
 Want to launch your company with us? Visit us here [https://www.axelra.com](https://www.axelra.com). We would love to co-create and accelerate your venture :)`,
