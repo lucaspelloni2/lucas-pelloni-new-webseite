@@ -326,5 +326,85 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         { title: "openscience" }
       ]
     }
+  },
+  {
+    year: 2013,
+    month: MONTHS.MARCH,
+    url: "luckyp",
+    primaryColor: "#ec4d63",
+    achievement: {
+      title: "LuckyP on Stage",
+      subtitle:
+        "I opened the concert to a very famous Italian band, Studio 3. There were about 100 people at the concert. Many of them, they knew my songs by heart. An emotion, that I would never forget.",
+      description: "lorem lorem ",
+      pictures: [
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/temus_1.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/temus_2.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/temus_3.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/temus_4.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/temus_5.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/temus_6.jpg"
+        }
+      ],
+      hashtags: [
+        {
+          title: "luckyp"
+        },
+        {
+          title: "temus"
+        },
+        { title: "live" },
+        { title: "rap" }
+      ]
+    }
+  },
+  {
+    year: 2012,
+    month: MONTHS.DECEMBER,
+    url: "unadomenicadineve",
+    primaryColor: "#f546a1",
+    achievement: {
+      title: "Una Domenica di Neve",
+      subtitle:
+        "In December 2012, I published my first album as Lucky P entitled una Domenica di Neve. After few months, it was sold-out in Lugano.",
+      description: "lorem lorem ",
+      pictures: [
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/album.jpg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/album_2.jpg"
+        }
+      ],
+      hashtags: [
+        {
+          title: "luckyp"
+        },
+        {
+          title: "unadomenicadineve"
+        },
+        { title: "rap" },
+        { title: "ticino" }
+      ]
+    }
   }
 ];
