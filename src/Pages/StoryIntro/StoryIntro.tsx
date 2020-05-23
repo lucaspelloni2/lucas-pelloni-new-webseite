@@ -52,12 +52,12 @@ export const StoryIntro = ({ isActive }: Props) => {
   return useMemo(
     () => (
       <Container onClick={() => dispatch(setColor(getRandomColor()))}>
-        {/*        <Rain />*/}
+        {/*    <Rain />*/}
         <MyTitle color={color}>Lucas Pelloni - 27 years young.</MyTitle>
         <Sub color={color}>
           Grew up in{" "}
           <Link
-            color={__COLORS.TERTIARY}
+            color={__COLORS.FOURTH}
             href="https://en.wikipedia.org/wiki/Lugano"
             target="_blank"
           >

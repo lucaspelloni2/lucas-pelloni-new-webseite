@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FlexBox } from "../../Layout/styled/FlexBox";
 import { ColoredText } from "../../components/ColoredTitle";
 import { Button } from "../../components/Button";
@@ -11,6 +11,7 @@ import { Hashtags } from "../../components/Hashtags";
 import { useDispatch } from "react-redux";
 import { toggleLeftPanel } from "../../reducers/memory/actions";
 import { MEDIUM_DEVICES } from "../../Layout/Mobile";
+import { AnimatedArrow } from "../../components/AnimatedArrow";
 
 const TextWrapper = styled(FlexBox)`
   display: flex;
@@ -68,6 +69,30 @@ const Text = styled.div`
   ${MEDIUM_DEVICES`padding: 10px;   `}
 `;
 
+const Arrow = styled(Icon)`
+  margin-left: ${SPACING}px;
+  width: ${SPACING * 2.5}px;
+  height: ${SPACING * 2.5}px;
+`;
+
+
+
+const MyButton = styled(Button)`
+  &:hover .round .arrow {
+    animation-name: bounceAlpha;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  &:hover .round .arrow.primera {
+    animation-name: bounceAlpha;
+    animation-duration: 1.4s;
+    animation-delay: 0.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+`;
+
 type Props = {
   memory: Memory;
 };
@@ -96,21 +121,12 @@ export const MemoryTextSection = ({ memory }: Props) => {
             <MySubTitle>{achievement.subtitle}</MySubTitle>
           </Text>
           <Buttons>
-            <Button
+            <MyButton
               background={memory.primaryColor}
               onClick={() => dispatch(toggleLeftPanel())}
             >
-              Read the story{" "}
-              <Icon
-                name={IconTypes.ARROW_RIGHT}
-                color={__COLORS.WHITE}
-                style={{
-                  marginLeft: SPACING,
-                  width: SPACING * 2.5,
-                  height: SPACING * 2.5
-                }}
-              />
-            </Button>
+              Read the story <AnimatedArrow />
+            </MyButton>
           </Buttons>
         </TitleWrapper>
       </TextWrapper>

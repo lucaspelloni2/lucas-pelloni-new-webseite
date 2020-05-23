@@ -210,11 +210,11 @@ export const Icon = ({ name, className, ...props }: IconProps) => {
       return (
         <MyIcon
           {...props}
+          className={className}
           aria-hidden="true"
           focusable="false"
           data-prefix="fal"
           data-icon="long-arrow-right"
-          className="svg-inline--fa fa-long-arrow-right fa-w-14"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"

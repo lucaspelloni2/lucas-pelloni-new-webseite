@@ -30,19 +30,19 @@ export const SocialStrip = () => {
           fill={color}
           name={IconTypes.GITHUB}
           size={SIZE}
-          hover={__COLORS.FIFTH}
+          hover={color}
         />
         <SocialIcon
           fill={color}
           name={IconTypes.LINKEDIN}
           size={SIZE}
-          hover={__COLORS.SECONDARY}
+          hover={color}
         />
         <SocialIcon
           fill={color}
           name={IconTypes.GOOGLE_SCHOLAR}
           size={SIZE}
-          hover={__COLORS.TERTIARY}
+          hover={color}
         />
       </Container>
     ),
