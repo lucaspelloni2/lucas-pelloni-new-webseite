@@ -15,8 +15,7 @@ import { MemoryLogo } from "./MemoryLogo";
 import { useMarkdown } from "../hooks/useMarkdown";
 import { Button } from "./Button";
 import { Link } from "../Layout/Typography";
-// @ts-ignore
-import Vimeo from "@u-wave/react-vimeo";
+import { MemoryVideos } from "./MemoryVideos";
 
 const Container = styled.div<{ isLeftPanelOpen: boolean }>`
   width: ${props => (props.isLeftPanelOpen ? MEMORY_LEFT_PANEL_WIDTH : 0)};
@@ -94,12 +93,6 @@ const MyButton = styled(Button)<{ isLeftPanelOpen: boolean }>`
   transition: ${LEFT_PANEL_TRANSITION};
 `;
 
-const VideoWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
 type Props = {
   isActive: boolean;
 };
@@ -123,17 +116,7 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
         <Body isLeftPanelOpen={isLeftPanelOpen}>
           <TextDelay isLeftPanelOpen={isLeftPanelOpen} color={color}>
             {html}
-            <VideoWrapper>
-              {videos &&
-                isLeftPanelOpen &&
-                videos.map((v, i: number) => (
-                  <Vimeo
-                    video={v.videoId}
-                    autoplay={i === 0 && isLeftPanelOpen}
-                    style={{ display: "flex", justifyContent: "center" }}
-                  />
-                ))}
-            </VideoWrapper>
+            <MemoryVideos />
           </TextDelay>
         </Body>
         <Footer>

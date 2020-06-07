@@ -13,6 +13,7 @@ export type Hashtag = {
 
 export type VimeoVideo = {
   videoId: number | string;
+  isYoutube?: boolean;
 };
 
 export type Achievement = {
@@ -59,7 +60,7 @@ export const Memories: Memory[] = [
     url: "william",
     primaryColor: "#61dafb",
     achievement: {
-      title: "Interview with William Candillion",
+      title: "Interview with William",
       hashtags: [
         {
           title: "reactnative"
@@ -70,15 +71,22 @@ export const Memories: Memory[] = [
         { title: "animations" }
       ],
       subtitle:
-        "In January 2020, I had the pleasure to be interview by William Candillion, one of the best React Native developers, expert in the field of declarative animations.",
-      description: `Interview with William`,
+        "In January 2020, I had the pleasure to be interview by William Candillion, one of the best React Native developers in the world, expert in the field of declarative animations.",
+      description: `In this interview, I had a chat with [William Candillion](https://twitter.com/wcandillon?lang=en), maker of the [Can it be done in React Native?”](https://www.youtube.com/user/wcandill/videos) YouTube series. We talked about the tech universe behind React, React Native, AWS and serverless architectures.`,
       pictures: [
         {
           src:
             "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/william.jpeg"
         }
       ],
-      link: "https://www.youtube.com/watch?v=1GG4YZmz0CI&t=1091s"
+      link: "https://www.youtube.com/watch?v=1GG4YZmz0CI&t=1091s",
+
+      videos: [
+        {
+          videoId: "1GG4YZmz0CI",
+          isYoutube: true
+        }
+      ]
     }
   },
   {
