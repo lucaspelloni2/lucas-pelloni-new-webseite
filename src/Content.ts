@@ -76,11 +76,18 @@ export const Memories: Memory[] = [
       pictures: [
         {
           src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/lucas_wiiliam.png"
+        },
+        {
+          src:
             "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/william.jpeg"
         }
       ],
       link: "https://www.youtube.com/watch?v=1GG4YZmz0CI&t=1091s",
-
+      logo: {
+        src:
+          "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/react.png"
+      },
       videos: [
         {
           videoId: "1GG4YZmz0CI",
@@ -158,7 +165,9 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
       subtitle:
         "In December 2019, I obtained a Master Degree in Computer Science at the University of Zurich (UZH). I wrote my master thesis in the field of passive Wi-Fi signals. Overall grade: 5.73 of 6.0.",
       description:
-        "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+        "After spending my childhood in the beautiful Canton Ticino, I moved to Zurich to start my academic path in **September 2013**  in the departement of Business & Informatics at University of Zurich.  After 5 and a half years of sacrifice, beautiful memories and a lot of work, I got a degree in Computer Science with summa cum laude.\n" +
+        "\n" +
+        "During my studies I got to know and experience many fields related to the world of computer science. Below is just a list of some of my publications. \n",
       pictures: [
         {
           src:
