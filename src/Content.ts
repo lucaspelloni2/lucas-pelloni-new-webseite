@@ -175,8 +175,7 @@ During my studies I got to know and experience many fields related to the world 
 - **[Analytics with Passive Wi-Fi Signals](https://files.ifi.uzh.ch/CSG/staff/rodrigues/extern/theses/ma-lucaspelloni.pdf)**,  *published in*  [CSG Group publications system](https://www.csg.uzh.ch/publications/public_main.php) from the University of Zurich 
 - **[Parsing Information from PDF Papers to Match With EUREKA Addresses](https://files.ifi.uzh.ch/CSG/staff/rodrigues/extern/theses/is-lucaspelloni.pdf)**,  *published in*  [CSG Group publications system](https://www.csg.uzh.ch/publications/public_main.php) from the University of Zurich 
 
-I would love to thank [Dr. Thomas Bocek](https://www.hsr.ch/de/studium/bachelor/studiengaenge/informatik-i/dozierende/dozierende-informatik/person/dr-thomas-bocek-5015909/) and [Prof. Dr. Burkhard Stiller](http://www.csg.uzh.ch/csg/en/staff/stiller.html) for all their support and amazing work together during my studies. Thank you!  
-",
+I would love to thank [Dr. Thomas Bocek](https://www.hsr.ch/de/studium/bachelor/studiengaenge/informatik-i/dozierende/dozierende-informatik/person/dr-thomas-bocek-5015909/) and [Prof. Dr. Burkhard Stiller](http://www.csg.uzh.ch/csg/en/staff/stiller.html) for all their support and amazing work together during my studies. Thank you!",
       pictures: [
         {
           src:
