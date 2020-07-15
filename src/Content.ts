@@ -165,9 +165,18 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
       subtitle:
         "In December 2019, I obtained a Master Degree in Computer Science at the University of Zurich (UZH). I wrote my master thesis in the field of passive Wi-Fi signals. Overall grade: 5.73 of 6.0.",
       description:
-        "After spending my childhood in the beautiful Canton Ticino, I moved to Zurich to start my academic path in **September 2013**  in the departement of Business & Informatics at University of Zurich.  After 5 and a half years of sacrifice, beautiful memories and a lot of work, I got a degree in Computer Science with summa cum laude.\n" +
-        "\n" +
-        "During my studies I got to know and experience many fields related to the world of computer science. Below is just a list of some of my publications. \n",
+        "After spending my childhood in the beautiful Canton Ticino, I moved to **Zurich** to start my academic path in **September 2013**  in the departement of Business & Informatics at University of Zurich.  After 5 and a half years of sacrifice, beautiful memories and a lot of work, I got a **degree in Computer Science** with summa cum laude (5.73 out of 6).
+
+During my studies I got to know and experience many fields related to the world of computer science. Below are listed some of my academic **publications**:
+
+- [**EUREKA – A Minimal Operational Prototype of a Blockchain-based Rating and Publishing System**](https://ieeexplore.ieee.org/abstract/document/8751445), *published in [2019 IEEE International Conference on Blockchain and Cryptocurrency (ICBC)](https://ieeexplore.ieee.org/xpl/conhome/8744142/proceeding)*
+-  [**A Blockchain-based Scientific Publishing Platform**](https://ieeexplore.ieee.org/abstract/document/8751379), *published in [2019 IEEE International Conference on Blockchain and Cryptocurrency (ICBC)](https://ieeexplore.ieee.org/xpl/conhome/8744142/proceeding)*
+- [**BECLoMA: Augmenting stack traces with user review information**](https://ieeexplore.ieee.org/abstract/document/8330252), *published in* [2018 IEEE 25th International Conference on Software Analysis, Evolution and Reengineering (SANER)](https://ieeexplore.ieee.org/xpl/conhome/8326467/proceeding)
+- **[Analytics with Passive Wi-Fi Signals](https://files.ifi.uzh.ch/CSG/staff/rodrigues/extern/theses/ma-lucaspelloni.pdf)**,  *published in*  [CSG Group publications system](https://www.csg.uzh.ch/publications/public_main.php) from the University of Zurich 
+- **[Parsing Information from PDF Papers to Match With EUREKA Addresses](https://files.ifi.uzh.ch/CSG/staff/rodrigues/extern/theses/is-lucaspelloni.pdf)**,  *published in*  [CSG Group publications system](https://www.csg.uzh.ch/publications/public_main.php) from the University of Zurich 
+
+I would love to thank [Dr. Thomas Bocek](https://www.hsr.ch/de/studium/bachelor/studiengaenge/informatik-i/dozierende/dozierende-informatik/person/dr-thomas-bocek-5015909/) and [Prof. Dr. Burkhard Stiller](http://www.csg.uzh.ch/csg/en/staff/stiller.html) for all their support and amazing work together during my studies. Thank you!  
+",
       pictures: [
         {
           src:
