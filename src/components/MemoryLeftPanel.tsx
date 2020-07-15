@@ -64,6 +64,9 @@ const TextDelay = styled.div<{ isLeftPanelOpen: boolean; color: string }>`
   & > p {
     color: ${__COLORS.PRIMARY};
   }
+  p {
+    color: ${__COLORS.PRIMARY};
+  }
   & > ol > li > p {
     color: ${__COLORS.PRIMARY};
     font-weight: 500;
