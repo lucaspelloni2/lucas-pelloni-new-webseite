@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, Ref } from "react";
 import styled from "styled-components";
-import { PAGE_HEIGHT, PAGE_TRANSITION } from "../Layout/Theme";
+import { PAGE_HEIGHT } from "../Layout/Theme";
 
 type Props = {
   component: ReactNode;
