@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { FlexBox } from "../../Layout/styled/FlexBox";
 import { ColoredText } from "../../components/ColoredTitle";
 import { Button } from "../../components/Button";
-import { Icon, IconTypes } from "../../components/Icon";
 import { __COLORS, __GRAY_SCALE, getHSLA, SPACING } from "../../Layout/Theme";
 import { SubTitle, Title } from "../../Layout/Typography";
 import { Memory } from "../../Content";
@@ -68,14 +67,6 @@ const Buttons = styled.div`
 const Text = styled.div`
   ${MEDIUM_DEVICES`padding: 10px;   `}
 `;
-
-const Arrow = styled(Icon)`
-  margin-left: ${SPACING}px;
-  width: ${SPACING * 2.5}px;
-  height: ${SPACING * 2.5}px;
-`;
-
-
 
 const MyButton = styled(Button)`
   &:hover .round .arrow {
