@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { Icon, IconTypes } from "./Icon";
-import { __COLORS, SPACING } from "../Layout/Theme";
+import { SPACING } from "../Layout/Theme";
 import { useTextColor } from "../hooks/useTextColor";
 
 const Container = styled.div`
