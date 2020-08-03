@@ -96,10 +96,7 @@ const MyButton = styled(Button)<{ isLeftPanelOpen: boolean }>`
   transition: ${LEFT_PANEL_TRANSITION};
 `;
 
-type Props = {
-  isActive: boolean;
-};
-export const MemoryLeftPanel = ({ isActive }: Props) => {
+export const MemoryLeftPanel = () => {
   const { isLeftPanelOpen, currentMemory } = useAppState(s => s.memory);
 
   const { color } = useMemoryColor();
@@ -107,7 +104,7 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
     text: currentMemory.achievement.description || ""
   });
 
-  const { link, videos } = currentMemory.achievement;
+  const { link } = currentMemory.achievement;
 
   return useMemo(
     () => (
@@ -137,6 +134,6 @@ export const MemoryLeftPanel = ({ isActive }: Props) => {
         </Footer>
       </Container>
     ),
-    [color, html, isLeftPanelOpen, link, videos]
+    [color, html, isLeftPanelOpen, link]
   );
 };
