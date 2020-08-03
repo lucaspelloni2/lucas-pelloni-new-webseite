@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import debounce from "lodash/debounce";
+
 type Props = {
   onScrollUp: () => void;
   onScrollDown: () => void;
