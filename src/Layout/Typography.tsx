@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { __GRAY_SCALE, COLOR_TRANSITION, SPACING } from "./Theme";
-import {EXTRA_SMALL_DEVICES, LARGE_DEVICES, MEDIUM_DEVICES, SMALL_DEVICES} from "./Mobile";
+import { EXTRA_SMALL_DEVICES, LARGE_DEVICES, MEDIUM_DEVICES } from "./Mobile";
 
 export const Title = styled.h1`
   font-size: 58px;
@@ -11,7 +11,7 @@ export const SubTitle = styled.h3`
   font-size: 26px;
   font-weight: 300;
   color: ${__GRAY_SCALE._700};
-    ${LARGE_DEVICES`
+  ${LARGE_DEVICES`
      font-size: 24px;
     `};
   ${MEDIUM_DEVICES`
