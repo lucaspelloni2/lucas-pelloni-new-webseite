@@ -1,12 +1,9 @@
 import React, { DOMAttributes, useMemo } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import {
   __COLORS,
   __GRAY_SCALE,
   AnimatedOpacityContainer,
-  CIRCLE_RIGHT_OVERFLOW,
-  CIRCLE_TOP_OVERFLOW,
-  DARK_MODE_TRANSITION,
   getColors,
   PAGE_TRANSITION,
   PageDimensions,
@@ -17,42 +14,9 @@ import { useDispatch } from "react-redux";
 import { toggleDarkMode } from "../../reducers/darkMode/actions";
 import { setColor } from "../../reducers/selectedColor/actions";
 import useAppState from "../../reducers/useAppState";
-import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import { shuffle } from "../../reducers/shuffle/actions";
 import { Counter } from "../../components/Counter";
-import { MEDIUM_DEVICES } from "../../Layout/Mobile";
 
-const bounceInRight = keyframes`
-from,
-  60%,
-  75%,
-  90%,
-  to {
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  from {
-    opacity: 0;
-    transform: translate3d(200px, 0, 0);
-  }
-
-  60% {
-    opacity: 1;
-    transform: translate3d(-25px, 0, 0);
-  }
-
-  75% {
-    transform: translate3d(10px, 0, 0);
-  }
-
-  90% {
-    transform: translate3d(-5px, 0, 0);
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-`;
 export const ColorPickerContainer = styled(AnimatedOpacityContainer).attrs(
   ({ translation }: any) => ({
     style: {
