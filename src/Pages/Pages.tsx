@@ -95,9 +95,7 @@ export const Pages = () => {
             />
 
             <Page
-              component={
-                <StoryIntro isActive={normalized === PageDimensions[2]} />
-              }
+              component={<StoryIntro />}
               offset={PageDimensions[2]}
               name={PageType.STORY_START}
             />
