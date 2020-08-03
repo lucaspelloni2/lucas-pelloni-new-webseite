@@ -2,19 +2,14 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import {
   AnimatedOpacityContainer,
-  CIRCLE_RIGHT_OVERFLOW,
-  CIRCLE_TOP_OVERFLOW,
-  DARK_MODE_TRANSITION,
   MEMORY_RIGHT_PANEL_WIDTH,
   PAGE_TRANSITION,
-  PAGE_TRANSITION_LINEAR,
   YEAR_HEIGHT
 } from "../../Layout/Theme";
 import { Memory } from "../../Content";
 import { Year } from "./Year";
 import { v1 } from "uuid";
 import useAppState from "../../reducers/useAppState";
-import { MEDIUM_DEVICES } from "../../Layout/Mobile";
 import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import { useWindowSize } from "../../hooks/useWindowSize";
 
