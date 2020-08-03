@@ -13,11 +13,7 @@ import { Header } from "../../components/Header";
 
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
 import { IllustrationSvg } from "../../components/IllustrationSvg";
-import {
-  LARGE_DEVICES,
-  MEDIUM_DEVICES,
-  SMALL_DEVICES
-} from "../../Layout/Mobile";
+import { LARGE_DEVICES, MEDIUM_DEVICES } from "../../Layout/Mobile";
 
 const Container = styled(PageContainer)`
   flex-direction: row;
