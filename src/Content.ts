@@ -209,6 +209,52 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
   },
   {
     year: 2019,
+    month: MONTHS.JULI,
+    url: "sictic",
+    primaryColor: "#e83b1d",
+    achievement: {
+      title: "Axelra wins the best pitch award at SICTIC",
+      subtitle:
+        "After winning the biggest blockchain hackathon in Switzerland with Velove, we also won the best pitch award at SICTIC (Swiss ICT Investor Club). ",
+      description:
+        "With Velove [Velove](https://www.axelra.com/velove/) with won the best pitch award at SICTIC [SICTIC](https://www.sictic.ch/) at the Swiss Blockchain Investor Day 2019. ",
+      pictures: [
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/sictic_3.jpeg"
+        },
+        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/sictic_1.jpeg"
+        }
+      ],
+      videos: [
+        {
+          videoId: 444332012
+        },
+        { videoId: 444329274 }
+      ],
+      link: "https://twitter.com/Axelra_AG/status/1143887932207632384",
+      logo: {
+        src:
+          "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/trust_square.jpeg"
+      },
+      hashtags: [
+        {
+          title: "sictic"
+        },
+        {
+          title: "bestpitchaward"
+        },
+        {
+          title: "axelra"
+        },
+        { title: "velove" }
+      ]
+    }
+  },
+  {
+    year: 2019,
     month: MONTHS.JUNE,
     url: "sbhack",
     primaryColor: "#7B8E47",
@@ -217,7 +263,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
       subtitle:
         "Together with the Axelra Team, we won the biggest Blockchain Hackathon in Switzerland with our app called Velove. Velove is a blockchain app which rewards people for commuting with their bikes by giving them CO2 token as reward.",
       description:
-        "[Velove](https://www.axelra.com/velove/) is a blockchain app which rewards people for commuting with their bikes.",
+        "Together with the Axelra Team, we won the biggest Blockchain Hackathonin Switzerland and have been rewarded as best mobility app with our app called Velove. [Velove](https://www.axelra.com/velove/) is a blockchain app which rewards people for commuting with their bikes. Only in Switzerland, there are more than 4 million commuters. 51% of them use car to get to work and only 15% walk or cycle. ",
       pictures: [
         {
           src:
@@ -246,7 +292,8 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         },
         { videoId: 414896672 }
       ],
-      link: "https://hackathon.trustsquare.ch/winner/",
+      link:
+        "https://www.swissinfo.ch/eng/industry-challenges-blockchain-during-hackathon/45051562",
       logo: {
         src:
           "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/trust_square.jpeg"
