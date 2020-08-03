@@ -48,7 +48,7 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
     <Container>
       {useMemo(
         () => (
-          <>{isActive && <MemoryLeftPanel isActive={isActive} />}</>
+          <>{isActive && <MemoryLeftPanel />}</>
         ),
         [isActive]
       )}
