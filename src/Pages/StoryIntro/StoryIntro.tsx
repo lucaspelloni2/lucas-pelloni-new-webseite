@@ -1,12 +1,10 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { PageContainer } from "../../Layout/styled/PageContainer";
-import { ColoredSpan, Link, SubTitle, Title } from "../../Layout/Typography";
+import { Link, SubTitle, Title } from "../../Layout/Typography";
 import { __COLORS, getRandomColor, SPACING } from "../../Layout/Theme";
 import { ScrollDownIcon } from "../../components/ScrollDownIcon";
-import { Rain } from "../../components/Rain/Rain";
 import { SocialStrip } from "../../components/SocialStrip";
-import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import useAppState from "../../reducers/useAppState";
 import { MEDIUM_DEVICES } from "../../Layout/Mobile";
 import { useDispatch } from "react-redux";
@@ -39,10 +37,7 @@ const Sub = styled(SubTitle)<{ color: string }>`
   `}
 `;
 
-type Props = {
-  isActive: boolean;
-};
-export const StoryIntro = ({ isActive }: Props) => {
+export const StoryIntro = () => {
   const dispatch = useDispatch();
   const { selectedColor } = useAppState(s => s.selectedColor);
   const color =
