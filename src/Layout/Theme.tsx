@@ -94,7 +94,7 @@ export const GlobalStyle = createGlobalStyle<{
      scroll-behavior: smooth;
     height: 100%;
     overflow: hidden;
-     ${MEDIUM_DEVICES`overflow: auto`};
+
     width: 100%;  
     padding: 0;
     margin: 0;
@@ -124,7 +124,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-family: inherit;
       transition: ${DARK_MODE_TRANSITION};
   }
-      ${MEDIUM_DEVICES`overflow: auto`}
+
   
   h1 {
    font-size: 22px;
