@@ -21,6 +21,8 @@ import { Years } from "./Memories/Years";
 import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
 import { useImageSection } from "../hooks/useImageSection";
 import { Memories } from "../Content";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { useTouchDirection } from "../hooks/useTouchDirection";
 
 const Parent = styled.div<{ translation: number }>`
   overflow: hidden;
@@ -54,6 +56,35 @@ export const Pages = () => {
     }
   });
 
+  const secondRef = useTouchDirection({
+    onScrollUp: () => {
+      if (!isLeftPanelOpen && direction !== Direction.UP) {
+        setDirection(Direction.UP);
+      }
+    },
+    onScrollDown: () => {
+      if (!isLeftPanelOpen && direction !== Direction.DOWN) {
+        setDirection(Direction.DOWN);
+      }
+    }
+  });
+
+  useScrollPosition(
+    props => {
+      const { prevPos, currPos } = props;
+      const scrollingDown = currPos.y > prevPos.y;
+      if (scrollingDown && direction !== Direction.DOWN) {
+        setDirection(Direction.DOWN);
+      } else if (direction !== Direction.UP) {
+        setDirection(Direction.UP);
+      }
+    },
+    [],
+    undefined,
+    true,
+    1000
+  );
+
   useEffect(() => {
     dispatch(setTranslation(direction));
   }, [direction, dispatch]);
@@ -69,7 +100,7 @@ export const Pages = () => {
   }, [direction]);
 
   return (
-    <Parent ref={ref} translation={translation}>
+    <Parent ref={secondRef.ref} translation={translation}>
       <HistoryManager />
       <ColorPicker visible={normalized <= PageDimensions[2]} />
       <Slider visible={normalized === PageDimensions[2]} />
