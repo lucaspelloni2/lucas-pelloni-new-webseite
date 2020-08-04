@@ -4,7 +4,6 @@ import styled, {
   ThemeProviderProps
 } from "styled-components";
 import { parseToHsl, transparentize } from "polished";
-import { MEDIUM_DEVICES } from "./Mobile";
 
 type Props = {
   googleUrl: string;
