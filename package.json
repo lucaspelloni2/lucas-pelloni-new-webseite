@@ -43,6 +43,7 @@
     "showdown": "^1.9.1",
     "styled-components": "latest",
     "typescript": "~3.7.2",
+    "use-media": "^1.4.0",
     "uuid": "latest"
   },
   "scripts": {
