@@ -23,6 +23,8 @@ import { useImageSection } from "../hooks/useImageSection";
 import { Memories } from "../Content";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { useTouchDirection } from "../hooks/useTouchDirection";
+import useMedia from "use-media";
+import { MEDIUM_DEVICES_MAX_WIDTH } from "../Layout/Mobile";
 
 const Parent = styled.div<{ translation: number }>`
   overflow: hidden;
@@ -42,6 +44,8 @@ export const Pages = () => {
   const dispatch = useDispatch();
   const { isImageSection } = useImageSection();
   const [direction, setDirection] = useState<null | Direction>(null);
+
+  const isMobile = useMedia({ maxWidth: MEDIUM_DEVICES_MAX_WIDTH + "px" });
 
   const { ref } = useMouseWheel({
     onScrollUp: () => {
@@ -100,7 +104,7 @@ export const Pages = () => {
   }, [direction]);
 
   return (
-    <Parent ref={secondRef.ref} translation={translation}>
+    <Parent ref={isMobile ? secondRef.ref : ref} translation={translation}>
       <HistoryManager />
       <ColorPicker visible={normalized <= PageDimensions[2]} />
       <Slider visible={normalized === PageDimensions[2]} />
