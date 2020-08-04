@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const MainTheme: CSSProperties & Props = {
-  fontFamily: 'Avenir Next, sans-serif',
+  fontFamily: "Avenir Next, sans-serif",
   googleUrl:
     "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
 
@@ -94,6 +94,7 @@ export const GlobalStyle = createGlobalStyle<{
      scroll-behavior: smooth;
     height: 100%;
     overflow: hidden;
+     ${MEDIUM_DEVICES`overflow: auto`};
     width: 100%;  
     padding: 0;
     margin: 0;
@@ -106,7 +107,6 @@ export const GlobalStyle = createGlobalStyle<{
     border: 0;
     height: 100%;
     overflow: hidden;
-    
     width: 100%;
     line-height: 1;
     font-weight: inherit;
@@ -117,7 +117,6 @@ export const GlobalStyle = createGlobalStyle<{
     font-size: 100%; 
     font-family: inherit;
     outline: none;
-    ${MEDIUM_DEVICES`overflow-y: scroll`}
   h1, h2, h3, h4, h5, h6, p  {
     color: ${props => props.color};
     font-weight: 100;
@@ -125,6 +124,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-family: inherit;
       transition: ${DARK_MODE_TRANSITION};
   }
+      ${MEDIUM_DEVICES`overflow: auto`}
   
   h1 {
    font-size: 22px;
