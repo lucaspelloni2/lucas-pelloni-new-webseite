@@ -6,7 +6,7 @@ type Props = {
 };
 
 // ES6 code
-function throttled(delay: number, fn: any) {
+export function throttled(delay: number, fn: any) {
   let lastCall = 0;
   // @ts-ignore
   return function(...args) {
