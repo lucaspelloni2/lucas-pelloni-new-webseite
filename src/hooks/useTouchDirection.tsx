@@ -30,7 +30,7 @@ export const useTouchDirection = ({ onScrollUp, onScrollDown }: Props) => {
         onScrollUp();
       }
     },
-    [startingPosition]
+    [onScrollDown, onScrollUp, startingPosition]
   );
 
   useEffect(() => {
