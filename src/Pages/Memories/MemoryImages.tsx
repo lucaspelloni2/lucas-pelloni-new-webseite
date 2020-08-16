@@ -13,7 +13,7 @@ const Images = styled.div`
   position: relative;
   justify-content: space-between;
   align-items: flex-start;
-  ${MEDIUM_DEVICES`height: 50vh;`}
+  ${MEDIUM_DEVICES`height: 40vh;`}
 `;
 
 type Props = {
