@@ -107,7 +107,6 @@ export const Pages = () => {
     <Parent ref={isMobile ? secondRef.ref : ref} translation={translation}>
       <HistoryManager />
       <ColorPicker visible={normalized <= PageDimensions[2]} />
-      <Slider visible={normalized === PageDimensions[2]} />
       <Circle visible={normalized < PageDimensions[3]} />
       <Years visible={isImageSection} />
 
