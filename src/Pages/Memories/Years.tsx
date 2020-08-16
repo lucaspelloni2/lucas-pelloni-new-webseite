@@ -12,6 +12,7 @@ import { v1 } from "uuid";
 import useAppState from "../../reducers/useAppState";
 import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { SMALL_DEVICES } from "../../Layout/Mobile";
 
 // https://codepen.io/bcarvalho/pen/RZqmZX
 const Container = styled(AnimatedOpacityContainer).attrs(
@@ -35,6 +36,9 @@ const Container = styled(AnimatedOpacityContainer).attrs(
   right: 0;
   flex-direction: column;
   top: ${props => props.offset}px;
+  ${SMALL_DEVICES`
+    display: none;
+  `}
 `;
 
 type Props = {
