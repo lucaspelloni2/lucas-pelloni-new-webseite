@@ -21,13 +21,22 @@ const Container = styled(PageContainer)`
     flex-direction: column;`}
 `;
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled(FlexBox)`
   z-index: 3;
   position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
-  flex: 1;
+  ${MEDIUM_DEVICES`
+    position: relative;
+    align-items: flex-start;  
+    
+    `}
+`;
+
+const ImageWrapper = styled(FlexBox)`
+  ${MEDIUM_DEVICES`
+    flex: 0;`}
 `;
 
 type Props = {
@@ -52,15 +61,15 @@ export const MemoryScreen = ({ memory, isActive }: Props) => {
         ),
         [isActive]
       )}
-      <FlexBox flex={1}>
+      <ImageWrapper flex={1}>
         {useMemo(
           () => (
             <MemoryImages memory={memory} />
           ),
           [memory]
         )}
-      </FlexBox>
-      <ContentWrapper>
+      </ImageWrapper>
+      <ContentWrapper flex={1}>
         {useMemo(
           () => (
             <MemoryTextSection memory={memory} />
