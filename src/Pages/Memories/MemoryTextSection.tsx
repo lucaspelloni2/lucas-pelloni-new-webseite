@@ -25,6 +25,7 @@ const MyTitle = styled(Title)`
   ${MEDIUM_DEVICES`
         font-size: 36px;
     margin-bottom: 12px;
+    margin-top: 0; 
     `};
 `;
 
@@ -57,6 +58,7 @@ const TitleWrapper = styled.div`
     padding: 0px;
     max-width: 100%;
     text-align: center;
+    background-color: transparent; 
     `};
 `;
 
