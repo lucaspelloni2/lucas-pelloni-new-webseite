@@ -15,7 +15,6 @@ import { setTranslation } from "../reducers/translation/actions";
 import { useDispatch } from "react-redux";
 import { HistoryManager } from "../components/HistoryManager";
 import styled from "styled-components";
-import { Slider } from "../components/Slider";
 import { MemoryScreen } from "./Memories/Memory";
 import { Years } from "./Memories/Years";
 import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
