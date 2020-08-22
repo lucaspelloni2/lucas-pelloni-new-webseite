@@ -29,11 +29,11 @@ const Parent = styled.div<{ translation: number }>`
   overflow: hidden;
   height: ${(Memories.length + 3) * 100}vh;
   width: 100%;
-  position: absolute;
-  -webkit-transform: translate(0, ${props => props.translation}vh);
+  position: absolute !important;
   transition: ${PAGE_TRANSITION};
   will-change: transform;
-  transform: translate(0, ${props => props.translation}vh);
+  transform: translate3d(0px, ${props => props.translation}vh, 0px);
+  -webkit-transform: translate3d(0px, ${props => props.translation}vh, 0px);
 `;
 
 export const Pages = () => {
