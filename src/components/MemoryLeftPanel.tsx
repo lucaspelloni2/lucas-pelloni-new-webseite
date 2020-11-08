@@ -18,12 +18,15 @@ import { Link } from "../Layout/Typography";
 import { MemoryVideos } from "./MemoryVideos";
 
 const Container = styled.div<{ isLeftPanelOpen: boolean }>`
-  width: ${props => (props.isLeftPanelOpen ? MEMORY_LEFT_PANEL_WIDTH : 0)};
+  width: 50%;
   background: ${__COLORS.WHITE};
   transition: ${LEFT_PANEL_TRANSITION};
   position: absolute;
   left: 0;
+  will-change: tranform;
   height: 100%;
+  transform: ${props =>
+    props.isLeftPanelOpen ? `translate3d(0, 0,0)` : `translate3d(-100%, 0,0)`};
   top: 0;
   z-index: 10;
   display: flex;
