@@ -24,8 +24,13 @@ import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { useTouchDirection } from "../hooks/useTouchDirection";
 import useMedia from "use-media";
 import { MEDIUM_DEVICES_MAX_WIDTH } from "../Layout/Mobile";
+import { useWindowSize } from "react-use";
 
-const Parent = styled.div<{ translation: number }>`
+const Parent = styled.div<{
+  translation: number;
+  windowHeight: number;
+  currentIndex: number;
+}>`
   overflow: hidden;
   height: ${(Memories.length + 3) * 100}vh;
   width: 100%;
@@ -33,12 +38,18 @@ const Parent = styled.div<{ translation: number }>`
   transition: ${PAGE_TRANSITION};
   will-change: transform;
   transform: translate3d(0px, ${props => props.translation}vh, 0px);
-  -webkit-transform: translate3d(0px, ${props => props.translation}vh, 0px);
+  -webkit-transform: translate3d(
+    0px,
+    -${props => props.currentIndex * props.windowHeight}px,
+    0px
+  );
 `;
 
 export const Pages = () => {
   const { translation } = useAppState(s => s.translation);
+  const windowHeight = useWindowSize().height;
   const normalized = useNormalizedTransition().translation;
+  const currentIndex = useMemo(() => normalized / 100, [normalized]);
   const { isLeftPanelOpen, translatedMemories } = useAppState(s => s.memory);
   const dispatch = useDispatch();
   const { isImageSection } = useImageSection();
@@ -103,7 +114,12 @@ export const Pages = () => {
   }, [direction]);
 
   return (
-    <Parent ref={isMobile ? secondRef.ref : ref} translation={translation}>
+    <Parent
+      ref={isMobile ? secondRef.ref : ref}
+      translation={translation}
+      windowHeight={windowHeight}
+      currentIndex={currentIndex}
+    >
       <HistoryManager />
       <ColorPicker visible={normalized <= PageDimensions[2]} />
       <Circle visible={normalized < PageDimensions[3]} />
