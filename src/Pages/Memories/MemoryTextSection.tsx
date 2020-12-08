@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { toggleLeftPanel } from "../../reducers/memory/actions";
 import { MEDIUM_DEVICES } from "../../Layout/Mobile";
 import { AnimatedArrow } from "../../components/AnimatedArrow";
+import { textFocusIn } from "../../Layout/AnimationHelper";
 
 const TextWrapper = styled(FlexBox)`
   display: flex;
@@ -22,6 +23,7 @@ const MyTitle = styled(Title)`
   color: ${__COLORS.WHITE};
   margin-bottom: 0;
   overflow-x: visible;
+  animation: ${textFocusIn} 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   ${MEDIUM_DEVICES`
         font-size: 36px;
     margin-bottom: 12px;
