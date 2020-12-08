@@ -1,21 +1,15 @@
-import React, { useMemo } from "react";
-import styled, { css } from "styled-components";
-import {
-  __COLORS,
-  LEFT_PANEL_TRANSITION,
-  LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS,
-  MEMORY_LEFT_PANEL_WIDTH,
-  SPACING
-} from "../Layout/Theme";
-import { CloseIcon } from "./CloseIcon";
+import React, {useMemo} from "react";
+import styled, {css} from "styled-components";
+import {__COLORS, LEFT_PANEL_TRANSITION, LEFT_PANEL_TRANSITION_DURATION_IN_SECONDS, SPACING} from "../Layout/Theme";
+import {CloseIcon} from "./CloseIcon";
 import useAppState from "../reducers/useAppState";
-import { fadeInBezier } from "../Layout/AnimationHelper";
-import { useMemoryColor } from "../hooks/useMemoryColor";
-import { MemoryLogo } from "./MemoryLogo";
-import { useMarkdown } from "../hooks/useMarkdown";
-import { Button } from "./Button";
-import { Link } from "../Layout/Typography";
-import { MemoryVideos } from "./MemoryVideos";
+import {fadeInBezier} from "../Layout/AnimationHelper";
+import {useMemoryColor} from "../hooks/useMemoryColor";
+import {MemoryLogo} from "./MemoryLogo";
+import {useMarkdown} from "../hooks/useMarkdown";
+import {Button} from "./Button";
+import {Link} from "../Layout/Typography";
+import {MemoryVideos} from "./MemoryVideos";
 
 const Container = styled.div<{ isLeftPanelOpen: boolean }>`
   width: 50%;
