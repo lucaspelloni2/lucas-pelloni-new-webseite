@@ -110,10 +110,9 @@ export const GlobalStyle = createGlobalStyle<{
     line-height: 1;
     font-weight: inherit;
     background: ${props => props.background};
-    transition: ${DARK_MODE_TRANSITION};
     color: ${props => props.color};
     font-style: inherit;
-    font-size: 100%; 
+    font-size: 100%;
     font-family: inherit;
     outline: none;
   h1, h2, h3, h4, h5, h6, p  {
@@ -121,7 +120,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-weight: 100;
     line-height: 1.4;
     font-family: inherit;
-      transition: ${DARK_MODE_TRANSITION};
+        transition: ${DARK_MODE_TRANSITION};
   }
 
   
