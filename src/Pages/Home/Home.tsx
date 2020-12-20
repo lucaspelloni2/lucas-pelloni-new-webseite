@@ -8,17 +8,19 @@ import {
 } from "axelra-styled-bootstrap-grid";
 import styled from "styled-components";
 import { IllustrationSvg } from "../../components/IllustrationSvg";
-import {
-  INITIAL_ANIMATION_DURATION_IN_SECONDS,
-  slideLeft
-} from "../../Layout/AnimationHelper";
-import { CIRCLE_TRANSITION } from "../../Layout/Theme";
 
 const MyContainer = styled(Container)`
   height: 100%;
 `;
 const MyCol = styled(Col)`
   height: 100%;
+`;
+
+const MyFlexCol = styled(MyCol)`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 `;
 const MyRow = styled(Row)`
   height: 100%;
@@ -27,17 +29,13 @@ const MyRow = styled(Row)`
 
 const MyFlex = styled(Flex)`
   height: 100%;
-  background: aliceblue;
 `;
 
 const Image = styled(IllustrationSvg)`
-  animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${slideLeft} forwards;
-  max-width: 750px;
+  max-width: 85%;
   height: auto;
-  transition: ${CIRCLE_TRANSITION};
-  padding: ${SPACING * 2}px;
-  position: absolute;
 `;
+
 type Props = {
   header?: boolean;
   order: number[];
@@ -56,7 +54,9 @@ export const Home = ({ header, order, titleComponent }: Props) => {
             </MyFlex>
           </MyCol>
           <MyCol md={6}>
-            <Image />
+            <MyFlex column flex={1} justify="center" align="center">
+              <Image />
+            </MyFlex>
           </MyCol>
         </MyRow>
       </MyContainer>
