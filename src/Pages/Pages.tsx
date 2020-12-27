@@ -120,9 +120,9 @@ export const Pages = () => {
     >
       <HistoryManager />
       {/*  <ColorPicker visible={normalized <= PageDimensions[2]} />
-      <Circle visible={normalized < PageDimensions[3]} />
-      <Years visible={isImageSection} />*/}
 
+      <Years visible={isImageSection} />*/}
+      <Circle visible={normalized < PageDimensions[3]} />
       {useMemo(
         () => (
           <>

@@ -1,5 +1,4 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {usePrevious} from "./usePrevious";
 
 // ES6 code
 function throttled(fn: any, delay: number) {
@@ -32,7 +31,7 @@ export const useMouseWheel = () => {
       } else if (delta < -1) {
         setDir(`up-${Date.now()}`);
       }
-    }, 1500),
+    }, 1300),
     [throttled]
   );
 
