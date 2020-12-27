@@ -1,53 +1,53 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import throttle from "lodash/throttle";
 
-type Props = {
-  onScrollUp: () => void;
-  onScrollDown: () => void;
-};
+export const useMouseWheel = () => {
+  const ref = useRef<HTMLDivElement>(null);
 
-// ES6 code
-export function throttled(delay: number, fn: any) {
-  let lastCall = 0;
-  // @ts-ignore
-  return function(...args) {
-    const now = new Date().getTime();
-    if (now - lastCall < delay) {
-      return;
-    }
-    lastCall = now;
-    return fn(...args);
-  };
-}
+  const [dir, setDir] = useState<string | null>(null);
 
-export const useMouseWheel = ({ onScrollUp, onScrollDown }: Props) => {
-  const ref = useRef<any>(null);
+  const mouseWheelHandler = useCallback(
+    throttle((e: any) => {
+      const delta = e.deltaY || -e.wheelDelta || e.detail;
+      if (isNaN(delta)) return;
 
-  const handleMouseScroll = throttled(
-    1500,
-    useCallback(
-      (e: any) => {
-        const { wheelDeltaY } = e;
-        if (wheelDeltaY > 0) {
-          onScrollUp();
-        } else if (wheelDeltaY < 0) {
-          onScrollDown();
-        }
-      },
-      [onScrollDown, onScrollUp]
-    )
+      if (delta > 1) {
+        setDir(`up-${Date.now()}`);
+      } else if (delta < -1) {
+        setDir(`down-${Date.now()}`);
+      }
+    }, 1000),
+    [throttle]
   );
 
   useEffect(() => {
-    const r = ref.current;
-    if (r) {
-      r.addEventListener("mousewheel", handleMouseScroll);
-    }
-    return () => {
-      if (r) {
-        r.removeEventListener("mousewheel", handleMouseScroll);
-      }
-    };
-  }, [handleMouseScroll, ref]);
+    if (!ref.current) return;
+    const {current} = ref;
+    // IE9, Chrome, Safari, Opera
+    current.addEventListener("mousewheel", mouseWheelHandler as any, false);
+    // Firefox
+    current.addEventListener("DOMMouseScroll", mouseWheelHandler as any, false);
+    // IE 6~8
+    current.addEventListener("onmousewheel", mouseWheelHandler as any, false);
 
-  return useMemo(() => ({ ref }), [ref]);
+    return () => {
+      current.removeEventListener(
+        "mousewheel",
+        mouseWheelHandler as any,
+        false
+      );
+      current.removeEventListener(
+        "DOMMouseScroll",
+        mouseWheelHandler as any,
+        false
+      );
+      current.removeEventListener(
+        "onmousewheel",
+        mouseWheelHandler as any,
+        false
+      );
+    };
+  }, [mouseWheelHandler]);
+
+  return useMemo(() => ({ref, dir}), [ref, dir]);
 };

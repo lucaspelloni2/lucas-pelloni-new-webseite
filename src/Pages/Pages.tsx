@@ -1,30 +1,30 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Home } from "./Home/Home";
-import { Page } from "./Page";
-import { HomeTitle } from "./Home/HomeTitle";
-import { SecondHomeTitle } from "./Home/SecondHomeTitle";
-import { PageType } from "../types/PageType";
-import { StoryIntro } from "./StoryIntro/StoryIntro";
-import { ColorPicker } from "./Home/ColorPicker";
-import { Circle } from "../components/Circle";
-import useAppState from "../reducers/useAppState";
-import { PAGE_TRANSITION, PageDimensions } from "../Layout/Theme";
-import { useMouseWheel } from "../hooks/useMouseWheel";
-import { Direction } from "../reducers/translation/types";
-import { setTranslation } from "../reducers/translation/actions";
-import { useDispatch } from "react-redux";
-import { HistoryManager } from "../components/HistoryManager";
+import React, {useEffect, useMemo, useState} from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { MemoryScreen } from "./Memories/Memory";
-import { Years } from "./Memories/Years";
-import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
-import { useImageSection } from "../hooks/useImageSection";
-import { Memories } from "../Content";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import { useTouchDirection } from "../hooks/useTouchDirection";
 import useMedia from "use-media";
-import { MEDIUM_DEVICES_MAX_WIDTH } from "../Layout/Mobile";
-import { useWindowSize } from "react-use";
+import {useWindowSize} from "react-use";
+import {PageType} from "../types/PageType";
+import {Circle} from "../components/Circle";
+import useAppState from "../reducers/useAppState";
+import {PAGE_TRANSITION, PageDimensions} from "../Layout/Theme";
+
+import {Direction} from "../reducers/translation/types";
+import {setTranslation} from "../reducers/translation/actions";
+import {HistoryManager} from "../components/HistoryManager";
+import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
+import {useImageSection} from "../hooks/useImageSection";
+import {Memories} from "../Content";
+import {MEDIUM_DEVICES_MAX_WIDTH} from "../Layout/Mobile";
+import {useMouseWheel} from "../hooks/useMouseWheel";
+import {MemoryScreen} from "./Memories/Memory";
+import {Years} from "./Memories/Years";
+
+import {StoryIntro} from "./StoryIntro/StoryIntro";
+import {SecondHomeTitle} from "./Home/SecondHomeTitle";
+import {HomeTitle} from "./Home/HomeTitle";
+import {Page} from "./Page";
+import {Home} from "./Home/Home";
+import {ColorPicker} from "./Home/ColorPicker";
 
 const Parent = styled.div<{
   translation: number;
@@ -46,18 +46,22 @@ const Parent = styled.div<{
 `;
 
 export const Pages = () => {
-  const { translation } = useAppState(s => s.translation);
+  const {translation} = useAppState(s => s.translation);
   const windowHeight = useWindowSize().height;
   const normalized = useNormalizedTransition().translation;
   const currentIndex = useMemo(() => normalized / 100, [normalized]);
-  const { isLeftPanelOpen, translatedMemories } = useAppState(s => s.memory);
+  const {isLeftPanelOpen, translatedMemories} = useAppState(s => s.memory);
   const dispatch = useDispatch();
-  const { isImageSection } = useImageSection();
+  const {isImageSection} = useImageSection();
   const [direction, setDirection] = useState<null | Direction>(null);
 
-  const isMobile = useMedia({ maxWidth: MEDIUM_DEVICES_MAX_WIDTH + "px" });
+  const isMobile = useMedia({maxWidth: MEDIUM_DEVICES_MAX_WIDTH + "px"});
 
-  const { ref } = useMouseWheel({
+  const {ref, dir} = useMouseWheel();
+
+  console.log("direction", dir);
+
+  /*  const { ref } = useMouseWheel({
     onScrollUp: () => {
       if (!isLeftPanelOpen && direction !== Direction.UP) {
         setDirection(Direction.UP);
@@ -68,9 +72,9 @@ export const Pages = () => {
         setDirection(Direction.DOWN);
       }
     }
-  });
+  });*/
 
-  const secondRef = useTouchDirection({
+  /* const secondRef = useTouchDirection({
     onScrollUp: () => {
       if (!isLeftPanelOpen && direction !== Direction.UP) {
         setDirection(Direction.UP);
@@ -81,9 +85,9 @@ export const Pages = () => {
         setDirection(Direction.DOWN);
       }
     }
-  });
+  });*/
 
-  useScrollPosition(
+  /*  useScrollPosition(
     props => {
       const { prevPos, currPos } = props;
       const scrollingDown = currPos.y > prevPos.y;
@@ -101,7 +105,7 @@ export const Pages = () => {
 
   useEffect(() => {
     dispatch(setTranslation(direction));
-  }, [direction, dispatch]);
+  }, [direction, dispatch]);*/
 
   useEffect(() => {
     let timer: any = null;
@@ -115,13 +119,13 @@ export const Pages = () => {
 
   return (
     <Parent
-      ref={isMobile ? secondRef.ref : ref}
+      ref={ref}
       translation={translation}
       windowHeight={windowHeight}
       currentIndex={currentIndex}
     >
       <HistoryManager />
-    {/*  <ColorPicker visible={normalized <= PageDimensions[2]} />
+      {/*  <ColorPicker visible={normalized <= PageDimensions[2]} />
       <Circle visible={normalized < PageDimensions[3]} />
       <Years visible={isImageSection} />*/}
 

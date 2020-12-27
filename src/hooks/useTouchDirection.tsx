@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { throttled } from "./useMouseWheel";
+/*
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 
 type Props = {
   onScrollUp: () => void;
   onScrollDown: () => void;
 };
 
-export const useTouchDirection = ({ onScrollUp, onScrollDown }: Props) => {
+export const useTouchDirection = ({onScrollUp, onScrollDown}: Props) => {
   const ref = useRef<any>(null);
 
   const [startingPosition, setStartingPosition] = useState<number>(-1);
@@ -50,5 +50,10 @@ export const useTouchDirection = ({ onScrollUp, onScrollDown }: Props) => {
     };
   }, [touchEndHandler, touchMoveHandler, touchStartHandler]);
 
-  return useMemo(() => ({ ref }), [ref]);
+  return useMemo(() => ({ref}), [ref]);
+};
+*/
+
+export const useTouchDirection = () => {
+  return null;
 };
