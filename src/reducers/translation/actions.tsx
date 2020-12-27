@@ -1,11 +1,6 @@
-import {
-  ActionTypes,
-  Direction,
-  SetNumberTranslation,
-  SetTranslation
-} from "./types";
+import {ActionTypes, SetNumberTranslation, SetTranslation} from "./types";
 
-export const setTranslation = (direction: Direction | null): SetTranslation => {
+export const setTranslation = (direction: string | null): SetTranslation => {
   return {
     type: ActionTypes.SET_TRANSLATION,
     direction

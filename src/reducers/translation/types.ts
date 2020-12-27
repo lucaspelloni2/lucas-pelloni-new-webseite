@@ -14,7 +14,7 @@ export enum Direction {
  */
 export type SetTranslation = {
   type: ActionTypes.SET_TRANSLATION;
-  direction: Direction | null;
+  direction: string | null;
 };
 
 export type SetNumberTranslation = {

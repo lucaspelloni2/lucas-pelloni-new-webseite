@@ -1,5 +1,18 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import throttle from "lodash/throttle";
+
+// ES6 code
+function throttled(fn: any, delay: number) {
+  let lastCall = 0;
+  // @ts-ignore
+  return function (...args) {
+    const now = new Date().getTime();
+    if (now - lastCall < delay) {
+      return;
+    }
+    lastCall = now;
+    return fn(...args);
+  };
+}
 
 export const useMouseWheel = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -7,17 +20,17 @@ export const useMouseWheel = () => {
   const [dir, setDir] = useState<string | null>(null);
 
   const mouseWheelHandler = useCallback(
-    throttle((e: any) => {
+    throttled((e: any) => {
       const delta = e.deltaY || -e.wheelDelta || e.detail;
       if (isNaN(delta)) return;
 
       if (delta > 1) {
-        setDir(`up-${Date.now()}`);
-      } else if (delta < -1) {
         setDir(`down-${Date.now()}`);
+      } else if (delta < -1) {
+        setDir(`up-${Date.now()}`);
       }
-    }, 1000),
-    [throttle]
+    }, 1500),
+    [throttled]
   );
 
   useEffect(() => {

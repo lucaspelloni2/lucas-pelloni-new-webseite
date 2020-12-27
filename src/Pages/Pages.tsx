@@ -53,7 +53,7 @@ export const Pages = () => {
   const {isLeftPanelOpen, translatedMemories} = useAppState(s => s.memory);
   const dispatch = useDispatch();
   const {isImageSection} = useImageSection();
-  const [direction, setDirection] = useState<null | Direction>(null);
+  const [direction, setDirection] = useState<null | string>(null);
 
   const isMobile = useMedia({maxWidth: MEDIUM_DEVICES_MAX_WIDTH + "px"});
 
@@ -108,14 +108,8 @@ export const Pages = () => {
   }, [direction, dispatch]);*/
 
   useEffect(() => {
-    let timer: any = null;
-    if (direction) {
-      timer = setTimeout(() => {
-        setDirection(null);
-      }, 1500);
-    }
-    return () => clearTimeout(timer);
-  }, [direction]);
+    dispatch(setTranslation(dir));
+  }, [dir, dispatch]);
 
   return (
     <Parent
