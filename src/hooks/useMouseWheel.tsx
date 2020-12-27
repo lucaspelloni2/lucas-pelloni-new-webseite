@@ -26,9 +26,9 @@ export const useMouseWheel = () => {
       const delta = e.deltaY || -e.wheelDelta || e.detail;
       if (isNaN(delta)) return;
 
-      if (delta > 1) {
+      if (delta > 0) {
         setDir(`down-${Date.now()}`);
-      } else if (delta < -1) {
+      } else if (delta < 0) {
         setDir(`up-${Date.now()}`);
       }
     }, 1300),
