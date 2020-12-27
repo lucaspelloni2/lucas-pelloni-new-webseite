@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import {usePrevious} from "./usePrevious";
 
 // ES6 code
 function throttled(fn: any, delay: number) {
@@ -17,10 +18,12 @@ function throttled(fn: any, delay: number) {
 export const useMouseWheel = () => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const [dir, setDir] = useState<string | null>(null);
+  const [dir, setDir] = useState<string | null>(`null`);
 
   const mouseWheelHandler = useCallback(
     throttled((e: any) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
       const delta = e.deltaY || -e.wheelDelta || e.detail;
       if (isNaN(delta)) return;
 
