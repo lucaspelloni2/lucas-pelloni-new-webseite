@@ -30,6 +30,8 @@
     "interpolate-range": "^2.1.0",
     "lodash": "^4.17.15",
     "polished": "latest",
+    "prettier": "^2.1.2",
+    "prettier-plugin-organize-imports": "^1.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-height": "^3.0.1",
@@ -45,15 +47,15 @@
     "scroll-snap": "^3.0.1",
     "showdown": "^1.9.1",
     "styled-components": "latest",
-    "typescript": "~3.7.2",
-    "use-media": "^1.4.0",
-    "uuid": "latest",
     "stylelint": "13.7.2",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-no-unsupported-browser-features": "^4.0.0",
-    "stylelint-processor-styled-components": "^1.10.0",    "prettier": "^2.1.2"
+    "stylelint-processor-styled-components": "^1.10.0",
+    "typescript": "~3.7.2",
+    "use-media": "^1.4.0",
+    "uuid": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
