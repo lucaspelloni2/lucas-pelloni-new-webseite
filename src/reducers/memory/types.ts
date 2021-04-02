@@ -1,4 +1,4 @@
-import { Memory } from "../../Content";
+import {Memory} from "../../Content";
 
 export enum ActionTypes {
   SET_MEMORY = "SET_MEMORY",
