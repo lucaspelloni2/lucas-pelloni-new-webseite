@@ -1,8 +1,19 @@
+import {Flex} from "axelra-styled-bootstrap-grid";
 import React from "react";
-import styled from "styled-components";
+import {Picture} from "../../Content";
+import {MemoryAnimatedDot} from "./MemoryAnimatedDot";
 
-const Container = styled.div``;
-
-export const MemoryAnimatedDots = () => {
-  return <Container>MemoryAnimatedDots</Container>;
+type Props = {
+  pictures: Picture[];
+  current: number;
+};
+export const MemoryAnimatedDots = ({pictures, current}: Props) => {
+  console.log("current", current);
+  return (
+    <Flex row align="center">
+      {pictures.map((p, index) => (
+        <MemoryAnimatedDot key={String(`p-${p}`)} active={index === current} />
+      ))}
+    </Flex>
+  );
 };

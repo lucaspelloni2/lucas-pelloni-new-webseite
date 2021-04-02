@@ -1,6 +1,10 @@
 import {parseToHsl, transparentize} from "polished";
 import {CSSProperties} from "react";
-import styled, {createGlobalStyle, ThemeProviderProps} from "styled-components";
+import styled, {
+  createGlobalStyle,
+  css,
+  ThemeProviderProps
+} from "styled-components";
 
 type Props = {
   googleUrl: string;
@@ -179,4 +183,10 @@ export const AnimatedOpacityContainer = styled.div<{visible: boolean}>`
   visibility: ${props => (props.visible ? "visible" : "hidden")};
   z-index: ${props => (props.visible ? "auto" : -2)};
   transition: ${COLOR_TRANSITION};
+`;
+
+export const CIRCLE = (size: number) => css`
+  width: ${size}px;
+  height: ${size}px;
+  border-radius: ${size / 2}px;
 `;

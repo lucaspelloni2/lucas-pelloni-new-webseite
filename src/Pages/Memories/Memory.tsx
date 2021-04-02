@@ -44,7 +44,9 @@ export const MemoryScreen = ({memory, isActive}: Props) => {
   const dispatch = useDispatch();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalPictures = memory.achievement.pictures.length;
+  const totalPictures = useMemo(() => memory.achievement.pictures.length, [
+    memory.achievement.pictures.length
+  ]);
 
   const next = useCallback(() => {
     if (currentIndex === totalPictures - 1) {
@@ -104,15 +106,7 @@ export const MemoryScreen = ({memory, isActive}: Props) => {
       </div>
 
       <ContentWrapper flex={1}>
-        {useMemo(
-          () => (
-            <MemoryTextSection
-              memory={memory}
-              pictureTranslation={pictureTranslation}
-            />
-          ),
-          [memory, pictureTranslation]
-        )}
+        <MemoryTextSection memory={memory} current={currentIndex} />
       </ContentWrapper>
       <ScrollDownIcon />
     </Container>

@@ -87,13 +87,12 @@ const ColHeight = styled(Col)`
 
 type Props = {
   memory: Memory;
-  pictureTranslation: number;
+  current: number;
 };
 
-export const MemoryTextSection = ({memory, pictureTranslation}: Props) => {
+export const MemoryTextSection = ({memory, current}: Props) => {
   const dispatch = useDispatch();
   const {achievement} = memory;
-  console.log(pictureTranslation);
   return useMemo(
     () => (
       <Container>
@@ -102,7 +101,10 @@ export const MemoryTextSection = ({memory, pictureTranslation}: Props) => {
             <Flex flex={1} />
             <Flex column>
               <TitleWrapper>
-                <MemoryAnimatedDots />
+                <MemoryAnimatedDots
+                  pictures={achievement.pictures}
+                  current={current}
+                />
                 <MyTitle>
                   <ColoredText
                     text={achievement.title}
@@ -135,8 +137,10 @@ export const MemoryTextSection = ({memory, pictureTranslation}: Props) => {
     ),
     [
       achievement.hashtags,
+      achievement.pictures,
       achievement.subtitle,
       achievement.title,
+      current,
       dispatch,
       memory.primaryColor
     ]
