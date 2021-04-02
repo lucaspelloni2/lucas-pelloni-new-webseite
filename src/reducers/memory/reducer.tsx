@@ -1,12 +1,12 @@
+import _ from "lodash";
+import {Memories, Memory} from "../../Content";
+import {PageDimensions} from "../../Layout/Theme";
 import {
   ActionTypes,
   SetCurrentMemory,
   ToggleLeftPanel,
   YearState
 } from "./types";
-import _ from "lodash";
-import { Memories, Memory } from "../../Content";
-import { PageDimensions } from "../../Layout/Theme";
 
 const initialState: YearState = {
   isLeftPanelOpen: false,
