@@ -1,9 +1,6 @@
-import { CSSProperties } from "react";
-import styled, {
-  createGlobalStyle,
-  ThemeProviderProps
-} from "styled-components";
-import { parseToHsl, transparentize } from "polished";
+import {parseToHsl, transparentize} from "polished";
+import {CSSProperties} from "react";
+import styled, {createGlobalStyle, ThemeProviderProps} from "styled-components";
 
 type Props = {
   googleUrl: string;
@@ -13,8 +10,6 @@ export const MainTheme: CSSProperties & Props = {
   fontFamily: "Avenir Next, sans-serif",
   googleUrl:
     "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
-
-  // add more general CSS properties here
 };
 
 export const SPACING = 10;
@@ -170,16 +165,16 @@ export const getAlphaColor = (alpha: number, color: string) => {
 };
 
 export const getHSL = (color: string) => {
-  const { hue, saturation, lightness } = parseToHsl(color);
+  const {hue, saturation, lightness} = parseToHsl(color);
   return `hsl(${hue}, ${saturation * 100}%, ${lightness * 100}%)`;
 };
 
 export const getHSLA = (alpha: number, color: string) => {
-  const { hue, saturation, lightness } = parseToHsl(color);
+  const {hue, saturation, lightness} = parseToHsl(color);
   return `hsla(${hue}, ${saturation * 100}%, ${lightness * 100}%, ${alpha})`;
 };
 
-export const AnimatedOpacityContainer = styled.div<{ visible: boolean }>`
+export const AnimatedOpacityContainer = styled.div<{visible: boolean}>`
   opacity: ${props => (props.visible ? 1 : 0)};
   visibility: ${props => (props.visible ? "visible" : "hidden")};
   z-index: ${props => (props.visible ? "auto" : -2)};
