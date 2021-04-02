@@ -3,6 +3,6 @@ import styled from "styled-components";
 
 const Container = styled.div``;
 
-export const MemoryImageAnimatedDot = () => {
-  return <Container>MemoryImageAnimatedDot</Container>;
+export const MemoryAnimatedDot = () => {
+  return <Container>MemoryAnimatedDot</Container>;
 };

@@ -12,6 +12,7 @@ import {FlexBox} from "../../Layout/styled/FlexBox";
 import {getHSLA, SPACING, __COLORS, __GRAY_SCALE} from "../../Layout/Theme";
 import {SubTitle, Title} from "../../Layout/Typography";
 import {toggleLeftPanel} from "../../reducers/memory/actions";
+import {MemoryAnimatedDots} from "./MemoryAnimatedDots";
 
 const TextWrapper = styled(FlexBox)`
   display: flex;
@@ -45,6 +46,7 @@ const TitleWrapper = styled.div`
     content: " ";
     ${MEDIUM_DEVICES`display: none;`}
   }
+
   position: relative;
   background-color: ${getHSLA(0.25, __COLORS.PRIMARY)};
 `;
@@ -64,6 +66,7 @@ const MyButton = styled(Button)`
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   }
+
   &:hover .round .arrow.primera {
     animation-name: bounceAlpha;
     animation-duration: 1.4s;
@@ -84,11 +87,13 @@ const ColHeight = styled(Col)`
 
 type Props = {
   memory: Memory;
+  pictureTranslation: number;
 };
 
-export const MemoryTextSection = ({memory}: Props) => {
+export const MemoryTextSection = ({memory, pictureTranslation}: Props) => {
   const dispatch = useDispatch();
   const {achievement} = memory;
+  console.log(pictureTranslation);
   return useMemo(
     () => (
       <Container>
@@ -97,6 +102,7 @@ export const MemoryTextSection = ({memory}: Props) => {
             <Flex flex={1} />
             <Flex column>
               <TitleWrapper>
+                <MemoryAnimatedDots />
                 <MyTitle>
                   <ColoredText
                     text={achievement.title}

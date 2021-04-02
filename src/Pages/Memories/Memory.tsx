@@ -43,19 +43,27 @@ export const MemoryScreen = ({memory, isActive}: Props) => {
   const {translation} = useNormalizedTransition();
   const dispatch = useDispatch();
 
-  const [pictureTranslation, setPictureTranslation] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const totalPictures = memory.achievement.pictures.length;
 
   const next = useCallback(() => {
-    setPictureTranslation(s =>
-      s === (totalPictures - 1) * PAGE_WIDTH * -1 ? 0 : s - PAGE_WIDTH
-    );
-  }, [totalPictures]);
+    if (currentIndex === totalPictures - 1) {
+      setCurrentIndex(0);
+    } else {
+      setCurrentIndex(currentIndex + 1);
+    }
+  }, [currentIndex, totalPictures]);
   const prev = useCallback(() => {
-    setPictureTranslation(s =>
-      s === 0 ? (totalPictures - 1) * PAGE_WIDTH * -1 : s + PAGE_WIDTH
-    );
-  }, [totalPictures]);
+    if (currentIndex === 0) {
+      setCurrentIndex(totalPictures - 1);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  }, [currentIndex, totalPictures]);
+
+  const pictureTranslation = useMemo(() => currentIndex * PAGE_WIDTH * -1, [
+    currentIndex
+  ]);
 
   useEffect(() => {
     if (isActive && translation) {
@@ -77,12 +85,33 @@ export const MemoryScreen = ({memory, isActive}: Props) => {
           [memory, pictureTranslation]
         )}
       </ImageWrapper>
+      <div
+        onClick={prev}
+        style={{position: "absolute", background: "red", zIndex: 1024124}}
+      >
+        prev
+      </div>
+      <div
+        onClick={next}
+        style={{
+          position: "absolute",
+          top: 40,
+          background: "green",
+          zIndex: 1024124
+        }}
+      >
+        nexg
+      </div>
+
       <ContentWrapper flex={1}>
         {useMemo(
           () => (
-            <MemoryTextSection memory={memory} />
+            <MemoryTextSection
+              memory={memory}
+              pictureTranslation={pictureTranslation}
+            />
           ),
-          [memory]
+          [memory, pictureTranslation]
         )}
       </ContentWrapper>
       <ScrollDownIcon />
