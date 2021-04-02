@@ -1,17 +1,17 @@
-import React, { useMemo } from "react";
+import {Col, Container, Flex, Row, Spacer} from "axelra-styled-bootstrap-grid";
+import React, {useMemo} from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { FlexBox } from "../../Layout/styled/FlexBox";
-import { ColoredText } from "../../components/ColoredTitle";
-import { Button } from "../../components/Button";
-import { __COLORS, __GRAY_SCALE, getHSLA, SPACING } from "../../Layout/Theme";
-import { SubTitle, Title } from "../../Layout/Typography";
-import { Memory } from "../../Content";
-import { Hashtags } from "../../components/Hashtags";
-import { useDispatch } from "react-redux";
-import { toggleLeftPanel } from "../../reducers/memory/actions";
-import { MEDIUM_DEVICES } from "../../Layout/Mobile";
-import { AnimatedArrow } from "../../components/AnimatedArrow";
-import { textFocusIn } from "../../Layout/AnimationHelper";
+import {AnimatedArrow} from "../../components/AnimatedArrow";
+import {Button} from "../../components/Button";
+import {ColoredText} from "../../components/ColoredTitle";
+import {Hashtags} from "../../components/Hashtags";
+import {Memory} from "../../Content";
+import {MEDIUM_DEVICES} from "../../Layout/Mobile";
+import {FlexBox} from "../../Layout/styled/FlexBox";
+import {getHSLA, SPACING, __COLORS, __GRAY_SCALE} from "../../Layout/Theme";
+import {SubTitle, Title} from "../../Layout/Typography";
+import {toggleLeftPanel} from "../../reducers/memory/actions";
 
 const TextWrapper = styled(FlexBox)`
   display: flex;
@@ -20,15 +20,8 @@ const TextWrapper = styled(FlexBox)`
 
 const MyTitle = styled(Title)`
   font-size: 62px;
+  margin: 0;
   color: ${__COLORS.WHITE};
-  margin-bottom: 0;
-  overflow-x: visible;
-  animation: ${textFocusIn} 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-  ${MEDIUM_DEVICES`
-        font-size: 36px;
-    margin-bottom: 12px;
-    margin-top: 0; 
-    `};
 `;
 
 const MySubTitle = styled(SubTitle)`
@@ -52,16 +45,8 @@ const TitleWrapper = styled.div`
     content: " ";
     ${MEDIUM_DEVICES`display: none;`}
   }
-  max-width: 60%;
   position: relative;
-  padding: 0 ${SPACING * 8}px ${SPACING * 8}px ${SPACING * 8}px;
   background-color: ${getHSLA(0.25, __COLORS.PRIMARY)};
-  ${MEDIUM_DEVICES`
-    padding: 0px;
-    max-width: 100%;
-    text-align: center;
-    background-color: transparent; 
-    `};
 `;
 
 const Buttons = styled.div`
@@ -88,43 +73,59 @@ const MyButton = styled(Button)`
   }
 `;
 
+const RowHeight = styled(Row)`
+  height: 100%;
+`;
+const ColHeight = styled(Col)`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 type Props = {
   memory: Memory;
 };
 
-export const MemoryTextSection = ({ memory }: Props) => {
+export const MemoryTextSection = ({memory}: Props) => {
   const dispatch = useDispatch();
-  const { achievement } = memory;
+  const {achievement} = memory;
   return useMemo(
     () => (
-      <TextWrapper flex={1}>
-        <FlexBox flex={1} />
-        <TitleWrapper>
-          <Text>
-            <MyTitle>
-              <ColoredText
-                text={achievement.title}
-                firstWordColor={memory.primaryColor}
-              />
-            </MyTitle>
-            {achievement.hashtags && (
-              <Hashtags
-                hashtags={achievement.hashtags}
-                color={memory.primaryColor}
-              />
-            )}
-            <MySubTitle>{achievement.subtitle}</MySubTitle>
-          </Text>
-          <Buttons>
-            <MyButton
-              background={memory.primaryColor}
-              onClick={() => dispatch(toggleLeftPanel())}
-            >
-              Read the story <AnimatedArrow />
-            </MyButton>
-          </Buttons>
-        </TitleWrapper>
-      </TextWrapper>
+      <Container>
+        <RowHeight>
+          <ColHeight xs={12} sm={10} md={8}>
+            <Flex flex={1} />
+            <Flex column>
+              <TitleWrapper>
+                <MyTitle>
+                  <ColoredText
+                    text={achievement.title}
+                    firstWordColor={memory.primaryColor}
+                  />
+                </MyTitle>
+                {achievement.hashtags && (
+                  <Hashtags
+                    hashtags={achievement.hashtags}
+                    color={memory.primaryColor}
+                  />
+                )}
+                <MySubTitle>{achievement.subtitle}</MySubTitle>
+                <Spacer />
+                <Buttons>
+                  <MyButton
+                    background={memory.primaryColor}
+                    onClick={() => dispatch(toggleLeftPanel())}
+                  >
+                    Read the story <AnimatedArrow />
+                  </MyButton>
+                </Buttons>
+              </TitleWrapper>
+              <Spacer x10 />
+              <Spacer x5 />
+            </Flex>
+          </ColHeight>
+        </RowHeight>
+      </Container>
     ),
     [
       achievement.hashtags,
