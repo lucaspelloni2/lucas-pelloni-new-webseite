@@ -1,5 +1,5 @@
-import { CSSProperties } from "react";
-import { __COLORS } from "./Layout/Theme";
+import {CSSProperties} from "react";
+import {__COLORS} from "./Layout/Theme";
 
 export type Picture = {
   src: string;
@@ -68,7 +68,7 @@ export const Memories: Memory[] = [
         {
           title: "williamcandillon"
         },
-        { title: "animations" }
+        {title: "animations"}
       ],
       subtitle:
         "In January 2020, I had the pleasure to be interview by William Candillion, one of the best React Native developers in the world, expert in the field of declarative animations.",
@@ -112,7 +112,7 @@ export const Memories: Memory[] = [
         {
           title: "techventurebuilder"
         },
-        { title: "techaccelerator" }
+        {title: "techaccelerator"}
       ],
       subtitle:
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
@@ -203,7 +203,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "universityofzurich"
         },
-        { title: "computerscience" }
+        {title: "computerscience"}
       ]
     }
   },
@@ -232,7 +232,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           videoId: 444332012
         },
-        { videoId: 444329274 }
+        {videoId: 444329274}
       ],
       link: "https://twitter.com/Axelra_AG/status/1143887932207632384",
       logo: {
@@ -249,7 +249,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "axelra"
         },
-        { title: "velove" }
+        {title: "velove"}
       ]
     }
   },
@@ -290,7 +290,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           videoId: 414890377
         },
-        { videoId: 414896672 }
+        {videoId: 414896672}
       ],
       link:
         "https://www.swissinfo.ch/eng/industry-challenges-blockchain-during-hackathon/45051562",
@@ -305,7 +305,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "swissblockchainhackthon"
         },
-        { title: "velove" }
+        {title: "velove"}
       ]
     }
   },
@@ -342,7 +342,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           videoId: 414553471
         },
-        { videoId: 414559184 }
+        {videoId: 414559184}
       ],
       link: "https://www.instagram.com/maka.day/",
       logo: {
@@ -356,7 +356,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "makaday"
         },
-        { title: "hackathon" }
+        {title: "hackathon"}
       ]
     }
   },
@@ -392,8 +392,8 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "blockchain"
         },
-        { title: "ethereum" },
-        { title: "openscience" }
+        {title: "ethereum"},
+        {title: "openscience"}
       ]
     }
   },
@@ -440,8 +440,8 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "temus"
         },
-        { title: "live" },
-        { title: "rap" }
+        {title: "live"},
+        {title: "rap"}
       ]
     }
   },
@@ -472,8 +472,8 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "unadomenicadineve"
         },
-        { title: "rap" },
-        { title: "ticino" }
+        {title: "rap"},
+        {title: "ticino"}
       ]
     }
   }
