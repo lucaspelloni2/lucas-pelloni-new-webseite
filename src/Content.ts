@@ -1,5 +1,4 @@
 import {CSSProperties} from "react";
-import {__COLORS} from "./Layout/Theme";
 
 export type Picture = {
   src: string;
@@ -107,7 +106,7 @@ export const Memories: Memory[] = [
     secondaryColor: "#0a274b",
     achievement: {
       title: "Axelra was born",
-      firstWordColor: __COLORS.FOURTH,
+      firstWordColor: "#FFCC3E",
       hashtags: [
         {
           title: "axelra"

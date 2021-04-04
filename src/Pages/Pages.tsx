@@ -6,7 +6,11 @@ import {HistoryManager} from "../components/HistoryManager";
 import {Memories} from "../Content";
 import {useMouseWheel} from "../hooks/useMouseWheel";
 import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
-import {PageDimensions, PAGE_TRANSITION} from "../Layout/Theme";
+import {
+  NUMBER_OF_PAGES_WITHOUT_MEMORY,
+  PageDimensions,
+  PAGE_TRANSITION
+} from "../Layout/Theme";
 import {setCurrentMemory} from "../reducers/memory/actions";
 import {setTranslation} from "../reducers/translation/actions";
 import useAppState from "../reducers/useAppState";
@@ -21,10 +25,10 @@ const Parent = styled.div<{
   translation: number;
 }>`
   overflow: hidden;
-  height: ${(Memories.length + 3) * 100}vh;
   width: 100%;
   position: absolute !important;
   transition: ${PAGE_TRANSITION};
+  height: ${(Memories.length + NUMBER_OF_PAGES_WITHOUT_MEMORY) * 100}vh;
   will-change: transform;
   transform: translate3d(0px, ${props => props.translation}vh, 0px);
 `;

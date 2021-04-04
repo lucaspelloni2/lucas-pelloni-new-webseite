@@ -5,6 +5,7 @@ import styled, {
   css,
   ThemeProviderProps
 } from "styled-components";
+import {Memories} from "../Content";
 
 export const MainTheme: CSSProperties = {
   fontFamily: "Avenir Next, sans-serif"
@@ -13,6 +14,7 @@ export const MainTheme: CSSProperties = {
 export const SPACING = 10;
 export const DARK_MODE_TRANSITION = `0.5s ease-in-out all`;
 export const COLOR_TRANSITION = `0.3s ease-in-out all`;
+export const NUMBER_OF_PAGES_WITHOUT_MEMORY = 3;
 //export const PAGE_TRANSITION = `0.7s cubic-bezier(.67,0,.29,1.01) all`;
 export const PAGE_TRANSITION = `all 1000ms ease 0s`;
 export const PAGE_TRANSITION_LINEAR = `0.7s ease-in-out all`;
@@ -28,7 +30,7 @@ export const MEMORY_LEFT_PANEL_WIDTH = `50vw`;
 export const YEAR_HEIGHT = SPACING * 10;
 export const DEFAULT_LOGO =
   "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/default_logo.png";
-export const NUMBER_OF_PAGES = 20;
+export const NUMBER_OF_PAGES = Memories.length + NUMBER_OF_PAGES_WITHOUT_MEMORY;
 export const PageDimensions = new Array(NUMBER_OF_PAGES)
   .fill(0)
   .map((_, i) => PAGE_HEIGHT * i);

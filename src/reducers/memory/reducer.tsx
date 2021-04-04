@@ -1,6 +1,9 @@
 import _ from "lodash";
 import {Memories, Memory} from "../../Content";
-import {PageDimensions} from "../../Layout/Theme";
+import {
+  NUMBER_OF_PAGES_WITHOUT_MEMORY,
+  PageDimensions
+} from "../../Layout/Theme";
 import {
   ActionTypes,
   GoToNextImage,
@@ -17,7 +20,7 @@ const initialState: YearState = {
   currentImageIndex: 0,
   translatedMemories: Memories.map((m, i: number) => ({
     ...m,
-    translation: PageDimensions[3 + i]
+    translation: PageDimensions[NUMBER_OF_PAGES_WITHOUT_MEMORY + i]
   })),
   grouped: _(Memories)
     .groupBy((e: Memory) => Number(e.year))
