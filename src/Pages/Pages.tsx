@@ -1,15 +1,12 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useMemo} from "react";
 import {useDispatch} from "react-redux";
 import {useWindowSize} from "react-use";
 import styled from "styled-components";
-import useMedia from "use-media";
 import {Circle} from "../components/Circle";
 import {HistoryManager} from "../components/HistoryManager";
 import {Memories} from "../Content";
-import {useImageSection} from "../hooks/useImageSection";
 import {useMouseWheel} from "../hooks/useMouseWheel";
 import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
-import {MEDIUM_DEVICES_MAX_WIDTH} from "../Layout/Mobile";
 import {PageDimensions, PAGE_TRANSITION} from "../Layout/Theme";
 import {setTranslation} from "../reducers/translation/actions";
 import useAppState from "../reducers/useAppState";
@@ -44,12 +41,8 @@ export const Pages = () => {
   const windowHeight = useWindowSize().height;
   const normalized = useNormalizedTransition().translation;
   const currentIndex = useMemo(() => normalized / 100, [normalized]);
-  const {isLeftPanelOpen, translatedMemories} = useAppState(s => s.memory);
+  const {translatedMemories} = useAppState(s => s.memory);
   const dispatch = useDispatch();
-  const {isImageSection} = useImageSection();
-  const [direction, setDirection] = useState<null | string>(null);
-
-  const isMobile = useMedia({maxWidth: MEDIUM_DEVICES_MAX_WIDTH + "px"});
 
   const {ref, dir} = useMouseWheel();
 
@@ -120,9 +113,7 @@ export const Pages = () => {
           <>
             <Page
               offset={0}
-              component={
-                <Home header order={[1, 2]} titleComponent={<HomeTitle />} />
-              }
+              component={<Home order={[1, 2]} titleComponent={<HomeTitle />} />}
             />
             <Page
               offset={PageDimensions[1]}

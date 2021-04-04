@@ -99,7 +99,7 @@ export const MemoryScreen = ({memory, isActive}: Props) => {
       </div>
 
       <ContentWrapper flex={1}>
-        <MemoryTextSection memory={memory} current={currentIndex} />
+        <MemoryTextSection memory={memory} />
       </ContentWrapper>
       <ScrollDownIcon />
     </Container>

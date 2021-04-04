@@ -1,8 +1,7 @@
-import {PAGE_HEIGHT} from "../../Layout/Theme";
 import {getIndexFromURL} from "../../helpers/get-index-from-url";
+import {PAGE_HEIGHT} from "../../Layout/Theme";
 import {
   ActionTypes,
-  Direction,
   SetNumberTranslation,
   SetTranslation,
   TranslationState

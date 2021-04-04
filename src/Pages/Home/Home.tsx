@@ -1,5 +1,5 @@
-import React, {ReactNode, useMemo} from "react";
 import {Col, Container, Flex, Row, SPACING} from "axelra-styled-bootstrap-grid";
+import React, {ReactNode, useMemo} from "react";
 import styled from "styled-components";
 import {IllustrationSvg} from "../../components/IllustrationSvg";
 
@@ -10,12 +10,6 @@ const MyCol = styled(Col)`
   height: 100%;
 `;
 
-const MyFlexCol = styled(MyCol)`
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-`;
 const MyRow = styled(Row)`
   height: 100%;
   padding: ${SPACING * 4}px;
@@ -31,12 +25,11 @@ const Image = styled(IllustrationSvg)`
 `;
 
 type Props = {
-  header?: boolean;
   order: number[];
   titleComponent: ReactNode;
 };
 
-export const Home = ({header, order, titleComponent}: Props) => {
+export const Home = ({order, titleComponent}: Props) => {
   return useMemo(
     () => (
       <MyContainer fluid>
@@ -55,6 +48,6 @@ export const Home = ({header, order, titleComponent}: Props) => {
         </MyRow>
       </MyContainer>
     ),
-    [header, order, titleComponent]
+    [order, titleComponent]
   );
 };

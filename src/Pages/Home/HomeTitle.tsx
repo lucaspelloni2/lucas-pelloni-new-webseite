@@ -1,17 +1,12 @@
+import {Flex} from "axelra-styled-bootstrap-grid";
 import React from "react";
 import styled from "styled-components";
-import {Flex} from "axelra-styled-bootstrap-grid";
-import {ColoredSpan, HomeBigTitle, HomeSubTitle} from "../../Layout/Typography";
-import {
-  __COLORS,
-  LEFT_PANEL_TRANSITION,
-  PAGE_TRANSITION_LINEAR,
-  SPACING
-} from "../../Layout/Theme";
 import {Icon, IconTypes} from "../../components/Icon";
-import useAppState from "../../reducers/useAppState";
-import {MEDIUM_DEVICES} from "../../Layout/Mobile";
 import {useNormalizedTransition} from "../../hooks/useNormalizedTransition";
+import {MEDIUM_DEVICES} from "../../Layout/Mobile";
+import {PAGE_TRANSITION_LINEAR, SPACING, __COLORS} from "../../Layout/Theme";
+import {ColoredSpan, HomeBigTitle, HomeSubTitle} from "../../Layout/Typography";
+import useAppState from "../../reducers/useAppState";
 
 const TranslatedFlex = styled(Flex)<{t: number}>`
   transform: ${props => `translate3d(-${props.t === 0 ? 0 : 100}%, 0, 0)`};

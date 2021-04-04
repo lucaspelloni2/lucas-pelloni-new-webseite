@@ -6,14 +6,8 @@ import styled, {
   ThemeProviderProps
 } from "styled-components";
 
-type Props = {
-  googleUrl: string;
-};
-
-export const MainTheme: CSSProperties & Props = {
-  fontFamily: "Avenir Next, sans-serif",
-  googleUrl:
-    "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
+export const MainTheme: CSSProperties = {
+  fontFamily: "Avenir Next, sans-serif"
 };
 
 export const SPACING = 10;
@@ -70,23 +64,21 @@ export const GlobalStyle = createGlobalStyle<{
   color: string;
   background: string;
 }>`
+  @font-face {
+    font-family: "Avenir Next W05 Bold";
+    src: url("5199694/750e110a-c47f-4c8f-829a-b56cc20cc51d.woff2") format("woff2"),
+    url("5199694/f3420df8-1310-4059-9207-e82b1c9dd3a5.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Avenir Next W05 Regular";
+    src: url("5508244/77caabd3-1877-4634-85c8-8e398a093b99.woff2") format("woff2"),
+    url("5508244/e388ac99-8c6a-4451-8690-1d15b4d45adb.woff") format("woff");
+  }
   * {
     box-sizing: border-box;
     line-height: 1.5em;
     outline: none;
   }
-  
-  @import url(${MainTheme.googleUrl});
-  @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
-  @import url("https://fast.fonts.net/lt/1.css?apiType=css&c=5f1dfaf6-7d97-4c84-a1dc-d99093e9c98d&fontids=5199694,5508244");
-    @font-face{
-        font-family:"Avenir Next W05 Bold";
-        src:url("5199694/750e110a-c47f-4c8f-829a-b56cc20cc51d.woff2") format("woff2"),url("5199694/f3420df8-1310-4059-9207-e82b1c9dd3a5.woff") format("woff");
-    }
-    @font-face{
-        font-family:"Avenir Next W05 Regular";
-        src:url("5508244/77caabd3-1877-4634-85c8-8e398a093b99.woff2") format("woff2"),url("5508244/e388ac99-8c6a-4451-8690-1d15b4d45adb.woff") format("woff");
-    }
   html {
     font-family: ${(p: ThemeProviderProps<any>) => p.theme.fontFamily};
      scroll-behavior: smooth;

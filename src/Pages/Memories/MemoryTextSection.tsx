@@ -8,16 +8,10 @@ import {ColoredText} from "../../components/ColoredTitle";
 import {Hashtags} from "../../components/Hashtags";
 import {Memory} from "../../Content";
 import {MEDIUM_DEVICES} from "../../Layout/Mobile";
-import {FlexBox} from "../../Layout/styled/FlexBox";
 import {getHSLA, SPACING, __COLORS, __GRAY_SCALE} from "../../Layout/Theme";
 import {SubTitle, Title} from "../../Layout/Typography";
 import {toggleLeftPanel} from "../../reducers/memory/actions";
 import {MemoryAnimatedDots} from "./MemoryAnimatedDots";
-
-const TextWrapper = styled(FlexBox)`
-  display: flex;
-  flex-direction: column;
-`;
 
 const MyTitle = styled(Title)`
   font-size: 62px;
@@ -83,10 +77,9 @@ const ColHeight = styled(Col)`
 
 type Props = {
   memory: Memory;
-  current: number;
 };
 
-export const MemoryTextSection = ({memory, current}: Props) => {
+export const MemoryTextSection = ({memory}: Props) => {
   const dispatch = useDispatch();
   const {achievement} = memory;
 
@@ -98,10 +91,7 @@ export const MemoryTextSection = ({memory, current}: Props) => {
             <Flex flex={1} />
             <Flex column>
               <TitleWrapper>
-                <MemoryAnimatedDots
-                  pictures={achievement.pictures}
-                  current={current}
-                />
+                <MemoryAnimatedDots pictures={achievement.pictures} />
                 <MyTitle>
                   <ColoredText
                     text={achievement.title}
@@ -137,7 +127,6 @@ export const MemoryTextSection = ({memory, current}: Props) => {
       achievement.pictures,
       achievement.subtitle,
       achievement.title,
-      current,
       dispatch,
       memory.primaryColor
     ]
