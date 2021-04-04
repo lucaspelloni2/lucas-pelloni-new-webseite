@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useMemo} from "react";
 import {useDispatch} from "react-redux";
 import styled from "styled-components";
 import {MemoryLeftPanel} from "../../components/MemoryLeftPanel";
@@ -9,7 +9,12 @@ import {MEDIUM_DEVICES} from "../../Layout/Mobile";
 import {FlexBox} from "../../Layout/styled/FlexBox";
 import {PageContainer} from "../../Layout/styled/PageContainer";
 import {PAGE_WIDTH} from "../../Layout/Theme";
-import {setCurrentMemory} from "../../reducers/memory/actions";
+import {
+  goToNextImage,
+  goToPrevImage,
+  setCurrentMemory
+} from "../../reducers/memory/actions";
+import useAppState from "../../reducers/useAppState";
 import {MemoryImages} from "./MemoryImages";
 import {MemoryTextSection} from "./MemoryTextSection";
 
@@ -40,28 +45,16 @@ type Props = {
   isActive: boolean;
 };
 export const MemoryScreen = ({memory, isActive}: Props) => {
+  const {currentImageIndex: currentIndex} = useAppState(st => st.memory);
   const {translation} = useNormalizedTransition();
   const dispatch = useDispatch();
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const totalPictures = useMemo(() => memory.achievement.pictures.length, [
-    memory.achievement.pictures.length
-  ]);
-
   const next = useCallback(() => {
-    if (currentIndex === totalPictures - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
-  }, [currentIndex, totalPictures]);
+    dispatch(goToNextImage());
+  }, [dispatch]);
+
   const prev = useCallback(() => {
-    if (currentIndex === 0) {
-      setCurrentIndex(totalPictures - 1);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
-  }, [currentIndex, totalPictures]);
+    dispatch(goToPrevImage());
+  }, [dispatch]);
 
   const pictureTranslation = useMemo(() => currentIndex * PAGE_WIDTH * -1, [
     currentIndex
@@ -106,7 +99,11 @@ export const MemoryScreen = ({memory, isActive}: Props) => {
       </div>
 
       <ContentWrapper flex={1}>
-        <MemoryTextSection memory={memory} current={currentIndex} />
+        <MemoryTextSection
+          memory={memory}
+          isActive={isActive}
+          current={currentIndex}
+        />
       </ContentWrapper>
       <ScrollDownIcon />
     </Container>

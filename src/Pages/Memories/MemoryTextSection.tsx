@@ -41,22 +41,18 @@ const TitleWrapper = styled.div`
     bottom: 0;
     width: 100%;
     height: 100%;
+    z-index: -1;
     position: absolute;
     box-shadow: 43px 0 131px 9vw ${getHSLA(0.25, __COLORS.PRIMARY)};
     content: " ";
     ${MEDIUM_DEVICES`display: none;`}
   }
-
   position: relative;
   background-color: ${getHSLA(0.25, __COLORS.PRIMARY)};
 `;
 
 const Buttons = styled.div`
   display: flex;
-`;
-
-const Text = styled.div`
-  ${MEDIUM_DEVICES`padding: 10px;   `}
 `;
 
 const MyButton = styled(Button)`
@@ -88,9 +84,10 @@ const ColHeight = styled(Col)`
 type Props = {
   memory: Memory;
   current: number;
+  isActive: boolean;
 };
 
-export const MemoryTextSection = ({memory, current}: Props) => {
+export const MemoryTextSection = ({memory, isActive, current}: Props) => {
   const dispatch = useDispatch();
   const {achievement} = memory;
   return useMemo(
@@ -104,6 +101,7 @@ export const MemoryTextSection = ({memory, current}: Props) => {
                 <MemoryAnimatedDots
                   pictures={achievement.pictures}
                   current={current}
+                  isActive={isActive}
                 />
                 <MyTitle>
                   <ColoredText
