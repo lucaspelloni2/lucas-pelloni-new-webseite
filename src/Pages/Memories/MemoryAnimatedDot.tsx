@@ -64,23 +64,22 @@ const InactiveDot = styled.div`
 `;
 
 type Props = {
-  active: boolean;
+  isActive: boolean;
   index: number;
 };
 
-export const MemoryAnimatedDot = ({active, index}: Props) => {
+export const MemoryAnimatedDot = ({isActive, index}: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let timer = 0;
-    if (active) {
-      timer = setTimeout(
-        () => (active ? dispatch(goToNextImage()) : void 0),
+    if (isActive) {
+      const timer = setTimeout(
+        () => (isActive ? dispatch(goToNextImage()) : void 0),
         ANIMATION_DURATION_IN_MS + 200
       );
+      return () => clearTimeout(timer);
     }
-    return () => clearTimeout(timer);
-  }, [active, dispatch]);
+  }, [isActive, dispatch]);
 
   const click = useCallback(() => {
     dispatch(setCurrentImageIndex(index));
@@ -88,7 +87,7 @@ export const MemoryAnimatedDot = ({active, index}: Props) => {
 
   return (
     <Flex align="center" row>
-      {active ? (
+      {isActive ? (
         <ActiveBar>
           <AnimatedBar />
         </ActiveBar>

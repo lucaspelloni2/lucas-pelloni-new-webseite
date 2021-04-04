@@ -16,7 +16,7 @@ export const MemoryAnimatedDots = ({pictures}: Props) => {
           pictures.map((p, index) => (
             <MemoryAnimatedDot
               key={String(`p-${p.src}`)}
-              active={index === currentImageIndex}
+              isActive={index === currentImageIndex}
               index={index}
             />
           )),
