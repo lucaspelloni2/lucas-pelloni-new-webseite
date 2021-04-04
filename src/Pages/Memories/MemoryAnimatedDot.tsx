@@ -72,13 +72,11 @@ export const MemoryAnimatedDot = ({active, index}: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (active) {
-      const timer = setTimeout(
-        () => dispatch(goToNextImage()),
-        ANIMATION_DURATION_IN_MS
-      );
-      return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(
+      () => (active ? dispatch(goToNextImage()) : void 0),
+      ANIMATION_DURATION_IN_MS
+    );
+    return () => clearTimeout(timer);
   }, [active, dispatch]);
 
   const click = useCallback(() => {
