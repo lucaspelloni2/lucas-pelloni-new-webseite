@@ -30,6 +30,7 @@ export type Achievement = {
 
 export type Memory = {
   year: number;
+  id: string;
   month: MONTHS;
   primaryColor: string;
   secondaryColor?: string;
@@ -55,6 +56,7 @@ export enum MONTHS {
 
 export const Memories: Memory[] = [
   {
+    id: "william",
     year: 2020,
     month: MONTHS.JANUARY,
     url: "william",
@@ -97,6 +99,7 @@ export const Memories: Memory[] = [
     }
   },
   {
+    id: "axelra-founding",
     year: 2019,
     month: MONTHS.MAY,
     url: "axelra",
@@ -156,6 +159,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
+    id: "master",
     year: 2019,
     month: MONTHS.DECEMBER,
     url: "master",
@@ -208,6 +212,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
+    id: "sictic",
     year: 2019,
     month: MONTHS.JULI,
     url: "sictic",
@@ -254,6 +259,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
+    id: "sbhack",
     year: 2019,
     month: MONTHS.JUNE,
     url: "sbhack",
@@ -310,6 +316,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
+    id: "hackzurich-makaday",
     year: 2018,
     month: MONTHS.SEPTEMBER,
     url: "hackzurich",
@@ -361,6 +368,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
+    id: "eureka",
     year: 2018,
     month: MONTHS.APRIL,
     url: "eureka",
@@ -398,6 +406,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
+    id: "temus-lucky-p",
     year: 2013,
     month: MONTHS.MARCH,
     url: "luckyp",
@@ -446,6 +455,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
+    id: "lucky-p-una-domenica-di-neve",
     year: 2012,
     month: MONTHS.DECEMBER,
     url: "unadomenicadineve",

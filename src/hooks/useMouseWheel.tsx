@@ -3,6 +3,7 @@ import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 // ES6 code
 function throttled(fn: any, delay: number) {
   let lastCall = 0;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return function (...args) {
     const now = new Date().getTime();
@@ -31,7 +32,7 @@ export const useMouseWheel = () => {
       } else if (delta < 0) {
         setDir(`up-${Date.now()}`);
       }
-    }, 1300),
+    }, 1500),
     [throttled]
   );
 

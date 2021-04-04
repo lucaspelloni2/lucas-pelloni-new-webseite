@@ -26,6 +26,7 @@ const initialState: YearState = {
 };
 
 const next = (totalPictures: number, currentIndex: number): number => {
+  console.log("next", totalPictures, currentIndex);
   if (currentIndex === totalPictures - 1) {
     return 0;
   }

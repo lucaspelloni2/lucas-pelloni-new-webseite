@@ -1,6 +1,5 @@
 import React, {useEffect, useMemo} from "react";
 import {useDispatch} from "react-redux";
-import {useWindowSize} from "react-use";
 import styled from "styled-components";
 import {Circle} from "../components/Circle";
 import {HistoryManager} from "../components/HistoryManager";
@@ -8,6 +7,7 @@ import {Memories} from "../Content";
 import {useMouseWheel} from "../hooks/useMouseWheel";
 import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
 import {PageDimensions, PAGE_TRANSITION} from "../Layout/Theme";
+import {setCurrentMemory} from "../reducers/memory/actions";
 import {setTranslation} from "../reducers/translation/actions";
 import useAppState from "../reducers/useAppState";
 import {Home} from "./Home/Home";
@@ -19,8 +19,6 @@ import {StoryIntro} from "./StoryIntro/StoryIntro";
 
 const Parent = styled.div<{
   translation: number;
-  windowHeight: number;
-  currentIndex: number;
 }>`
   overflow: hidden;
   height: ${(Memories.length + 3) * 100}vh;
@@ -29,80 +27,37 @@ const Parent = styled.div<{
   transition: ${PAGE_TRANSITION};
   will-change: transform;
   transform: translate3d(0px, ${props => props.translation}vh, 0px);
-  -webkit-transform: translate3d(
-    0px,
-    -${props => props.currentIndex * props.windowHeight}px,
-    0px
-  );
 `;
 
 export const Pages = () => {
   const {translation} = useAppState(s => s.translation);
-  const windowHeight = useWindowSize().height;
   const normalized = useNormalizedTransition().translation;
-  const currentIndex = useMemo(() => normalized / 100, [normalized]);
   const {translatedMemories} = useAppState(s => s.memory);
   const dispatch = useDispatch();
-
   const {ref, dir} = useMouseWheel();
 
-  /*  const { ref } = useMouseWheel({
-    onScrollUp: () => {
-      if (!isLeftPanelOpen && direction !== Direction.UP) {
-        setDirection(Direction.UP);
-      }
-    },
-    onScrollDown: () => {
-      if (!isLeftPanelOpen && direction !== Direction.DOWN) {
-        setDirection(Direction.DOWN);
-      }
-    }
-  });*/
-
-  /* const secondRef = useTouchDirection({
-    onScrollUp: () => {
-      if (!isLeftPanelOpen && direction !== Direction.UP) {
-        setDirection(Direction.UP);
-      }
-    },
-    onScrollDown: () => {
-      if (!isLeftPanelOpen && direction !== Direction.DOWN) {
-        setDirection(Direction.DOWN);
-      }
-    }
-  });*/
-
-  /*  useScrollPosition(
-    props => {
-      const { prevPos, currPos } = props;
-      const scrollingDown = currPos.y > prevPos.y;
-      if (scrollingDown && direction !== Direction.DOWN) {
-        setDirection(Direction.DOWN);
-      } else if (direction !== Direction.UP) {
-        setDirection(Direction.UP);
-      }
-    },
-    [],
-    undefined,
-    true,
-    1000
-  );
-
-  useEffect(() => {
-    dispatch(setTranslation(direction));
-  }, [direction, dispatch]);*/
-
+  /**
+   * Setting current translation based on mouse wheel action
+   */
   useEffect(() => {
     dispatch(setTranslation(dir));
   }, [dir, dispatch]);
 
+  /**
+   * Setting current memory based on translation
+   */
+  useEffect(() => {
+    const currentMemory = translatedMemories.find(
+      m => m.translation === normalized
+    );
+    if (!currentMemory) {
+      throw new Error("Current Memory could not be found");
+    }
+    dispatch(setCurrentMemory(currentMemory));
+  }, [dispatch, normalized, translatedMemories]);
+
   return (
-    <Parent
-      ref={ref}
-      translation={translation}
-      windowHeight={windowHeight}
-      currentIndex={currentIndex}
-    >
+    <Parent ref={ref} translation={translation}>
       <HistoryManager />
       {/*  <ColorPicker visible={normalized <= PageDimensions[2]} />
 
@@ -123,19 +78,17 @@ export const Pages = () => {
             />
             <Page component={<StoryIntro />} offset={PageDimensions[2]} />
             {translatedMemories.map((m, i: number) => {
-              const translate = PageDimensions[3 + i];
-              const isActive = normalized === translate;
               return (
                 <Page
                   key={String(`memory-${m.year}-${m.month}-${i}`)}
-                  component={<MemoryScreen memory={m} isActive={isActive} />}
-                  offset={translate}
+                  component={<MemoryScreen memory={m} />}
+                  offset={m.translation as number}
                 />
               );
             })}
           </>
         ),
-        [normalized, translatedMemories]
+        [translatedMemories]
       )}
     </Parent>
   );
