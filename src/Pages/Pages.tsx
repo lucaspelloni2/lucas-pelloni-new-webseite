@@ -1,30 +1,24 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {useDispatch} from "react-redux";
+import {useWindowSize} from "react-use";
 import styled from "styled-components";
 import useMedia from "use-media";
-import {useWindowSize} from "react-use";
-import {PageType} from "../types/PageType";
 import {Circle} from "../components/Circle";
-import useAppState from "../reducers/useAppState";
-import {PAGE_TRANSITION, PageDimensions} from "../Layout/Theme";
-
-import {Direction} from "../reducers/translation/types";
-import {setTranslation} from "../reducers/translation/actions";
 import {HistoryManager} from "../components/HistoryManager";
-import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
-import {useImageSection} from "../hooks/useImageSection";
 import {Memories} from "../Content";
-import {MEDIUM_DEVICES_MAX_WIDTH} from "../Layout/Mobile";
+import {useImageSection} from "../hooks/useImageSection";
 import {useMouseWheel} from "../hooks/useMouseWheel";
-import {MemoryScreen} from "./Memories/Memory";
-import {Years} from "./Memories/Years";
-
-import {StoryIntro} from "./StoryIntro/StoryIntro";
-import {SecondHomeTitle} from "./Home/SecondHomeTitle";
-import {HomeTitle} from "./Home/HomeTitle";
-import {Page} from "./Page";
+import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
+import {MEDIUM_DEVICES_MAX_WIDTH} from "../Layout/Mobile";
+import {PageDimensions, PAGE_TRANSITION} from "../Layout/Theme";
+import {setTranslation} from "../reducers/translation/actions";
+import useAppState from "../reducers/useAppState";
 import {Home} from "./Home/Home";
-import {ColorPicker} from "./Home/ColorPicker";
+import {HomeTitle} from "./Home/HomeTitle";
+import {SecondHomeTitle} from "./Home/SecondHomeTitle";
+import {MemoryScreen} from "./Memories/Memory";
+import {Page} from "./Page";
+import {StoryIntro} from "./StoryIntro/StoryIntro";
 
 const Parent = styled.div<{
   translation: number;
@@ -58,8 +52,6 @@ export const Pages = () => {
   const isMobile = useMedia({maxWidth: MEDIUM_DEVICES_MAX_WIDTH + "px"});
 
   const {ref, dir} = useMouseWheel();
-
-  console.log("direction", dir);
 
   /*  const { ref } = useMouseWheel({
     onScrollUp: () => {
@@ -131,30 +123,22 @@ export const Pages = () => {
               component={
                 <Home header order={[1, 2]} titleComponent={<HomeTitle />} />
               }
-              name={PageType.HOME_FIRST}
             />
             <Page
               offset={PageDimensions[1]}
               component={
                 <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
               }
-              name={PageType.HOME_SECOND}
             />
-
-            <Page
-              component={<StoryIntro />}
-              offset={PageDimensions[2]}
-              name={PageType.STORY_START}
-            />
-
+            <Page component={<StoryIntro />} offset={PageDimensions[2]} />
             {translatedMemories.map((m, i: number) => {
-              const isActive = normalized === PageDimensions[3 + i];
+              const translate = PageDimensions[3 + i];
+              const isActive = normalized === translate;
               return (
                 <Page
-                  key={`memory-${m.year}-${m.month}-${i}`}
+                  key={String(`memory-${m.year}-${m.month}-${i}`)}
                   component={<MemoryScreen memory={m} isActive={isActive} />}
-                  name={PageType.MEMORY_AXELRA}
-                  offset={PageDimensions[3 + i]}
+                  offset={translate}
                 />
               );
             })}

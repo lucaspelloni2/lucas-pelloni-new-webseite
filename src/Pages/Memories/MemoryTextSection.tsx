@@ -84,12 +84,12 @@ const ColHeight = styled(Col)`
 type Props = {
   memory: Memory;
   current: number;
-  isActive: boolean;
 };
 
-export const MemoryTextSection = ({memory, isActive, current}: Props) => {
+export const MemoryTextSection = ({memory, current}: Props) => {
   const dispatch = useDispatch();
   const {achievement} = memory;
+
   return useMemo(
     () => (
       <Container>
@@ -101,7 +101,6 @@ export const MemoryTextSection = ({memory, isActive, current}: Props) => {
                 <MemoryAnimatedDots
                   pictures={achievement.pictures}
                   current={current}
-                  isActive={isActive}
                 />
                 <MyTitle>
                   <ColoredText

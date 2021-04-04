@@ -6,15 +6,14 @@ import {MemoryAnimatedDot} from "./MemoryAnimatedDot";
 type Props = {
   pictures: Picture[];
   current: number;
-  isActive: boolean;
 };
-export const MemoryAnimatedDots = ({pictures, current, isActive}: Props) => {
+export const MemoryAnimatedDots = ({pictures, current}: Props) => {
   return (
     <Flex row align="center">
       {pictures.map((p, index) => (
         <MemoryAnimatedDot
           key={String(`p-${p}`)}
-          active={index === current && isActive}
+          active={index === current}
           index={index}
         />
       ))}
