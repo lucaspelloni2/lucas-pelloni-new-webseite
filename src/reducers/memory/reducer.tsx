@@ -3,6 +3,9 @@ import {Memories, Memory} from "../../Content";
 import {PageDimensions} from "../../Layout/Theme";
 import {
   ActionTypes,
+  GoToNextImage,
+  GoToPrevImage,
+  SetCurrentImageIndex,
   SetCurrentMemory,
   ToggleLeftPanel,
   YearState
@@ -11,6 +14,7 @@ import {
 const initialState: YearState = {
   isLeftPanelOpen: false,
   currentMemory: Memories[0],
+  currentImageIndex: 0,
   translatedMemories: Memories.map((m, i: number) => ({
     ...m,
     translation: PageDimensions[3 + i]
@@ -21,9 +25,28 @@ const initialState: YearState = {
     .value()
 };
 
+const next = (totalPictures: number, currentIndex: number): number => {
+  if (currentIndex === totalPictures - 1) {
+    return 0;
+  }
+  return currentIndex + 1;
+};
+
+const prev = (totalPictures: number, currentIndex: number): number => {
+  if (currentIndex === 0) {
+    return totalPictures - 1;
+  }
+  return currentIndex - 1;
+};
+
 const memoryReducer = (
   state: YearState = initialState,
-  action: SetCurrentMemory | ToggleLeftPanel
+  action:
+    | SetCurrentMemory
+    | ToggleLeftPanel
+    | SetCurrentImageIndex
+    | GoToNextImage
+    | GoToPrevImage
 ): YearState => {
   switch (action.type) {
     case ActionTypes.SET_MEMORY:
@@ -35,6 +58,24 @@ const memoryReducer = (
       return {
         ...state,
         isLeftPanelOpen: !state.isLeftPanelOpen
+      };
+    case ActionTypes.SET_CURRENT_IMAGE_INDEX:
+      return {...state, currentImageIndex: action.index};
+    case ActionTypes.GO_TO_NEXT_IMAGE:
+      return {
+        ...state,
+        currentImageIndex: next(
+          state.currentMemory.achievement.pictures.length,
+          state.currentImageIndex
+        )
+      };
+    case ActionTypes.GO_TO_PREV_IMAGE:
+      return {
+        ...state,
+        currentImageIndex: prev(
+          state.currentMemory.achievement.pictures.length,
+          state.currentImageIndex
+        )
       };
     default:
       return state;
