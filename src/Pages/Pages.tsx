@@ -54,10 +54,9 @@ export const Pages = () => {
     const currentMemory = translatedMemories.find(
       m => m.translation === normalized
     );
-    if (!currentMemory) {
-      throw new Error("Current Memory could not be found");
+    if (currentMemory) {
+      dispatch(setCurrentMemory(currentMemory));
     }
-    dispatch(setCurrentMemory(currentMemory));
   }, [dispatch, normalized, translatedMemories]);
 
   return (
