@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 
 // ES6 code
-function throttled(fn: any, delay: number) {
+export function throttled(fn: any, delay: number) {
   let lastCall = 0;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

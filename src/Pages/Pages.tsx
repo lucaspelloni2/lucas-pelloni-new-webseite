@@ -6,6 +6,7 @@ import {HistoryManager} from "../components/HistoryManager";
 import {Memories} from "../Content";
 import {useMouseWheel} from "../hooks/useMouseWheel";
 import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
+import {useTouchDirection} from "../hooks/useTouchDirection";
 import {
   NUMBER_OF_PAGES_WITHOUT_MEMORY,
   PageDimensions,
@@ -35,12 +36,15 @@ const Parent = styled.div<{
   transform: translate3d(0px, ${props => props.translation}vh, 0px);
 `;
 
+const Mobile = styled.div``;
+
 export const Pages = () => {
   const {translation} = useAppState(s => s.translation);
   const normalized = useNormalizedTransition().translation;
   const {translatedMemories} = useAppState(s => s.memory);
   const dispatch = useDispatch();
   const {ref, dir} = useMouseWheel();
+  const {ref: touchRef, dir: mobileDir} = useTouchDirection();
 
   /**
    * Setting current translation based on mouse wheel action
@@ -48,6 +52,10 @@ export const Pages = () => {
   useEffect(() => {
     dispatch(setTranslation(dir));
   }, [dir, dispatch]);
+
+  useEffect(() => {
+    dispatch(setTranslation(mobileDir));
+  }, [mobileDir, dispatch]);
 
   /**
    * Setting current memory based on translation
@@ -63,39 +71,43 @@ export const Pages = () => {
 
   return (
     <Parent ref={ref} translation={translation}>
-      <HistoryManager />
-      <ColorPicker visible={normalized <= PageDimensions[2]} />
-      <Years
-        visible={normalized >= PageDimensions[NUMBER_OF_PAGES_WITHOUT_MEMORY]}
-      />
-      <Circle visible={normalized < PageDimensions[3]} />
-      {useMemo(
-        () => (
-          <>
-            <Page
-              offset={0}
-              component={<Home order={[1, 2]} titleComponent={<HomeTitle />} />}
-            />
-            <Page
-              offset={PageDimensions[1]}
-              component={
-                <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
-              }
-            />
-            <Page component={<StoryIntro />} offset={PageDimensions[2]} />
-            {translatedMemories.map((m, i: number) => {
-              return (
-                <Page
-                  key={String(`memory-${m.year}-${m.month}-${i}`)}
-                  component={<MemoryScreen memory={m} />}
-                  offset={m.translation as number}
-                />
-              );
-            })}
-          </>
-        ),
-        [translatedMemories]
-      )}
+      <Mobile ref={touchRef}>
+        <HistoryManager />
+        <ColorPicker visible={normalized <= PageDimensions[2]} />
+        <Years
+          visible={normalized >= PageDimensions[NUMBER_OF_PAGES_WITHOUT_MEMORY]}
+        />
+        <Circle visible={normalized < PageDimensions[3]} />
+        {useMemo(
+          () => (
+            <>
+              <Page
+                offset={0}
+                component={
+                  <Home order={[1, 2]} titleComponent={<HomeTitle />} />
+                }
+              />
+              <Page
+                offset={PageDimensions[1]}
+                component={
+                  <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
+                }
+              />
+              <Page component={<StoryIntro />} offset={PageDimensions[2]} />
+              {translatedMemories.map((m, i: number) => {
+                return (
+                  <Page
+                    key={String(`memory-${m.year}-${m.month}-${i}`)}
+                    component={<MemoryScreen memory={m} />}
+                    offset={m.translation as number}
+                  />
+                );
+              })}
+            </>
+          ),
+          [translatedMemories]
+        )}
+      </Mobile>
     </Parent>
   );
 };

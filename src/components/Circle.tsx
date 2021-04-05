@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import styled from "styled-components";
+import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
+import {useTheme} from "../hooks/useTheme";
+import {useWindowSize} from "../hooks/useWindowSize";
+import {MEDIUM_DEVICES} from "../Layout/Mobile";
 import {
   AnimatedOpacityContainer,
   CIRCLE_RIGHT_OVERFLOW,
   CIRCLE_TOP_OVERFLOW,
-  PAGE_TRANSITION,
-  PageDimensions
+  PageDimensions,
+  PAGE_TRANSITION
 } from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
-import { useWindowSize } from "../hooks/useWindowSize";
-import { useTheme } from "../hooks/useTheme";
-import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
-import { MEDIUM_DEVICES } from "../Layout/Mobile";
 
 type CircleProps = {
   right: number;
@@ -21,7 +21,7 @@ type CircleProps = {
 const CircleContainer = styled(AnimatedOpacityContainer).attrs<{
   left: number;
   visible: boolean;
-}>(({ right, translation }: CircleProps) => ({
+}>(({right, translation}: CircleProps) => ({
   style: {
     transform: `translate(${right - CIRCLE_RIGHT_OVERFLOW}vw, ${translation}vh)`
   }
@@ -55,11 +55,11 @@ const MyCircle = styled.div<{
 type Props = {
   visible: boolean;
 };
-export const Circle = ({ visible }: Props) => {
-  const { selectedColor } = useAppState(s => s.selectedColor);
-  const { background } = useTheme();
-  const { translation } = useNormalizedTransition();
-  const { width } = useWindowSize();
+export const Circle = ({visible}: Props) => {
+  const {selectedColor} = useAppState(s => s.selectedColor);
+  const {background} = useTheme();
+  const {translation} = useNormalizedTransition();
+  const {width} = useWindowSize();
   const [right, setRight] = useState(80);
   const INITIAL_SIZE = 800;
   const [circleColor, setCircleColor] = useState(selectedColor);
