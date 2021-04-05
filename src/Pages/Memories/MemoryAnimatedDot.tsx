@@ -1,5 +1,5 @@
 import {Flex} from "axelra-styled-bootstrap-grid";
-import React, {useCallback, useEffect} from "react";
+import React, {useCallback, useEffect, useMemo} from "react";
 import {useDispatch} from "react-redux";
 import styled, {css, keyframes} from "styled-components";
 import {CIRCLE, getAlphaColor, SPACING, __COLORS} from "../../Layout/Theme";
@@ -7,6 +7,7 @@ import {
   goToNextImage,
   setCurrentImageIndex
 } from "../../reducers/memory/actions";
+import useAppState from "../../reducers/useAppState";
 
 const DOT_SIZE = 14;
 const BAR_WIDTH = DOT_SIZE * 5;
@@ -64,22 +65,24 @@ const InactiveDot = styled.div`
 `;
 
 type Props = {
-  isActive: boolean;
   index: number;
 };
 
-export const MemoryAnimatedDot = ({isActive, index}: Props) => {
+export const MemoryAnimatedDot = ({index}: Props) => {
+  const {currentImageIndex} = useAppState(st => st.memory);
+  const active = useMemo(() => currentImageIndex === index, [
+    currentImageIndex,
+    index
+  ]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isActive) {
-      const timer = setTimeout(
-        () => (isActive ? dispatch(goToNextImage()) : void 0),
-        ANIMATION_DURATION_IN_MS + 200
-      );
-      return () => clearTimeout(timer);
-    }
-  }, [isActive, dispatch]);
+    const timer = setTimeout(
+      () => (active ? dispatch(goToNextImage()) : void 0),
+      ANIMATION_DURATION_IN_MS + 200
+    );
+    return () => clearTimeout(timer);
+  }, [active, dispatch]);
 
   const click = useCallback(() => {
     dispatch(setCurrentImageIndex(index));
@@ -87,7 +90,7 @@ export const MemoryAnimatedDot = ({isActive, index}: Props) => {
 
   return (
     <Flex align="center" row>
-      {isActive ? (
+      {active ? (
         <ActiveBar>
           <AnimatedBar />
         </ActiveBar>

@@ -1,12 +1,15 @@
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo} from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
 import {MemoryLeftPanel} from "../../components/MemoryLeftPanel";
 import {ScrollDownIcon} from "../../components/ScrollDownIcon";
 import {Memory} from "../../Content";
+import {useIsFocused} from "../../hooks/use-is-focused";
 import {MEDIUM_DEVICES} from "../../Layout/Mobile";
 import {FlexBox} from "../../Layout/styled/FlexBox";
 import {PageContainer} from "../../Layout/styled/PageContainer";
 import {PAGE_WIDTH} from "../../Layout/Theme";
+import {setCurrentImageIndex} from "../../reducers/memory/actions";
 import useAppState from "../../reducers/useAppState";
 import {MemoryImages} from "./MemoryImages";
 import {MemoryTextSection} from "./MemoryTextSection";
@@ -41,6 +44,14 @@ export const MemoryScreen = ({memory}: Props) => {
   const pictureTranslation = useMemo(() => currentIndex * PAGE_WIDTH * -1, [
     currentIndex
   ]);
+  const dispatch = useDispatch();
+  const isFocused = useIsFocused(memory);
+
+  useEffect(() => {
+    if (isFocused) {
+      dispatch(setCurrentImageIndex(0));
+    }
+  }, [dispatch, isFocused]);
 
   return (
     <Container>

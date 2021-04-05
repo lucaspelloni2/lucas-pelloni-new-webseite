@@ -7,6 +7,7 @@ import {Button} from "../../components/Button";
 import {ColoredText} from "../../components/ColoredTitle";
 import {Hashtags} from "../../components/Hashtags";
 import {Memory} from "../../Content";
+import {useIsFocused} from "../../hooks/use-is-focused";
 import {MEDIUM_DEVICES} from "../../Layout/Mobile";
 import {getHSLA, SPACING, __COLORS, __GRAY_SCALE} from "../../Layout/Theme";
 import {SubTitle, Title} from "../../Layout/Typography";
@@ -82,6 +83,7 @@ type Props = {
 export const MemoryTextSection = ({memory}: Props) => {
   const dispatch = useDispatch();
   const {achievement} = memory;
+  const isFocused = useIsFocused(memory);
 
   return useMemo(
     () => (
@@ -91,7 +93,9 @@ export const MemoryTextSection = ({memory}: Props) => {
             <Flex flex={1} />
             <Flex column>
               <TitleWrapper>
-                <MemoryAnimatedDots pictures={achievement.pictures} />
+                {isFocused ? (
+                  <MemoryAnimatedDots pictures={achievement.pictures} />
+                ) : null}
                 <MyTitle>
                   <ColoredText
                     text={achievement.title}
@@ -128,6 +132,7 @@ export const MemoryTextSection = ({memory}: Props) => {
       achievement.subtitle,
       achievement.title,
       dispatch,
+      isFocused,
       memory.primaryColor
     ]
   );
