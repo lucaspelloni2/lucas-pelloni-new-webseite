@@ -8,8 +8,12 @@ import {ColoredText} from "../../components/ColoredTitle";
 import {Hashtags} from "../../components/Hashtags";
 import {Memory} from "../../Content";
 import {useIsFocused} from "../../hooks/use-is-focused";
-import {MEDIUM_DEVICES} from "../../Layout/Mobile";
-import {getHSLA, SPACING, __COLORS, __GRAY_SCALE} from "../../Layout/Theme";
+import {
+  EXTRA_SMALL_DEVICES,
+  MEDIUM_DEVICES,
+  SMALL_DEVICES
+} from "../../Layout/Mobile";
+import {SPACING, __COLORS, __GRAY_SCALE} from "../../Layout/Theme";
 import {SubTitle, Title} from "../../Layout/Typography";
 import {toggleLeftPanel} from "../../reducers/memory/actions";
 import {MemoryAnimatedDots} from "./MemoryAnimatedDots";
@@ -18,33 +22,25 @@ const MyTitle = styled(Title)`
   font-size: 62px;
   margin: 0;
   color: ${__COLORS.WHITE};
+  ${EXTRA_SMALL_DEVICES`   font-size: 30px;`};
 `;
 
 const MySubTitle = styled(SubTitle)`
   margin-top: 0;
   color: ${__GRAY_SCALE._100};
   margin-bottom: ${SPACING * 4}px;
+
   ${MEDIUM_DEVICES`
     font-size: 18px; 
     text-align: justify;
     `};
+  ${SMALL_DEVICES` display: block;`};
+  ${EXTRA_SMALL_DEVICES`
+    display: none;
+  `};
 `;
 
-const TitleWrapper = styled.div`
-  ::after {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    position: absolute;
-    box-shadow: 43px 0 131px 9vw ${getHSLA(0.25, __COLORS.PRIMARY)};
-    content: " ";
-    ${MEDIUM_DEVICES`display: none;`}
-  }
-  position: relative;
-  background-color: ${getHSLA(0.25, __COLORS.PRIMARY)};
-`;
+const TitleWrapper = styled.div``;
 
 const Buttons = styled.div`
   display: flex;
