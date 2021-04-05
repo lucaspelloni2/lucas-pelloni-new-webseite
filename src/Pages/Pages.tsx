@@ -18,6 +18,7 @@ import {Home} from "./Home/Home";
 import {HomeTitle} from "./Home/HomeTitle";
 import {SecondHomeTitle} from "./Home/SecondHomeTitle";
 import {MemoryScreen} from "./Memories/Memory";
+import {Years} from "./Memories/Years";
 import {Page} from "./Page";
 import {StoryIntro} from "./StoryIntro/StoryIntro";
 
@@ -31,6 +32,14 @@ const Parent = styled.div<{
   height: ${(Memories.length + NUMBER_OF_PAGES_WITHOUT_MEMORY) * 100}vh;
   will-change: transform;
   transform: translate3d(0px, ${props => props.translation}vh, 0px);
+`;
+
+const Mask = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: red;
+  z-index: 124912491924;
 `;
 
 export const Pages = () => {
@@ -60,39 +69,44 @@ export const Pages = () => {
   }, [dispatch, normalized, translatedMemories]);
 
   return (
-    <Parent ref={ref} translation={translation}>
-      <HistoryManager />
-      {/*  <ColorPicker visible={normalized <= PageDimensions[2]} />
+    <Mask>
+      <Parent ref={ref} translation={translation}>
+        <HistoryManager />
+        {/*  <ColorPicker visible={normalized <= PageDimensions[2]} />
 
-      <Years visible={isImageSection} />*/}
-      <Circle visible={normalized < PageDimensions[3]} />
-      {useMemo(
-        () => (
-          <>
-            <Page
-              offset={0}
-              component={<Home order={[1, 2]} titleComponent={<HomeTitle />} />}
-            />
-            <Page
-              offset={PageDimensions[1]}
-              component={
-                <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
-              }
-            />
-            <Page component={<StoryIntro />} offset={PageDimensions[2]} />
-            {translatedMemories.map((m, i: number) => {
-              return (
-                <Page
-                  key={String(`memory-${m.year}-${m.month}-${i}`)}
-                  component={<MemoryScreen memory={m} />}
-                  offset={m.translation as number}
-                />
-              );
-            })}
-          </>
-        ),
-        [translatedMemories]
-      )}
-    </Parent>
+      */}
+        <Years visible />
+        <Circle visible={normalized < PageDimensions[3]} />
+        {useMemo(
+          () => (
+            <>
+              <Page
+                offset={0}
+                component={
+                  <Home order={[1, 2]} titleComponent={<HomeTitle />} />
+                }
+              />
+              <Page
+                offset={PageDimensions[1]}
+                component={
+                  <Home order={[2, 1]} titleComponent={<SecondHomeTitle />} />
+                }
+              />
+              <Page component={<StoryIntro />} offset={PageDimensions[2]} />
+              {translatedMemories.map((m, i: number) => {
+                return (
+                  <Page
+                    key={String(`memory-${m.year}-${m.month}-${i}`)}
+                    component={<MemoryScreen memory={m} />}
+                    offset={m.translation as number}
+                  />
+                );
+              })}
+            </>
+          ),
+          [translatedMemories]
+        )}
+      </Parent>
+    </Mask>
   );
 };

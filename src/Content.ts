@@ -149,6 +149,10 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
           src:
             "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/axelra_1.jpg"
         },
+        /*        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/ezgif.com-gif-maker.webp"
+        },*/
         {
           src:
             "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/axelra_2.jpg"
