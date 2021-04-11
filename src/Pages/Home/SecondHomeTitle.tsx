@@ -1,17 +1,10 @@
+import {Flex} from "axelra-styled-bootstrap-grid";
 import React from "react";
-import {
-  ColoredSpan,
-  HomeBigTitle,
-  HomeSubTitle
-} from "../../Layout/Typography";
 import styled from "styled-components";
-import { __COLORS } from "../../Layout/Theme";
+import {useTextColor} from "../../hooks/useTextColor";
+import {__COLORS} from "../../Layout/Theme";
+import {ColoredSpan, HomeBigTitle, HomeSubTitle} from "../../Layout/Typography";
 import useAppState from "../../reducers/useAppState";
-
-const Titles = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const Title = styled(HomeBigTitle)`
   text-align: right;
@@ -22,9 +15,10 @@ const SubTitle = styled(HomeSubTitle)`
 `;
 
 export const SecondHomeTitle = () => {
-  const { selectedColor } = useAppState(s => s.selectedColor);
+  const {selectedColor} = useAppState(s => s.selectedColor);
+  const {color} = useTextColor();
   return (
-    <Titles>
+    <Flex column>
       <Title>
         Let{" "}
         <ColoredSpan
@@ -41,7 +35,7 @@ export const SecondHomeTitle = () => {
         <br />
         <ColoredSpan color={__COLORS.FOURTH}>the story of my life.</ColoredSpan>
       </Title>
-      <SubTitle>Let's start the Journey.</SubTitle>
-    </Titles>
+      <SubTitle color={color}>Let's start the Journey.</SubTitle>
+    </Flex>
   );
 };

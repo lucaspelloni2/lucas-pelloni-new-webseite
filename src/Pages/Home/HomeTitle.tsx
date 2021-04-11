@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import {Icon, IconTypes} from "../../components/Icon";
 import {useNormalizedTransition} from "../../hooks/useNormalizedTransition";
+import {useTheme} from "../../hooks/useTheme";
 import {MEDIUM_DEVICES} from "../../Layout/Mobile";
 import {PAGE_TRANSITION_LINEAR, SPACING, __COLORS} from "../../Layout/Theme";
 import {ColoredSpan, HomeBigTitle, HomeSubTitle} from "../../Layout/Typography";
@@ -20,13 +21,14 @@ const MyIcon = styled(Icon)`
   height: ${SPACING * 6}px;
   transition: inherit;
   ${MEDIUM_DEVICES`
-      width: 33px;
-      height: 33px;
+      width: 30px;
+      height: 30px;
       margin-bottom:-3px;
-    `}
+    `};
 `;
 export const HomeTitle = () => {
   const {translation} = useNormalizedTransition();
+  const {color} = useTheme();
   const {selectedColor} = useAppState(s => s.selectedColor);
   return (
     <TranslatedFlex column t={translation}>
@@ -48,12 +50,15 @@ export const HomeTitle = () => {
             }
           />
         </ColoredSpan>{" "}
-        to build beautiful products with modern{" "}
+        to build modern{" "}
         <ColoredSpan color={selectedColor || __COLORS.FIFTH}>
-          User Interfaces.
+          User Interfaces{" "}
         </ColoredSpan>
+        from scratch.
       </HomeBigTitle>
-      <HomeSubTitle>And any kind of digital product.</HomeSubTitle>
+      <HomeSubTitle color={color}>
+        And any kind of digital product.
+      </HomeSubTitle>
     </TranslatedFlex>
   );
 };

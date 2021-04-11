@@ -1,14 +1,14 @@
-import React, { useMemo } from "react";
+import React, {useMemo} from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { PageContainer } from "../../Layout/styled/PageContainer";
-import { Link, SubTitle, Title } from "../../Layout/Typography";
-import { __COLORS, getRandomColor, SPACING } from "../../Layout/Theme";
-import { ScrollDownIcon } from "../../components/ScrollDownIcon";
-import { SocialStrip } from "../../components/SocialStrip";
+import {ScrollDownIcon} from "../../components/ScrollDownIcon";
+import {SocialStrip} from "../../components/SocialStrip";
+import {MEDIUM_DEVICES} from "../../Layout/Mobile";
+import {PageContainer} from "../../Layout/styled/PageContainer";
+import {getRandomColor, SPACING, __COLORS} from "../../Layout/Theme";
+import {Link, SubTitle, Title} from "../../Layout/Typography";
+import {setColor} from "../../reducers/selectedColor/actions";
 import useAppState from "../../reducers/useAppState";
-import { MEDIUM_DEVICES } from "../../Layout/Mobile";
-import { useDispatch } from "react-redux";
-import { setColor } from "../../reducers/selectedColor/actions";
 
 const Container = styled(PageContainer)`
   display: flex;
@@ -18,7 +18,7 @@ const Container = styled(PageContainer)`
   cursor: pointer;
 `;
 
-const MyTitle = styled(Title)<{ color: string }>`
+const MyTitle = styled(Title)<{color: string}>`
   font-size: 70px;
   color: ${props => props.color};
   ${MEDIUM_DEVICES`
@@ -27,7 +27,7 @@ const MyTitle = styled(Title)<{ color: string }>`
   `}
 `;
 
-const Sub = styled(SubTitle)<{ color: string }>`
+const Sub = styled(SubTitle)`
   margin-top: -${SPACING * 3}px;
   font-size: 30px;
   color: ${props => props.color};
@@ -39,7 +39,7 @@ const Sub = styled(SubTitle)<{ color: string }>`
 
 export const StoryIntro = () => {
   const dispatch = useDispatch();
-  const { selectedColor } = useAppState(s => s.selectedColor);
+  const {selectedColor} = useAppState(s => s.selectedColor);
   const color =
     selectedColor === __COLORS.TERTIARY || selectedColor === __COLORS.SECONDARY
       ? __COLORS.WHITE

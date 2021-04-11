@@ -8,6 +8,7 @@ import {ColoredText} from "../../components/ColoredTitle";
 import {Hashtags} from "../../components/Hashtags";
 import {Memory} from "../../Content";
 import {useIsFocused} from "../../hooks/use-is-focused";
+import {useTextColor} from "../../hooks/useTextColor";
 import {
   EXTRA_SMALL_DEVICES,
   MEDIUM_DEVICES,
@@ -79,6 +80,7 @@ type Props = {
 export const MemoryTextSection = ({memory}: Props) => {
   const dispatch = useDispatch();
   const {achievement} = memory;
+  const {color} = useTextColor();
   const isFocused = useIsFocused(memory);
 
   return useMemo(
@@ -104,7 +106,7 @@ export const MemoryTextSection = ({memory}: Props) => {
                     color={memory.primaryColor}
                   />
                 )}
-                <MySubTitle>{achievement.subtitle}</MySubTitle>
+                <MySubTitle color={color}>{achievement.subtitle}</MySubTitle>
                 <Spacer />
                 <Buttons>
                   <MyButton
