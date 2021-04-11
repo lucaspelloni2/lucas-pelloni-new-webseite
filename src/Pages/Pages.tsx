@@ -1,6 +1,8 @@
+import {LARGE_DEVICES_BREAK_POINT} from "axelra-styled-bootstrap-grid";
 import React, {useEffect, useMemo} from "react";
 import {useDispatch} from "react-redux";
 import styled from "styled-components";
+import {useMedia} from "use-media";
 import {Circle} from "../components/Circle";
 import {HistoryManager} from "../components/HistoryManager";
 import {Memories} from "../Content";
@@ -45,6 +47,7 @@ export const Pages = () => {
   const dispatch = useDispatch();
   const {ref, dir} = useMouseWheel();
   const {ref: touchRef, dir: mobileDir} = useTouchDirection();
+  const isLarge = useMedia({maxWidth: LARGE_DEVICES_BREAK_POINT});
 
   /**
    * Setting current translation based on mouse wheel action
@@ -84,7 +87,10 @@ export const Pages = () => {
               <Page
                 offset={0}
                 component={
-                  <Home order={[1, 2]} titleComponent={<HomeTitle />} />
+                  <Home
+                    order={isLarge ? [1, 2] : [2, 1]}
+                    titleComponent={<HomeTitle />}
+                  />
                 }
               />
               <Page
