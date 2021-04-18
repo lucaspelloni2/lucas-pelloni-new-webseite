@@ -87,10 +87,7 @@ export const Pages = () => {
               <Page
                 offset={0}
                 component={
-                  <Home
-                    order={isLarge ? [1, 2] : [2, 1]}
-                    titleComponent={<HomeTitle />}
-                  />
+                  <Home order={[1, 2]} titleComponent={<HomeTitle />} />
                 }
               />
               <Page
