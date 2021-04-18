@@ -23,16 +23,7 @@ export const SubTitle = styled.h3<{color: string}>`
 `;
 
 export const HomeBigTitle = styled(Title)`
-  font-size: 60px;
-  ${LARGE_DEVICES`
-     font-size: 48px;
-    `};
-  ${MEDIUM_DEVICES`
-     font-size: 42px;
-    `};
-  ${EXTRA_SMALL_DEVICES`
-     font-size: 28px;
-    `};
+  font-size: calc(2em + 3vmin);
 `;
 
 export const HomeSubTitle = styled(SubTitle)`
