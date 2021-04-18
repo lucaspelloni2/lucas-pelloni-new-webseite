@@ -1,22 +1,23 @@
 // Hook
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 export const useWindowSize = () => {
   const isClient = typeof window === "object";
 
   const [windowSize, setWindowSize] = useState({
-    width: isClient ? window.innerWidth : undefined,
-    height: isClient ? window.innerHeight : undefined
+    width: isClient ? window.innerWidth : 0,
+    height: isClient ? window.innerHeight : 0
   });
 
   useEffect(() => {
     if (!isClient) {
       return;
     }
+
     function getSize() {
       return {
-        width: isClient ? window.innerWidth : undefined,
-        height: isClient ? window.innerHeight : undefined
+        width: isClient ? window.innerWidth : 0,
+        height: isClient ? window.innerHeight : 0
       };
     }
 
