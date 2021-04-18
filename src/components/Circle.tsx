@@ -72,7 +72,7 @@ export const Circle = ({visible}: Props) => {
     } else if (translation === PageDimensions[2]) {
       setCircleColor(selectedColor);
       setCircleXTranslation(0);
-      setCircleScale(maxSize / circleSize);
+      setCircleScale(1 + maxSize / circleSize);
     }
   }, [background, circleSize, maxSize, selectedColor, translation, width]);
 
