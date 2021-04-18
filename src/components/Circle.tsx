@@ -64,6 +64,7 @@ export const Circle = ({visible}: Props) => {
   useEffect(() => {
     if (translation === PageDimensions[0]) {
       setCircleColor(selectedColor);
+      setCircleScale(1);
       setCircleXTranslation(50);
     } else if (translation === PageDimensions[1]) {
       setCircleColor(selectedColor);
@@ -71,8 +72,7 @@ export const Circle = ({visible}: Props) => {
       setCircleScale(1);
     } else if (translation === PageDimensions[2]) {
       setCircleColor(selectedColor);
-      setCircleXTranslation(0);
-      setCircleScale(1 + maxSize / circleSize);
+      setCircleScale(1.5 + Math.round(maxSize / circleSize));
     }
   }, [background, circleSize, maxSize, selectedColor, translation, width]);
 
@@ -80,11 +80,7 @@ export const Circle = ({visible}: Props) => {
     () => (
       <CircleContainer
         visible={visible}
-        translation={
-          translation === PageDimensions[2]
-            ? translation + OVERFLOW
-            : translation
-        }
+        translation={translation}
         circleXTranslation={circleXTranslation}
       >
         <MyCircle color={circleColor} size={circleSize} scale={circleScale} />
