@@ -4,7 +4,6 @@ import {
   Flex,
   Row,
   SMALL_DEVICES_MAX_WIDTH,
-  Spacer,
   SPACING
 } from "axelra-styled-bootstrap-grid";
 import React, {ReactNode, useMemo} from "react";
@@ -32,7 +31,7 @@ const MyFlex = styled(Flex)`
 `;
 
 const Image = styled(IllustrationSvg)`
-  max-width: 125%;
+  max-width: 75%;
   height: auto;
 `;
 
@@ -47,14 +46,13 @@ export const Home = ({order, titleComponent}: Props) => {
     () => (
       <MyContainer fluid>
         <MyRow>
-          <MyCol md={6} lg={8} order={order[0]}>
+          <MyCol md={4} xl={6} order={order[0]}>
             <MyFlex column>
-              {isSmall && <Spacer x10 />}
               <Flex flex={1} />
               {titleComponent}
             </MyFlex>
           </MyCol>
-          <MyCol md={6} lg={4} order={order[1]}>
+          <MyCol md={8} xl={6} order={order[1]}>
             <MyFlex column flex={1} justify="center" align="center">
               <Image />
             </MyFlex>
