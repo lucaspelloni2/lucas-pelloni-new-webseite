@@ -37,11 +37,12 @@ const CircleContainer = styled(AnimatedOpacityContainer).attrs<{
 const MyCircle = styled.div<{
   color: string;
   size: number;
+  scale: number;
 }>`
-  border-radius: 50%;
+  border-radius: ${props => (props.scale === 1 ? "50" : "%")}%;
   width: ${props => props.size}px;
   height: ${props => props.size}px;
-  transform: scale(1);
+  transform: ${props => `scale(${props.scale})`};
   transition: ${PAGE_TRANSITION};
   will-change: transform;
   background: ${props => props.color};
@@ -56,8 +57,9 @@ export const Circle = ({visible}: Props) => {
   const {translation} = useNormalizedTransition();
   const [circleColor, setCircleColor] = useState(selectedColor);
   const [circleXTranslation, setCircleXTranslation] = useState(50);
-
+  const [circleScale, setCircleScale] = useState(1);
   const circleSize = useMemo(() => Math.min(height, width), [height, width]);
+  const maxSize = useMemo(() => Math.max(height, width), [height, width]);
 
   useEffect(() => {
     if (translation === PageDimensions[0]) {
@@ -66,21 +68,35 @@ export const Circle = ({visible}: Props) => {
     } else if (translation === PageDimensions[1]) {
       setCircleColor(selectedColor);
       setCircleXTranslation(-50);
+      setCircleScale(1);
     } else if (translation === PageDimensions[2]) {
       setCircleColor(selectedColor);
+      setCircleXTranslation(0);
+      setCircleScale(maxSize / circleSize);
     }
-  }, [background, selectedColor, translation, width]);
+  }, [background, circleSize, maxSize, selectedColor, translation, width]);
 
   return useMemo(
     () => (
       <CircleContainer
         visible={visible}
-        translation={translation}
+        translation={
+          translation === PageDimensions[2]
+            ? translation + OVERFLOW
+            : translation
+        }
         circleXTranslation={circleXTranslation}
       >
-        <MyCircle color={circleColor} size={circleSize} />
+        <MyCircle color={circleColor} size={circleSize} scale={circleScale} />
       </CircleContainer>
     ),
-    [circleColor, circleSize, circleXTranslation, translation, visible]
+    [
+      circleColor,
+      circleScale,
+      circleSize,
+      circleXTranslation,
+      translation,
+      visible
+    ]
   );
 };
