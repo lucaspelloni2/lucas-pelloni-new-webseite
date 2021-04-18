@@ -11,17 +11,18 @@ import {
 import useAppState from "../reducers/useAppState";
 
 type CircleProps = {
-  right: number;
+  circleXTranslation: number;
   translation: number;
 };
 
+const OVERFLOW = 5;
 const CircleContainer = styled(AnimatedOpacityContainer).attrs<{
   visible: boolean;
-}>(({translation}: CircleProps) => ({
+}>(({translation, circleXTranslation}: CircleProps) => ({
   style: {
-    transform: `translate(50%, ${translation}vh)`
+    transform: `translate(${circleXTranslation}%, ${translation - OVERFLOW}vh)`
   }
-}))<{visible: boolean; translation: number}>`
+}))<CircleProps>`
   position: fixed;
   z-index: -1;
   left: 0;
@@ -54,14 +55,17 @@ export const Circle = ({visible}: Props) => {
   const {background} = useTheme();
   const {translation} = useNormalizedTransition();
   const [circleColor, setCircleColor] = useState(selectedColor);
+  const [circleXTranslation, setCircleXTranslation] = useState(50);
 
-  const circleSize = Math.min(height, width);
+  const circleSize = useMemo(() => Math.min(height, width), [height, width]);
 
   useEffect(() => {
     if (translation === PageDimensions[0]) {
       setCircleColor(selectedColor);
+      setCircleXTranslation(50);
     } else if (translation === PageDimensions[1]) {
       setCircleColor(selectedColor);
+      setCircleXTranslation(-50);
     } else if (translation === PageDimensions[2]) {
       setCircleColor(selectedColor);
     }
@@ -69,10 +73,14 @@ export const Circle = ({visible}: Props) => {
 
   return useMemo(
     () => (
-      <CircleContainer visible={visible} translation={translation}>
+      <CircleContainer
+        visible={visible}
+        translation={translation}
+        circleXTranslation={circleXTranslation}
+      >
         <MyCircle color={circleColor} size={circleSize} />
       </CircleContainer>
     ),
-    [circleColor, circleSize, translation, visible]
+    [circleColor, circleSize, circleXTranslation, translation, visible]
   );
 };
