@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import { __GRAY_SCALE, COLOR_TRANSITION, SPACING } from "./Theme";
-import { EXTRA_SMALL_DEVICES, LARGE_DEVICES, MEDIUM_DEVICES } from "./Mobile";
+import {EXTRA_SMALL_DEVICES, LARGE_DEVICES, MEDIUM_DEVICES} from "./Mobile";
+import {COLOR_TRANSITION, getAlphaColor, SPACING} from "./Theme";
 
 export const Title = styled.h1`
   font-size: 58px;
   font-weight: 700;
 `;
 
-export const SubTitle = styled.h3`
+export const SubTitle = styled.h3<{color: string}>`
   font-size: 26px;
   font-weight: 300;
-  color: ${__GRAY_SCALE._700};
+  color: ${props => getAlphaColor(0.5, props.color)};
   ${LARGE_DEVICES`
      font-size: 24px;
     `};
@@ -23,29 +23,20 @@ export const SubTitle = styled.h3`
 `;
 
 export const HomeBigTitle = styled(Title)`
-  font-size: 60px;
-  ${LARGE_DEVICES`
-     font-size: 48px;
-    `};
-  ${MEDIUM_DEVICES`
-     font-size: 42px;
-    `};
-  ${EXTRA_SMALL_DEVICES`
-     font-size: 28px;
-    `};
+  font-size: calc(2em + 3vmin);
 `;
 
 export const HomeSubTitle = styled(SubTitle)`
   margin-top: -${SPACING * 2}px;
-  font-weight: 100;
+  font-weight: 300;
 `;
 
-export const ColoredSpan = styled.span<{ color: string }>`
+export const ColoredSpan = styled.span<{color: string}>`
   color: ${props => props.color};
   transition: ${COLOR_TRANSITION};
 `;
 
-export const Link = styled.a<{ color?: string }>`
+export const Link = styled.a<{color?: string}>`
   &:hover:after {
     width: 100%;
   }

@@ -1,12 +1,13 @@
 import React from "react";
-import { GlobalStyle, MainTheme } from "./Layout/Theme";
-import { ThemeProvider } from "styled-components";
-import { Pages } from "./Pages/Pages";
-import { useTheme } from "./hooks/useTheme";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {ThemeProvider} from "styled-components";
+import {useTheme} from "./hooks/useTheme";
+import "./Layout/fonts.css";
+import {GlobalStyle, MainTheme} from "./Layout/Theme";
+import {Pages} from "./Pages/Pages";
 
-function App() {
-  const { color, background } = useTheme();
+export const App = () => {
+  const {color, background} = useTheme();
   return (
     <Router>
       <Switch>
@@ -17,6 +18,6 @@ function App() {
       </ThemeProvider>
     </Router>
   );
-}
+};
 
 export default App;

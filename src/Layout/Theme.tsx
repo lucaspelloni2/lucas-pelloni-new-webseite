@@ -1,25 +1,20 @@
-import { CSSProperties } from "react";
+import {parseToHsl, transparentize} from "polished";
+import {CSSProperties} from "react";
 import styled, {
   createGlobalStyle,
+  css,
   ThemeProviderProps
 } from "styled-components";
-import { parseToHsl, transparentize } from "polished";
+import {Memories} from "../Content";
 
-type Props = {
-  googleUrl: string;
-};
-
-export const MainTheme: CSSProperties & Props = {
-  fontFamily: "Avenir Next, sans-serif",
-  googleUrl:
-    "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
-
-  // add more general CSS properties here
+export const MainTheme: CSSProperties = {
+  fontFamily: "Avenir Next, sans-serif"
 };
 
 export const SPACING = 10;
 export const DARK_MODE_TRANSITION = `0.5s ease-in-out all`;
 export const COLOR_TRANSITION = `0.3s ease-in-out all`;
+export const NUMBER_OF_PAGES_WITHOUT_MEMORY = 3;
 //export const PAGE_TRANSITION = `0.7s cubic-bezier(.67,0,.29,1.01) all`;
 export const PAGE_TRANSITION = `all 1000ms ease 0s`;
 export const PAGE_TRANSITION_LINEAR = `0.7s ease-in-out all`;
@@ -35,7 +30,7 @@ export const MEMORY_LEFT_PANEL_WIDTH = `50vw`;
 export const YEAR_HEIGHT = SPACING * 10;
 export const DEFAULT_LOGO =
   "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/default_logo.png";
-export const NUMBER_OF_PAGES = 20;
+export const NUMBER_OF_PAGES = Memories.length + NUMBER_OF_PAGES_WITHOUT_MEMORY;
 export const PageDimensions = new Array(NUMBER_OF_PAGES)
   .fill(0)
   .map((_, i) => PAGE_HEIGHT * i);
@@ -71,23 +66,21 @@ export const GlobalStyle = createGlobalStyle<{
   color: string;
   background: string;
 }>`
+  @font-face {
+    font-family: "Avenir Next W05 Bold";
+    src: url("5199694/750e110a-c47f-4c8f-829a-b56cc20cc51d.woff2") format("woff2"),
+    url("5199694/f3420df8-1310-4059-9207-e82b1c9dd3a5.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Avenir Next W05 Regular";
+    src: url("5508244/77caabd3-1877-4634-85c8-8e398a093b99.woff2") format("woff2"),
+    url("5508244/e388ac99-8c6a-4451-8690-1d15b4d45adb.woff") format("woff");
+  }
   * {
     box-sizing: border-box;
     line-height: 1.5em;
     outline: none;
   }
-  
-  @import url(${MainTheme.googleUrl});
-  @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
-  @import url("https://fast.fonts.net/lt/1.css?apiType=css&c=5f1dfaf6-7d97-4c84-a1dc-d99093e9c98d&fontids=5199694,5508244");
-    @font-face{
-        font-family:"Avenir Next W05 Bold";
-        src:url("5199694/750e110a-c47f-4c8f-829a-b56cc20cc51d.woff2") format("woff2"),url("5199694/f3420df8-1310-4059-9207-e82b1c9dd3a5.woff") format("woff");
-    }
-    @font-face{
-        font-family:"Avenir Next W05 Regular";
-        src:url("5508244/77caabd3-1877-4634-85c8-8e398a093b99.woff2") format("woff2"),url("5508244/e388ac99-8c6a-4451-8690-1d15b4d45adb.woff") format("woff");
-    }
   html {
     font-family: ${(p: ThemeProviderProps<any>) => p.theme.fontFamily};
      scroll-behavior: smooth;
@@ -110,10 +103,9 @@ export const GlobalStyle = createGlobalStyle<{
     line-height: 1;
     font-weight: inherit;
     background: ${props => props.background};
-    transition: ${DARK_MODE_TRANSITION};
     color: ${props => props.color};
     font-style: inherit;
-    font-size: 100%; 
+    font-size: 100%;
     font-family: inherit;
     outline: none;
   h1, h2, h3, h4, h5, h6, p  {
@@ -121,7 +113,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-weight: 100;
     line-height: 1.4;
     font-family: inherit;
-      transition: ${DARK_MODE_TRANSITION};
+        transition: ${DARK_MODE_TRANSITION};
   }
 
   
@@ -171,18 +163,24 @@ export const getAlphaColor = (alpha: number, color: string) => {
 };
 
 export const getHSL = (color: string) => {
-  const { hue, saturation, lightness } = parseToHsl(color);
+  const {hue, saturation, lightness} = parseToHsl(color);
   return `hsl(${hue}, ${saturation * 100}%, ${lightness * 100}%)`;
 };
 
 export const getHSLA = (alpha: number, color: string) => {
-  const { hue, saturation, lightness } = parseToHsl(color);
+  const {hue, saturation, lightness} = parseToHsl(color);
   return `hsla(${hue}, ${saturation * 100}%, ${lightness * 100}%, ${alpha})`;
 };
 
-export const AnimatedOpacityContainer = styled.div<{ visible: boolean }>`
+export const AnimatedOpacityContainer = styled.div<{visible: boolean}>`
   opacity: ${props => (props.visible ? 1 : 0)};
   visibility: ${props => (props.visible ? "visible" : "hidden")};
   z-index: ${props => (props.visible ? "auto" : -2)};
   transition: ${COLOR_TRANSITION};
+`;
+
+export const CIRCLE = (size: number) => css`
+  width: ${size}px;
+  height: ${size}px;
+  border-radius: ${size / 2}px;
 `;

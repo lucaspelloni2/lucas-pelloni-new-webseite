@@ -1,9 +1,9 @@
-import { useMemo } from "react";
-import { useTextColor } from "./useTextColor";
-import { useBackgroundColor } from "./useBackgroundColor";
+import {useMemo} from "react";
+import {useBackgroundColor} from "./useBackgroundColor";
+import {useTextColor} from "./useTextColor";
 
 export const useTheme = () => {
-  const { color } = useTextColor();
-  const { background } = useBackgroundColor();
-  return useMemo(() => ({ color, background }), [background, color]);
+  const {color} = useTextColor();
+  const {background} = useBackgroundColor();
+  return useMemo(() => ({color, background}), [background, color]);
 };

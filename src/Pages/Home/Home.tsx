@@ -1,104 +1,65 @@
-import React, { ReactNode, useMemo } from "react";
-import styled from "styled-components";
-import { PageContainer } from "../../Layout/styled/PageContainer";
-import { FlexBox } from "../../Layout/styled/FlexBox";
-import { CIRCLE_TRANSITION, SPACING } from "../../Layout/Theme";
-
 import {
-  fadeIn,
-  INITIAL_ANIMATION_DURATION_IN_SECONDS,
-  slideLeft
-} from "../../Layout/AnimationHelper";
-import { Header } from "../../components/Header";
+  Col,
+  Container,
+  Flex,
+  Row,
+  SMALL_DEVICES_MAX_WIDTH,
+  SPACING
+} from "axelra-styled-bootstrap-grid";
+import React, {ReactNode, useMemo} from "react";
+import styled from "styled-components";
+import {useMedia} from "use-media";
+import {IllustrationSvg} from "../../components/IllustrationSvg";
+import {MEDIUM_DEVICES} from "../../Layout/Mobile";
 
-import { ScrollDownIcon } from "../../components/ScrollDownIcon";
-import { IllustrationSvg } from "../../components/IllustrationSvg";
-import { LARGE_DEVICES, MEDIUM_DEVICES } from "../../Layout/Mobile";
-
-const Container = styled(PageContainer)`
-  flex-direction: row;
-  position: relative;
-  ${MEDIUM_DEVICES`
-      flex-direction: column;
-      flex: 1;
-      height: 100%;
-    `};
+const MyContainer = styled(Container)`
+  height: 100%;
 `;
 
-const TextContainer = styled(FlexBox)<{ order: number }>`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: ${SPACING * 2}px ${SPACING * 5}px;
-  animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${fadeIn} forwards;
-  order: ${props => props.order};
-  ${MEDIUM_DEVICES`
-    order: 2;
-    padding: 0;
-    flex: 1;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    `};
+const MyCol = styled(Col)`
+  height: 100%;
 `;
 
-const IllustrationContainer = styled(FlexBox)<{ order: number }>`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
-  order: ${props => props.order};
-  ${MEDIUM_DEVICES`
-    flex-direction: column;
-    order: 1;
-    justify-content: center;
-    align-items:center;
-    flex: 1;
-    `};
+const MyRow = styled(Row)`
+  height: 100%;
+  padding: ${SPACING * 4}px;
+  ${MEDIUM_DEVICES`height: auto;`}
+`;
+
+const MyFlex = styled(Flex)`
+  height: 100%;
 `;
 
 const Image = styled(IllustrationSvg)`
-  animation: ${INITIAL_ANIMATION_DURATION_IN_SECONDS}s ${slideLeft} forwards;
-  max-width: 750px;
+  max-width: 75%;
   height: auto;
-  transition: ${CIRCLE_TRANSITION};
-  padding: ${SPACING * 2}px;
-  position: absolute;
-  ${LARGE_DEVICES`
-    max-width: 436px;
-    left:0;
-    padding: 0;
-    `};
-`;
-
-const MyFlex = styled(FlexBox)`
-  ${MEDIUM_DEVICES`
-    display: none;
-    `};
 `;
 
 type Props = {
-  header?: boolean;
   order: number[];
   titleComponent: ReactNode;
 };
 
-export const Home = ({ header, order, titleComponent }: Props) => {
+export const Home = ({order, titleComponent}: Props) => {
+  const isSmall = useMedia({maxWidth: SMALL_DEVICES_MAX_WIDTH});
   return useMemo(
     () => (
-      <Container>
-        <TextContainer flex={1} order={order[0]}>
-          {header && <Header />}
-          <MyFlex flex={1} />
-          {titleComponent}
-        </TextContainer>
-
-        <IllustrationContainer flex={1} order={order[1]}>
-          <Image />
-        </IllustrationContainer>
-        <ScrollDownIcon />
-      </Container>
+      <MyContainer fluid>
+        <MyRow>
+          <MyCol md={4} xl={6} order={order[0]}>
+            <MyFlex column>
+              <Flex flex={1} />
+              {titleComponent}
+            </MyFlex>
+          </MyCol>
+          <MyCol md={8} xl={6} order={order[1]}>
+            <MyFlex column flex={1} justify="center" align="center">
+              <Image />
+            </MyFlex>
+          </MyCol>
+        </MyRow>
+      </MyContainer>
     ),
-    [header, order, titleComponent]
+    [order, titleComponent]
   );
 };

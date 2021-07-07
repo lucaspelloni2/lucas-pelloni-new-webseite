@@ -1,14 +1,12 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { throttled } from "./useMouseWheel";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import {throttled} from "./useMouseWheel";
 
-type Props = {
-  onScrollUp: () => void;
-  onScrollDown: () => void;
-};
+// to avoid scrolling by other gestures
+const TOLERANCE_THRESHOLD = 100;
 
-export const useTouchDirection = ({ onScrollUp, onScrollDown }: Props) => {
+export const useTouchDirection = () => {
   const ref = useRef<any>(null);
-
+  const [dir, setDir] = useState<string | null>(`null`);
   const [startingPosition, setStartingPosition] = useState<number>(-1);
 
   const touchStartHandler = useCallback((e: TouchEvent) => {
@@ -16,21 +14,23 @@ export const useTouchDirection = ({ onScrollUp, onScrollDown }: Props) => {
     setStartingPosition(e.changedTouches[0].clientY);
   }, []);
   const touchMoveHandler = throttled(
-    1500,
     useCallback((e: TouchEvent) => {
-      // console.log("moving", e.changedTouches[0]);
-    }, [])
+      //console.log("moving", e.changedTouches[0]);
+    }, []),
+    1500
   );
   const touchEndHandler = useCallback(
     (e: TouchEvent) => {
       const destination = e.changedTouches[0].clientY;
+      const delta = Math.abs(startingPosition - destination);
+      if (delta < TOLERANCE_THRESHOLD) return;
       if (destination < startingPosition) {
-        onScrollDown();
+        setDir(`down-${Date.now()}`);
       } else {
-        onScrollUp();
+        setDir(`up-${Date.now()}`);
       }
     },
-    [onScrollDown, onScrollUp, startingPosition]
+    [startingPosition]
   );
 
   useEffect(() => {
@@ -50,5 +50,5 @@ export const useTouchDirection = ({ onScrollUp, onScrollDown }: Props) => {
     };
   }, [touchEndHandler, touchMoveHandler, touchStartHandler]);
 
-  return useMemo(() => ({ ref }), [ref]);
+  return useMemo(() => ({ref, dir}), [ref, dir]);
 };

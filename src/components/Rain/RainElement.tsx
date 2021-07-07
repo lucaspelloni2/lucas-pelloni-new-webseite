@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
-import styled, { keyframes } from "styled-components";
-import { Triangle } from "./Triangle";
-import { __COLORS, PAGE_TRANSITION, SPACING } from "../../Layout/Theme";
-import { Circle } from "./Circle";
-import { Line } from "./Line";
-import { Square } from "./Square";
-import { getRandomInt } from "./Rain";
-import { DoubleNote, Microphone, SingleNote } from "./Music";
+import React, {useMemo} from "react";
+import styled, {keyframes} from "styled-components";
+import {PAGE_TRANSITION, SPACING, __COLORS} from "../../Layout/Theme";
+import {Circle} from "./Circle";
+import {Line} from "./Line";
+import {DoubleNote, Microphone, SingleNote} from "./Music";
+import {getRandomInt} from "./Rain";
+import {Square} from "./Square";
+import {Triangle} from "./Triangle";
 
 type ContainerProps = {
   left: number;
@@ -14,29 +14,30 @@ type ContainerProps = {
 };
 
 const move = keyframes`
-    0% {
-      transform: translateY(-${SPACING / 4}px);
-      opacity: 0.75;
-    } 50% {
-     transform: translateY(${SPACING * 2}px);
-     opacity: 1;
-    } 100% {
-     transform: translateY(-${SPACING / 4}px);
-      opacity: 0.75;
-    }
+  0% {
+    transform: translateY(-${SPACING / 4}px);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateY(${SPACING * 2}px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-${SPACING / 4}px);
+    opacity: 0.75;
+  }
 `;
 
 const Container = styled.div.attrs<{
   left: number;
   top: number;
   duration: number;
-}>(({ left, top }: ContainerProps) => ({
+}>(({left, top}: ContainerProps) => ({
   style: {
     left: `${left}%`,
     top: `${top}%`
   }
-}))`
-  // @ts-ignore
+}))<{duration: number; left: number; top: number}>`
   animation: ${props => props.duration}s ${move} infinite;
   position: absolute;
   transition: ${PAGE_TRANSITION};
@@ -71,19 +72,22 @@ const getElement = (
     const random = getRandomInt(0, 2);
     if (random === 0) {
       return <SingleNote color={color} size={size * 2} rotate={rotate} />;
-    } else if (random === 1) {
-      return <DoubleNote color={color} size={size * 2} rotate={rotate} />;
-    } else {
-      return <Microphone color={color} size={size * 2} rotate={rotate} />;
     }
+    if (random === 1) {
+      return <DoubleNote color={color} size={size * 2} rotate={rotate} />;
+    }
+    return <Microphone color={color} size={size * 2} rotate={rotate} />;
   }
   if (element === RainElementType.TRIANGLE) {
     return <Triangle color={color} size={size} rotate={rotate} />;
-  } else if (element === RainElementType.CIRCLE) {
+  }
+  if (element === RainElementType.CIRCLE) {
     return <Circle color={color} size={size} rotate={rotate} />;
-  } else if (element === RainElementType.LINE) {
+  }
+  if (element === RainElementType.LINE) {
     return <Line color={color} size={size} rotate={rotate} />;
-  } else if (element === RainElementType.SQUARE) {
+  }
+  if (element === RainElementType.SQUARE) {
     return <Square color={color} size={size} rotate={rotate} />;
   }
   return <Triangle color={__COLORS.TERTIARY} size={size} />;
@@ -103,7 +107,6 @@ export const RainElement = ({
 
   return useMemo(
     () => (
-      // @ts-ignore
       <Container left={left} top={top} duration={duration}>
         {el}
       </Container>

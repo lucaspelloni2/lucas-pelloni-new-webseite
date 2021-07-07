@@ -1,16 +1,18 @@
-import React, { useEffect, useMemo } from "react";
+import React, {useEffect, useMemo} from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { PageContainer } from "../../Layout/styled/PageContainer";
-import { FlexBox } from "../../Layout/styled/FlexBox";
-import { Memory } from "../../Content";
-import { useNormalizedTransition } from "../../hooks/useNormalizedTransition";
-import { useDispatch } from "react-redux";
-import { setCurrentMemory } from "../../reducers/memory/actions";
-import { MemoryTextSection } from "./MemoryTextSection";
-import { MemoryImages } from "./MemoryImages";
-import { ScrollDownIcon } from "../../components/ScrollDownIcon";
-import { MemoryLeftPanel } from "../../components/MemoryLeftPanel";
-import { MEDIUM_DEVICES } from "../../Layout/Mobile";
+import {MemoryLeftPanel} from "../../components/MemoryLeftPanel";
+import {ScrollDownIcon} from "../../components/ScrollDownIcon";
+import {Memory} from "../../Content";
+import {useIsFocused} from "../../hooks/use-is-focused";
+import {MEDIUM_DEVICES} from "../../Layout/Mobile";
+import {FlexBox} from "../../Layout/styled/FlexBox";
+import {PageContainer} from "../../Layout/styled/PageContainer";
+import {PAGE_WIDTH} from "../../Layout/Theme";
+import {setCurrentImageIndex} from "../../reducers/memory/actions";
+import useAppState from "../../reducers/useAppState";
+import {MemoryImages} from "./MemoryImages";
+import {MemoryTextSection} from "./MemoryTextSection";
 
 const Container = styled(PageContainer)`
   display: flex;
@@ -27,11 +29,6 @@ const ContentWrapper = styled(FlexBox)`
   width: 100%;
   height: 100%;
   display: flex;
-  ${MEDIUM_DEVICES`
-    position: relative;
-    align-items: flex-start;  
-    
-    `}
 `;
 
 const ImageWrapper = styled(FlexBox)`
@@ -41,41 +38,37 @@ const ImageWrapper = styled(FlexBox)`
 
 type Props = {
   memory: Memory;
-  isActive: boolean;
 };
-export const MemoryScreen = ({ memory, isActive }: Props) => {
-  const { translation } = useNormalizedTransition();
+export const MemoryScreen = ({memory}: Props) => {
+  const {currentImageIndex: currentIndex} = useAppState(st => st.memory);
+  const pictureTranslation = useMemo(() => currentIndex * PAGE_WIDTH * -1, [
+    currentIndex
+  ]);
   const dispatch = useDispatch();
+  const isFocused = useIsFocused(memory);
 
   useEffect(() => {
-    if (isActive && translation) {
-      dispatch(setCurrentMemory(memory));
+    if (isFocused) {
+      dispatch(setCurrentImageIndex(0));
     }
-  }, [translation, isActive, dispatch, memory]);
+  }, [dispatch, isFocused]);
 
   return (
     <Container>
-      {useMemo(
-        () => (
-          <>{isActive && <MemoryLeftPanel />}</>
-        ),
-        [isActive]
-      )}
+      <MemoryLeftPanel />
       <ImageWrapper flex={1}>
         {useMemo(
           () => (
-            <MemoryImages memory={memory} />
+            <MemoryImages
+              memory={memory}
+              pictureTranslation={pictureTranslation}
+            />
           ),
-          [memory]
+          [memory, pictureTranslation]
         )}
       </ImageWrapper>
       <ContentWrapper flex={1}>
-        {useMemo(
-          () => (
-            <MemoryTextSection memory={memory} />
-          ),
-          [memory]
-        )}
+        <MemoryTextSection memory={memory} />
       </ContentWrapper>
       <ScrollDownIcon />
     </Container>

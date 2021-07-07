@@ -1,75 +1,50 @@
-import React, { useMemo } from "react";
+import {Col, Container, Flex, Row, Spacer} from "axelra-styled-bootstrap-grid";
+import React, {useMemo} from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { FlexBox } from "../../Layout/styled/FlexBox";
-import { ColoredText } from "../../components/ColoredTitle";
-import { Button } from "../../components/Button";
-import { __COLORS, __GRAY_SCALE, getHSLA, SPACING } from "../../Layout/Theme";
-import { SubTitle, Title } from "../../Layout/Typography";
-import { Memory } from "../../Content";
-import { Hashtags } from "../../components/Hashtags";
-import { useDispatch } from "react-redux";
-import { toggleLeftPanel } from "../../reducers/memory/actions";
-import { MEDIUM_DEVICES } from "../../Layout/Mobile";
-import { AnimatedArrow } from "../../components/AnimatedArrow";
-import { textFocusIn } from "../../Layout/AnimationHelper";
-
-const TextWrapper = styled(FlexBox)`
-  display: flex;
-  flex-direction: column;
-`;
+import {AnimatedArrow} from "../../components/AnimatedArrow";
+import {Button} from "../../components/Button";
+import {ColoredText} from "../../components/ColoredTitle";
+import {Hashtags} from "../../components/Hashtags";
+import {Memory} from "../../Content";
+import {useIsFocused} from "../../hooks/use-is-focused";
+import {useTextColor} from "../../hooks/useTextColor";
+import {
+  EXTRA_SMALL_DEVICES,
+  MEDIUM_DEVICES,
+  SMALL_DEVICES
+} from "../../Layout/Mobile";
+import {SPACING, __COLORS, __GRAY_SCALE} from "../../Layout/Theme";
+import {SubTitle, Title} from "../../Layout/Typography";
+import {toggleLeftPanel} from "../../reducers/memory/actions";
+import {MemoryAnimatedDots} from "./MemoryAnimatedDots";
 
 const MyTitle = styled(Title)`
   font-size: 62px;
+  margin: 0;
   color: ${__COLORS.WHITE};
-  margin-bottom: 0;
-  overflow-x: visible;
-  animation: ${textFocusIn} 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-  ${MEDIUM_DEVICES`
-        font-size: 36px;
-    margin-bottom: 12px;
-    margin-top: 0; 
-    `};
+  ${EXTRA_SMALL_DEVICES`   font-size: 30px;`};
 `;
 
 const MySubTitle = styled(SubTitle)`
   margin-top: 0;
   color: ${__GRAY_SCALE._100};
   margin-bottom: ${SPACING * 4}px;
+
   ${MEDIUM_DEVICES`
     font-size: 18px; 
     text-align: justify;
     `};
+  ${SMALL_DEVICES` display: block;`};
+  ${EXTRA_SMALL_DEVICES`
+    display: none;
+  `};
 `;
 
-const TitleWrapper = styled.div`
-  ::after {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    box-shadow: 43px 0 131px 9vw ${getHSLA(0.25, __COLORS.PRIMARY)};
-    content: " ";
-    ${MEDIUM_DEVICES`display: none;`}
-  }
-  max-width: 60%;
-  position: relative;
-  padding: 0 ${SPACING * 8}px ${SPACING * 8}px ${SPACING * 8}px;
-  background-color: ${getHSLA(0.25, __COLORS.PRIMARY)};
-  ${MEDIUM_DEVICES`
-    padding: 0px;
-    max-width: 100%;
-    text-align: center;
-    background-color: transparent; 
-    `};
-`;
+const TitleWrapper = styled.div``;
 
 const Buttons = styled.div`
   display: flex;
-`;
-
-const Text = styled.div`
-  ${MEDIUM_DEVICES`padding: 10px;   `}
 `;
 
 const MyButton = styled(Button)`
@@ -79,6 +54,7 @@ const MyButton = styled(Button)`
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   }
+
   &:hover .round .arrow.primera {
     animation-name: bounceAlpha;
     animation-duration: 1.4s;
@@ -88,49 +64,73 @@ const MyButton = styled(Button)`
   }
 `;
 
+const RowHeight = styled(Row)`
+  height: 100%;
+`;
+const ColHeight = styled(Col)`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 type Props = {
   memory: Memory;
 };
 
-export const MemoryTextSection = ({ memory }: Props) => {
+export const MemoryTextSection = ({memory}: Props) => {
   const dispatch = useDispatch();
-  const { achievement } = memory;
+  const {achievement} = memory;
+  const {color} = useTextColor();
+  const isFocused = useIsFocused(memory);
+
   return useMemo(
     () => (
-      <TextWrapper flex={1}>
-        <FlexBox flex={1} />
-        <TitleWrapper>
-          <Text>
-            <MyTitle>
-              <ColoredText
-                text={achievement.title}
-                firstWordColor={memory.primaryColor}
-              />
-            </MyTitle>
-            {achievement.hashtags && (
-              <Hashtags
-                hashtags={achievement.hashtags}
-                color={memory.primaryColor}
-              />
-            )}
-            <MySubTitle>{achievement.subtitle}</MySubTitle>
-          </Text>
-          <Buttons>
-            <MyButton
-              background={memory.primaryColor}
-              onClick={() => dispatch(toggleLeftPanel())}
-            >
-              Read the story <AnimatedArrow />
-            </MyButton>
-          </Buttons>
-        </TitleWrapper>
-      </TextWrapper>
+      <Container>
+        <RowHeight>
+          <ColHeight xs={12} sm={10} md={8}>
+            <Flex flex={1} />
+            <Flex column>
+              <TitleWrapper>
+                {isFocused ? (
+                  <MemoryAnimatedDots pictures={achievement.pictures} />
+                ) : null}
+                <MyTitle>
+                  <ColoredText
+                    text={achievement.title}
+                    firstWordColor={memory.primaryColor}
+                  />
+                </MyTitle>
+                {achievement.hashtags && (
+                  <Hashtags
+                    hashtags={achievement.hashtags}
+                    color={memory.primaryColor}
+                  />
+                )}
+                <MySubTitle color={color}>{achievement.subtitle}</MySubTitle>
+                <Spacer />
+                <Buttons>
+                  <MyButton
+                    background={memory.primaryColor}
+                    onClick={() => dispatch(toggleLeftPanel())}
+                  >
+                    Read the story <AnimatedArrow />
+                  </MyButton>
+                </Buttons>
+              </TitleWrapper>
+              <Spacer x10 />
+              <Spacer x5 />
+            </Flex>
+          </ColHeight>
+        </RowHeight>
+      </Container>
     ),
     [
       achievement.hashtags,
+      achievement.pictures,
       achievement.subtitle,
       achievement.title,
       dispatch,
+      isFocused,
       memory.primaryColor
     ]
   );

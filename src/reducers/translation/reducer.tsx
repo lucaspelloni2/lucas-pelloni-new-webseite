@@ -1,12 +1,11 @@
+import {getIndexFromURL} from "../../helpers/get-index-from-url";
+import {PAGE_HEIGHT} from "../../Layout/Theme";
 import {
   ActionTypes,
-  Direction,
   SetNumberTranslation,
   SetTranslation,
   TranslationState
 } from "./types";
-import { PAGE_HEIGHT } from "../../Layout/Theme";
-import { getIndexFromURL } from "../../helpers/get-index-from-url";
 
 const getInitialState = () => {
   const hash = window.location.hash.toString().replace("#", "");
@@ -23,11 +22,12 @@ const initialState: TranslationState = {
 
 const getTranslation = (
   translation: number,
-  direction: Direction | null
+  direction: string | null
 ): number => {
-  if (direction === Direction.DOWN) {
+  if (direction?.includes("down")) {
     return translation - PAGE_HEIGHT;
-  } else if (direction === Direction.UP) {
+  }
+  if (direction?.includes("up")) {
     return translation === 0 ? 0 : translation + PAGE_HEIGHT;
   }
   return translation;

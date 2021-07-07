@@ -1,12 +1,12 @@
 import React, {useCallback} from "react";
 import styled from "styled-components";
 import {Memory} from "../Content";
+import {getHSLA, SPACING, __COLORS} from "../Layout/Theme";
 import {Icon, IconTypes} from "./Icon";
-import {__COLORS, getHSLA, SPACING} from "../Layout/Theme";
 
 const SIZE = 45;
 
-const Container = styled.div<{ background: string }>`
+const Container = styled.div<{background: string}>`
   &:hover {
     background: ${props => getHSLA(0.6, __COLORS.WHITE || props.background)};
   }
@@ -36,7 +36,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const CarouselArrow = ({ memory, left, onClick }: Props) => {
+export const CarouselArrow = ({memory, left, onClick}: Props) => {
   const click = useCallback(() => onClick(), [onClick]);
 
   return (

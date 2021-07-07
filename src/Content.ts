@@ -1,5 +1,4 @@
-import { CSSProperties } from "react";
-import { __COLORS } from "./Layout/Theme";
+import {CSSProperties} from "react";
 
 export type Picture = {
   src: string;
@@ -30,6 +29,7 @@ export type Achievement = {
 
 export type Memory = {
   year: number;
+  id: string;
   month: MONTHS;
   primaryColor: string;
   secondaryColor?: string;
@@ -55,6 +55,7 @@ export enum MONTHS {
 
 export const Memories: Memory[] = [
   {
+    id: "william",
     year: 2020,
     month: MONTHS.JANUARY,
     url: "william",
@@ -68,7 +69,7 @@ export const Memories: Memory[] = [
         {
           title: "williamcandillon"
         },
-        { title: "animations" }
+        {title: "animations"}
       ],
       subtitle:
         "In January 2020, I had the pleasure to be interview by William Candillion, one of the best React Native developers in the world, expert in the field of declarative animations.",
@@ -97,6 +98,7 @@ export const Memories: Memory[] = [
     }
   },
   {
+    id: "axelra-founding",
     year: 2019,
     month: MONTHS.MAY,
     url: "axelra",
@@ -104,7 +106,7 @@ export const Memories: Memory[] = [
     secondaryColor: "#0a274b",
     achievement: {
       title: "Axelra was born",
-      firstWordColor: __COLORS.FOURTH,
+      firstWordColor: "#FFCC3E",
       hashtags: [
         {
           title: "axelra"
@@ -112,7 +114,7 @@ export const Memories: Memory[] = [
         {
           title: "techventurebuilder"
         },
-        { title: "techaccelerator" }
+        {title: "techaccelerator"}
       ],
       subtitle:
         "In May 2019, together with Peach, Thomas and Severin, we co-founded Axelra. Axelra is a tech venture builder based in Zurich and loves to build, launch and scale digital products and services and the business around it. Our approach takes 100 days from the idea to the MVP launch.",
@@ -147,6 +149,10 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
           src:
             "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/axelra_1.jpg"
         },
+        /*        {
+          src:
+            "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/ezgif.com-gif-maker.webp"
+        },*/
         {
           src:
             "https://lucas-website.s3.eu-central-1.amazonaws.com/memories/axelra_2.jpg"
@@ -156,6 +162,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
     }
   },
   {
+    id: "master",
     year: 2019,
     month: MONTHS.DECEMBER,
     url: "master",
@@ -203,11 +210,12 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "universityofzurich"
         },
-        { title: "computerscience" }
+        {title: "computerscience"}
       ]
     }
   },
   {
+    id: "sictic",
     year: 2019,
     month: MONTHS.JULI,
     url: "sictic",
@@ -232,7 +240,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           videoId: 444332012
         },
-        { videoId: 444329274 }
+        {videoId: 444329274}
       ],
       link: "https://twitter.com/Axelra_AG/status/1143887932207632384",
       logo: {
@@ -249,11 +257,12 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "axelra"
         },
-        { title: "velove" }
+        {title: "velove"}
       ]
     }
   },
   {
+    id: "sbhack",
     year: 2019,
     month: MONTHS.JUNE,
     url: "sbhack",
@@ -290,7 +299,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           videoId: 414890377
         },
-        { videoId: 414896672 }
+        {videoId: 414896672}
       ],
       link:
         "https://www.swissinfo.ch/eng/industry-challenges-blockchain-during-hackathon/45051562",
@@ -305,11 +314,12 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "swissblockchainhackthon"
         },
-        { title: "velove" }
+        {title: "velove"}
       ]
     }
   },
   {
+    id: "hackzurich-makaday",
     year: 2018,
     month: MONTHS.SEPTEMBER,
     url: "hackzurich",
@@ -342,7 +352,7 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           videoId: 414553471
         },
-        { videoId: 414559184 }
+        {videoId: 414559184}
       ],
       link: "https://www.instagram.com/maka.day/",
       logo: {
@@ -356,11 +366,12 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "makaday"
         },
-        { title: "hackathon" }
+        {title: "hackathon"}
       ]
     }
   },
   {
+    id: "eureka",
     year: 2018,
     month: MONTHS.APRIL,
     url: "eureka",
@@ -392,12 +403,13 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "blockchain"
         },
-        { title: "ethereum" },
-        { title: "openscience" }
+        {title: "ethereum"},
+        {title: "openscience"}
       ]
     }
   },
   {
+    id: "temus-lucky-p",
     year: 2013,
     month: MONTHS.MARCH,
     url: "luckyp",
@@ -440,12 +452,13 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "temus"
         },
-        { title: "live" },
-        { title: "rap" }
+        {title: "live"},
+        {title: "rap"}
       ]
     }
   },
   {
+    id: "lucky-p-una-domenica-di-neve",
     year: 2012,
     month: MONTHS.DECEMBER,
     url: "unadomenicadineve",
@@ -472,8 +485,8 @@ Want to launch your company with us? Visit us here [https://www.axelra.com](http
         {
           title: "unadomenicadineve"
         },
-        { title: "rap" },
-        { title: "ticino" }
+        {title: "rap"},
+        {title: "ticino"}
       ]
     }
   }

@@ -1,38 +1,37 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import styled from "styled-components";
+import {useNormalizedTransition} from "../hooks/useNormalizedTransition";
+import {useTheme} from "../hooks/useTheme";
+import {useWindowSize} from "../hooks/useWindowSize";
 import {
   AnimatedOpacityContainer,
-  CIRCLE_RIGHT_OVERFLOW,
-  CIRCLE_TOP_OVERFLOW,
-  PAGE_TRANSITION,
-  PageDimensions
+  PageDimensions,
+  PAGE_TRANSITION
 } from "../Layout/Theme";
 import useAppState from "../reducers/useAppState";
-import { useWindowSize } from "../hooks/useWindowSize";
-import { useTheme } from "../hooks/useTheme";
-import { useNormalizedTransition } from "../hooks/useNormalizedTransition";
-import { MEDIUM_DEVICES } from "../Layout/Mobile";
 
 type CircleProps = {
-  right: number;
+  circleXTranslation: number;
   translation: number;
 };
 
+const OVERFLOW = 5;
 const CircleContainer = styled(AnimatedOpacityContainer).attrs<{
-  left: number;
   visible: boolean;
-}>(({ right, translation }: CircleProps) => ({
+}>(({translation, circleXTranslation}: CircleProps) => ({
   style: {
-    transform: `translate(${right - CIRCLE_RIGHT_OVERFLOW}vw, ${translation}vh)`
+    transform: `translate(${circleXTranslation}%, ${translation - OVERFLOW}vh)`
   }
-}))`
+}))<CircleProps>`
   position: fixed;
   z-index: -1;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
   transition: ${PAGE_TRANSITION};
-  top: -${CIRCLE_TOP_OVERFLOW}px;
-  ${MEDIUM_DEVICES`
-      left: -150px;
-  `}
+  top: 0;
 `;
 
 const MyCircle = styled.div<{
@@ -40,57 +39,60 @@ const MyCircle = styled.div<{
   size: number;
   scale: number;
 }>`
-  border-radius: 50%;
-  width: 50vw;
-  height: 50vw;
-  transform: scale(${props => props.scale});
+  border-radius: ${props => (props.scale === 1 ? "50" : "%")}%;
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
+  transform: ${props => `scale(${props.scale})`};
   transition: ${PAGE_TRANSITION};
   will-change: transform;
   background: ${props => props.color};
-  ${MEDIUM_DEVICES`
-      width: 500px;
-      height: 500px;
-  `}
 `;
 type Props = {
   visible: boolean;
 };
-export const Circle = ({ visible }: Props) => {
-  const { selectedColor } = useAppState(s => s.selectedColor);
-  const { background } = useTheme();
-  const { translation } = useNormalizedTransition();
-  const { width } = useWindowSize();
-  const [right, setRight] = useState(80);
-  const INITIAL_SIZE = 800;
+export const Circle = ({visible}: Props) => {
+  const {height, width} = useWindowSize();
+  const {selectedColor} = useAppState(s => s.selectedColor);
+  const {background} = useTheme();
+  const {translation} = useNormalizedTransition();
   const [circleColor, setCircleColor] = useState(selectedColor);
-  const [scale, setScale] = useState(1);
+  const [circleXTranslation, setCircleXTranslation] = useState(50);
+  const [circleScale, setCircleScale] = useState(1);
+  const circleSize = useMemo(() => Math.min(height, width), [height, width]);
+  const maxSize = useMemo(() => Math.max(height, width), [height, width]);
 
   useEffect(() => {
     if (translation === PageDimensions[0]) {
-      setRight(80);
       setCircleColor(selectedColor);
+      setCircleScale(1);
+      setCircleXTranslation(50);
     } else if (translation === PageDimensions[1]) {
-      setRight(0);
-      setScale(1);
       setCircleColor(selectedColor);
+      setCircleXTranslation(-50);
+      setCircleScale(1);
     } else if (translation === PageDimensions[2]) {
-      setScale(3.5);
-      setRight(CIRCLE_RIGHT_OVERFLOW);
       setCircleColor(selectedColor);
+      setCircleScale(1.5 + Math.round(maxSize / circleSize));
     }
-  }, [background, selectedColor, translation, width]);
+  }, [background, circleSize, maxSize, selectedColor, translation, width]);
 
   return useMemo(
     () => (
       <CircleContainer
-        // @ts-ignore
-        right={right}
         visible={visible}
         translation={translation}
+        circleXTranslation={circleXTranslation}
       >
-        <MyCircle color={circleColor} size={INITIAL_SIZE} scale={scale} />
+        <MyCircle color={circleColor} size={circleSize} scale={circleScale} />
       </CircleContainer>
     ),
-    [circleColor, right, scale, translation, visible]
+    [
+      circleColor,
+      circleScale,
+      circleSize,
+      circleXTranslation,
+      translation,
+      visible
+    ]
   );
 };

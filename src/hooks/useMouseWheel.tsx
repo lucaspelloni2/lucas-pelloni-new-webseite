@@ -1,15 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
-
-type Props = {
-  onScrollUp: () => void;
-  onScrollDown: () => void;
-};
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 
 // ES6 code
-export function throttled(delay: number, fn: any) {
+export function throttled(fn: any, delay: number) {
   let lastCall = 0;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  return function(...args) {
+  return function (...args) {
     const now = new Date().getTime();
     if (now - lastCall < delay) {
       return;
@@ -19,35 +15,55 @@ export function throttled(delay: number, fn: any) {
   };
 }
 
-export const useMouseWheel = ({ onScrollUp, onScrollDown }: Props) => {
-  const ref = useRef<any>(null);
+export const useMouseWheel = () => {
+  const ref = useRef<HTMLDivElement>(null);
 
-  const handleMouseScroll = throttled(
-    1500,
-    useCallback(
-      (e: any) => {
-        const { wheelDeltaY } = e;
-        if (wheelDeltaY > 0) {
-          onScrollUp();
-        } else if (wheelDeltaY < 0) {
-          onScrollDown();
-        }
-      },
-      [onScrollDown, onScrollUp]
-    )
+  const [dir, setDir] = useState<string | null>(`null`);
+
+  const mouseWheelHandler = useCallback(
+    throttled((e: any) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      const delta = e.deltaY || -e.wheelDelta || e.detail;
+      if (isNaN(delta)) return;
+
+      if (delta > 0) {
+        setDir(`down-${Date.now()}`);
+      } else if (delta < 0) {
+        setDir(`up-${Date.now()}`);
+      }
+    }, 1500),
+    [throttled]
   );
 
   useEffect(() => {
-    const r = ref.current;
-    if (r) {
-      r.addEventListener("mousewheel", handleMouseScroll);
-    }
-    return () => {
-      if (r) {
-        r.removeEventListener("mousewheel", handleMouseScroll);
-      }
-    };
-  }, [handleMouseScroll, ref]);
+    if (!ref.current) return;
+    const {current} = ref;
+    // IE9, Chrome, Safari, Opera
+    current.addEventListener("mousewheel", mouseWheelHandler as any, false);
+    // Firefox
+    current.addEventListener("DOMMouseScroll", mouseWheelHandler as any, false);
+    // IE 6~8
+    current.addEventListener("onmousewheel", mouseWheelHandler as any, false);
 
-  return useMemo(() => ({ ref }), [ref]);
+    return () => {
+      current.removeEventListener(
+        "mousewheel",
+        mouseWheelHandler as any,
+        false
+      );
+      current.removeEventListener(
+        "DOMMouseScroll",
+        mouseWheelHandler as any,
+        false
+      );
+      current.removeEventListener(
+        "onmousewheel",
+        mouseWheelHandler as any,
+        false
+      );
+    };
+  }, [mouseWheelHandler]);
+
+  return useMemo(() => ({ref, dir}), [ref, dir]);
 };

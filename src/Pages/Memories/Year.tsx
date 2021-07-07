@@ -1,20 +1,20 @@
-import React, { useMemo } from "react";
+import React, {useMemo} from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { Memory, MONTHS } from "../../Content";
-import { useDispatch } from "react-redux";
+import {Memory, MONTHS} from "../../Content";
 import {
-  __COLORS,
   COLOR_TRANSITION,
   DARK_MODE_TRANSITION,
   getHSLA,
   SPACING,
-  YEAR_HEIGHT
+  YEAR_HEIGHT,
+  __COLORS
 } from "../../Layout/Theme";
+import {setCurrentMemory} from "../../reducers/memory/actions";
+import {setNumberTranslation} from "../../reducers/translation/actions";
 import useAppState from "../../reducers/useAppState";
-import { setCurrentMemory } from "../../reducers/memory/actions";
-import { setNumberTranslation } from "../../reducers/translation/actions";
 
-const Container = styled.div<{ background: string; isActive: boolean }>`
+const Container = styled.div<{background: string; isActive: boolean}>`
   &:hover {
     background-color: ${props => getHSLA(0.6, props.background)};
   }
@@ -49,18 +49,18 @@ const Month = styled.div<{
     transition: ${COLOR_TRANSITION};
     transform: scale(${props => (props.isActive ? 1 : 0)});
     opacity: ${props => (props.isActive ? 1 : 0)};
-     z-index: 100;
+    z-index: 100;
     font-size: ${props => (props.isActive ? 14 : 0)}px;
   }
-  
- max-height: ${props => (props.isActive ? 40 : 0)}px;
+
+  max-height: ${props => (props.isActive ? 40 : 0)}px;
   pointer-events: none;
   opacity: ${props => (props.isActive ? 1 : 0)};
   cursor: default;
   font-weight: 700;
   color: ${__COLORS.WHITE};
   letter-spacing: 0.5px;
-   z-index: 100;
+  z-index: 100;
   font-size: 14px;
   transform: scale(${props => (props.isActive ? 1 : 0)});
   border-radius: 10px;
@@ -68,17 +68,16 @@ const Month = styled.div<{
   will-change: transform;
   padding: ${SPACING / 2}px ${SPACING}px;
   background-color: ${props => getHSLA(1, props.background)};
-  box-shadow: 0 2px 10px 5px ${props =>
-    getHSLA(0.2, props.background)} !important;
+  box-shadow: 0 2px 10px 5px ${props => getHSLA(0.2, props.background)} !important;
 `;
 
 type Props = {
   memories: Memory[];
   year: number;
 };
-export const Year = ({ year }: Props) => {
+export const Year = ({year}: Props) => {
   const dispatch = useDispatch();
-  const { currentMemory, translatedMemories } = useAppState(s => s.memory);
+  const {currentMemory, translatedMemories} = useAppState(s => s.memory);
   const isActive = currentMemory.year === year;
 
   return useMemo(
