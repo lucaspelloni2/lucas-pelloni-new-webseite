@@ -15,14 +15,18 @@ type CircleProps = {
   translation: number;
 };
 
+type Props = {
+  visible: boolean;
+};
+
 const OVERFLOW = 5;
 const CircleContainer = styled(AnimatedOpacityContainer).attrs<{
   visible: boolean;
-}>(({translation, circleXTranslation}: CircleProps) => ({
+}>(() => ({
   style: {
-    transform: `translate(${circleXTranslation}%, ${translation - OVERFLOW}vh)`
+    /* transform: `translate3d(${circleXTranslation}%, ${translation}vh,0)`*/
   }
-}))<CircleProps>`
+}))<Props>`
   position: fixed;
   z-index: -1;
   left: 0;
@@ -30,26 +34,26 @@ const CircleContainer = styled(AnimatedOpacityContainer).attrs<{
   display: flex;
   justify-content: center;
   bottom: 0;
-  transition: ${PAGE_TRANSITION};
   top: 0;
 `;
 
-const MyCircle = styled.div<{
-  color: string;
-  size: number;
-  scale: number;
-}>`
+const MyCircle = styled.div<
+  {
+    color: string;
+    size: number;
+    scale: number;
+  } & CircleProps
+>`
+  transition: ${PAGE_TRANSITION};
   border-radius: ${props => (props.scale === 1 ? "50" : "%")}%;
   width: ${props => props.size}px;
   height: ${props => props.size}px;
-  transform: ${props => `scale(${props.scale})`};
-  transition: ${PAGE_TRANSITION};
   will-change: transform;
+  transform: ${props =>
+      `translate3d(${props.circleXTranslation}%, ${props.translation}vh,0)`}
+    ${props => `scale(${props.scale})`};
   background: ${props => props.color};
 `;
-type Props = {
-  visible: boolean;
-};
 export const Circle = ({visible}: Props) => {
   const {height, width} = useWindowSize();
   const {selectedColor} = useAppState(s => s.selectedColor);
@@ -72,27 +76,19 @@ export const Circle = ({visible}: Props) => {
       setCircleScale(1);
     } else if (translation === PageDimensions[2]) {
       setCircleColor(selectedColor);
-      setCircleScale(1.5 + Math.round(maxSize / circleSize));
+      setCircleScale(2 + Math.round(maxSize / circleSize));
     }
   }, [background, circleSize, maxSize, selectedColor, translation, width]);
 
-  return useMemo(
-    () => (
-      <CircleContainer
-        visible={visible}
+  return (
+    <CircleContainer visible={visible}>
+      <MyCircle
+        color={circleColor}
+        size={circleSize}
+        scale={circleScale}
         translation={translation}
         circleXTranslation={circleXTranslation}
-      >
-        <MyCircle color={circleColor} size={circleSize} scale={circleScale} />
-      </CircleContainer>
-    ),
-    [
-      circleColor,
-      circleScale,
-      circleSize,
-      circleXTranslation,
-      translation,
-      visible
-    ]
+      />
+    </CircleContainer>
   );
 };

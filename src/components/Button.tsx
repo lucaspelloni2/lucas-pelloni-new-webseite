@@ -1,8 +1,8 @@
-import React, { ReactNode, useCallback } from "react";
+import {linearGradient} from "polished";
+import React, {ReactNode, useCallback} from "react";
 import styled from "styled-components";
-import { __COLORS, COLOR_TRANSITION, getHSLA, SPACING } from "../Layout/Theme";
-import { linearGradient } from "polished";
-import { MEDIUM_DEVICES } from "../Layout/Mobile";
+import {MEDIUM_DEVICES} from "../Layout/Mobile";
+import {COLOR_TRANSITION, getHSLA, SPACING, __COLORS} from "../Layout/Theme";
 
 type Props = {
   children: ReactNode;
@@ -38,16 +38,18 @@ const Container = styled.div<{
   }
   &::after {
     background-color:   background: ${props =>
-  props.secondary
-    ? "inherit"
-    : linearGradient({
-      colorStops: [
-        props.background || __COLORS.TERTIARY,
-        props.backgroundHover || props.background || __COLORS.TERTIARY_HOVER
-      ],
-      toDirection: "to right",
-      fallback: props.background
-    })};
+      props.secondary
+        ? "inherit"
+        : linearGradient({
+            colorStops: [
+              props.background || __COLORS.TERTIARY,
+              props.backgroundHover ||
+                props.background ||
+                __COLORS.TERTIARY_HOVER
+            ],
+            toDirection: "to right",
+            fallback: props.background
+          })};
     content: "";
     position: absolute;
     top: 0;
