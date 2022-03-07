@@ -1,16 +1,9 @@
-import {
-  Col,
-  Container,
-  Flex,
-  Row,
-  SMALL_DEVICES_MAX_WIDTH,
-  SPACING
-} from "axelra-styled-bootstrap-grid";
+import {Col, Container, Flex, Row} from "axelra-styled-bootstrap-grid";
 import React, {ReactNode, useMemo} from "react";
 import styled from "styled-components";
-import {useMedia} from "use-media";
 import {IllustrationSvg} from "../../components/IllustrationSvg";
 import {MEDIUM_DEVICES} from "../../Layout/Mobile";
+import {__COLORS} from "../../Layout/Theme";
 
 const MyContainer = styled(Container)`
   height: 100%;
@@ -22,7 +15,6 @@ const MyCol = styled(Col)`
 
 const MyRow = styled(Row)`
   height: 100%;
-  padding: ${SPACING * 4}px;
   ${MEDIUM_DEVICES`height: auto;`}
 `;
 
@@ -41,7 +33,6 @@ type Props = {
 };
 
 export const Home = ({order, titleComponent}: Props) => {
-  const isSmall = useMedia({maxWidth: SMALL_DEVICES_MAX_WIDTH});
   return useMemo(
     () => (
       <MyContainer fluid>
@@ -52,7 +43,12 @@ export const Home = ({order, titleComponent}: Props) => {
               {titleComponent}
             </MyFlex>
           </MyCol>
-          <MyCol md={8} xl={6} order={order[1]}>
+          <MyCol
+            md={8}
+            xl={6}
+            order={order[1]}
+            style={{backgroundColor: __COLORS.TERTIARY}}
+          >
             <MyFlex column flex={1} justify="center" align="center">
               <Image />
             </MyFlex>

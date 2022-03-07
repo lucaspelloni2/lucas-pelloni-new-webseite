@@ -10,7 +10,6 @@ type Props = {
 const Child = styled.div<{offset: number}>`
   height: ${PAGE_HEIGHT}vh;
   width: 100%;
-  top: ${props => props.offset}%;
 `;
 
 export const Page = forwardRef(

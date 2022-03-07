@@ -85,8 +85,6 @@ export const GlobalStyle = createGlobalStyle<{
     font-family: ${(p: ThemeProviderProps<any>) => p.theme.fontFamily};
      scroll-behavior: smooth;
     height: 100%;
-    overflow: hidden;
-
     width: 100%;  
     padding: 0;
     margin: 0;
@@ -98,7 +96,6 @@ export const GlobalStyle = createGlobalStyle<{
     margin: 0;
     border: 0;
     height: 100%;
-    overflow: hidden;
     width: 100%;
     line-height: 1;
     font-weight: inherit;
