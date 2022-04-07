@@ -48,7 +48,7 @@ export const StoryIntro = () => {
     () => (
       <Container onClick={() => dispatch(setColor(getRandomColor()))}>
         {/*    <Rain />*/}
-        <MyTitle color={color}>Lucas Pelloni - 27 years young.</MyTitle>
+        <MyTitle color={color}>Lucas Pelloni - 29 years young.</MyTitle>
         <Sub color={color}>
           Grew up in{" "}
           <Link
